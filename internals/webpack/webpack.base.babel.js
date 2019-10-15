@@ -5,6 +5,35 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const getBabelOptions = (options = {}) => ({
+  cacheDirectory: true,
+  plugins: (options.plugins || []).concat([
+    [
+      '@babel/plugin-proposal-decorators',
+      {
+        legacy: true,
+      },
+    ],
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-syntax-export-default-from',
+    '@babel/plugin-transform-react-inline-elements',
+    '@babel/plugin-transform-react-constant-elements',
+    [
+      'babel-plugin-styled-components',
+      {
+        minify: process.env.NODE_ENV === 'production',
+        transpileTemplateLiterals: process.env.NODE_ENV === 'production',
+        displayName: process.env.NODE_ENV === 'development',
+        fileName: process.env.NODE_ENV === 'development',
+      },
+    ],
+  ]),
+  presets: (options.presets || []).concat([
+    '@babel/preset-env',
+    '@babel/preset-react',
+  ]),
+});
+
 module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
@@ -20,11 +49,28 @@ module.exports = options => ({
   module: {
     rules: [
       {
-        test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
+        test: /\.coffee$/,
+        loader: [
+          {
+            loader: 'babel-loader',
+            options: Object.assign(
+              options.babelQuery || {},
+              getBabelOptions(options.babelQuery),
+            ),
+          },
+          'coffee-loader',
+        ],
+        exclude: [path.resolve(process.cwd(), 'node_modules')],
+      },
+      {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: options.babelQuery,
+          options: Object.assign(
+            options.babelQuery || {},
+            getBabelOptions(options.babelQuery),
+          ),
         },
       },
       {
