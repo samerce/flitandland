@@ -1,21 +1,27 @@
-import styled from 'styled-components';
-import { theme, Flex, AbsoluteFlexFillParent } from '../../global-styles';
+import styled from 'styled-components'
+import {
+  theme, Flex, AbsoluteFlexFillParent, H1, H2
+} from '../../global-styles'
 
 export const Root = styled(Flex)`
   width: 100%;
   height: 100%;
+  flex: 0 0 ${window.innerHeight}px;
   flex-wrap: wrap;
-`;
+  position: relative;
+`
 
-const QuadBorder = `1px solid ${theme.main}`;
-export const Quad = styled(Flex)`
+const QuadBorder = `1px solid ${theme.main}`
+export const Quad = styled.a`
+  display: flex;
   flex: 0 0 50%;
-  height: 50%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  pointer-events: all;
 
   &.topLeft {
     border-right: ${QuadBorder};
@@ -33,42 +39,50 @@ export const Quad = styled(Flex)`
     border-top: ${QuadBorder};
     border-left: ${QuadBorder};
   }
-`;
+`
 
 export const QuadImage = styled.img`
   position: absolute;
   height: 100%;
-`;
+  filter: brightness(.6);
+  pointer-events: all;
+
+  &:hover {
+    filter: none;
+  }
+`
 
 export const QuadTitle = styled.div`
-  font-size: 48px;
-  text-transform: uppercase;
+  font-size: 72px;
   z-index: 1;
   color: white;
-`;
+  text-shadow: 1px 1px 5px black;
+  font-family: just another hand;
+`
 
 export const QuadSubtitle = styled.div`
-  font-size: 24px;
-  letter-spacing: 1px;
+  font-size: 28px;
   z-index: 1;
   color: white;
-`;
+  text-shadow: 1px 1px 5px black;
+  font-family: "goudy bookletter 1911";
+`
 
 export const CenterRoot = styled(AbsoluteFlexFillParent)`
   align-items: center;
   justify-content: center;
-`;
+`
 
 const getSize = screenWidth => Math.min(window.innerWidth, 400);
 export const Bubble = styled(Flex)`
   border-radius: 100%;
-  border: ${QuadBorder};
+  border: 2px solid ${theme.main};
   height: ${getSize(window.innerWidth)}px;
   width: ${getSize(window.innerWidth)}px;
   flex: 0 0 ${getSize(window.innerWidth)}px;
   overflow: hidden;
   justify-content: center;
   align-items: center;
-`;
+`
 
-export const BubbleVideo = styled.video``;
+export const BubbleVideo = styled.video``
