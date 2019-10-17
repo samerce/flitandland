@@ -2,11 +2,11 @@ import React from 'react'
 import Gallery from 'react-image-gallery'
 
 import {
-  Root, Commercial, MatrixImage, MatrixItem, MatrixItemContent, MatrixItemText, PeopleImage,
+  Root, Commercial, PeopleImage, Button,
 } from './styled'
 import {
-  SectionHeader, Body, Subheader, Button, Matrix, MatrixItemIcon,
-  MatrixItemTitle,
+  SectionHeader, Body, Subheader, Matrix, MatrixItemIcon,
+  MatrixItemTitle, MatrixImage, MatrixItem, MatrixItemContent, MatrixItemText
 } from '../../global-styles'
 
 import memoize from 'memoize-one'
@@ -73,7 +73,7 @@ export default resizable() class What extends React.PureComponent
           <MatrixItemContent className='right'>
             <MatrixItemTitle>knowledge for all</MatrixItemTitle>
             <MatrixItemText>
-              philosophy and history tell us who are as a species. learning about these vital subjects can be fun! flitterers use theatre, art, movement, and so much more to bring context and awareness to our place in society today.
+              philosophy and history tell us who we are as a species. learning about these vital subjects can be fun! flitterers use theatre, art, movement, and so much more to bring context and awareness to our place in society today.
             </MatrixItemText>
           </MatrixItemContent>
           <MatrixImage src={SRC_URL + 'flitandland/wisdom.png'} />
@@ -102,7 +102,7 @@ export default resizable() class What extends React.PureComponent
 
   getVideoSize: => @getVideoSizeImpl(window.innerWidth, window.innerHeight)
   getVideoSizeImpl: memoize (screenWidth, screenHeight) =>
-    width = Math.min(screenWidth * .7, 1920)
+    width = Math.min(screenWidth * .9, 1920)
     height: width * (9/16)
     width: width
 
@@ -111,4 +111,4 @@ export default resizable() class What extends React.PureComponent
     width = Math.min(screenWidth * .9, 1920)
     height: width * (9/16)
     width: width
-    fullscreenHeight: screenHeight
+    screenHeight: screenHeight

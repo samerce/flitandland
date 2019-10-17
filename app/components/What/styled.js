@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {
-  theme, Flex, FlexColumn, Body, Matrix, MatrixItem as aMatrixItem, MatrixItemIcon, MatrixItemText as aMatrixItemText, MatrixItemTitle as aMatrixItemTitle,
+  theme, Flex, MatrixItem as aMatrixItem, Button as aButton,
 } from '../../global-styles'
 
 export const Root = styled.section`
@@ -22,10 +22,10 @@ export const Root = styled.section`
     overflow: hidden;
 
     &.fullscreen .image-gallery-slide {
-      line-height: ${p => p.gallerySize.fullscreenHeight}px;
+      line-height: ${p => p.gallerySize.screenHeight}px;
 
       &.biggerHeight img {
-        height: ${p => p.gallerySize.fullscreenHeight}px;
+        height: ${p => p.gallerySize.screenHeight}px;
       }
     }
   }
@@ -65,36 +65,11 @@ export const Commercial = styled.iframe`
 `
 
 export const PeopleImage = styled.img`
-  margin: 40px auto 0;
+  margin: 60px auto;
   width: 50%;
   display: block;
 `
 
-export const MatrixItem = styled(aMatrixItem)`
-  flex: 0 0 100%;
-  padding: 40px;
-`
-
-export const MatrixItemContent = styled(FlexColumn)`
-  flex: 1;
-
-  &.right {
-    text-align: right;
-    padding-right: 40px;
-  }
-  &:not(.right) {
-    text-align: left;
-    padding-left: 40px;
-  }
-`
-
-export const MatrixItemText = styled(aMatrixItemText)`
-  font-size: 22px;
-  font-weight: normal;
-  max-width: 800px;
-`
-
-export const MatrixImage = styled.img`
-  height: 300px;
-  padding: 0 10px;
+export const Button = styled(aButton)`
+  margin: 100px auto 40px;
 `

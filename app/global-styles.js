@@ -70,7 +70,7 @@ export const AbsoluteFlexFillParent = styled(AbsoluteFlex)`
 export const H1 = styled.h1`
   font-family: just another hand;
   font-weight: 400;
-  font-size: 72px;
+  font-size: 81px;
 `
 
 export const H2 = styled.h2`
@@ -107,13 +107,21 @@ export const Matrix = styled(Flex)`
 export const MatrixItem = styled(Flex)`
   align-items: center;
   justify-content: center;
-  flex: 1 0 50%;
-  cursor: pointer;
-  filter: none;
+  flex: 0 0 100%;
   transition: all .3s ${EASE_OUT_SINE};
+  padding: 40px;
+`
 
-  &:hover {
-    filter: drop-shadow(100px);
+export const MatrixItemContent = styled(FlexColumn)`
+  flex: 1;
+
+  &.right {
+    text-align: right;
+    padding-right: 40px;
+  }
+  &:not(.right) {
+    text-align: left;
+    padding-left: 40px;
   }
 `
 
@@ -124,16 +132,20 @@ export const MatrixItemIcon = styled.i`
 `
 
 export const MatrixItemTitle = styled(H1)`
-  margin: 20px 0;
+  margin: 0 0 20px;
   font-size: 54px;
   padding: 0 20px;
 `
 
 export const MatrixItemText = styled(Body)`
   margin: 0;
-  max-width: 300px;
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 22px;
+  max-width: 800px;
+`
+
+export const MatrixImage = styled.img`
+  height: 300px;
+  padding: 0 10px;
 `
 
 export const Button = styled(Flex)`
@@ -147,6 +159,7 @@ export const Button = styled(Flex)`
   justify-content: center;
   transition: all .3s ${EASE_OUT_SINE};
   user-select: none;
+  border-radius: 5px;
 
   &:hover {
     border-style: solid;

@@ -26,6 +26,8 @@ export const Table = styled(Flex)`
   max-width: 1280px;
   margin: 80px auto 0;
   position: relative;
+  background: linear-gradient(315deg, #020024 0%, #090979 35%, #00d4ff 100%);
+  box-shadow: ${theme.shadowVeryHeavy};
 `
 
 export const TabBar = styled(AbsoluteFlex)`
@@ -35,7 +37,7 @@ export const TabBar = styled(AbsoluteFlex)`
   top: -${TabHeight / 2}px;
   border: 2px solid ${theme.main};
   border-radius: ${TabBorderRadius}px;
-  background: radial-gradient(circle at center, #e95515 0%, #0fb81e 100%);
+  background: radial-gradient(circle at center, #c917ad 0%, #d71d1d 50%, #641dd7 100%);
   cursor: pointer;
   padding: 2px;
 `
@@ -61,8 +63,8 @@ export const TabItem = styled(Flex)`
 export const TableItem = styled(Flex)`
   flex: 0 0 33%;
   height: 200px;
-  font-size: 58px;
-  font-family: just another hand;
+  font-size: 48px;
+  font-family: aladin;
   align-items: center;
   justify-content: center;
   padding: 10px;

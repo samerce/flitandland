@@ -3,12 +3,12 @@ import {SRC_URL} from '../../constants'
 export default {
   joy: [
     {
-      original: SRC_URL + 'flitandland/promo/boop.jpg',
-      thumbnail: SRC_URL + 'flitandland/promo/boop.jpg',
-    },
-    {
       original: SRC_URL + 'flitandland/promo/flamingo.jpg',
       thumbnail: SRC_URL + 'flitandland/promo/flamingo.jpg',
+    },
+    {
+      original: SRC_URL + 'flitandland/promo/boop.jpg',
+      thumbnail: SRC_URL + 'flitandland/promo/boop.jpg',
     },
     {
       original: SRC_URL + 'flitandland/promo/cutey.jpg',
@@ -27,16 +27,20 @@ export default {
   ],
   art: [
     {
+      original: SRC_URL + 'flitandland/promo/olds.jpg',
+      thumbnail: SRC_URL + 'flitandland/promo/olds.jpg',
+    },
+    {
+      original: SRC_URL + 'flitandland/promo/fab.jpg',
+      thumbnail: SRC_URL + 'flitandland/promo/fab.jpg',
+    },
+    {
       original: SRC_URL + 'flitandland/promo/princess.jpg',
       thumbnail: SRC_URL + 'flitandland/promo/princess.jpg',
     },
     {
       original: SRC_URL + 'flitandland/promo/queens.jpg',
       thumbnail: SRC_URL + 'flitandland/promo/queens.jpg',
-    },
-    {
-      original: SRC_URL + 'flitandland/promo/fab.jpg',
-      thumbnail: SRC_URL + 'flitandland/promo/fab.jpg',
     },
     {
       original: SRC_URL + 'flitandland/promo/jojo.jpg',
@@ -46,10 +50,6 @@ export default {
       original: SRC_URL + 'flitandland/promo/nutso.jpg',
       thumbnail: SRC_URL + 'flitandland/promo/nutso.jpg',
       originalClass: 'biggerHeight',
-    },
-    {
-      original: SRC_URL + 'flitandland/promo/olds.jpg',
-      thumbnail: SRC_URL + 'flitandland/promo/olds.jpg',
     },
   ],
   knowledge: [
