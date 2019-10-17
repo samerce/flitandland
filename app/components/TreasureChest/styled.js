@@ -11,6 +11,10 @@ const TabBorderRadius = 60
 
 export const Root = styled.section`
   text-align: center;
+  background: linear-gradient(to bottom, #321dd7 0%, #c917ad 50%, #d71d1d 100%);
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 
 export const Table = styled(Flex)`
@@ -20,7 +24,7 @@ export const Table = styled(Flex)`
   border: 2px solid ${theme.main};
   border-radius: ${TabBorderRadius}px;
   max-width: 1280px;
-  margin: 80px 20px 0;
+  margin: 80px auto 0;
   position: relative;
 `
 
@@ -31,7 +35,7 @@ export const TabBar = styled(AbsoluteFlex)`
   top: -${TabHeight / 2}px;
   border: 2px solid ${theme.main};
   border-radius: ${TabBorderRadius}px;
-  background: white;
+  background: radial-gradient(circle at center, #e95515 0%, #0fb81e 100%);
   cursor: pointer;
   padding: 2px;
 `

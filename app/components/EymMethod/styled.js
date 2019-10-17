@@ -5,6 +5,8 @@ import {
 
 export const Root = styled.section`
   text-align: center;
+  background: linear-gradient(to bottom, #d71d1d 0%, #86c917 50%, #801dd7 100%);
+  padding: 0 20px;
 `
 
 export const FAL = styled(H1)`
@@ -19,7 +21,6 @@ export const Is = styled.div`
 
 export const Method = styled.span`
   font-family: aladin;
-  text-transform: uppercase;
 `
 
 export const EYM = styled(FAL)`

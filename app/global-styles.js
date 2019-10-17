@@ -12,11 +12,12 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'im fell dw pica', Georgia, serif;
+    color: white;
   }
 
   body.fontLoaded {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'im fell dw pica', Georgia, serif;
   }
 
   #app {
@@ -36,7 +37,7 @@ export default createGlobalStyle`
   }
 
   section {
-    border-top: 2px solid ${Theme.main};
+    border-top: 1px solid ${Theme.main};
     flex: 0 0 auto;
     flex-direction: column;
     text-align: center;
@@ -73,11 +74,11 @@ export const H1 = styled.h1`
 `
 
 export const H2 = styled.h2`
-  font-family: "goudy bookletter 1911";
+  font-family: "im fell dw pica";
 `
 
 export const Body = styled.div`
-  font-family: "goudy bookletter 1911";
+  font-family: "im fell dw pica";
   font-size: 22px;
   padding: 0 20px;
   max-width: 780px;
@@ -91,22 +92,29 @@ export const SectionHeader = styled(H1)`
 
 export const Subheader = styled(H2)`
   text-align: center;
-  font-style: italic;
 `
 
 export const Matrix = styled(Flex)`
   width: 100%;
+  max-width: 1024px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  margin: 0 auto;
 `
 
 export const MatrixItem = styled(Flex)`
   align-items: center;
-  flex: 0 0 50%;
-  margin: 40px 0;
-  padding: 0 5%;
+  justify-content: center;
+  flex: 1 0 50%;
+  cursor: pointer;
+  filter: none;
+  transition: all .3s ${EASE_OUT_SINE};
+
+  &:hover {
+    filter: drop-shadow(100px);
+  }
 `
 
 export const MatrixItemIcon = styled.i`
@@ -115,9 +123,17 @@ export const MatrixItemIcon = styled.i`
   text-align: center;
 `
 
+export const MatrixItemTitle = styled(H1)`
+  margin: 20px 0;
+  font-size: 54px;
+  padding: 0 20px;
+`
+
 export const MatrixItemText = styled(Body)`
   margin: 0;
   max-width: 300px;
+  font-size: 28px;
+  font-weight: bold;
 `
 
 export const Button = styled(Flex)`

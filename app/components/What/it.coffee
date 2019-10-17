@@ -1,54 +1,114 @@
 import React from 'react'
+import Gallery from 'react-image-gallery'
 
 import {
-  Root, Commercial,
+  Root, Commercial, MatrixImage, MatrixItem, MatrixItemContent, MatrixItemText, PeopleImage,
 } from './styled'
 import {
-  SectionHeader, Body, Subheader, Button, Matrix, MatrixItem, MatrixItemIcon, MatrixItemText,
+  SectionHeader, Body, Subheader, Button, Matrix, MatrixItemIcon,
+  MatrixItemTitle,
 } from '../../global-styles'
 
-WhyMatrixConfig
+import memoize from 'memoize-one'
+import resizable from '../hocs/resizable'
 
-export default class What extends React.PureComponent
+import {SRC_URL} from '../../constants'
+import GalleryItems, {GalleryProps} from './config'
+
+export default resizable() class What extends React.PureComponent
+
+  constructor: (props) ->
+    super(props)
+    @gallery = {}
+
+  onResize: => @forceUpdate()
 
   render: =>
-    <Root id='join'>
+    <Root id='join' gallerySize={@getGallerySize()}>
       <SectionHeader>{"what's"} this here thing?</SectionHeader>
-      <Body>
-        <i>flit & land</i> is a movement to end the scourge of soul-sucking 9-to-5 jobs and refocus our society on creating love & joy rather than tupperware & handbags! {"it's"} a method to express your mess in public, with humor, ecstasy, and joy in the lead.
-      </Body>
+      <Subheader>
+        the love revolution!
+      </Subheader>
+      <Commercial size={@getVideoSize()} src="https://www.youtube.com/embed/C59QSCVpSuY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
 
-      <Subheader>{"here's"} fizz to tell you more:</Subheader>
-      <Commercial width="560" height="315" src="https://www.youtube.com/embed/C59QSCVpSuY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+      <PeopleImage src={SRC_URL + 'flitandland/moving-people.png'} />
 
       <Matrix>
-        {WhyMatrixConfig.map (why) =>
-          <MatrixItem id={why.icon}>
-            <MatrixItemIcon className={why.icon} />
-            <MatrixItemText>{why.text}</MatrixItemText>
-          </MatrixItem>
-        }
+        <MatrixItem>
+          <MatrixImage src={SRC_URL + 'flitandland/joy.png'} />
+          <MatrixItemContent>
+            <MatrixItemTitle>streets of joy</MatrixItemTitle>
+            <MatrixItemText>
+              flitter faeries transform their local streets from humdrum, everyday business-as-usual to the fantastic reality of fabulous costumes, circus toys, live theatre, immersive art, humor and just plain fun!
+            </MatrixItemText>
+          </MatrixItemContent>
+        </MatrixItem>
+
+        <MatrixItem>
+          <MatrixItemContent className='right'>
+            <MatrixItemTitle>dialogue for democracy</MatrixItemTitle>
+            <MatrixItemText>
+              amidst the fabulous flittering, {"you'll"} find faeries making conversation about things that our media misses most. not only are they stewards of love & light on the streets, they are guardians of our democracy and architects of cross-community empathy.
+            </MatrixItemText>
+          </MatrixItemContent>
+          <MatrixImage src={SRC_URL + 'flitandland/laughing.png'} />
+        </MatrixItem>
+
+        <Gallery items={GalleryItems.joy} {...GalleryProps}
+          ref={(r) => @gallery.joy = r}
+          onClick={() => @onClickGallery('joy')}
+        />
+
+        <MatrixItem>
+          <MatrixImage src={SRC_URL + 'flitandland/art-yay.png'} />
+          <MatrixItemContent>
+            <MatrixItemTitle>nurturing the artist</MatrixItemTitle>
+            <MatrixItemText>
+              flitterers know that every single human is an artist. {"that's"} why they dream big and bring incredible immersive art to the streets to nurture the artist in themselves and in everyone they meet.
+            </MatrixItemText>
+          </MatrixItemContent>
+        </MatrixItem>
+
+        <MatrixItem>
+          <MatrixItemContent className='right'>
+            <MatrixItemTitle>knowledge for all</MatrixItemTitle>
+            <MatrixItemText>
+              philosophy and history tell us who are as a species. learning about these vital subjects can be fun! flitterers use theatre, art, movement, and so much more to bring context and awareness to our place in society today.
+            </MatrixItemText>
+          </MatrixItemContent>
+          <MatrixImage src={SRC_URL + 'flitandland/wisdom.png'} />
+        </MatrixItem>
+
+        <MatrixItem>
+          <MatrixImage src={SRC_URL + 'flitandland/loveheart.png'} />
+          <MatrixItemContent>
+            <MatrixItemTitle>kind karma</MatrixItemTitle>
+            <MatrixItemText>
+              capitalism can be rough on the spirit. but flitterers are here to lift you up! {"don't"} be surprised if you find your parking meter filled, your streets free of trash, or your hunger sated with free samples. long live kindness! 🙏
+            </MatrixItemText>
+          </MatrixItemContent>
+        </MatrixItem>
       </Matrix>
+
+      <Gallery items={GalleryItems.art} {...GalleryProps}
+        ref={(r) => @gallery.art = r}
+        onClick={() => @onClickGallery('art')}
+      />
 
       <Button>start flittering today!</Button>
     </Root>
 
+  onClickGallery: (gallery) => @gallery[gallery]._toggleFullScreen()
 
-WhyMatrixConfig = [
-  {
-    icon: 'fas fa-money-bill-wave',
-    text: 'get paid to spread joy!',
-  },
-  {
-    icon: 'far fa-comments',
-    text: 'create dialogue for democracy!',
-  },
-  {
-    icon: 'far fa-lightbulb',
-    text: 'bring your crazy ideas to life!',
-  },
-  {
-    icon: 'fas fa-plane-departure',
-    text: 'win a trip to a foreign land!',
-  },
-]
+  getVideoSize: => @getVideoSizeImpl(window.innerWidth, window.innerHeight)
+  getVideoSizeImpl: memoize (screenWidth, screenHeight) =>
+    width = Math.min(screenWidth * .7, 1920)
+    height: width * (9/16)
+    width: width
+
+  getGallerySize: => @getGallerySizeImpl(window.innerWidth, window.innerHeight)
+  getGallerySizeImpl: memoize (screenWidth, screenHeight) =>
+    width = Math.min(screenWidth * .9, 1920)
+    height: width * (9/16)
+    width: width
+    fullscreenHeight: screenHeight

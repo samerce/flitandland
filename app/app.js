@@ -14,7 +14,9 @@ import { Provider } from 'react-redux';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
-// Import root app
+// third party global imports
+import '../node_modules/react-image-gallery/styles/css/image-gallery.css'
+
 import App from 'containers/App';
 
 // Load the favicon and the .htaccess file

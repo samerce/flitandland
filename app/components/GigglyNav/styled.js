@@ -41,11 +41,14 @@ export const Quad = styled.a`
   }
 `
 
-export const QuadImage = styled.img`
+export const QuadImage = styled.div`
+  background: url("${p => p.src}");
+  background-size: cover;
   position: absolute;
   height: 100%;
+  width: 100%;
   filter: brightness(.6);
-  pointer-events: all;
+  pointer-events: none;
 
   &:hover {
     filter: none;
