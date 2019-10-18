@@ -34,7 +34,7 @@ export default resizable() class What extends React.PureComponent
       <PeopleImage src={SRC_URL + 'flitandland/moving-people.png'} />
 
       <Matrix>
-        <MatrixItem>
+        <MatrixItem key='joy'>
           <MatrixImage src={SRC_URL + 'flitandland/joy.png'} />
           <MatrixItemContent>
             <MatrixItemTitle>streets of joy</MatrixItemTitle>
@@ -44,7 +44,7 @@ export default resizable() class What extends React.PureComponent
           </MatrixItemContent>
         </MatrixItem>
 
-        <MatrixItem>
+        <MatrixItem key='dialogue'>
           <MatrixItemContent className='right'>
             <MatrixItemTitle>dialogue for democracy</MatrixItemTitle>
             <MatrixItemText>
@@ -59,7 +59,7 @@ export default resizable() class What extends React.PureComponent
           onClick={() => @onClickGallery('joy')}
         />
 
-        <MatrixItem>
+        <MatrixItem key='art'>
           <MatrixImage src={SRC_URL + 'flitandland/art-yay.png'} />
           <MatrixItemContent>
             <MatrixItemTitle>nurturing the artist</MatrixItemTitle>
@@ -69,7 +69,7 @@ export default resizable() class What extends React.PureComponent
           </MatrixItemContent>
         </MatrixItem>
 
-        <MatrixItem>
+        <MatrixItem key='knowledge'>
           <MatrixItemContent className='right'>
             <MatrixItemTitle>knowledge for all</MatrixItemTitle>
             <MatrixItemText>
@@ -79,7 +79,7 @@ export default resizable() class What extends React.PureComponent
           <MatrixImage src={SRC_URL + 'flitandland/wisdom.png'} />
         </MatrixItem>
 
-        <MatrixItem>
+        <MatrixItem key='karma'>
           <MatrixImage src={SRC_URL + 'flitandland/loveheart.png'} />
           <MatrixItemContent>
             <MatrixItemTitle>kind karma</MatrixItemTitle>
@@ -95,14 +95,14 @@ export default resizable() class What extends React.PureComponent
         onClick={() => @onClickGallery('art')}
       />
 
-      <Button>start flittering today!</Button>
+      <Button>flit with us!</Button>
     </Root>
 
   onClickGallery: (gallery) => @gallery[gallery]._toggleFullScreen()
 
   getVideoSize: => @getVideoSizeImpl(window.innerWidth, window.innerHeight)
   getVideoSizeImpl: memoize (screenWidth, screenHeight) =>
-    width = Math.min(screenWidth * .9, 1920)
+    width = Math.min(screenWidth * .9, 1280)
     height: width * (9/16)
     width: width
 

@@ -1,10 +1,10 @@
 import React from 'react'
 
 import {
-  Root, MatrixItem, PeopleImage,
+  Root, MatrixItem, PeopleImage, Body,
 } from './styled'
 import {
-  SectionHeader, Body, Matrix, MatrixItemContent, MatrixItemIcon, MatrixItemText,
+  SectionHeader, Matrix, MatrixItemContent, MatrixItemIcon, MatrixItemText,
   MatrixItemTitle,
 } from '../../global-styles'
 

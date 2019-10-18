@@ -83,6 +83,7 @@ export const Body = styled.div`
   padding: 0 20px;
   max-width: 780px;
   margin: 0 auto 20px;
+  text-align: left;
 `
 
 export const SectionHeader = styled(H1)`
@@ -92,6 +93,7 @@ export const SectionHeader = styled(H1)`
 
 export const Subheader = styled(H2)`
   text-align: center;
+  font-style: italic;
 `
 
 export const Matrix = styled(Flex)`

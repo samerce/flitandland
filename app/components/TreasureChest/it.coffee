@@ -1,10 +1,10 @@
 import React from 'react'
 
 import {
-  Root, Table, TabBar, TabItem, TableItem,
+  Root, Table, TabBar, TabItem, TableItem, Body,
 } from './styled'
 import {
-  SectionHeader, Body
+  SectionHeader, 
 } from '../../global-styles'
 
 import TableItems from './config'
@@ -23,7 +23,8 @@ export default class TreasureChest extends React.PureComponent
     <Root id='treasure'>
       <SectionHeader>treasure chest</SectionHeader>
       <Body>
-        ideas, resources, and connections to help you flit & land across the globe!
+        ideas and resources to help you flit and land on your streets.<br />
+        and happenings to help you join flitterings happening now all across the globe!
       </Body>
 
       <Table>

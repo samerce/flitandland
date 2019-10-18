@@ -1,9 +1,10 @@
 import styled from 'styled-components'
+import {transparentize} from 'polished'
 import {
-  theme, Flex, AbsoluteFlex
+  theme, Flex, AbsoluteFlex, Body as _Body
 } from '../../global-styles'
 import {
-  EASE_OUT_SINE
+  EASE_OUT_SINE, EASE_OUT,
 } from '../../constants'
 
 const TabHeight = 50
@@ -11,10 +12,14 @@ const TabBorderRadius = 60
 
 export const Root = styled.section`
   text-align: center;
-  background: linear-gradient(to bottom, #321dd7 0%, #c917ad 50%, #d71d1d 100%);
+  background: linear-gradient(to bottom, #eb7e1a 0%, #c917ad 50%, #d71d1d 100%);
   justify-content: center;
   padding-left: 20px;
   padding-right: 20px;
+`
+
+export const Body = styled(_Body)`
+  text-align: center;
 `
 
 export const Table = styled(Flex)`
@@ -50,13 +55,16 @@ export const TabItem = styled(Flex)`
   font-size: 24px;
   border: 1px solid transparent;
   border-radius: ${TabBorderRadius}px;
-  transition: all .3s ${EASE_OUT_SINE};
+  transition: all .3s ${EASE_OUT};
   user-select: none;
+  color: ${transparentize(.3, 'white')};
 
   &.active {
     border-color: ${theme.main};
     background: ${theme.shelly};
+    transform: scale(1.3);
     color: white;
+    transition: all .5s ${EASE_OUT};
   }
 `
 

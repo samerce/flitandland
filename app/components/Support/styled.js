@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {
-  theme, Flex, MatrixItem as aMatrixItem
+  theme, Flex, MatrixItem as aMatrixItem, Body as _Body,
 } from '../../global-styles'
 
 export const Root = styled.section`
@@ -26,4 +26,8 @@ export const MatrixItem = styled(aMatrixItem)`
     border-style: solid;
     background: ${theme.main};
   }
+`
+
+export const Body = styled(_Body)`
+  text-align: center;
 `

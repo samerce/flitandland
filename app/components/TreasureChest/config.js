@@ -31,7 +31,7 @@ const ResourceItems = [
   },
 ]
 
-const ConnectionItems = [
+const HappeningsItems = [
   {
     title: 'jacanda: head flitterer for LA county',
   },
@@ -46,5 +46,5 @@ const ConnectionItems = [
 export default {
   ideas: IdeaItems,
   resources: ResourceItems,
-  connections: ConnectionItems,
+  happenings: HappeningsItems,
 }
