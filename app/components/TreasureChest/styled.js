@@ -27,7 +27,7 @@ export const Table = styled(Flex)`
   border: 2px solid ${theme.main};
   border-radius: ${TabBorderRadius}px;
   max-width: 1280px;
-  margin: 80px auto 0;
+  margin: 80px auto 40px;
   position: relative;
   background: linear-gradient(315deg, #020024 0%, #090979 35%, #00d4ff 100%);
   box-shadow: ${theme.shadowVeryHeavy};

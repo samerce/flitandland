@@ -4,7 +4,7 @@ import {
   Root, Table, TabBar, TabItem, TableItem, Body, TableItemsRoot
 } from './styled'
 import {
-  SectionHeader,
+  SectionHeader, Button,
 } from '../../global-styles'
 
 import TableItems from './config'
@@ -47,4 +47,10 @@ export default TreasureChest = =>
         }
       </TableItemsRoot>
     </Table>
+
+    <Button>
+      {'add an idea!' if activeTab is 'ideas'}
+      {'create a happening!' if activeTab is 'happenings'}
+      {'offer a resource!' if activeTab is 'resources'}
+    </Button>
   </Root>

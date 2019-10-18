@@ -1,3 +1,7 @@
 export function after(timeout, fn) {
-  return setTimeout(fn, timeout)
+  const id = setTimeout(fn, timeout)
+  return {
+    id,
+    clear: () => clearTimeout(id),
+  }
 }

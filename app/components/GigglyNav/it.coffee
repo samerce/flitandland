@@ -52,7 +52,7 @@ export default GigglyNav = =>
           <BubbleVideo
             size={videoSize}
             src={SRC_URL + 'portals/videos/fishypop.mp4'}
-            autoplay={1} loop={1} muted={not expanded}
+            autoPlay={1} loop={1} muted={not expanded}
           />
         </VideoRoot>
       </Bubble>
