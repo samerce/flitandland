@@ -37,11 +37,10 @@ export default createGlobalStyle`
   }
 
   section {
-    border-top: 1px solid ${Theme.main};
     flex: 0 0 auto;
     flex-direction: column;
     text-align: center;
-    padding: 0 0 80px;
+    padding: 40px 0 80px;
   }
 `
 

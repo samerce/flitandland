@@ -50,8 +50,9 @@ export const QuadImage = styled.div`
   width: 100%;
   filter: brightness(.6);
   pointer-events: none;
+  transition: all .3s ${EASE_OUT};
 
-  &:hover {
+  ${Quad}:hover & {
     filter: none;
   }
 `

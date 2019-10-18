@@ -5,7 +5,7 @@ import {
 
 export const Root = styled.section`
   text-align: center;
-  background: linear-gradient(to bottom, #7233e8 0%, #e02323 50%, #eb7e1a 100%);
+  background: linear-gradient(to bottom, #996fe8 0%, #7233e8 5%, #e02323 50%, #eb7e1a 95%, #eda461 100%);
 `
 
 export const PeopleImage = styled.img`

@@ -12,7 +12,7 @@ const TabBorderRadius = 60
 
 export const Root = styled.section`
   text-align: center;
-  background: linear-gradient(to bottom, #eb7e1a 0%, #c917ad 50%, #d71d1d 100%);
+  background: linear-gradient(to bottom, #eda461 0%, #eb7e1a 5%, #c917ad 50%, #d71d1d 95%, #d75050 100%);
   justify-content: center;
   padding-left: 20px;
   padding-right: 20px;

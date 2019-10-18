@@ -5,7 +5,7 @@ import {
 
 export const Root = styled.section`
   text-align: center;
-  background: linear-gradient(to bottom, #27b6e3 0%, #25e27c 50%, #7233e8 100%);
+  background: linear-gradient(to bottom, #27b6e3 0%, #25e27c 50%, #7233e8 95%, #996fe8 100%);
 
   .image-gallery {
     border: 20px solid white;

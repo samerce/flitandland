@@ -5,7 +5,7 @@ import {
 
 export const Root = styled.section`
   text-align: center;
-  background: linear-gradient(to bottom, #d71d1d 0%, #49b7bd 50%, #801dd7 100%);
+  background: linear-gradient(to bottom, #d75050 0%, #d71d1d 5%, #49b7bd 50%, #801dd7 100%);
   padding: 0 20px;
 `
 
