@@ -13,6 +13,7 @@ export const Root = styled.section`
     margin: 20px auto;
     width: ${p => p.gallerySize.width}px;
     height: ${p => p.gallerySize.height}px;
+    flex: 0 0 ${p => p.gallerySize.width}px;
     cursor: pointer;
   }
   .image-gallery-content {

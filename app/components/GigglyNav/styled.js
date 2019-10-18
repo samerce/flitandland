@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {
-  theme, Flex, AbsoluteFlexFillParent, H1, H2
+  theme, Flex, FlexColumn, AbsoluteFlexFillParent, H1, H2
 } from '../../global-styles'
 import {
   EASE_OUT
@@ -16,10 +16,8 @@ export const Root = styled(Flex)`
 `
 
 const QuadBorder = `1px solid ${theme.main}`
-export const Quad = styled.a`
-  display: flex;
+export const Quad = styled(FlexColumn)`
   flex: 0 0 50%;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -64,6 +62,11 @@ export const QuadTitle = styled.div`
   color: white;
   text-shadow: 1px 1px 5px black;
   font-family: just another hand;
+  transition: all .3s ${EASE_OUT};
+
+  ${Quad}:hover & {
+    transform: scale(1.1);
+  }
 `
 
 export const QuadSubtitle = styled.div`
@@ -78,6 +81,7 @@ export const CenterRoot = styled(AbsoluteFlexFillParent)`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  pointer-events: none;
 `
 
 export const Bubble = styled(Flex)`
@@ -91,12 +95,13 @@ export const Bubble = styled(Flex)`
   box-shadow: ${theme.shadowVeryHeavy};
   cursor: pointer;
   transition: all .5s ${EASE_OUT};
+  pointer-events: all;
 
   &.expanded {
     width: ${p => p.videoSize.width}px;
     height: ${p => p.videoSize.height}px;
     flex: 0 0 ${p => p.videoSize.height}px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
 `
 
@@ -106,7 +111,7 @@ export const Logo = styled.div`
   position: absolute;
   letter-spacing: 1px;
   text-shadow: 2px 2px black, 1px 1px 20px black;
-  transition: all .5s ${EASE_OUT};
+  transition: all .3s ${EASE_OUT};
   pointer-events: none;
 
   ${Bubble}:not(.expanded):hover & {
@@ -130,7 +135,7 @@ export const VideoRoot = styled(Flex)`
   .expanded & {
     flex: 0 0 ${p => p.videoSize.width}px;
     height: ${p => p.videoSize.height}px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
 `
 
