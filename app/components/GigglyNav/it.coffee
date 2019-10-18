@@ -13,7 +13,7 @@ import {SRC_URL} from '../../constants'
 
 export default GigglyNav = =>
   [expanded, setExpanded] = useState false
-  [s, popupActions] = usePopup()
+  [s, popup] = usePopup()
   [screenWidth] = useScreenSize()
 
   bubbleSize = Math.min screenWidth, 400
@@ -22,7 +22,7 @@ export default GigglyNav = =>
     document.getElementById(sectionId).scrollIntoView(behavior: 'smooth')
 
   <Root>
-    <Quad className='topLeft' onClick={=> popupActions.show => <WhitePaper />}>
+    <Quad className='topLeft' onClick={=> popup.show => <WhitePaper />}>
       <QuadImage src={SRC_URL + 'commons/streetpoet.jpg'} />
       <QuadSubtitle>read the</QuadSubtitle>
       <QuadTitle>white paper</QuadTitle>

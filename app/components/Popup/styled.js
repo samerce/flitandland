@@ -41,7 +41,7 @@ export const Backdrop = styled(AbsoluteFlexFillParent)`
 
 export const PopupContent = styled(FlexColumn)`
   flex: 1 0 90%;
-  padding: 30px;
+  padding: 0 30px;
   max-width: 820px;
   height: 104%;
   overflow-y: scroll;

@@ -9,25 +9,32 @@ import {
   MatrixItemTitle, MatrixImage, MatrixItem, MatrixItemContent, MatrixItemText
 } from '../../global-styles'
 
+import {usePopup} from '../Popup/it.coffee'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
 import {getMediaSize} from '../../utils/style'
 
 import {SRC_URL} from '../../constants'
 import GalleryItems, {GalleryProps} from './config'
 
+SignUpForm = <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScvGnPFbBsV_led5hVSjnsxh-1T60ZefMceQftpW9u8kUm_YA/viewform?embedded=true" width="100%" height="100%" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
+
 export default What = =>
   [screenWidth, screenHeight] = useScreenSize()
+  [s, popup] = usePopup()
+
   gallery = {}
-  onClickGallery = (type) => gallery[type]._toggleFullScreen()
   videoSize = getMediaSize 1280
   gallerySize = getMediaSize 1920
+
+  onClickGallery = (type) => gallery[type]._toggleFullScreen()
+  onClickFlit = => popup.show => SignUpForm
 
   <Root id='join' gallerySize={gallerySize} screenHeight={screenHeight}>
     <SectionHeader>{"what's"} this here thing?</SectionHeader>
     <Subheader>
       the love revolution!
     </Subheader>
-    <Commercial size={videoSize} src="https://www.youtube.com/embed/C59QSCVpSuY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+    <Commercial size={videoSize} src="https://www.youtube.com/embed/C59QSCVpSuY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
 
     <PeopleImage src={SRC_URL + 'flitandland/moving-people.png'} />
 
@@ -93,5 +100,5 @@ export default What = =>
       onClick={() => onClickGallery('art')}
     />
 
-    <Button>flit with us!</Button>
+    <Button onClick={onClickFlit}>flit with us!</Button>
   </Root>

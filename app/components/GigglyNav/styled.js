@@ -106,10 +106,9 @@ export const Bubble = styled(Flex)`
 `
 
 export const Logo = styled.div`
-  font-size: 72px;
-  font-family: aladin;
+  font-size: 108px;
+  font-family: just another hand;
   position: absolute;
-  letter-spacing: 1px;
   text-shadow: 2px 2px black, 1px 1px 20px black;
   transition: all .3s ${EASE_OUT};
   pointer-events: none;

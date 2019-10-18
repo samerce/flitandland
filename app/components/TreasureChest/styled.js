@@ -40,7 +40,7 @@ export const TabBar = styled(AbsoluteFlex)`
   top: -${TabHeight / 2}px;
   border: 2px solid ${theme.main};
   border-radius: ${TabBorderRadius}px;
-  background: radial-gradient(circle at center, #c917ad 0%, #d71d1d 50%, #641dd7 100%);
+  background: radial-gradient(circle at center, #d65c5c 0%, #d71d1d 100%);
   cursor: pointer;
   padding: 2px;
 `
@@ -55,11 +55,11 @@ export const TabItem = styled(Flex)`
   border-radius: ${TabBorderRadius}px;
   transition: all .3s ${EASE_OUT};
   user-select: none;
-  color: ${transparentize(.3, 'white')};
+  color: ${transparentize(.2, 'white')};
 
   &.active {
     border-color: ${theme.main};
-    background: ${theme.shelly};
+    background: #a10000;
     transform: scale(1.3);
     color: white;
     transition: all .5s ${EASE_OUT};
