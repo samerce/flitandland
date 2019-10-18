@@ -10,32 +10,24 @@ import {
 } from '../../global-styles'
 
 import useScreenSize from '../../hooks/useScreenSize.coffee'
+import {getMediaSize} from '../../utils/style'
 
 import {SRC_URL} from '../../constants'
 import GalleryItems, {GalleryProps} from './config'
 
 export default What = =>
   [screenWidth, screenHeight] = useScreenSize()
-
   gallery = {}
   onClickGallery = (type) => gallery[type]._toggleFullScreen()
+  videoSize = getMediaSize 1280
+  gallerySize = getMediaSize 1920
 
-  getVideoSize = =>
-    width = Math.min(screenWidth * .9, 1280)
-    height: width * (9/16)
-    width: width
-  getGallerySize = =>
-    width = Math.min(screenWidth * .9, 1920)
-    height: width * (9/16)
-    width: width
-    screenHeight: screenHeight
-
-  <Root id='join' gallerySize={getGallerySize()}>
+  <Root id='join' gallerySize={gallerySize} screenHeight={screenHeight}>
     <SectionHeader>{"what's"} this here thing?</SectionHeader>
     <Subheader>
       the love revolution!
     </Subheader>
-    <Commercial size={getVideoSize()} src="https://www.youtube.com/embed/C59QSCVpSuY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+    <Commercial size={videoSize} src="https://www.youtube.com/embed/C59QSCVpSuY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
 
     <PeopleImage src={SRC_URL + 'flitandland/moving-people.png'} />
 

@@ -22,10 +22,10 @@ export const Root = styled.section`
     overflow: hidden;
 
     &.fullscreen .image-gallery-slide {
-      line-height: ${p => p.gallerySize.screenHeight}px;
+      line-height: ${p => p.screenHeight}px;
 
       &.biggerHeight img {
-        height: ${p => p.gallerySize.screenHeight}px;
+        height: ${p => p.screenHeight}px;
       }
     }
   }

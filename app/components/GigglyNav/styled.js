@@ -2,12 +2,16 @@ import styled from 'styled-components'
 import {
   theme, Flex, AbsoluteFlexFillParent, H1, H2
 } from '../../global-styles'
+import {
+  EASE_OUT
+} from '../../constants'
 
 export const Root = styled(Flex)`
   width: 100%;
   height: 100%;
   flex: 0 0 ${window.innerHeight}px;
   flex-wrap: wrap;
+  cursor: pointer;
   position: relative;
 `
 
@@ -20,7 +24,6 @@ export const Quad = styled.a`
   justify-content: center;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
   pointer-events: all;
 
   &.topLeft {
@@ -68,24 +71,70 @@ export const QuadSubtitle = styled.div`
   z-index: 1;
   color: white;
   text-shadow: 1px 1px 5px black;
-  font-family: "goudy bookletter 1911";
+  font-family: im fell dw pica;
 `
 
 export const CenterRoot = styled(AbsoluteFlexFillParent)`
   align-items: center;
   justify-content: center;
+  z-index: 2;
 `
 
-const getSize = screenWidth => Math.min(window.innerWidth, 400);
 export const Bubble = styled(Flex)`
   border-radius: 100%;
-  border: 2px solid ${theme.main};
-  height: ${getSize(window.innerWidth)}px;
-  width: ${getSize(window.innerWidth)}px;
-  flex: 0 0 ${getSize(window.innerWidth)}px;
+  width: ${p => p.size}px;
+  height: ${p => p.size}px;
+  flex: 0 0 ${p => p.size}px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: ${theme.shadowVeryHeavy};
+  cursor: pointer;
+  transition: all .5s ${EASE_OUT};
+
+  &.expanded {
+    width: ${p => p.videoSize.width}px;
+    height: ${p => p.videoSize.height}px;
+    flex: 0 0 ${p => p.videoSize.height}px;
+    border-radius: 5px;
+  }
+`
+
+export const Logo = styled.div`
+  font-size: 72px;
+  font-family: aladin;
+  position: absolute;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px black, 1px 1px 20px black;
+  transition: all .5s ${EASE_OUT};
+  pointer-events: none;
+
+  ${Bubble}:not(.expanded):hover & {
+    transform: scale(1.1);
+  }
+  .expanded & {
+    opacity: 0;
+  }
+`
+
+export const VideoRoot = styled(Flex)`
   overflow: hidden;
   justify-content: center;
   align-items: center;
+  flex: 0 0 ${p => p.size}px;
+  height: ${p => p.size}px;
+  border-radius: 100%;
+  border: 2px solid ${theme.main};
+  transition: all .5s ${EASE_OUT};
+
+  .expanded & {
+    flex: 0 0 ${p => p.videoSize.width}px;
+    height: ${p => p.videoSize.height}px;
+    border-radius: 5px;
+  }
 `
 
-export const BubbleVideo = styled.video``
+export const BubbleVideo = styled.video`
+  width: ${p => p.size.width}px;
+  height: ${p => p.size.height}px;
+`

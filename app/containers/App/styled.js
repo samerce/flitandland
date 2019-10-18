@@ -20,6 +20,6 @@ export const Content = styled(FlexColumn)`
     filter: blur(10px);
     ${'' /* transform: perspective(1080em) rotateX(1deg); */}
     transform: translate(0, -10px);
-    transition: all .5s ${EASE_OUT};
+    transition: all .4s ${EASE_OUT};
   }
 `

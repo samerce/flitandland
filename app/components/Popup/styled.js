@@ -35,7 +35,7 @@ export const Backdrop = styled(AbsoluteFlexFillParent)`
   }
   &.visible {
     opacity: 1;
-    transition: all .5s ${EASE_OUT};
+    transition: all .4s ${EASE_OUT};
   }
 `
 
@@ -50,23 +50,17 @@ export const PopupContent = styled(FlexColumn)`
   box-shadow:
     ${theme.shadowVeryHeavy},
     -1px -1px 1px ${lighten(.4, '#9e626b')},
-    -1px -1px 4px ${lighten(.5, '#9e626b')},
-    -1px -1px 15px ${lighten(.6, '#9e626b')},
-    1px 1px 1px ${lighten(.4, '#9159dd')},
-    1px 1px 4px ${lighten(.5, '#9159dd')},
-    1px 1px 15px ${lighten(.6, '#9159dd')};
+    1px 1px 1px ${lighten(.4, '#9159dd')};
   background: linear-gradient(115deg, #9e626b 0%, #425699 50%, #9159dd 100%);
   z-index: 1;
 
   &, &.visible.hiding {
-    transform: translate(0, 200%);
-    opacity: .5;
+    transform: translate3d(0, 150%, 0);
     transition: all .5s ${EASE_OUT};
   }
   &.visible {
-    transform: translate(0, -1%);
-    opacity: 1;
-    transition: all .5s ${EASE_OUT};
+    transform: translate3d(0, -1%, 0);
+    transition: all .4s ${EASE_OUT};
     pointer-events: all;
   }
 `
