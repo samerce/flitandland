@@ -143,6 +143,7 @@ export const MatrixItemText = styled(Body)`
   margin: 0;
   font-size: 22px;
   max-width: 800px;
+  text-align: inherit;
 `
 
 export const MatrixImage = styled.img`

@@ -33,18 +33,18 @@ const ResourceItems = [
 
 const HappeningsItems = [
   {
-    title: 'jacanda: head flitterer for LA county',
+    title: 'faerie trash cleanup on beverly',
   },
   {
-    title: 'alison: resident flitterer in NOLA',
+    title: 'popup philo duel @ wilshire/la brea',
   },
   {
-    title: 'fizz: head flitterer for mars',
+    title: 'flash runway on venice beach!',
   },
 ]
 
 export default {
   ideas: IdeaItems,
-  resources: ResourceItems,
   happenings: HappeningsItems,
+  resources: ResourceItems,
 }

@@ -23,8 +23,6 @@ export const Body = styled(_Body)`
 `
 
 export const Table = styled(Flex)`
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   border: 2px solid ${theme.main};
   border-radius: ${TabBorderRadius}px;
@@ -68,15 +66,30 @@ export const TabItem = styled(Flex)`
   }
 `
 
+export const TableItemsRoot = styled(Flex)`
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: ${TabBorderRadius}px;
+  overflow: hidden;
+`
+
 export const TableItem = styled(Flex)`
-  flex: 0 0 33%;
+  flex: 1 0 33%;
   height: 200px;
-  font-size: 48px;
+  font-size: 28px;
   font-family: aladin;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 20px;
   user-select: none;
+  transition: all .3s ${EASE_OUT};
+  cursor: pointer;
+
+  &:hover {
+    background: ${transparentize(.7, theme.flikLight)};
+  }
 
   &.topBorders {
     border-top: 1px solid ${theme.main};

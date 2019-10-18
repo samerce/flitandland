@@ -9,7 +9,7 @@ import {
 } from './styled'
 import {SRC_URL} from '../../constants'
 
-export default GigglyNav = (props) =>
+export default GigglyNav = =>
   [s, popupActions] = usePopup()
   onClickQuad = (sectionId) =>
     document.getElementById(sectionId).scrollIntoView(behavior: 'smooth')
@@ -17,7 +17,7 @@ export default GigglyNav = (props) =>
   <Root>
     <Quad className='topRight' onClick={=> popupActions.show => <WhitePaper />}>
       <QuadImage src={SRC_URL + 'commons/streetpoet.jpg'} />
-      <QuadSubtitle>first, read the</QuadSubtitle>
+      <QuadSubtitle>read the</QuadSubtitle>
       <QuadTitle>white paper</QuadTitle>
     </Quad>
     <Quad className='topLeft' onClick={() => onClickQuad('join')}>

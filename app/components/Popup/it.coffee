@@ -20,19 +20,15 @@ export default Popup = =>
   {renderContent} = state
   onRenderContentChanged = =>
     if renderContent?
-      console.log 'pol'
       setHiding false
       after 50, => setVisible true
     else
-      console.log 'hi'
       setHiding true
-      after 300, =>
-        console.log 'bob'
-        setVisible false
+      after 300, => setVisible false
+    return undefined
   useEffect onRenderContentChanged, [renderContent]
 
   cls = cx {active: renderContent?, visible, hiding}
-  console.log cls
   <Root className={cls}>
     <Backdrop onClick={actions.hide} className={cls} />
     <PopupContent className={cls}>
