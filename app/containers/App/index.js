@@ -6,6 +6,9 @@ import Calendar from '../../components/Calendar/it.coffee'
 import TreasureChest from '../../components/TreasureChest/it.coffee'
 import EymMethod from '../../components/EymMethod/it.coffee'
 import Popup, {usePopup} from '../../components/Popup/it.coffee'
+import BouncyPointer from '../../components/BouncyPointer/it.coffee'
+
+import useScroller from '../../hooks/useScroller.coffee'
 
 import GlobalStyle from '../../global-styles'
 import {
@@ -15,6 +18,13 @@ import {
 export default function App() {
   const [state] = usePopup()
   const {renderContent: popupVisible} = state
+
+  const returnToTop = () => window.scroll({top: 0, behavior: 'smooth'})
+
+  const [Scroller] = useScroller()
+  Scroller.trigger('showReturnToTop', (scroll) => scroll >= window.innerHeight)
+  const {showReturnToTop} = Scroller.triggers
+
   return (
       <Root>
         <GlobalStyle />
@@ -25,6 +35,10 @@ export default function App() {
           <TreasureChest />
           <EymMethod />
         </Content>
+        <BouncyPointer
+          className={'returnToTop ' + (showReturnToTop && 'show')}
+          onClick={returnToTop}
+        />
         <Popup />
       </Root>
   )

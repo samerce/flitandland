@@ -7,6 +7,23 @@ import {
 export const Root = styled.div`
   height: 100%;
   width: 100%;
+
+  .returnToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    transform: scale(0) rotate(360deg);
+    filter: blur(5px);
+    pointer-events: none;
+    transition: all .3s;
+
+    &.show {
+      transform: scale(.98) rotate(-180deg);
+      filter: none;
+      pointer-events: all;
+    }
+  }
 `
 
 export const Content = styled(FlexColumn)`

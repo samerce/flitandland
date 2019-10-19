@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import WhitePaper from '../WhitePaper/it.coffee'
+import BouncyPointer from '../BouncyPointer/it.coffee'
 
 import {usePopup} from '../Popup/it.coffee'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
@@ -7,23 +8,22 @@ import {getMediaSize} from '../../utils/style'
 
 import {
   Root, Quad, QuadImage, QuadSubtitle, QuadTitle, CenterRoot, Bubble,
-  BubbleVideo, Logo, VideoRoot, LookDown, Icon,
+  BubbleVideo, Logo, VideoRoot
 } from './styled'
 import {SRC_URL} from '../../constants'
 
 export default GigglyNav = =>
   [expanded, setExpanded] = useState false
-  [s, popup] = usePopup()
+  [s, Popup] = usePopup()
   [screenWidth] = useScreenSize()
 
   bubbleSize = Math.min screenWidth, 400
   videoSize = getMediaSize 1280
   onClickQuad = (sectionId) =>
     document.getElementById(sectionId).scrollIntoView(behavior: 'smooth')
-  onClickIcon = => onClickQuad 'join'
 
   <Root>
-    <Quad className='topLeft' onClick={=> popup.show => <WhitePaper />}>
+    <Quad className='topLeft' onClick={=> Popup.show => <WhitePaper />}>
       <QuadImage src={SRC_URL + 'commons/streetpoet.jpg'} />
       <QuadSubtitle>read the</QuadSubtitle>
       <QuadTitle>white paper</QuadTitle>
@@ -59,9 +59,5 @@ export default GigglyNav = =>
       </Bubble>
     </CenterRoot>
 
-    <LookDown>
-      <Icon className='fas fa-chevron-down' onClick={onClickIcon}></Icon>
-      <Icon className='fas fa-chevron-down' onClick={onClickIcon}></Icon>
-      <Icon className='fas fa-chevron-down' onClick={onClickIcon}></Icon>
-    </LookDown>
+    <BouncyPointer onClick={() => onClickQuad 'join'} />
   </Root>
