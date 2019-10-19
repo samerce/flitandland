@@ -7,7 +7,7 @@ import {getMediaSize} from '../../utils/style'
 
 import {
   Root, Quad, QuadImage, QuadSubtitle, QuadTitle, CenterRoot, Bubble,
-  BubbleVideo, Logo, VideoRoot,
+  BubbleVideo, Logo, VideoRoot, LookDown, Icon,
 } from './styled'
 import {SRC_URL} from '../../constants'
 
@@ -20,6 +20,7 @@ export default GigglyNav = =>
   videoSize = getMediaSize 1280
   onClickQuad = (sectionId) =>
     document.getElementById(sectionId).scrollIntoView(behavior: 'smooth')
+  onClickIcon = => onClickQuad 'join'
 
   <Root>
     <Quad className='topLeft' onClick={=> popup.show => <WhitePaper />}>
@@ -57,4 +58,10 @@ export default GigglyNav = =>
         </VideoRoot>
       </Bubble>
     </CenterRoot>
+
+    <LookDown>
+      <Icon className='fas fa-chevron-down' onClick={onClickIcon}></Icon>
+      <Icon className='fas fa-chevron-down' onClick={onClickIcon}></Icon>
+      <Icon className='fas fa-chevron-down' onClick={onClickIcon}></Icon>
+    </LookDown>
   </Root>
