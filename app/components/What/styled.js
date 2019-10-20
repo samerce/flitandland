@@ -19,7 +19,7 @@ export const Commercial = styled.iframe`
 `
 
 export const PeopleImage = styled.img`
-  margin: 60px auto;
+  margin: 110px auto 60px;
   width: 50%;
   display: block;
 `

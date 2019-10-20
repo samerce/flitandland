@@ -37,11 +37,18 @@ export const SocialFunBar = styled(AbsoluteFlex)`
   ${screen.medsmall`
     font-size: 18px;
   `}
+  ${screen.small`
+    font-size: 16px;
+  `}
 `
 
 export const Icon = styled.div`
-  flex: 0 0 30px;
+  flex: 0 1 30px;
   cursor: pointer;
+
+  ${screen.small`
+    flex: 0 0 20px;
+  `}
 `
 
 export const LikeCount = styled(Flex)`
@@ -50,7 +57,8 @@ export const LikeCount = styled(Flex)`
 `
 
 export const Image = styled(MatrixImage)`
-  max-width: 100%;
+  height: 85%;
+  max-width: initial;
 `
 
 export const EmojiGanja = styled(AbsoluteFlexFillParent)`

@@ -167,7 +167,7 @@ export const MatrixItem = styled(Flex)`
   ${screen.large`
     &, &.right {
       margin: 40px 0;
-      padding: 0;
+      padding: 10px 5px;
       flex-direction: column;
     }
   `}

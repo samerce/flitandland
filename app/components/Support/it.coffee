@@ -15,7 +15,7 @@ export default Support = =>
     <SectionHeader>{"life's (a) play!"}</SectionHeader>
     <Subheader className='antony'>cast yourself well.<span>🧚🏽‍♀️</span></Subheader>
     <Body>
-      no matter who you are, you can flit and land with us!<br/>
+      no matter who you are, you can flit and land!<br/>
       to knight yourself a flitterer & join our (not-really) secret, ethereal,  wispy little club, feel free to pick up and put down any of the characters below for as long as or as little as you like!
     </Body>
     <Subheader className='bolois'><span>💃🏽</span>flitter fabulously!</Subheader>
