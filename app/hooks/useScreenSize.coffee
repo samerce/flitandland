@@ -14,4 +14,4 @@ export default useScreenSize = =>
     window.addEventListener 'resize', onResizeThrottled
     => window.removeEventListener 'resize', onResizeThrottled
 
-  [screenWidth, screenHeight]
+  {screenWidth, screenHeight}

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-import { FlexColumn } from '../../global-styles'
+import {
+  screen, FlexColumn
+} from '../../global-styles'
 import {
   EASE_OUT, EASE_OUT_SINE
 } from '../../constants'
@@ -23,6 +25,11 @@ export const Root = styled.div`
       filter: none;
       pointer-events: all;
     }
+
+    ${screen.medium`
+      bottom: 20px;
+      right: 20px;
+    `}
   }
 `
 
@@ -31,12 +38,12 @@ export const Content = styled(FlexColumn)`
   width: 100%;
   overflow-y: scroll;
   filter: blur(0);
-  transition: all .5s ${EASE_OUT};
+  transition: all .5s;
 
   &.popupVisible {
     filter: blur(10px);
     ${'' /* transform: perspective(1080em) rotateX(1deg); */}
     transform: translate(0, -10px);
-    transition: all .4s ${EASE_OUT};
+    transition: all .4s;
   }
 `

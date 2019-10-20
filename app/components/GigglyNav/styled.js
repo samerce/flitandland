@@ -47,6 +47,7 @@ export const Quad = styled(FlexColumn)`
 export const QuadImage = styled.div`
   background: url("${p => p.src}");
   background-size: cover;
+  background-position: center;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -73,6 +74,9 @@ export const QuadTitle = styled.div`
   ${Quad}:hover & {
     transform: scale(1.1);
   }
+  ${screen.medium`
+    font-size: 300%;
+  `}
 `
 
 export const QuadSubtitle = styled.div`

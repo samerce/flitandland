@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {darken, lighten, transparentize} from 'polished'
 import {
-  theme, Flex, AbsoluteFlexFillParent, FlexColumn
+  theme, screen, Flex, AbsoluteFlexFillParent, FlexColumn, Button,
 } from '../../global-styles'
 import {
   EASE_OUT, EASE_OUT_SINE
@@ -62,5 +62,30 @@ export const PopupContent = styled(FlexColumn)`
     transform: translate3d(0, -1%, 0);
     transition: all .4s ${EASE_OUT};
     pointer-events: all;
+  }
+`
+
+export const BackButton = styled(Button)`
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  height: 60px;
+  z-index: 1;
+  background: #9e626b;
+  align-items: center;
+  display: none;
+  transition: all .3s;
+
+  ${screen.medium`
+    display: flex;
+  `}
+  &, &.visible.hiding {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+  &.visible {
+    transform: none;
+    opacity: 1;
+    transition-delay: .2s;
   }
 `

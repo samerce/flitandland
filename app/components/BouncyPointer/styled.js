@@ -29,7 +29,7 @@ export const Icon = styled.div`
 
   @keyframes bounce {
     100% {
-      transform: translate(0, 10px);
+      transform: translate(0, 6px);
       text-shadow: 1px 1px 0 ${shwite}, 1px 1px 10px ${shwite};
     }
   }

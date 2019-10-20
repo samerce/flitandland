@@ -153,7 +153,7 @@ export const MatrixItem = styled(Flex)`
   justify-content: center;
   flex: 0 0 auto;
   max-width: 1920px;
-  transition: all .3s ${EASE_OUT_SINE};
+  transition: all .3s;
   padding: 40px;
   margin: 20px 0;
 
@@ -185,10 +185,11 @@ export const MatrixItemContent = styled(FlexColumn)`
     align-items: flex-end;
   }
   ${screen.large`
-    &, .right & {
+    &, .right && {
       padding: 0;
       margin: 60px 0 0;
       text-align: center;
+      align-items: center;
     }
   `}
 `
@@ -201,11 +202,10 @@ export const MatrixItemIcon = styled.i`
 
 export const MatrixItemTitle = styled(H1)`
   margin: 0 0 20px;
-  padding: 0 20px;
   font-size: 81px;
 
   ${screen.xlarge`
-    font-size: 300%;
+    font-size: 280%;
   `}
 `
 
@@ -240,7 +240,7 @@ export const Button = styled(Flex)`
   max-width: 400px;
   margin: 0 auto;
   justify-content: center;
-  transition: all .3s ${EASE_OUT_SINE};
+  transition: all .3s;
   user-select: none;
   border-radius: 5px;
 

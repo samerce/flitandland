@@ -1,5 +1,5 @@
 import React from 'react'
-import Gallery from 'react-image-gallery'
+import Gallery from '../Gallery/it.coffee'
 import SocialMatrixImage from '../SocialMatrixImage/it.coffee'
 
 import {
@@ -20,23 +20,20 @@ import GalleryItems, {GalleryProps} from './config'
 SRC_URL = _SRC_URL + 'flitandland/'
 SignUpForm = <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScvGnPFbBsV_led5hVSjnsxh-1T60ZefMceQftpW9u8kUm_YA/viewform?embedded=true" width="100%" height="100%" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
 
+CommercialVideo = =>
+  useScreenSize()
+  <Commercial size={getMediaSize 1280} src="https://www.youtube.com/embed/C59QSCVpSuY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+
 export default What = =>
-  [screenWidth, screenHeight] = useScreenSize()
-  [s, popup] = usePopup()
+  [s, Popup] = usePopup()
+  onClickFlit = => Popup.show => SignUpForm
 
-  gallery = {}
-  videoSize = getMediaSize 1280
-  gallerySize = getMediaSize 1920
-
-  onClickGallery = (type) => gallery[type]._toggleFullScreen()
-  onClickFlit = => popup.show => SignUpForm
-
-  <Root id='join' gallerySize={gallerySize} screenHeight={screenHeight}>
+  <Root id='join'>
     <SectionHeader>{"what's"} this here thing?</SectionHeader>
     <Subheader>
-      the love revolution!
+      a love vortex!
     </Subheader>
-    <Commercial size={videoSize} src="https://www.youtube.com/embed/C59QSCVpSuY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+    <CommercialVideo />
 
     <PeopleImage src={SRC_URL + 'moving-people.png'} />
 
@@ -58,7 +55,7 @@ export default What = =>
 
       <MatrixItem key='dialogue' className='right'>
         <SocialMatrixImage
-          src={SRC_URL + 'what/kristyfizz.jpg'}
+          src={SRC_URL + 'what/merman.jpg'}
           likes={316}
           emoji={['🙏', '🤓', '🤩', '🌬', '✨']}
         />
@@ -72,14 +69,11 @@ export default What = =>
         </MatrixItemContent>
       </MatrixItem>
 
-      <Gallery items={GalleryItems.joy} {...GalleryProps}
-        ref={(r) => gallery.joy = r}
-        onClick={() => onClickGallery('joy')}
-      />
+      <Gallery items={GalleryItems.joy} />
 
       <MatrixItem key='art'>
         <SocialMatrixImage
-          src={SRC_URL + 'what/goofqueenlovers.jpg'}
+          src={SRC_URL + 'what/kristyfizz.jpg'}
           likes={320}
           emoji={['🎷', '🏮', '🌝', '🌴']}
         />
@@ -109,7 +103,7 @@ export default What = =>
 
       <MatrixItem key='karma'>
         <SocialMatrixImage
-          src={SRC_URL + 'what/merman.jpg'}
+          src={SRC_URL + 'what/goofqueenlovers.jpg'}
           emoji={['👭', '👬', '👫', '🏃🏽‍♀️']}
           likes={329}
         />
@@ -122,10 +116,7 @@ export default What = =>
       </MatrixItem>
     </Matrix>
 
-    <Gallery items={GalleryItems.art} {...GalleryProps}
-      ref={(r) => gallery.art = r}
-      onClick={() => onClickGallery('art')}
-    />
+    <Gallery items={GalleryItems.art} />
 
     <Button onClick={onClickFlit}>flit with us!</Button>
   </Root>

@@ -16,7 +16,7 @@ export default Support = =>
     <Subheader className='antony'>cast yourself well.<span>🧚🏽‍♀️</span></Subheader>
     <Body>
       no matter who you are, you can flit and land with us!<br/>
-      to knight yourself a flitterer & join our (not-really) secret, ethereal,  wispy little club, feel free to pick up and put down any of the game pieces below for as long as or as little as you like!
+      to knight yourself a flitterer & join our (not-really) secret, ethereal,  wispy little club, feel free to pick up and put down any of the characters below for as long as or as little as you like!
     </Body>
     <Subheader className='bolois'><span>💃🏽</span>flitter fabulously!</Subheader>
 
@@ -76,7 +76,7 @@ export default Support = =>
         <MatrixItemContent>
           <MatrixItemTitle>queens</MatrixItemTitle>
           <MatrixItemText>
-            <E>royalty cares for its people with fabulous grandeur, import, and finesse!<br/><br/></E>
+            <E>royalty cares for people with fabulous grandeur, import, and finesse!<br/><br/></E>
             flittering queens fund our local chapters so thoroughly that flitterers can flit and land full time! so long 9-to-5 suckery! 🤙
           </MatrixItemText>
         </MatrixItemContent>

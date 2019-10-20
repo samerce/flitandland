@@ -5,7 +5,7 @@ import {cx} from '../../utils/style'
 import {after} from '../../utils/lang'
 
 import {
-  Root, Backdrop, PopupContent
+  Root, Backdrop, PopupContent, BackButton,
 } from './styled'
 
 timer = null
@@ -34,4 +34,7 @@ export default Popup = =>
     <PopupContent className={cls}>
       {renderContent() if renderContent?}
     </PopupContent>
+    <BackButton onClick={actions.hide} className={cls}>
+      close
+    </BackButton>
   </Root>
