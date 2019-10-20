@@ -1,10 +1,47 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, {css, createGlobalStyle} from 'styled-components'
 import Theme from './theme'
 import {
-  EASE_OUT_SINE
+  EASE_OUT_SINE,
+  SCREEN_WIDTH_S, SCREEN_WIDTH_MMS, SCREEN_WIDTH_MS,
+  SCREEN_WIDTH_M, SCREEN_WIDTH_ML, SCREEN_WIDTH_L, SCREEN_WIDTH_XL
 } from './constants'
 
+const sizes = {
+  small: SCREEN_WIDTH_S,
+  medmedsmall: SCREEN_WIDTH_MMS,
+  medsmall: SCREEN_WIDTH_MS,
+  medium: SCREEN_WIDTH_M,
+  mediumlarge: SCREEN_WIDTH_ML,
+  large: SCREEN_WIDTH_L,
+  xlarge: SCREEN_WIDTH_XL,
+}
+export const screen = Object.keys(sizes).reduce((result, key) => {
+  result[key] = (...args) => css`
+    @media (max-width: ${sizes[key] / 16}em) {
+      ${css(...args)}
+    }
+  `
+  return result
+}, {})
+
 export default createGlobalStyle`
+  html {
+    font-size: 28px;
+    line-height: 130%;
+
+    ${screen.xlarge`
+      font-size: 22px;
+    `}
+    ${screen.large`
+      font-size: 24px;
+    `}
+    ${screen.medium`
+      font-size: 18px;
+    `}
+    ${screen.small`
+      font-size: 18px;
+    `}
+  }
   html,
   body {
     height: 100%;
@@ -38,9 +75,10 @@ export default createGlobalStyle`
 
   section {
     flex: 0 0 auto;
+    display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 40px 0 80px;
+    padding: 20px 0 80px;
   }
 `
 
@@ -69,16 +107,19 @@ export const AbsoluteFlexFillParent = styled(AbsoluteFlex)`
 export const H1 = styled.h1`
   font-family: just another hand;
   font-weight: 400;
-  font-size: 81px;
+  font-size: 400%;
+  line-height: 90%;
+  margin-top: 60px;
 `
 
 export const H2 = styled.h2`
-  font-family: "im fell dw pica";
+  font-family: aladin;
+  font-size: 200%;
+  line-height: 100%;
 `
 
 export const Body = styled.div`
   font-family: "im fell dw pica";
-  font-size: 22px;
   padding: 0 20px;
   max-width: 780px;
   margin: 0 auto 20px;
@@ -93,11 +134,13 @@ export const SectionHeader = styled(H1)`
 export const Subheader = styled(H2)`
   text-align: center;
   font-style: italic;
+  font-family: aladin;
+  font-weight: 100;
+  margin-top: 0;
 `
 
 export const Matrix = styled(Flex)`
   width: 100%;
-  max-width: 1024px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -108,22 +151,46 @@ export const Matrix = styled(Flex)`
 export const MatrixItem = styled(Flex)`
   align-items: center;
   justify-content: center;
-  flex: 0 0 100%;
+  flex: 0 0 auto;
+  max-width: 1920px;
   transition: all .3s ${EASE_OUT_SINE};
   padding: 40px;
+  margin: 20px 0;
+
+  &.right {
+    flex-direction: row-reverse;
+  }
+
+  ${screen.xlarge`
+    flex: 0 0 100%;
+  `}
+  ${screen.large`
+    &, &.right {
+      margin: 40px 0;
+      padding: 0;
+      flex-direction: column;
+    }
+  `}
 `
 
 export const MatrixItemContent = styled(FlexColumn)`
   flex: 1;
+  text-align: left;
+  padding-left: 40px;
 
-  &.right {
+  .right & {
     text-align: right;
     padding-right: 40px;
+    padding-left: 0;
+    align-items: flex-end;
   }
-  &:not(.right) {
-    text-align: left;
-    padding-left: 40px;
-  }
+  ${screen.large`
+    &, .right & {
+      padding: 0;
+      margin: 60px 0 0;
+      text-align: center;
+    }
+  `}
 `
 
 export const MatrixItemIcon = styled.i`
@@ -134,21 +201,35 @@ export const MatrixItemIcon = styled.i`
 
 export const MatrixItemTitle = styled(H1)`
   margin: 0 0 20px;
-  font-size: 54px;
   padding: 0 20px;
+  font-size: 81px;
+
+  ${screen.xlarge`
+    font-size: 300%;
+  `}
 `
 
 export const MatrixItemText = styled(Body)`
   margin: 0;
-  font-size: 22px;
   max-width: 800px;
   text-align: inherit;
+
+  ${screen.xlarge`
+    font-size: 110%;
+    line-height: 125%;
+  `}
+  ${screen.medium`
+    padding: 0;
+  `}
 `
 
 export const MatrixImage = styled.img`
-  height: 300px;
-  padding: 0 10px;
+  max-width: 50%;
+  border: 30px solid white;
+  border-bottom-width: 60px;
+  box-shadow: ${theme.shadowVeryHeavy};
 `
+
 
 export const Button = styled(Flex)`
   cursor: pointer;
@@ -168,4 +249,13 @@ export const Button = styled(Flex)`
     background: ${theme.main};
     color: white;
   }
+`
+
+// E for Emphasis!
+export const E = styled.span`
+  font-family: aladin;
+`
+
+export const canTilt = p => p.tilt && `
+  transform: rotate(${p.tilt}deg);
 `

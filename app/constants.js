@@ -5,6 +5,7 @@ export const CDN_URL = 'https://d3sclm0qnx89jv.cloudfront.net/';
 export const IMG_OPT_URL = 'https://res.cloudinary.com/eym/image/fetch/q_auto/';
 export const SRC_URL =
   process.env.NODE_ENV === 'production' ? IMG_OPT_URL + CDN_URL : CDN_URL;
+export const FAL_URL = SRC_URL + 'flitandland/'
 
 export const YOUTUBE_URL =
   'https://www.youtube.com/channel/UCne9Pv9CARxNz8rNMaDm7Dw';

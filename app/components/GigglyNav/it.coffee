@@ -15,33 +15,33 @@ import {SRC_URL} from '../../constants'
 export default GigglyNav = =>
   [expanded, setExpanded] = useState false
   [s, Popup] = usePopup()
-  [screenWidth] = useScreenSize()
+  [screenWidth, screenHeight] = useScreenSize()
 
-  bubbleSize = Math.min screenWidth, 400
+  bubbleSize = Math.min (screenWidth * .5), 400
   videoSize = getMediaSize 1280
   onClickQuad = (sectionId) =>
     document.getElementById(sectionId).scrollIntoView(behavior: 'smooth')
 
-  <Root>
+  <Root screenHeight={screenHeight}>
     <Quad className='topLeft' onClick={=> Popup.show => <WhitePaper />}>
-      <QuadImage src={SRC_URL + 'commons/streetpoet.jpg'} />
+      <QuadImage src={SRC_URL + 'flitandland/what/caught!.jpg'} />
       <QuadSubtitle>read the</QuadSubtitle>
       <QuadTitle>white paper</QuadTitle>
     </Quad>
     <Quad className='topRight' onClick={() => onClickQuad('join')}>
-      <QuadImage src={SRC_URL + 'commons/me wig tiny.jpg'} />
-      <QuadSubtitle>become a</QuadSubtitle>
-      <QuadTitle>flitterer</QuadTitle>
+      <QuadImage src={SRC_URL + 'flitandland/what/zinisbowie.jpg'} />
+      <QuadSubtitle>{"what's"} a</QuadSubtitle>
+      <QuadTitle>flitterer?</QuadTitle>
     </Quad>
     <Quad className='bottomLeft' onClick={() => onClickQuad('support')}>
-      <QuadImage src={SRC_URL + 'portals/stills/bloom.jpg'} />
-      <QuadTitle>support</QuadTitle>
-      <QuadSubtitle>the movement</QuadSubtitle>
+      <QuadImage src={SRC_URL + 'flitandland/what/cutestfaerie.jpg'} />
+      <QuadTitle>wanna play?</QuadTitle>
+      <QuadSubtitle>pull up your britches, sally!</QuadSubtitle>
     </Quad>
     <Quad className='bottomRight' onClick={() => onClickQuad('treasure')}>
       <QuadImage src={SRC_URL + 'portals/stills/jojo.jpg'} />
       <QuadTitle>treasure chest</QuadTitle>
-      <QuadSubtitle>ideas, resources & happenings</QuadSubtitle>
+      <QuadSubtitle>ideas, happenings & resources</QuadSubtitle>
     </Quad>
 
     <CenterRoot>
@@ -52,7 +52,7 @@ export default GigglyNav = =>
         <VideoRoot size={bubbleSize} videoSize={videoSize}>
           <BubbleVideo
             size={videoSize}
-            src={SRC_URL + 'portals/videos/fishypop.mp4'}
+            src={SRC_URL + 'flitandland/fizzjuggler.mp4'}
             autoPlay={1} loop={1} muted={not expanded}
           />
         </VideoRoot>

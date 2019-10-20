@@ -1,63 +1,99 @@
 import React from 'react'
 
 import {
-  Root, MatrixItem, PeopleImage, Body,
+  Root, MatrixItem, PeopleImage, Body, Subheader, Icon, MatrixImageRoot, MatrixImage,
 } from './styled'
 import {
   SectionHeader, Matrix, MatrixItemContent, MatrixItemIcon, MatrixItemText,
-  MatrixItemTitle,
+  MatrixItemTitle, E,
 } from '../../global-styles'
 
-import {SRC_URL} from '../../constants'
+import {FAL_URL} from '../../constants'
 
 export default Support = =>
   <Root id='support'>
-    <SectionHeader>support the love revolution</SectionHeader>
+    <SectionHeader>{"life's (a) play!"}</SectionHeader>
+    <Subheader className='antony'>cast yourself well.<span>🧚🏽‍♀️</span></Subheader>
     <Body>
-      flit and land is a not-for-profit community aimed at bridging the divides in our country and refocusing human effort on love & joy instead of competition & sacrifice.
+      no matter who you are, you can flit and land with us!<br/>
+      to knight yourself a flitterer & join our (not-really) secret, ethereal,  wispy little club, feel free to pick up and put down any of the game pieces below for as long as or as little as you like!
     </Body>
+    <Subheader className='bolois'><span>💃🏽</span>flitter fabulously!</Subheader>
 
-    <PeopleImage src={SRC_URL + 'flitandland/moving-people.png'} />
+    <PeopleImage src={FAL_URL + 'moving-people.png'} />
 
     <Matrix>
       <MatrixItem>
-        <MatrixItemIcon className='fas fa-hand-holding-heart' />
+        <MatrixImageRoot>
+          <MatrixImage src={FAL_URL + 'millyflitty.jpg'} />
+          <Icon>🦄</Icon>
+        </MatrixImageRoot>
         <MatrixItemContent>
-          <MatrixItemTitle>SPONSOR</MatrixItemTitle>
+          <MatrixItemTitle>flitterers</MatrixItemTitle>
           <MatrixItemText>
-            travel is the biggest contributer to emotional growth. sponsor a travel lottery to offer flitterers regular opportunities to fly to different states, learn about people from different places, spread their love and joy to foreign streets, and build powerful new empathy in a time where hate threatens our unity.
+            <E>bundles of love & ecstasy!<br/><br/></E>
+            these fantastic creatures flit around, dropping a bit of love here, a splash of humor there, a spritz of shade there, a dash of insanity here.<br/><br/>
+            embracing <E>schizo</E>, they keep the gears turning and the fires burning!
           </MatrixItemText>
         </MatrixItemContent>
       </MatrixItem>
 
-      <MatrixItem>
-        <MatrixItemContent className='right'>
-          <MatrixItemTitle>DONATE</MatrixItemTitle>
-          <MatrixItemText>
-            media consumption is rotting our brains. we can make our own spectacle every day in our own communities! donate materials—art supplies, recording equipment, circus toys, cars, computers, anything—to help flitterers create the most magnificent displays of love and absurdity that can rival {"hollywood's"} best blockbuster!
-          </MatrixItemText>
-        </MatrixItemContent>
-        <MatrixItemIcon className='fas fa-box-open' />
-      </MatrixItem>
-
-      <MatrixItem>
-        <MatrixItemIcon className='far fa-money-bill-alt' />
+      <MatrixItem className='right'>
+        <MatrixImageRoot>
+          <MatrixImage src={FAL_URL + 'binchesinlove.jpg'} />
+          <Icon>🏄🏽‍♀️</Icon>
+        </MatrixImageRoot>
         <MatrixItemContent>
-          <MatrixItemTitle>FUND</MatrixItemTitle>
+          <MatrixItemTitle>surfers</MatrixItemTitle>
           <MatrixItemText>
-            we can end the scourge of 9-to-5 jobs that suck our souls. fund a chapter in your state to pay people to spread love, joy, and knowledge on the streets rather than being stuck behind a desk or inside a factory.
+            <E>these rad folks say yes to everything. the secret to their endless radiance? obsessive awareness.<br/><br/></E>
+            every hour from sunrise to midnight is full. scheduled. they know what they like and they build their lives around it. {"they're"} invigorated by travel and exploration and {"that's"} why they benevolently sponsor our lotteries, giving <E>four random flitterers a month</E> trips to other states to cross-pollinate americans from coast to coast!<br/><br/>
+            all while singing opera on a unicycle juggling fifteen piglets! 🐷
           </MatrixItemText>
         </MatrixItemContent>
       </MatrixItem>
 
       <MatrixItem>
-        <MatrixItemContent className='right'>
-          <MatrixItemTitle>BRAINSTORM</MatrixItemTitle>
+        <MatrixImageRoot>
+          <MatrixImage src={FAL_URL + 'indecisivesasquatch.jpg'} />
+          <Icon>🐒</Icon>
+        </MatrixImageRoot>
+        <MatrixItemContent>
+          <MatrixItemTitle>collectors</MatrixItemTitle>
           <MatrixItemText>
-            you can help us guide this movement. join our digital town square and brainstorm with us to decide what we do next. or just shoot us a message if you have an idea you wanna share.
+            <E>these perfect peculiar penguins usually have that bandaid in their purse just when you need it.<br/><br/></E>
+            they probably have tons of unused STUFF. art supplies all over the house, maybe some juggling pins and recording equipment in the garage, perhaps a car—a shiny macbook air tossing blinding rays off its soft shell from the front seat—that just sits in the driveway, sad it never gets to go anywhere. <br/><br/>
+            their donations make it possible for us to create street spectacles that rival the mightiest hollywood blockbuster!
           </MatrixItemText>
         </MatrixItemContent>
-        <MatrixItemIcon className='fas fa-lightbulb' />
+      </MatrixItem>
+
+      <MatrixItem className='right'>
+        <MatrixImageRoot>
+          <MatrixImage src={FAL_URL + 'what/SERVE HENNY!cutestfaerie.jpg'} />
+          <Icon>🐝</Icon>
+        </MatrixImageRoot>
+        <MatrixItemContent>
+          <MatrixItemTitle>queens</MatrixItemTitle>
+          <MatrixItemText>
+            <E>royalty cares for its people with fabulous grandeur, import, and finesse!<br/><br/></E>
+            flittering queens fund our local chapters so thoroughly that flitterers can flit and land full time! so long 9-to-5 suckery! 🤙
+          </MatrixItemText>
+        </MatrixItemContent>
+      </MatrixItem>
+
+      <MatrixItem>
+        <MatrixImageRoot>
+          <MatrixImage src={FAL_URL + 'thepolitician.jpg'} />
+          <Icon>🦋</Icon>
+        </MatrixImageRoot>
+        <MatrixItemContent>
+          <MatrixItemTitle>politicians</MatrixItemTitle>
+          <MatrixItemText>
+            <E>thinkers solve the big problems.</E><br/><br/>
+            politicians bring our grandest collective dreams into reality. they brainstorm, motivate, guide & protect.
+          </MatrixItemText>
+        </MatrixItemContent>
       </MatrixItem>
     </Matrix>
   </Root>

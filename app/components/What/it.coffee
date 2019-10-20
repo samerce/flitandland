@@ -1,21 +1,23 @@
 import React from 'react'
 import Gallery from 'react-image-gallery'
+import SocialMatrixImage from '../SocialMatrixImage/it.coffee'
 
 import {
-  Root, Commercial, PeopleImage, Button,
+  Root, Commercial, PeopleImage, Button, MatrixImage,
 } from './styled'
 import {
   SectionHeader, Body, Subheader, Matrix, MatrixItemIcon,
-  MatrixItemTitle, MatrixImage, MatrixItem, MatrixItemContent, MatrixItemText
+  MatrixItemTitle, MatrixItem, MatrixItemContent, MatrixItemText, E
 } from '../../global-styles'
 
 import {usePopup} from '../Popup/it.coffee'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
 import {getMediaSize} from '../../utils/style'
 
-import {SRC_URL} from '../../constants'
+import {SRC_URL as _SRC_URL} from '../../constants'
 import GalleryItems, {GalleryProps} from './config'
 
+SRC_URL = _SRC_URL + 'flitandland/'
 SignUpForm = <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScvGnPFbBsV_led5hVSjnsxh-1T60ZefMceQftpW9u8kUm_YA/viewform?embedded=true" width="100%" height="100%" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
 
 export default What = =>
@@ -36,27 +38,38 @@ export default What = =>
     </Subheader>
     <Commercial size={videoSize} src="https://www.youtube.com/embed/C59QSCVpSuY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
 
-    <PeopleImage src={SRC_URL + 'flitandland/moving-people.png'} />
+    <PeopleImage src={SRC_URL + 'moving-people.png'} />
 
     <Matrix>
       <MatrixItem key='joy'>
-        <MatrixImage src={SRC_URL + 'flitandland/joy.png'} />
+        <SocialMatrixImage
+          src={SRC_URL + 'what/mikeyfizzwhimzeh.jpg'}
+          emoji={['🌞', '🌈', '🧚🏽‍♂️', '💪🏽', '🔮']}
+        />
         <MatrixItemContent>
-          <MatrixItemTitle>streets of joy</MatrixItemTitle>
+          <MatrixItemTitle>
+            <E>now</E> leaves no space for <E>until</E>
+          </MatrixItemTitle>
           <MatrixItemText>
             flitter faeries transform their local streets from humdrum, everyday business-as-usual to the fantastic reality of fabulous costumes, circus toys, live theatre, immersive art, humor and just plain fun!
           </MatrixItemText>
         </MatrixItemContent>
       </MatrixItem>
 
-      <MatrixItem key='dialogue'>
-        <MatrixItemContent className='right'>
-          <MatrixItemTitle>dialogue for democracy</MatrixItemTitle>
+      <MatrixItem key='dialogue' className='right'>
+        <SocialMatrixImage
+          src={SRC_URL + 'what/kristyfizz.jpg'}
+          likes={316}
+          emoji={['🙏', '🤓', '🤩', '🌬', '✨']}
+        />
+        <MatrixItemContent>
+          <MatrixItemTitle>
+            more <E>danger</E>, less comfort
+          </MatrixItemTitle>
           <MatrixItemText>
-            amidst the fabulous flittering, {"you'll"} find faeries making conversation about things that our media misses most. not only are they stewards of love & light on the streets, they are guardians of our democracy and architects of cross-community empathy.
+            amidst the fabulous flittering, {"you'll"} find dialogue for <E>democracy</E>.<br /> faeries chat about what the media misses most. not only are they street stewards of love & light, they are anytime guardians of democracy and architects of cross-community empathy.
           </MatrixItemText>
         </MatrixItemContent>
-        <MatrixImage src={SRC_URL + 'flitandland/laughing.png'} />
       </MatrixItem>
 
       <Gallery items={GalleryItems.joy} {...GalleryProps}
@@ -65,29 +78,43 @@ export default What = =>
       />
 
       <MatrixItem key='art'>
-        <MatrixImage src={SRC_URL + 'flitandland/art-yay.png'} />
+        <SocialMatrixImage
+          src={SRC_URL + 'what/goofqueenlovers.jpg'}
+          likes={320}
+          emoji={['🎷', '🏮', '🌝', '🌴']}
+        />
         <MatrixItemContent>
-          <MatrixItemTitle>nurturing the artist</MatrixItemTitle>
+          <MatrixItemTitle>
+            we are what we <E>will</E>
+          </MatrixItemTitle>
           <MatrixItemText>
             flitterers know that every single human is an artist. {"that's"} why they dream big and bring incredible immersive art to the streets to nurture the artist in themselves and in everyone they meet.
           </MatrixItemText>
         </MatrixItemContent>
       </MatrixItem>
 
-      <MatrixItem key='knowledge'>
-        <MatrixItemContent className='right'>
-          <MatrixItemTitle>knowledge for all</MatrixItemTitle>
+      <MatrixItem key='knowledge' className='right'>
+        <SocialMatrixImage
+          src={SRC_URL + 'what/silverqueen.jpg'}
+          emoji={['📚', '🙇🏽‍♀️', '💞']}
+          likes={319}
+        />
+        <MatrixItemContent>
+          <MatrixItemTitle>math_bending <E>miracle&nbsp;humans</E></MatrixItemTitle>
           <MatrixItemText>
             philosophy and history tell us who we are as a species. learning about these vital subjects can be fun! flitterers use theatre, art, movement, and so much more to bring context and awareness to our place in society today.
           </MatrixItemText>
         </MatrixItemContent>
-        <MatrixImage src={SRC_URL + 'flitandland/wisdom.png'} />
       </MatrixItem>
 
       <MatrixItem key='karma'>
-        <MatrixImage src={SRC_URL + 'flitandland/loveheart.png'} />
+        <SocialMatrixImage
+          src={SRC_URL + 'what/merman.jpg'}
+          emoji={['👭', '👬', '👫', '🏃🏽‍♀️']}
+          likes={329}
+        />
         <MatrixItemContent>
-          <MatrixItemTitle>kind karma</MatrixItemTitle>
+          <MatrixItemTitle><E>love</E> is so freakin powerful</MatrixItemTitle>
           <MatrixItemText>
             capitalism can be rough on the spirit. but flitterers are here to lift you up! {"don't"} be surprised if you find your parking meter filled, your streets free of trash, or your hunger sated with free samples. long live kindness! 🙏
           </MatrixItemText>

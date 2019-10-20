@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {lighten, darken} from 'polished'
 import {
-  theme, Flex, FlexColumn, AbsoluteFlexFillParent, H1, H2, AbsoluteFlex
+  theme, screen, Flex, FlexColumn, AbsoluteFlexFillParent, H1, H2, AbsoluteFlex
 } from '../../global-styles'
 import {
   EASE_OUT
@@ -10,7 +10,7 @@ import {
 export const Root = styled(Flex)`
   width: 100%;
   height: 100%;
-  flex: 0 0 ${window.innerHeight}px;
+  flex: 0 0 ${p => p.screenHeight}px;
   flex-wrap: wrap;
   cursor: pointer;
   position: relative;
@@ -60,12 +60,15 @@ export const QuadImage = styled.div`
 `
 
 export const QuadTitle = styled.div`
-  font-size: 72px;
   z-index: 1;
   color: white;
   text-shadow: 1px 1px 5px black;
   font-family: just another hand;
   transition: all .3s ${EASE_OUT};
+  font-size: 400%;
+  line-height: 110%;
+  text-align: center;
+  padding: 0 5px;
 
   ${Quad}:hover & {
     transform: scale(1.1);
@@ -73,11 +76,14 @@ export const QuadTitle = styled.div`
 `
 
 export const QuadSubtitle = styled.div`
-  font-size: 28px;
+  font-size: 120%;
+  line-height: 110%;
   z-index: 1;
   color: white;
   text-shadow: 1px 1px 5px black;
   font-family: im fell dw pica;
+  text-align: center;
+  padding: 0 5px;
 `
 
 export const CenterRoot = styled(AbsoluteFlexFillParent)`
@@ -113,14 +119,21 @@ export const Logo = styled.div`
   font-family: just another hand;
   position: absolute;
   text-shadow: 2px 2px black, 1px 1px 20px black;
-  transition: all .3s ${EASE_OUT};
+  transition: all .6s;
   pointer-events: none;
+  z-index: 2;
+
+  ${screen.mediumlarge`
+    font-size: 400%;
+  `}
 
   ${Bubble}:not(.expanded):hover & {
     transform: scale(1.1);
+    transition-duration: .3s;
   }
   .expanded & {
     opacity: 0;
+    transition-duration: .3s;
   }
 `
 
@@ -132,7 +145,8 @@ export const VideoRoot = styled(Flex)`
   height: ${p => p.size}px;
   border-radius: 100%;
   border: 2px solid ${BorderColor};
-  transition: all .5s ${EASE_OUT};
+  transition: all .5s;
+  position: relative;
 
   .expanded & {
     flex: 0 0 ${p => p.videoSize.width}px;
@@ -144,4 +158,15 @@ export const VideoRoot = styled(Flex)`
 export const BubbleVideo = styled.video`
   width: ${p => p.size.width}px;
   height: ${p => p.size.height}px;
+  position: absolute;
+  margin-left: 190px;
+  transition: all .5s;
+
+  ${screen.mediumlarge`
+    margin-left: 50px;
+  `}
+
+  .expanded & {
+    margin-left: 0;
+  }
 `

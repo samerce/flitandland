@@ -19,8 +19,8 @@ export default TreasureChest = =>
   <Root id='treasure'>
     <SectionHeader>treasure chest</SectionHeader>
     <Body>
-      ideas and resources to help you flit and land on your streets.<br />
-      and happenings to help you join flitterings happening now all across the globe!
+      ideas & resources to help you flit and land on your streets.<br />
+      happenings 👉🏻 live flitterings you could join now!
     </Body>
 
     <Table>

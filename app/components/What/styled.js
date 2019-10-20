@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import {transparentize} from 'polished'
 import {
-  theme, Flex, MatrixItem as aMatrixItem, Button as aButton,
+  theme, Flex, MatrixItem as aMatrixItem, Button as aButton, MatrixImage as _MatrixImage,
 } from '../../global-styles'
 
 export const Root = styled.section`
@@ -10,14 +11,15 @@ export const Root = styled.section`
   .image-gallery {
     border: 20px solid white;
     box-shadow: ${theme.shadowVeryHeavy};
-    margin: 20px auto;
+    margin: 40px auto;
     width: ${p => p.gallerySize.width}px;
     height: ${p => p.gallerySize.height}px;
+    max-height: ${p => p.gallerySize.height}px;
     flex: 0 0 ${p => p.gallerySize.width}px;
     cursor: pointer;
   }
   .image-gallery-content {
-    border: 2px solid ${theme.shellyDark};
+    border: 2px solid ${transparentize(.5, theme.shellyDark)};
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -60,7 +62,7 @@ export const Commercial = styled.iframe`
   border-radius: 20px;
   border: 1px solid white;
   box-shadow: ${theme.shadowVeryHeavy};
-  margin: 20px 0 0;
+  margin: 20px auto 0;
   width: ${p => p.size.width}px;
   height: ${p => p.size.height}px;
 `
@@ -71,6 +73,10 @@ export const PeopleImage = styled.img`
   display: block;
 `
 
+export const MatrixImage = styled(_MatrixImage)`
+
+`
+
 export const Button = styled(aButton)`
-  margin: 100px auto 40px;
+  margin: 100px auto 0;
 `

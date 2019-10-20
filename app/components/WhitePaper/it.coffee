@@ -9,7 +9,7 @@ import {
 
 export default =>
   <Root>
-    <SectionHeader>flit and land</SectionHeader>
+    <SectionHeader>flit & land</SectionHeader>
     <Subheader>why we need flitterers and how we make them a reality</Subheader>
     <Body>
       white paper
