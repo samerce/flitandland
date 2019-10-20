@@ -11,34 +11,37 @@ import {
   Root, Quad, QuadImage, QuadSubtitle, QuadTitle, CenterRoot, Bubble,
   BubbleVideo, Logo, VideoRoot
 } from './styled'
-import {SRC_URL} from '../../constants'
+import {FAL_URL, SCREEN_WIDTH_M} from '../../constants'
 
 export default GigglyNav = =>
   [expanded, setExpanded] = useState false
   [s, Popup] = usePopup()
   {screenWidth, screenHeight} = useScreenSize()
 
-  bubbleSize = Math.min (screenWidth * .5), 400
-  videoSize = getMediaSize 1280
+  videoSize = getMediaSize 1920
+  bubbleSize =
+    if screenWidth <= SCREEN_WIDTH_M
+      screenWidth * .4
+    else screenWidth * .25
 
   <Root screenHeight={screenHeight}>
     <Quad className='topLeft' onClick={=> Popup.show => <WhitePaper />}>
-      <QuadImage src={SRC_URL + 'flitandland/what/caught!.jpg'} />
+      <QuadImage src={FAL_URL + 'what/caught!.jpg'} />
       <QuadSubtitle>read the</QuadSubtitle>
       <QuadTitle>white paper</QuadTitle>
     </Quad>
-    <Quad className='topRight' onClick={() => scrollIntoView('join')}>
-      <QuadImage src={SRC_URL + 'flitandland/what/zinisbowie.jpg'} />
+    <Quad className='topRight' onClick={() => scrollIntoView 'join'}>
+      <QuadImage src={FAL_URL + 'what/zinisbowie.jpg'} />
       <QuadSubtitle>{"what's"} a</QuadSubtitle>
       <QuadTitle>flitterer?</QuadTitle>
     </Quad>
-    <Quad className='bottomLeft' onClick={() => scrollIntoView('support')}>
-      <QuadImage src={SRC_URL + 'flitandland/what/cutestfaerie.jpg'} />
+    <Quad className='bottomLeft' onClick={() => scrollIntoView 'support'}>
+      <QuadImage src={FAL_URL + 'cutestfaerie.jpg'} />
       <QuadTitle>wanna play?</QuadTitle>
       <QuadSubtitle>pull up your britches, sally!</QuadSubtitle>
     </Quad>
-    <Quad className='bottomRight' onClick={() => scrollIntoView('treasure')}>
-      <QuadImage src={SRC_URL + 'portals/stills/jojo.jpg'} />
+    <Quad className='bottomRight' onClick={() => scrollIntoView 'treasure'}>
+      <QuadImage src={FAL_URL + 'swirl.jpg'} />
       <QuadTitle>treasure chest</QuadTitle>
       <QuadSubtitle>ideas, happenings & resources</QuadSubtitle>
     </Quad>
@@ -51,12 +54,12 @@ export default GigglyNav = =>
         <VideoRoot size={bubbleSize} videoSize={videoSize}>
           <BubbleVideo
             size={videoSize}
-            src={SRC_URL + 'flitandland/fizzjuggler.mp4'}
+            src={FAL_URL + 'fizzjuggler.mp4'}
             autoPlay={1} loop={1} muted={not expanded}
           />
         </VideoRoot>
       </Bubble>
     </CenterRoot>
 
-    <BouncyPointer onClick={() => onClickQuad 'join'} />
+    <BouncyPointer onClick={() => scrollIntoView 'join'} />
   </Root>

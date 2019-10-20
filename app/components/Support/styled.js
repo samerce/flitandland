@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {
-  theme, Flex, MatrixItem as aMatrixItem, Body as _Body, MatrixImage as _MatrixImage, Subheader as _Subheader, canTilt,
+  theme, Flex, MatrixItem as aMatrixItem, Body as _Body, MatrixImage as _MatrixImage, Subheader as _Subheader, canTilt, Matrix as _Matrix,
 } from '../../global-styles'
 
 export const Root = styled.section`
@@ -31,10 +31,15 @@ export const PeopleImage = styled.img`
   display: block;
 `
 
+export const Matrix = styled(_Matrix)`
+  flex-direction: column;
+`
+
 export const MatrixItem = styled(aMatrixItem)`
   cursor: pointer;
   border: 1px dashed transparent;
   border-radius: 5px;
+  flex: 0 0 auto;
 
   &:hover {
     border-color: ${theme.dali};

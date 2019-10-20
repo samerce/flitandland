@@ -10,7 +10,7 @@ import {
 export const Root = styled(AbsoluteFlexFillParent)`
   text-align: center;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   display: none;
   position: fixed;
 
@@ -26,27 +26,28 @@ export const Root = styled(AbsoluteFlexFillParent)`
 export const Backdrop = styled(AbsoluteFlexFillParent)`
   background: radial-gradient(circle at center,
     transparent 0%,
-    ${darken(.9, theme.shelly)} 100%
+    ${darken(.5, theme.shelly)} 100%
   );
 
   &, &.visible.hiding {
     opacity: 0;
-    transition: all .5s ${EASE_OUT};
+    transition: all .5s;
   }
   &.visible {
     opacity: 1;
-    transition: all .4s ${EASE_OUT};
+    transition: all .4s;
   }
 `
 
 export const PopupContent = styled(FlexColumn)`
-  flex: 1 0 90%;
-  padding: 0 30px;
+  flex: 1;
+  margin: 0 5px;
+  padding: 0 30px 10px;
   max-width: 820px;
-  height: 104%;
+  height: 101%;
   overflow-y: scroll;
-  border-radius: 10px;
-  border: 1px solid ${lighten(.2, '#9159dd')};
+  border-radius: 5px;
+  border: 1px solid ${transparentize(.5, '#9159dd')};
   box-shadow:
     ${theme.shadowVeryHeavy},
     -1px -1px 1px ${lighten(.4, '#9e626b')},
@@ -56,11 +57,11 @@ export const PopupContent = styled(FlexColumn)`
 
   &, &.visible.hiding {
     transform: translate3d(0, 150%, 0);
-    transition: all .5s ${EASE_OUT};
+    transition: all .5s;
   }
   &.visible {
-    transform: translate3d(0, -1%, 0);
-    transition: all .4s ${EASE_OUT};
+    transform: translate3d(0, 5px, 0);
+    transition: all .4s;
     pointer-events: all;
   }
 `

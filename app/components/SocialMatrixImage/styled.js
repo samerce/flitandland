@@ -9,15 +9,17 @@ import {
 
 export const Root = styled(Flex)`
   position: relative;
-  max-width: 50%;
   margin: 0 10px;
   transition: all .3s;
 
   ${p => p.tilt && `
     transform: rotate(${p.tilt}deg);
   `}
+  ${screen.large`
+    width: 50%;
+  `}
   ${screen.medium`
-    max-width: 100%;
+    width: 90%;
   `}
 `
 
@@ -59,6 +61,12 @@ export const LikeCount = styled(Flex)`
 export const Image = styled(MatrixImage)`
   height: 85%;
   max-width: initial;
+
+  ${screen.large`
+    height: initial;
+    max-width: 100%;
+    width: 100%;
+  `}
 `
 
 export const EmojiGanja = styled(AbsoluteFlexFillParent)`

@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 import {transparentize} from 'polished'
 import {
-  theme, Flex, AbsoluteFlex, Body as _Body
+  theme, screen, Flex, AbsoluteFlex, Body as _Body
 } from '../../global-styles'
 import {
   EASE_OUT_SINE, EASE_OUT,
 } from '../../constants'
 
 const TabHeight = 50
-const TabBorderRadius = 60
+const TabBorderRadius = 40
 
 export const Root = styled.section`
   text-align: center;
@@ -29,9 +29,14 @@ export const Table = styled(Flex)`
   border-radius: ${TabBorderRadius}px;
   max-width: 1280px;
   margin: 80px 0 40px;
+  padding: 20px 0 0;
   position: relative;
   background: linear-gradient(315deg, #020024 0%, #090979 35%, #00d4ff 100%);
   box-shadow: ${theme.shadowVeryHeavy};
+
+  ${screen.medium`
+    width: 100%;
+  `}
 `
 
 export const TabBar = styled(AbsoluteFlex)`
@@ -44,6 +49,10 @@ export const TabBar = styled(AbsoluteFlex)`
   background: radial-gradient(circle at center, #d65c5c 0%, #d71d1d 100%);
   cursor: pointer;
   padding: 2px;
+
+  ${screen.medium`
+    width: 100%;
+  `}
 `
 
 export const TabItem = styled(Flex)`
@@ -51,7 +60,7 @@ export const TabItem = styled(Flex)`
   align-items: center;
   justify-content: center;
   font-family: aladin;
-  font-size: 24px;
+  font-size: 110%;
   border: 1px solid transparent;
   border-radius: ${TabBorderRadius}px;
   transition: all .3s ${EASE_OUT};
@@ -72,8 +81,14 @@ export const TableItemsRoot = styled(Flex)`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  border-radius: ${TabBorderRadius}px;
+  border-bottom-left-radius: ${TabBorderRadius}px;
+  border-bottom-right-radius: ${TabBorderRadius}px;
   overflow: hidden;
+
+  ${screen.medium`
+    flex-direction: column;
+    max-height: ${window.innerHeight * .9}px;
+  `}
 `
 
 export const TableItem = styled(Flex)`
@@ -99,4 +114,11 @@ export const TableItem = styled(Flex)`
     border-left: 1px solid ${theme.main};
     border-right: 1px solid ${theme.main};
   }
+
+  ${screen.medium`
+    flex: 1;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid ${theme.main};
+  `}
 `

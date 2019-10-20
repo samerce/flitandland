@@ -1,92 +1,89 @@
 import React from 'react'
 
 import {
-  Root
+  Root, Subheader
 } from './styled'
 import {
-  SectionHeader, Subheader, Body
+  SectionHeader, Body, E,
 } from '../../global-styles'
 
 export default =>
   <Root>
     <SectionHeader>flit & land</SectionHeader>
-    <Subheader>why we need flitterers and how we make them a reality</Subheader>
+    <Subheader>why we need flitterers and how we manifest them</Subheader>
     <Body>
-      white paper
-      {"now casting a creature to join our growing movement.
-seeking a fabulous fag or luscious lesbian or nonbinary genderfucker who knows how to get silly and sell art.
-and a way of life.
-of being.
-isness. as you truly are.
-LIVE-IN
-come live at a private, all-expenses paid, badass studio in the french quarter. a proper creation space with paint supplies, musical instruments, projectors, art for inspiration, and remote support from two faerie creatures on the west coast. provided in exchange for creative work. yes! unlimited potential to get bigger and continue manifesting into what you are, goddess-style.
-ART SALES W/COMMISSION
-the position requires a minimum of 25 hours per week of art sales at the secondline art market on decatur. plus you'll earn a commission. market runs thursday-sunday at varying times. ha'-chaa!
-BE FABULOUS, SMART, WOKE, IRREVERENT
-give light to your flowering mind and blossoming imagination 🌴
-be ready to dance with ideas and help shape a bright, colorful world of imagination and mystery.
-be unafraid of helping others to find courage to get weird and vulnerable enough to tap into those hidden places. those tickly spots.
-be compelling and ready to change your life forever.
-be gracious enough to take everyone else on the journey.
-→ darling, sweetie...you better like art and playing with strangers! ha!
-→ hennie, you better be able to sell like a motherfucker, too... yes, AND!
-HELP BUILD AN ART-FIRST MOVEMENT
-express your mess!
-we're all a little queer,
-let your funky bits hang out.
-(he)art freed.
-community and commodity as one.
-being while becoming.
-aiming at a woke world
-while living loud proud present with what is
-creating space as art:
-intimate, specific,
-sexy geometry,
-intoxicating complexity,
-infinitely emerging ecstatic politics fruiting exotic artistic works.
-personal —> political —> art —> culture —> life,
-a radical renegotiation of space.
-and of time spent.
-https://expressyourmess.com
-WITH LOFTY GOALS
-are you new orleans' next cultural icon? will you be the first drag queen to run for president?
-pursuit is messy. to taste what's possible, we must pull at the root of education. what does being a person mean?
-we want to endlessly explore. we want to empower badasses to run with deep vision. & we're using our home as a living laboratory to perfect some theories.
-through art — movies, photography, painting, ideas, politics, happenings, holding space, and gentle rebellion . . . we're telling a story of liberation.
-ready to get lofty?
-IN SHORT
-be queer.
-be honest, reflective, & playful.
-be eager to build something beautiful.
-be available to move in this week and set up the art booth for southern decadence !
-→ ignite enthusiasm, be electric.
-→ emanate joy together.
-→ move fluidly, with one mind; osmosis.
-YOU GON BE BUSY, HENNIE !
-DUTIES
-host retail art experience. curate 'mini-museum' gallery experiences with our art at the second-line art market.
-edit. videos, podcasts, photos, writing, ideas.
-manage. emails, orders, logistics, etc.
-hold space. yoga and breathing games, social media posts, creative projects.
-track your journey. maintain a blog & social media accounts. trace the changes that occur within and without.
-cosmic diplomacy. ambassador for the universe, governess for the astral plane.
-EXTRA CREDIT
-host fabulous events. from queer art salons to the ball room to campaign fundraisers to immersive, agenda-based popup experiences.
-flitter nola. popup antics, handing out art, recording people in the street, acting little scenes, spreading the light, getting traffic to our movement, etc.
-collaborate. build connections, foster relationships with local groups, artists, organizations, and movement.
-audio transcription. listen, copy, interpret, categorize.
-giving inner urge external expression.
-go, conquer, accomplish, compete, work, beat.
-then drop back into nourishment. into some conjured hip space to be, no questions asked. into a place where nothing needs to be done. and all is self-so actualization, actualizing.
-eym.com is a place to let your insides hang out. can we challenge the audience while also pleasing them?
-one simple question: can we make room for what is and wants to be?
-reality is ginormous.
-moveable price tags. value as a sensation, something felt.
-our aim is freedom. which is a very solo act.
-the physical work, the sum total of sensate antics, are secondary to the spiritual upheaval
-consciously choosing creative rebirth is a richness that resides outside of productivity and bank accounts.
-that said, we need someone ready to werq.
-someone who dreams in Big Vision but is addicted to getting their hands dirty and making things happen.
-someone compelling and ready to change their lives forever. & gracious enough to take everyone else on the journey."}
+      <p>
+        you know what sucks?<br/>
+        poverty. racism. genocide. pollution.<br/>
+        <E>oppression.</E>
+      </p>
+      <p>
+        you know what {"doesn't"} suck?<br/>
+        love. joy. curiosity. creation. ecstasy.<br/>
+        <E>life.</E>
+      </p>
+      <p>
+        our global consternation may be eased by the small tasks. looking inward without external expectation, taking space and time to rest at peace on a baseline of being wholly satisfied just by <E>existing</E>, celebrating for the sake of it. everything beautiful flows.
+      </p>
+      <p>
+      <E>how is it that our country makes enough food to feed the entire nation twice over and yet has millions of hungry people?</E>
+      </p>
+      <p>
+        we are sad. and we teach our children to be exactly the same way. an endless cycle.<br/>
+        {"here's"} one way to escape: grant permission to <E>adults</E> to step out of competition with one another and recover the childhood awe and wonder that imbues kids with that constant energy that all grown-ups envy.
+      </p>
+      <p><E>hey adults, {"let's"} play!</E></p>
+      <p>
+        imagine if adults poured onto the streets everyday to play, create, and sing! imagine if they were granted space & time to just be without expectation, on a regular basis. imagine that this regular explosion of light, ecstasy, and joy trickled into their soul depths and eliminated their baseline sadness. what kind of parents could they be then?<br/>
+      </p>
+      <p>
+        what kind of kids would they raise?
+      </p>
+      <p>
+        our guess is that {"they'd"} be the best generation {"we've"} ever seen: a genius combination of light-heartedness, compassionate awareness, explosive joy, and mindful care. we can create a better future for our kids by creating a better <E>now</E> for <i>ourselves</i>.
+      </p>
+      <p>
+        BOOM! POW! ZING!<br/>
+        <E>flit & land is born!</E>
+      </p>
+      <p>
+        adults! you are now granted permission to get out into the streets and play with life! {"you're"} invited, baby! — leave your 9-to-5, become a flitterer, and spread love, joy, light, and creativity all day, everyday.
+      </p>
+      <p>
+        <a href='https://expressyourmess.com'>express your mess</a> publicly and show yourself, the world, and <i>your kids</i> what it means to draw power from the zero-point energy of pure existence.
+      </p>
+      <p>
+        {"don't"} you wanna live in a world where a quartet roams the streets singing gorgeous songs to passersby?
+      </p>
+      <p>
+        {"don't"} you wanna live in a world where a drag queen sets up on the corner every tuesday to teach juggling while giving voice lessons?
+      </p>
+      <p>
+        {"don't"} you wanna live in a world where bankers & baristas get together to embody philosophers from the past and discuss existentialism while practicing acro-yoga on the beach?
+      </p>
+      <p>we do!</p>
+      <p>
+        {"don't"} you wanna live in a world where democracy is defended against tyranny with fabulous faeries inciting dialogue between ethnically & culturally diverse groups?
+      </p>
+      <p>
+        {"don't"} you wanna live in a world where public discourse is something to look forward to and celebrate rather than dread and denigrate?
+      </p>
+      <p>
+        {"don't"} you wanna live in a world where being cut off in traffic {"doesn't"} lead to screams, threats, fists or gunshots?
+      </p>
+      <p>we do!</p>
+      <p>
+        we envision a <E>flit and land</E> chapter in every city—flitterings planned for every day of the week, bringing a relentless, militant, extravagant joy to the streets.
+      </p>
+      <p>
+        using found items, thrift store treasures, and donations, flitterers stage dramatically bold events that aim to invigorate, educate, and soothe the soul.
+      </p>
+      <p>
+        every month, flitterers will be automatically entered for a chance to win a trip to another state, accompanied by three other faeries—cross-pollinating cultural bubbles and healing our divides with joy.
+      </p>
+      <p>
+        as their confidence grows, flitterers are given more resources to take on larger projects, maybe turning a street block into a massive group body paint, or maybe building the {"world's"} largest LED adult jungle gym at the local park. and finally, once {"#flitlife"} obviously outshines {"#corporatehell"}, flitterers can request a salary and flit full time!
+      </p>
+      <p>long live joy!</p>
     </Body>
   </Root>

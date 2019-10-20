@@ -1,6 +1,7 @@
 import React from 'react'
 import Gallery from '../Gallery/it.coffee'
 import SocialMatrixImage from '../SocialMatrixImage/it.coffee'
+import {SignUpForm} from '../Forms/it.coffee'
 
 import {
   Root, Commercial, PeopleImage, Button, MatrixImage,
@@ -17,16 +18,12 @@ import {getMediaSize} from '../../utils/style'
 import {FAL_URL} from '../../constants'
 import GalleryItems, {GalleryProps} from './config'
 
-SignUpForm = <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScvGnPFbBsV_led5hVSjnsxh-1T60ZefMceQftpW9u8kUm_YA/viewform?embedded=true" width="100%" height="100%" frameBorder="0" marginHeight="0" marginWidth="0">Loading…</iframe>
-
 CommercialVideo = =>
   useScreenSize()
   <Commercial size={getMediaSize 1280} src="https://www.youtube.com/embed/C59QSCVpSuY" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
 
 export default What = =>
   [s, Popup] = usePopup()
-  onClickFlit = => Popup.show => SignUpForm
-
   <Root id='join'>
     <SectionHeader>{"what's"} this here thing?</SectionHeader>
     <Subheader>
@@ -79,7 +76,7 @@ export default What = =>
             more <E>danger</E>, less comfort
           </MatrixItemTitle>
           <MatrixItemText>
-            flitterers fizz and kristy {"aren't"} afraid to get queer. it has been said that <E>important art comes from fear.</E> today {"you'll"} find these fabulous creatures at the corner of beverly & fairfax where a whole block has been converted into a fab red-carpet runway! come get silly and let go of your queer fears!
+            flitterers fizz and kristy {"aren't"} afraid to get queer. <E>beautiful art comes from fear.</E> {"you'll"} probably find these fabulous creatures making over a whole city block into a fab red-carpet runway! find them and get silly — let your inner queer be free!
           </MatrixItemText>
         </MatrixItemContent>
       </MatrixItem>
@@ -115,5 +112,5 @@ export default What = =>
 
     <Gallery items={GalleryItems} />
 
-    <Button onClick={onClickFlit}>flit with us!</Button>
+    <Button onClick={=> Popup.show => SignUpForm}>flit with us!</Button>
   </Root>

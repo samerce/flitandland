@@ -77,6 +77,9 @@ export const QuadTitle = styled.div`
   ${screen.medium`
     font-size: 300%;
   `}
+  ${screen.medium`
+    font-size: 250%;
+  `}
 `
 
 export const QuadSubtitle = styled.div`
@@ -127,8 +130,11 @@ export const Logo = styled.div`
   pointer-events: none;
   z-index: 2;
 
-  ${screen.mediumlarge`
-    font-size: 400%;
+  ${screen.large`
+    font-size: 350%;
+  `}
+  ${screen.small`
+    font-size: 300%;
   `}
 
   ${Bubble}:not(.expanded):hover & {
@@ -163,14 +169,20 @@ export const BubbleVideo = styled.video`
   width: ${p => p.size.width}px;
   height: ${p => p.size.height}px;
   position: absolute;
-  margin-left: 190px;
+  margin: 60px 0 0 220px;
   transition: all .5s;
 
-  ${screen.mediumlarge`
-    margin-left: 50px;
+  ${screen.xlarge`
+    margin-left: 210px;
+  `}
+  ${screen.large`
+    margin: 0 0 0 150px;
+  `}
+  ${screen.medium`
+    margin: 0 0 0 70px;
   `}
 
   .expanded & {
-    margin-left: 0;
+    margin: 0;
   }
 `

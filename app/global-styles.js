@@ -64,13 +64,7 @@ export default createGlobalStyle`
   }
 
   a {
-    text-decoration: none;
-  }
-
-  p,
-  label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
-    line-height: 1.5em;
+    color: inherit;
   }
 
   section {
@@ -124,6 +118,15 @@ export const Body = styled.div`
   max-width: 780px;
   margin: 0 auto 20px;
   text-align: left;
+  font-weight: 100;
+  font-size: 22px;
+
+  ${screen.medium`
+    font-size: 20px;
+  `}
+  ${screen.small`
+    font-size: 18px;
+  `}
 `
 
 export const SectionHeader = styled(H1)`
@@ -151,7 +154,7 @@ export const Matrix = styled(Flex)`
 export const MatrixItem = styled(Flex)`
   align-items: center;
   justify-content: center;
-  flex: 0 0 auto;
+  flex: 0 0 100%;
   max-width: 1920px;
   transition: all .3s;
   padding: 40px;
@@ -227,6 +230,7 @@ export const MatrixImage = styled.img`
   max-width: 50%;
   border: 30px solid white;
   border-bottom-width: 60px;
+  border-radius: 3px;
   box-shadow: ${theme.shadowVeryHeavy};
 `
 
@@ -235,7 +239,7 @@ export const Button = styled(Flex)`
   cursor: pointer;
   border: 1px dashed ${theme.main};
   padding: 10px 20px;
-  font-size: 32px;
+  font-size: 150%;
   font-family: aladin;
   max-width: 400px;
   margin: 0 auto;
@@ -254,6 +258,7 @@ export const Button = styled(Flex)`
 // E for Emphasis!
 export const E = styled.span`
   font-family: aladin;
+  font-size; 105%;
 `
 
 export const canTilt = p => p.tilt && `
