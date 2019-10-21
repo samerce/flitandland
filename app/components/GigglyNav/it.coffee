@@ -11,7 +11,7 @@ import {
   Root, Quad, QuadImage, QuadSubtitle, QuadTitle, CenterRoot, Bubble,
   BubbleVideo, Logo, VideoRoot
 } from './styled'
-import {FAL_URL, SCREEN_WIDTH_M} from '../../constants'
+import {FAL_URL, CDN_URL, SCREEN_WIDTH_M} from '../../constants'
 
 export default GigglyNav = =>
   [expanded, setExpanded] = useState false
@@ -54,7 +54,7 @@ export default GigglyNav = =>
         <VideoRoot size={bubbleSize} videoSize={videoSize}>
           <BubbleVideo
             size={videoSize}
-            src={FAL_URL + 'fizzjuggler.mp4'}
+            src={CDN_URL + 'flitandland/fizzjuggler.mp4'}
             autoPlay={1} loop={1} muted={not expanded}
           />
         </VideoRoot>

@@ -14,6 +14,7 @@ export const LookDown = styled(AbsoluteFlex)`
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  margin: 0 0 0 -2px;
 `
 
 const IconColor = '#de069e'
