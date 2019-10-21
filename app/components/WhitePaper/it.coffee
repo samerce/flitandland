@@ -43,11 +43,14 @@ export default =>
         our guess is that {"they'd"} be the best generation {"we've"} ever seen: a genius combination of light-heartedness, compassionate awareness, explosive joy, and mindful care. we can create a better future for our kids by creating a better <E>now</E> for <i>ourselves</i>.
       </p>
       <p>
-        BOOM! POW! ZING!<br/>
-        <E>flit & land is born!</E>
+        and in that spirit I write this incantation, <E>flit & land</E>, officially granting myself permission to get out into the streets and play with life!<br/>
+        and {"you're"} invited, baby!<br/>
       </p>
+      <p><E>grant yourself permission.</E><br/></p>
       <p>
-        adults! you are now granted permission to get out into the streets and play with life! {"you're"} invited, baby! — leave your 9-to-5, become a flitterer, and spread love, joy, light, and creativity all day, everyday.
+        leave your 9-to-5.<br/>
+        become a flitterer.<br/>
+        spread love, joy, ideas and art all day, everyday!
       </p>
       <p>
         <a href='https://expressyourmess.com'>express your mess</a> publicly and show yourself, the world, and <i>your kids</i> what it means to draw power from the zero-point energy of pure existence.
@@ -84,6 +87,14 @@ export default =>
       <p>
         as their confidence grows, flitterers are given more resources to take on larger projects, maybe turning a street block into a massive group body paint, or maybe building the {"world's"} largest LED adult jungle gym at the local park. and finally, once {"#flitlife"} obviously outshines {"#corporatehell"}, flitterers can request a salary and flit full time!
       </p>
-      <p>long live joy!</p>
+      <p>
+        give yourself full permission.<br/>
+        quit your shitty job.<br/>
+        flit and land doing what you love.<br/>
+      </p>
+      <p>
+        <E>how can it be work when it feels like play?<br/>
+        {"i'm"} getting paid, you say?</E>
+      </p>
     </Body>
   </Root>

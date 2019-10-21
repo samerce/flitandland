@@ -238,10 +238,11 @@ export const MatrixImage = styled.img`
 export const Button = styled(Flex)`
   cursor: pointer;
   border: 1px dashed ${theme.main};
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-size: 150%;
+  line-height: 160%;
   font-family: aladin;
-  max-width: 400px;
+  max-width: 90%;
   margin: 0 auto;
   justify-content: center;
   transition: all .3s;

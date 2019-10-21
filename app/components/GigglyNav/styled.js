@@ -16,7 +16,8 @@ export const Root = styled(Flex)`
   position: relative;
 `
 
-const BorderColor = transparentize(.5, '#ecebda')
+const AccentColor = '#de069e'
+const BorderColor = transparentize(.5, AccentColor)
 const QuadBorder = `1px solid ${BorderColor}`
 export const Quad = styled(FlexColumn)`
   flex: 0 0 50%;
@@ -125,10 +126,14 @@ export const Logo = styled.div`
   font-size: 108px;
   font-family: just another hand;
   position: absolute;
-  text-shadow: 2px 2px black, 1px 1px 20px black;
+  text-shadow: 0 0 2px white,
+    0 0 3px ${lighten(.2, AccentColor)},
+    1px 1px 5px ${lighten(.3, AccentColor)},
+    1px 1px 10px ${lighten(.5, AccentColor)};
   transition: all .6s;
   pointer-events: none;
   z-index: 2;
+  color: white;
 
   ${screen.large`
     font-size: 350%;
@@ -176,7 +181,7 @@ export const BubbleVideo = styled.video`
     margin-left: 210px;
   `}
   ${screen.large`
-    margin: 0 0 0 150px;
+    margin: 40px 0 0 150px;
   `}
   ${screen.medium`
     margin: 0 0 0 70px;

@@ -31,7 +31,7 @@ export default What = =>
       a love vortex!
     </Subheader>
     <CommercialVideo />
-
+    <Button onClick={=> openInNewTab INSTAGRAM_URL}>instagram</Button>
     <PeopleImage src={FAL_URL + 'moving-people.png'} />
 
     <Matrix>
@@ -51,6 +51,8 @@ export default What = =>
         </MatrixItemContent>
       </MatrixItem>
 
+      <Button>borrow some toys & start flittering!</Button>
+
       <MatrixItem key='dialogue' className='right'>
         <SocialMatrixImage
           src={FAL_URL + 'unrigtrio.jpg'}
@@ -67,7 +69,7 @@ export default What = =>
         </MatrixItemContent>
       </MatrixItem>
 
-      <Button onClick={=> openInNewTab INSTAGRAM_URL}>instagram</Button>
+      <Button>grab some chat seeds & guard our democracy!</Button>
 
       <MatrixItem key='art'>
         <SocialMatrixImage
@@ -80,10 +82,12 @@ export default What = =>
             more <E>danger</E>, less comfort
           </MatrixItemTitle>
           <MatrixItemText>
-            flitterers fizz and kristy {"aren't"} afraid to get queer. <E>beautiful art comes from fear.</E> {"you'll"} probably find these fabulous creatures making over a whole city block into a fab red-carpet runway! find them and get silly — let your inner queer be free!
+            flitterers fizz and kristy {"aren't"} afraid to get weird. <E>beautiful art comes from embracing queer.</E> {"you'll"} probably find these fabulous creatures, dressed to attend the martian tonys, making over a whole city block into a fab red-carpet runway! find them and let your inner queer be free!
           </MatrixItemText>
         </MatrixItemContent>
       </MatrixItem>
+
+      <Button>read some queer literature & get weird!</Button>
 
       <MatrixItem key='knowledge' className='right'>
         <SocialMatrixImage
@@ -99,6 +103,8 @@ export default What = =>
         </MatrixItemContent>
       </MatrixItem>
 
+      <Button>explore philosophical ideas & go experiment!</Button>
+
       <MatrixItem key='karma'>
         <SocialMatrixImage
           src={FAL_URL + 'what/goofqueenlovers.jpg'}
@@ -112,6 +118,8 @@ export default What = =>
           </MatrixItemText>
         </MatrixItemContent>
       </MatrixItem>
+
+      <Button>fill your heart & spread some fortune!</Button>
     </Matrix>
 
     <Gallery items={GalleryItems} />

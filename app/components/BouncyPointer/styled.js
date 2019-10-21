@@ -41,7 +41,7 @@ export const Icon = styled.div`
   animation-direction: alternate;
 
   ${LookDown}:hover & {
-    color: #a40274;
+    color: ${lighten(.2, '#de069e')};
   }
 
   &:nth-child(1) {

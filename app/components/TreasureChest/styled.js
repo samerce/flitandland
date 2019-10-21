@@ -104,7 +104,7 @@ export const TableItem = styled(Flex)`
   cursor: pointer;
 
   &:hover {
-    background: ${transparentize(.7, theme.flikLight)};
+    background: ${transparentize(.5, '#ff1fdc')};
   }
 
   &.topBorders {
