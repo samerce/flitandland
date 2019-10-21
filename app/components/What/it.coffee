@@ -14,8 +14,9 @@ import {
 import {usePopup} from '../Popup/it.coffee'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
 import {getMediaSize} from '../../utils/style'
+import {openInNewTab} from '../../utils/nav'
 
-import {FAL_URL} from '../../constants'
+import {FAL_URL, INSTAGRAM_URL} from '../../constants'
 import GalleryItems, {GalleryProps} from './config'
 
 CommercialVideo = =>
@@ -37,6 +38,7 @@ export default What = =>
       <MatrixItem key='joy'>
         <SocialMatrixImage
           src={FAL_URL + 'mikeyfizzwhimzeh.jpg'}
+          likes={7}
           emoji={['🌞', '🌈', '🧚🏽‍♂️', '💪🏽', '🔮']}
         />
         <MatrixItemContent>
@@ -52,7 +54,7 @@ export default What = =>
       <MatrixItem key='dialogue' className='right'>
         <SocialMatrixImage
           src={FAL_URL + 'unrigtrio.jpg'}
-          likes={316}
+          likes={6.8}
           emoji={['🙏', '🤓', '🤩', '🌬', '✨']}
         />
         <MatrixItemContent>
@@ -65,10 +67,12 @@ export default What = =>
         </MatrixItemContent>
       </MatrixItem>
 
+      <Button onClick={=> openInNewTab INSTAGRAM_URL}>instagram</Button>
+
       <MatrixItem key='art'>
         <SocialMatrixImage
           src={FAL_URL + 'what/kristyfizz.jpg'}
-          likes={320}
+          likes={6.8}
           emoji={['🎷', '🏮', '🌝', '🌴']}
         />
         <MatrixItemContent>
@@ -85,7 +89,7 @@ export default What = =>
         <SocialMatrixImage
           src={FAL_URL + 'what/silverqueen.jpg'}
           emoji={['📚', '🙇🏽‍♀️', '💞']}
-          likes={319}
+          likes={6.9}
         />
         <MatrixItemContent>
           <MatrixItemTitle>math_bending <E>miracle&nbsp;humans</E></MatrixItemTitle>
@@ -99,7 +103,7 @@ export default What = =>
         <SocialMatrixImage
           src={FAL_URL + 'what/goofqueenlovers.jpg'}
           emoji={['👭', '👬', '👫', '👩🏽', '🙏']}
-          likes={329}
+          likes={7}
         />
         <MatrixItemContent>
           <MatrixItemTitle><E>love</E> is so freakin powerful</MatrixItemTitle>

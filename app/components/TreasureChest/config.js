@@ -31,7 +31,7 @@ const ResourceItems = [
   },
 ]
 
-const HappeningsItems = [
+const FlitteringsItems = [
   {
     title: 'faerie trash cleanup on beverly',
   },
@@ -43,8 +43,27 @@ const HappeningsItems = [
   },
 ]
 
+const StoriesItems = [
+  {
+    title: 'fizzy mix',
+  },
+  {
+    title: 'bubbles sandcastle-mix',
+  },
+  {
+    title: 'danella mikey'
+  },
+  {
+    title: 'zinis',
+  },
+  {
+    title: 'alison',
+  }
+]
+
 export default {
   ideas: IdeaItems,
-  happenings: HappeningsItems,
+  flitterings: FlitteringsItems,
   resources: ResourceItems,
+  stories: StoriesItems,
 }

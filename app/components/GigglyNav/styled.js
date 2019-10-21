@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {lighten, darken} from 'polished'
+import {lighten, darken, transparentize} from 'polished'
 import {
   theme, screen, Flex, FlexColumn, AbsoluteFlexFillParent, H1, H2, AbsoluteFlex
 } from '../../global-styles'
@@ -16,8 +16,8 @@ export const Root = styled(Flex)`
   position: relative;
 `
 
-const BorderColor = '#E8E68B'
-const QuadBorder = `1px solid ${darken(.2, BorderColor)}`
+const BorderColor = transparentize(.5, '#ecebda')
+const QuadBorder = `1px solid ${BorderColor}`
 export const Quad = styled(FlexColumn)`
   flex: 0 0 50%;
   align-items: center;

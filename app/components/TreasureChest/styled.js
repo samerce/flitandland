@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {transparentize} from 'polished'
 import {
-  theme, screen, Flex, AbsoluteFlex, Body as _Body
+  theme, screen, Flex, AbsoluteFlex, Body as _Body, FlexColumn
 } from '../../global-styles'
 import {
   EASE_OUT_SINE, EASE_OUT,
@@ -29,13 +29,13 @@ export const Table = styled(Flex)`
   border-radius: ${TabBorderRadius}px;
   max-width: 1280px;
   margin: 80px 0 40px;
-  padding: 20px 0 0;
   position: relative;
-  background: linear-gradient(315deg, #020024 0%, #090979 35%, #00d4ff 100%);
+  background: linear-gradient(315deg, #880f75 0%, #c917ad 35%, #ff1fdc 100%);
   box-shadow: ${theme.shadowVeryHeavy};
 
   ${screen.medium`
     width: 100%;
+    padding: 20px 0 0;
   `}
 `
 
@@ -46,7 +46,7 @@ export const TabBar = styled(AbsoluteFlex)`
   top: -${TabHeight / 2}px;
   border: 2px solid ${theme.main};
   border-radius: ${TabBorderRadius}px;
-  background: radial-gradient(circle at center, #d65c5c 0%, #d71d1d 100%);
+  background: radial-gradient(circle at center, #c9173d 0%, #800d26 100%);
   cursor: pointer;
   padding: 2px;
 
@@ -69,7 +69,7 @@ export const TabItem = styled(Flex)`
 
   &.active {
     border-color: ${theme.main};
-    background: #a10000;
+    background: #452FCC;
     transform: scale(1.3);
     color: white;
     transition: all .5s ${EASE_OUT};
@@ -121,4 +121,10 @@ export const TableItem = styled(Flex)`
     border: none;
     border-bottom: 1px solid ${theme.main};
   `}
+`
+
+export const TravelLotteryRoot = styled(Flex)`
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 110px 0 0;
 `

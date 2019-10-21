@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {
-  screen, FlexColumn
+  theme, screen, FlexColumn
 } from '../../global-styles'
 import {
   EASE_OUT, EASE_OUT_SINE
@@ -46,4 +46,23 @@ export const Content = styled(FlexColumn)`
     transform: translate(0, -10px);
     transition: all .4s;
   }
+`
+
+export const Icon = styled.i`
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  font-size: 150%;
+  cursor: pointer;
+  text-shadow: ${theme.shadowVeryHeavy};
+  transition: all .3s;
+
+  &:hover {
+    color: ${theme.shelly};
+  }
+
+  ${screen.medium`
+    bottom: 20px;
+    left: 20px;
+  `}
 `

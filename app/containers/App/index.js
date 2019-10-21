@@ -9,11 +9,14 @@ import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
 
 import useScroller from '../../hooks/useScroller.coffee'
+import {openInNewTab} from '../../utils/nav'
 
 import GlobalStyle from '../../global-styles'
 import {
-  Root, Content
+  Root, Content, Icon,
 } from './styled'
+
+import {INSTAGRAM_URL} from '../../constants'
 
 export default function App() {
   const [state] = usePopup()
@@ -35,6 +38,7 @@ export default function App() {
           <TreasureChest />
           <EymMethod />
         </Content>
+        <Icon onClick={() => openInNewTab(INSTAGRAM_URL)} className='fab fa-instagram' />
         <BouncyPointer
           className={'returnToTop ' + (showReturnToTop && 'show')}
           onClick={returnToTop}

@@ -16,7 +16,7 @@ export const LookDown = styled(AbsoluteFlex)`
   pointer-events: none;
 `
 
-const IconColor = '#27b6e3'
+const IconColor = '#de069e'
 const shwite = lighten(.1, IconColor)
 export const Icon = styled.div`
   color: ${IconColor};
@@ -26,6 +26,7 @@ export const Icon = styled.div`
   cursor: pointer;
   padding: 0 20px;
   pointer-events: all;
+  transition: all .3s;
 
   @keyframes bounce {
     100% {
@@ -38,6 +39,10 @@ export const Icon = styled.div`
   animation-duration: .5s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+
+  ${LookDown}:hover & {
+    color: #a40274;
+  }
 
   &:nth-child(1) {
     font-size: 30px;

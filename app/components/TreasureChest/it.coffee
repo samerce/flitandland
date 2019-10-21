@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 
 import {
-  Root, Table, TabBar, TabItem, TableItem, Body, TableItemsRoot
+  Root, Table, TabBar, TabItem, TableItem, Body, TableItemsRoot, TravelLotteryRoot,
 } from './styled'
 import {
-  SectionHeader, Button,
+  SectionHeader, Button, Subheader, E,
 } from '../../global-styles'
 
 import TableItems from './config'
@@ -12,15 +12,14 @@ import TableItems from './config'
 Tabs = Object.keys TableItems
 
 export default TreasureChest = =>
-  [activeTab, setActiveTab] = useState 'happenings'
+  [activeTab, setActiveTab] = useState 'flitterings'
   hasSides = (index) => (index + 1) % 3 is 2
   hasTop = (index) => index > 2
 
   <Root id='treasure'>
     <SectionHeader>treasure chest</SectionHeader>
     <Body>
-      ideas & resources to help you flit and land on your streets.<br />
-      happenings 👉🏻 live flitterings you could join now!
+      the nexus.<br />everything you need to flitter your streets.<br />
     </Body>
 
     <Table>
@@ -50,7 +49,16 @@ export default TreasureChest = =>
 
     <Button>
       {'add an idea!' if activeTab is 'ideas'}
-      {'create a happening!' if activeTab is 'happenings'}
+      {'create a flittering!' if activeTab is 'flitterings'}
       {'offer a resource!' if activeTab is 'resources'}
+      {'tell your story!' if activeTab is 'stories'}
     </Button>
+
+    <TravelLotteryRoot>
+      <Subheader>travel lottery winners</Subheader>
+      <Body><E>koki khan</E></Body>
+      <Body><E>thomas brosy</E></Body>
+      <Body><E>danella mikey</E></Body>
+      <Body><E>rameen chahine</E></Body>
+    </TravelLotteryRoot>
   </Root>

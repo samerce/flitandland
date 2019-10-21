@@ -23,7 +23,7 @@ export default SocialMatrixImage = ({src, emoji, likes = 328}) =>
     <Image src={src} />
     <SocialFunBar>
       <Icon onClick={=> setLikes _likes + 1}>♥</Icon>
-      <LikeCount>{_likes} million</LikeCount>
+      <LikeCount>{_likes} billion</LikeCount>
       {emoji.map (e) => <Icon onClick={=> onClickIcon(e)}>{e}</Icon>}
     </SocialFunBar>
     <EmojiGanja className={'show' if emojiGanja?}>
