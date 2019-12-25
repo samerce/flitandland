@@ -99,6 +99,13 @@ export const CenterRoot = styled(AbsoluteFlexFillParent)`
   justify-content: center;
   z-index: 2;
   pointer-events: none;
+  transition: all .3s;
+  background: radial-gradient(circle at center, transparent 0%, transparent 100%);
+
+  &.expanded {
+    pointer-events: all;
+    background: radial-gradient(circle at center, transparent 0%, black 100%);
+  }
 `
 
 export const Bubble = styled(Flex)`
@@ -114,7 +121,7 @@ export const Bubble = styled(Flex)`
   transition: all .5s ${EASE_OUT};
   pointer-events: all;
 
-  &.expanded {
+  .expanded & {
     width: ${p => p.videoSize.width}px;
     height: ${p => p.videoSize.height}px;
     flex: 0 0 ${p => p.videoSize.height}px;

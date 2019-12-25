@@ -1,10 +1,10 @@
 // google url is configured for cdn caching by default
-export const GOOGLE_URL = 'https://storage.googleapis.com/purple-republic/';
-export const S3_URL = 'https://s3.amazonaws.com/purplerepublic.us/';
-export const CDN_URL = 'https://d3sclm0qnx89jv.cloudfront.net/';
-export const IMG_OPT_URL = 'https://res.cloudinary.com/eym/image/fetch/q_auto/';
-export const SRC_URL =
-  process.env.NODE_ENV === 'production' ? IMG_OPT_URL + CDN_URL : CDN_URL;
+export const GOOGLE_URL = 'https://storage.googleapis.com/purple-republic/'
+export const S3_URL = 'https://s3.amazonaws.com/purplerepublic.us/'
+export const CDN_URL = 'https://d3sclm0qnx89jv.cloudfront.net/'
+export const OPT_URL_ROOT = 'https://res.cloudinary.com/eym/image/fetch/q_auto/'
+export const OPT_URL = OPT_URL_ROOT + CDN_URL
+export const SRC_URL = process.env.NODE_ENV === 'production' ? OPT_URL : CDN_URL
 export const FAL_URL = SRC_URL + 'flitandland/'
 
 export const YOUTUBE_URL =

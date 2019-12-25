@@ -13,16 +13,35 @@ import {
 } from './styled'
 import {FAL_URL, CDN_URL, SCREEN_WIDTH_M} from '../../constants'
 
-export default GigglyNav = =>
-  [expanded, setExpanded] = useState false
-  [s, Popup] = usePopup()
-  {screenWidth, screenHeight} = useScreenSize()
+getBubbleSize = (screenWidth) ->
+  if screenWidth <= SCREEN_WIDTH_M
+    screenWidth * .4
+  else screenWidth * .25
 
+Center = =>
+  [expanded, setExpanded] = useState false
+  {screenWidth} = useScreenSize()
+  bubbleSize = getBubbleSize screenWidth
   videoSize = getMediaSize 1920
-  bubbleSize =
-    if screenWidth <= SCREEN_WIDTH_M
-      screenWidth * .4
-    else screenWidth * .25
+
+  <CenterRoot className={'expanded' if expanded} onClick={=> setExpanded not expanded}>
+    <Bubble
+      size={bubbleSize} videoSize={videoSize}
+      onClick={=> setExpanded not expanded}>
+      <Logo id='logo'>flit & land</Logo>
+      <VideoRoot size={bubbleSize} videoSize={videoSize}>
+        <BubbleVideo
+          size={videoSize}
+          src={CDN_URL + 'flitandland/fizzjuggler.mp4'}
+          autoPlay={1} loop={1} muted={not expanded}
+        />
+      </VideoRoot>
+    </Bubble>
+  </CenterRoot>
+
+export default GigglyNav = =>
+  [s, Popup] = usePopup()
+  {screenHeight} = useScreenSize()
 
   <Root screenHeight={screenHeight}>
     <Quad className='topLeft' onClick={=> Popup.show => <WhitePaper />}>
@@ -46,20 +65,7 @@ export default GigglyNav = =>
       <QuadSubtitle>ideas, happenings & resources</QuadSubtitle>
     </Quad>
 
-    <CenterRoot>
-      <Bubble className={'expanded' if expanded}
-        size={bubbleSize} videoSize={videoSize}
-        onClick={=> setExpanded not expanded}>
-        <Logo id='logo'>flit & land</Logo>
-        <VideoRoot size={bubbleSize} videoSize={videoSize}>
-          <BubbleVideo
-            size={videoSize}
-            src={CDN_URL + 'flitandland/fizzjuggler.mp4'}
-            autoPlay={1} loop={1} muted={not expanded}
-          />
-        </VideoRoot>
-      </Bubble>
-    </CenterRoot>
+    <Center />
 
     <BouncyPointer onClick={() => scrollIntoView 'join'} />
   </Root>
