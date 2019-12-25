@@ -1,6 +1,7 @@
 import styled, {css, createGlobalStyle} from 'styled-components'
 import Theme from './theme'
 import {
+  SRC_URL,
   EASE_OUT_SINE,
   SCREEN_WIDTH_S, SCREEN_WIDTH_MMS, SCREEN_WIDTH_MS,
   SCREEN_WIDTH_M, SCREEN_WIDTH_ML, SCREEN_WIDTH_L, SCREEN_WIDTH_XL
@@ -49,12 +50,14 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: 'im fell dw pica', Georgia, serif;
+    font-family: 'crimson pro', Georgia, serif;
+    font-weight: 300;
     color: white;
   }
 
   body.fontLoaded {
-    font-family: 'im fell dw pica', Georgia, serif;
+    font-family: 'crimson pro', Georgia, serif;
+    font-weight: 300;
   }
 
   #app {
@@ -73,6 +76,14 @@ export default createGlobalStyle`
     flex-direction: column;
     text-align: center;
     padding: 20px 0 80px;
+  }
+
+  @font-face {
+    font-family: 'znikomit24';
+    src: url("${SRC_URL}fonts/znikomit24/znikomitno24-webfont.woff2") format('woff2'),
+         url("${SRC_URL}fonts/znikomit24/znikomitno24-webfont.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
   }
 `
 
@@ -234,8 +245,7 @@ export const MatrixImage = styled.img`
   box-shadow: ${theme.shadowVeryHeavy};
 `
 
-
-export const Button = styled(Flex)`
+export const ButtonStyles = css`
   cursor: pointer;
   border: 1px dashed ${theme.main};
   padding: 10px 30px;
@@ -254,6 +264,10 @@ export const Button = styled(Flex)`
     background: ${theme.main};
     color: white;
   }
+`
+
+export const Button = styled(Flex)`
+  ${ButtonStyles}
 `
 
 // E for Emphasis!

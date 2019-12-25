@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
-import Backdrop from '../../components/Backdrop/it.coffee'
-import Logo from '../../components/Logo/it.coffee'
-import Friends from '../../components/Friends/it.coffee'
-import MailingList from '../../components/MailingList/it.coffee'
+import GigglyNav from '../../components/GigglyNav/it.coffee'
+import What from '../../components/What/it.coffee'
+import Support from '../../components/Support/it.coffee'
+import Calendar from '../../components/Calendar/it.coffee'
+import TreasureChest from '../../components/TreasureChest/it.coffee'
+import EymMethod from '../../components/EymMethod/it.coffee'
 import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
 
@@ -30,11 +32,12 @@ export default function App() {
       <Root>
         <GlobalStyle />
         <Content className={popupVisible && 'popupVisible'}>
-          <Backdrop />
-          <Logo />
-          <Friends />
+          <GigglyNav />
+          <What />
+          <Support />
+          <TreasureChest />
+          <EymMethod />
         </Content>
-        <MailingList />
         <Icon onClick={() => openInNewTab(INSTAGRAM_URL)} className='fab fa-instagram' />
         <BouncyPointer
           className={'returnToTop ' + (showReturnToTop && 'show')}

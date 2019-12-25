@@ -34,9 +34,9 @@ export const Root = styled.div`
 `
 
 export const Content = styled(FlexColumn)`
-  height: 100%;
+  ${'' /* height: 100%; */}
+  height: ${window.innerHeight}px;
   width: 100%;
-  overflow-y: scroll;
   filter: blur(0);
   transition: all .5s;
 

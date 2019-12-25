@@ -7,13 +7,17 @@ const purpleSlightlyDark = darken(0.05, main);
 const purpleVeryLight = lighten(0.35, main);
 const purpleSlightlyLight = lighten(0.05, main);
 
-const flik = '#053629'; // '#204017'
-const dali = '#542263';
-const myrtle = '#71201b';
-const shelly = '#721e77';
-const tweet = '#c34d30'; // '#cfb405'
-const pram = '#eee508';
-const hopi = '#FF7519';
+const flik = '#053629' // '#204017'
+const dali = '#542263'
+const myrtle = '#71201b'
+const shelly = '#721e77'
+const tweet = '#c34d30' // '#cfb405'
+const pram = '#eee508'
+const hopi = '#FF7519'
+const susan = '#f9ebf6'
+const susanDark = '#7a0b67'
+const susanVeryDark = darken(.2, susanDark)
+const susanLight = lighten(.1, susan)
 
 export const getRandomColor = () => {
   const rand = Math.random();
@@ -24,10 +28,14 @@ export const getRandomColor = () => {
     return dali;
   }
   return myrtle;
-};
+}
 
 export default {
   main,
+  susan,
+  susanDark,
+  susanVeryDark: darken(.2, susanDark),
+  susanLight: lighten(.1, susan),
   slightlyDark: purpleSlightlyDark,
   slightlyLight: purpleSlightlyLight,
   veryDark: purpleVeryDark,
@@ -77,4 +85,6 @@ export default {
   veryDarkTransparent: alpha(0.4, purpleVeryDark),
   gradientSunset:
     'linear-gradient(to bottom, #4771a3 0%, #77779d 40%, #b998b3 65%, #e7a8b1 85%, #fdefb0 100%)',
-};
+  sexyEdge: `0 0 0 1px ${alpha(.5, susanLight)},
+    0 0 0 2px ${alpha(.5, susanVeryDark)}`,
+}
