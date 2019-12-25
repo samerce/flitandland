@@ -48,6 +48,13 @@ export const EmailInput = styled.input`
     outline: none;
     ${'' /* border-bottom: 1px solid ${g.theme.susanDark}; */}
   }
+  &::placeholder {
+    color: ${g.theme.susanDark};
+  }
+  &:-webkit-autofill {
+    font-family: aladin;
+    -webkit-text-fill-color: ${g.theme.susanVeryDark};
+  }
 `
 
 export const JoinButton = styled.input`
