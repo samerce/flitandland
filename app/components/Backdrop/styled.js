@@ -3,14 +3,20 @@ import {transparentize as alpha, darken, lighten} from 'polished'
 import {
   theme, screen, Flex
 } from '../../global-styles'
+import * as c from '../../constants'
 
 const HeavyShadow = `3px 20px 40px ${theme.veryDark}`
+const BackgroundUrl = c.SRC_URL + 'commons/bursting-lq.jpg'
 
 export const Root = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
   pointer-events: none;
+  opacity: .2;
+  background: url("${BackgroundUrl}");
+  background-repeat: repeat-y;
+  background-size: cover;
 `
 
 export const Background = styled.img`

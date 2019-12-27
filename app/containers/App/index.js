@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Backdrop from '../../components/Backdrop/it.coffee'
 import Logo from '../../components/Logo/it.coffee'
 import Friends from '../../components/Friends/it.coffee'
+import Worlds from '../../components/Worlds/it.coffee'
 import MailingList from '../../components/MailingList/it.coffee'
 import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
@@ -32,9 +33,8 @@ export default function App() {
         <Content className={popupVisible && 'popupVisible'}>
           <Backdrop />
           <Logo />
-          <Friends />
+          <Worlds />
         </Content>
-        <MailingList />
         <Icon onClick={() => openInNewTab(INSTAGRAM_URL)} className='fab fa-instagram' />
         <BouncyPointer
           className={'returnToTop ' + (showReturnToTop && 'show')}

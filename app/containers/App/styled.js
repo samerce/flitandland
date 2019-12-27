@@ -34,11 +34,14 @@ export const Root = styled.div`
 `
 
 export const Content = styled(FlexColumn)`
-  ${'' /* height: 100%; */}
   height: ${window.innerHeight}px;
+  height: 100%;
+  ${'' /* margin-bottom: 60px; */}
   width: 100%;
   filter: blur(0);
   transition: all .5s;
+  overflow-y: scroll;
+  background: linear-gradient(to bottom, #ff00ed 0%, #ff00b0 5%, #c917ad 50%, #b80095 95%, #c10085 100%);
 
   &.popupVisible {
     filter: blur(10px);

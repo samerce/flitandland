@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 import {transparentize as alpha, darken, lighten} from 'polished'
-import {
-  theme, screen, Flex
-} from '../../global-styles'
+import * as g from '../../global-styles'
+import * as c from '../../constants'
 
-const HeavyShadow = `3px 20px 40px ${theme.veryDark}`
+const HeavyShadow = `3px 20px 40px ${g.theme.veryDark}`
 
 export const Root = styled.div`
   width: 100%;
@@ -14,18 +13,19 @@ const ShadowColor = '#f2b8e8'/* '#7d3175'*/
 const BorderColor = alpha(.6, '#fae6f6')
 export const Title = styled.div`
   width: 100%;
-  background: ${alpha(.8, '#fae6f6')};
+  background: ${alpha(.9, '#fae6f6')};
   text-align: center;
-  margin: 100px 0 0;
+  margin: 54px 0;
   font-family: znikomit24;
   font-size: 62px;
   ${'' /* background: #fbeffa; */}
   ${'' /* border-radius: 5px; */}
   border-top: 1px solid ${BorderColor};
   border-bottom: 1px solid ${BorderColor};
-  box-shadow: 0 0 0 1px ${alpha(.7, ShadowColor)};
-  padding: 55px 50px 40px;
-  color: #7a0b67; /*#ee6be1;*/
+  box-shadow: 0 0 0 1px ${alpha(.7, ShadowColor)},
+    inset 0 0 20px ${alpha(.5, g.theme.susanDark)};
+  padding: 54px 54px 36px;
+  color: #fadcf8;
   text-shadow: 0 0 ${lighten(.2, ShadowColor)}, 1px 1px ${ShadowColor};
   filter: drop-shadow(2px 2px 10px ${ShadowColor});
   user-select: none;
@@ -35,4 +35,10 @@ export const Title = styled.div`
     0 0 0 1px ${ShadowColor},
     0 0 0 2px rgba(255,255,255,.5),
     0 0 0 3px ${darken(.2, ShadowColor)}; */}
+
+  ${g.screen.medsmall`
+    font-size: 36px;
+    padding: 36px 36px 27px;
+    margin: 36px 0;
+  `}
 `
