@@ -31,6 +31,7 @@ l.Building = styled(g.FlexColumn)`
   border-left: ${Border};
   border-right: ${Border};
   border-top: ${Border};
+  box-shadow: ${g.theme.sexyEdge};
 `
 
 l.Row = styled(g.Flex)`

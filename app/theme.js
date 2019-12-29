@@ -85,6 +85,6 @@ export default {
   veryDarkTransparent: alpha(0.4, purpleVeryDark),
   gradientSunset:
     'linear-gradient(to bottom, #4771a3 0%, #77779d 40%, #b998b3 65%, #e7a8b1 85%, #fdefb0 100%)',
-  sexyEdge: `0 0 0 1px ${alpha(.5, susanLight)},
+  sexyEdge: `0 0 0 1px ${alpha(.5, susan)},
     0 0 0 2px ${alpha(.5, susanVeryDark)}`,
 }

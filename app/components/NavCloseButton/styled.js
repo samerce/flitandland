@@ -15,7 +15,8 @@ l.Root = styled(g.Button)`
   font-size: 36px;
   color: white;
   border-radius: 0;
-  box-shadow: ${g.theme.sexyEdge};
+  box-shadow: ${g.theme.sexyEdge},
+    0 0 20px ${alpha(.5, g.theme.susanVeryDark)};
   background: ${g.theme.susanDark};
   display: none;
   max-width: unset;
