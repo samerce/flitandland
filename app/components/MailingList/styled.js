@@ -81,7 +81,7 @@ export const EmailInput = styled.input`
   }
   &:-webkit-autofill {
     font-family: aladin;
-    -webkit-text-fill-color: ${g.theme.susan};
+    -webkit-text-fill-color: ${g.theme.susanDark};
   }
 `
 

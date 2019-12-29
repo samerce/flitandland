@@ -1,6 +1,6 @@
 import React from 'react'
 
-import * as l from './styled'
+import l from './styled'
 import * as c from '../../constants'
 
 export default Backdrop = =>

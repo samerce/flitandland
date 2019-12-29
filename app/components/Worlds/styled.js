@@ -11,6 +11,10 @@ export const Root = styled(g.Flex)`
   justify-content: center;
   align-items: flex-start;
   padding: 0 20px;
+
+  &.hide {
+    display: none;
+  }
 `
 
 export const Poker = styled(g.FlexColumn)`

@@ -1,29 +1,30 @@
 import styled from 'styled-components'
 import {transparentize as alpha, darken, lighten} from 'polished'
-import {
-  theme, screen, Flex
-} from '../../global-styles'
+import * as g from '../../global-styles'
 import * as c from '../../constants'
 
-const HeavyShadow = `3px 20px 40px ${theme.veryDark}`
+const l = {}
+export default l
+
+const HeavyShadow = `3px 20px 40px ${g.theme.veryDark}`
 const BackgroundUrl = c.SRC_URL + 'commons/bursting-lq.jpg'
 
-export const Root = styled.div`
+l.Root = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
   pointer-events: none;
-  opacity: .2;
-  background: url("${BackgroundUrl}");
-  background-repeat: repeat-y;
-  background-size: cover;
+  opacity: .8;
+  background: linear-gradient(
+    to bottom, #ff00ed 0%, #ff00b0 5%, #c917ad 50%, #b80095 95%, #c10085 100%
+  );
 `
 
-export const Background = styled.img`
+l.Background = styled.img`
   width: 100%;
 `
 
-export const Background2 = styled.img`
+l.Background2 = styled.img`
   position: absolute;
   width: 100%;
   top: -170px;
@@ -31,7 +32,7 @@ export const Background2 = styled.img`
   opacity: .3;
 `
 
-export const Logo = styled.img`
+l.Logo = styled.img`
   position: absolute;
   top: 30px;
   left: 50%;

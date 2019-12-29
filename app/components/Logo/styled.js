@@ -15,7 +15,7 @@ export const Title = styled.div`
   width: 100%;
   background: ${alpha(.9, '#fae6f6')};
   text-align: center;
-  margin: 54px 0;
+  margin: 0 0 54px;
   font-family: znikomit24;
   font-size: 62px;
   ${'' /* background: #fbeffa; */}
@@ -23,7 +23,7 @@ export const Title = styled.div`
   border-top: 1px solid ${BorderColor};
   border-bottom: 1px solid ${BorderColor};
   box-shadow: 0 0 0 1px ${alpha(.7, ShadowColor)},
-    inset 0 0 20px ${alpha(.5, g.theme.susanDark)};
+    0 0 10px ${alpha(.5, g.theme.susan)};
   padding: 54px 54px 36px;
   color: #fadcf8;
   text-shadow: 0 0 ${lighten(.2, ShadowColor)}, 1px 1px ${ShadowColor};
