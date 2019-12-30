@@ -12,7 +12,7 @@ export const Root = styled.div`
 const ShadowColor = '#f2b8e8'/* '#7d3175'*/
 export const Title = styled.div`
   width: 100%;
-  background: ${alpha(.8, g.theme.susan)};
+  background: ${alpha(.75, g.theme.susan)};
   text-align: center;
   margin: 0 0 54px;
   font-family: znikomit24;

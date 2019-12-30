@@ -32,6 +32,10 @@ export const Root = styled(g.FlexColumn)`
     align-items: center;
     justify-content: center;
   }
+
+  ${g.screen.medsmall`
+    width: 80%;
+  `}
 `
 
 export const JoinImage = styled.img`
@@ -50,6 +54,9 @@ export const JoinImage = styled.img`
       opacity: 1;
       transform: none;
     }
+    ${g.screen.medsmall`
+      width: 70%;
+    `}
   }
   ${Root}:hover & {
     filter: hue-rotate(540deg) brightness(120%);

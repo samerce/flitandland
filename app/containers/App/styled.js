@@ -58,7 +58,7 @@ export const Content = styled(FlexColumn)`
 export const Icons = styled(Flex)`
   justify-content: flex-end;
   align-items: center;
-  margin: 10px;
+  margin: 20px 10px;
 `
 
 export const Icon = styled.i`

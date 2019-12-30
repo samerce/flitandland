@@ -9,6 +9,6 @@ export default NavCloseButton = =>
   [{view}, Nav] = useNav()
   <l.Root
     className={view? and 'show'}
-    onClick={() => Nav.hide()}>
+    onClick={Nav.hide}>
     close
   </l.Root>

@@ -17,12 +17,16 @@ l.Root = styled(g.Button)`
   border-radius: 0;
   box-shadow: ${g.theme.sexyEdge},
     0 0 20px ${alpha(.5, g.theme.susanVeryDark)};
-  background: ${g.theme.susanDark};
+  background: ${g.theme.susanVeryDark};
+  border: none;
   display: none;
   max-width: unset;
   line-height: 60px;
   padding: 0;
 
+  &:hover {
+    border: none;
+  }
   &.show {
     display: block;
   }
