@@ -8,30 +8,19 @@ export default l
 
 l.Root = styled(g.Flex)`
   width: 100%;
-  display: none;
-
-  &.show {
-    display: flex;
-  }
+  overflow: hidden;
+  position: relative;
 `
 
-l.Row = styled(g.Flex)`
-
-`
-
-l.Decor = styled(g.FlexColumn)`
-
-`
-
-l.Docent = styled.img`
+l.Image = styled.img`
   width: 100%;
+  margin: 0 auto;
+  transform: translate(0, -10%);
 `
 
-l.Cards = styled.img`
-  width: 100%;
-
-`
-
-l.Content = styled(g.Flex)`
-
+l.LImage = styled(l.Image)`
+  position: absolute;
+  width: 500px;
+  top: 20px;
+  left: 20px;
 `

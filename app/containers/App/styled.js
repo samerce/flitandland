@@ -9,9 +9,9 @@ const BackgroundUrl = c.SRC_URL + 'commons/bursting-lq.jpg'
 export const Root = styled.div`
   height: 100%;
   width: 100%;
-  background: url("${BackgroundUrl}");
+  ${'' /* background: url("${BackgroundUrl}");
   background-repeat: repeat-y;
-  background-size: cover;
+  background-size: cover; */}
 
   .returnToTop {
     position: fixed;

@@ -13,13 +13,15 @@ const ShadowColor = '#f2b8e8'/* '#7d3175'*/
 export const Title = styled.div`
   width: 100%;
   background: ${alpha(.75, g.theme.susan)};
+  background: ${alpha(.8, g.theme.susanVeryDark)};
   text-align: center;
   margin: 0 0 54px;
   font-family: znikomit24;
   font-size: 62px;
-  box-shadow:
-    0 0 0 2px ${alpha(.3, g.theme.susan)},
-    0 0 30px ${alpha(.1, g.theme.susan)};
+  box-shadow: inset 0 0 20px ${alpha(.5, g.theme.susanVeryDark)},
+    0 0 0 1px ${g.theme.susanVeryDark},
+    0 0 0 2px ${g.theme.susan},
+    0 0 30px ${g.theme.susan};
   padding: 54px 54px 36px;
   color: ${g.theme.susanLight};
   text-shadow: 0 0 ${g.theme.susanLight};

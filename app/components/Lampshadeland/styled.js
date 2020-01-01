@@ -10,12 +10,11 @@ const HeavyShadow = `3px 20px 40px ${g.theme.veryDark}`
 const BackgroundUrl = c.SRC_URL + 'commons/bursting-lq.jpg'
 
 l.Root = styled(g.Flex)`
-  padding: 0 20px;
+  padding: 60px 20px 0;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   display: none;
-  height: 100%;
 
   &.show {
     display: flex;

@@ -7,31 +7,9 @@ const l = {}
 export default l
 
 l.Root = styled(g.Flex)`
-  width: 100%;
   display: none;
 
-  &.show {
+  &.willShow, &.show {
     display: flex;
   }
-`
-
-l.Row = styled(g.Flex)`
-
-`
-
-l.Decor = styled(g.FlexColumn)`
-
-`
-
-l.Docent = styled.img`
-  width: 100%;
-`
-
-l.Cards = styled.img`
-  width: 100%;
-
-`
-
-l.Content = styled(g.Flex)`
-
 `

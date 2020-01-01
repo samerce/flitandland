@@ -8,6 +8,7 @@ import Lampshadeland from '../../components/Lampshadeland/it.coffee'
 import Eymuland from '../../components/Eymuland/it.coffee'
 import NavCloseButton from '../../components/NavCloseButton/it.coffee'
 import MailingList from '../../components/MailingList/it.coffee'
+import Flipbook from '../../components/Flipbook/it.coffee'
 import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
 
@@ -34,19 +35,20 @@ export default function App() {
   return (
       <Root>
         <GlobalStyle />
-        <Content className={popupVisible && 'popupVisible'}>
+        <Flipbook />
+        {/* <Content className={popupVisible && 'popupVisible'}>
           <Icons>
             <Icon
-              onClick={() => openInNewTab(c.TWITTER_URL)}
-              className='fab fa-twitter'
+          onClick={() => openInNewTab(c.TWITTER_URL)}
+          className='fab fa-twitter'
             />
             <Icon
-              onClick={() => openInNewTab(c.MEDIUM_URL)}
-              className='fab fa-medium-m'
+          onClick={() => openInNewTab(c.MEDIUM_URL)}
+          className='fab fa-medium-m'
             />
             <Icon
-              onClick={() => openInNewTab(c.INSTAGRAM_URL)}
-              className='fab fa-instagram'
+          onClick={() => openInNewTab(c.INSTAGRAM_URL)}
+          className='fab fa-instagram'
             />
           </Icons>
           <Logo />
@@ -54,9 +56,9 @@ export default function App() {
           <Eymuland />
           <Pokerland />
           <Lampshadeland />
-        </Content>
-        <NavCloseButton />
-        <Popup />
+          </Content>
+          <NavCloseButton />
+        <Popup /> */}
       </Root>
   )
 }

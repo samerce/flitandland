@@ -42,6 +42,7 @@ export default createGlobalStyle`
     ${screen.small`
       font-size: 18px;
     `}
+    background-color: rgba(184, 0, 149, 0.8);
   }
   html,
   body {
