@@ -9,6 +9,7 @@ import Eymuland from '../../components/Eymuland/it.coffee'
 import NavCloseButton from '../../components/NavCloseButton/it.coffee'
 import MailingList from '../../components/MailingList/it.coffee'
 import Flipbook from '../../components/Flipbook/it.coffee'
+import MessengerChat from '../../components/MessengerChat/it.coffee'
 import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
 
@@ -21,6 +22,7 @@ import {
 } from './styled'
 
 import * as c from '../../constants'
+import * as g from '../../global-styles'
 
 export default function App() {
   const [state] = usePopup()
@@ -36,6 +38,7 @@ export default function App() {
       <Root>
         <GlobalStyle />
         <Flipbook />
+        <MessengerChat />
         {/* <Content className={popupVisible && 'popupVisible'}>
           <Icons>
             <Icon

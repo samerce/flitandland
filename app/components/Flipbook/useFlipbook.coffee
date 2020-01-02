@@ -36,6 +36,7 @@ export default useFlipbook = (pages, useLoader) =>
     if paused then play()
     else pause()
   advance = =>
+    return if index >= pages.length - 1
     setIndex index + 1
     play() if paused
 

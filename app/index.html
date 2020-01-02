@@ -28,4 +28,27 @@
   <!-- A lot of magic happens in this file. HtmlWebpackPlugin automatically injects all assets (e.g. bundle.js, main.css) with the correct HTML tags, which is why they are missing in this file. Don't add any assets here! (Check out webpack.dev.babel.js and webpack.prod.babel.js if you want to know more) -->
 </body>
 
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '2465517450387519',
+      autoLogAppEvents : true,
+      status           : true,
+      cookie           : true,
+      xfbml            : true,
+      version          : 'v5.0'
+    });
+    console.log('facebook inited')
+    FB.CustomerChat.update({
+      logged_in_greeting: 'Hello There!',
+      logged_out_greeting: 'Log in to Chat with Us',
+      ref: 'coupon_15',
+    });
+    // FB.CustomerChat.show(false)
+  };
+</script>
+<script async defer
+  src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js">
+</script>
+
 </html>

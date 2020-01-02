@@ -17,13 +17,14 @@ l.Countdown = styled(g.Flex)`
   z-index: 100;
   box-shadow: 0 0 10px ${g.theme.susanVeryDark};
   border-radius: 5px;
+  transform: scaleX(0);
 
   &.show {
-    transform: scaleX(0);
+    transform: none;
     transition: all ${p => p.duration}ms linear;
 
     &.paused {
-      transform: none;
+      transform: scaleX(0);
     }
   }
 `
