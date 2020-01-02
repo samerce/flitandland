@@ -1,13 +1,28 @@
-import Mangina from '../Bopz/Mangina.coffee'
-import Creation from '../Bopz/Creation.coffee'
+import * as M from '../Bopz/Mangina.coffee'
 
 export default [
   {
-    render: Mangina,
-    duration: 4500,
+    render: M.Mangina,
+    duration: 1500,
   },
   {
-    render: Creation,
+    render: M.Trump,
+    duration: 1000,
+  },
+  {
+    render: M.PaintShow,
+    duration: 15000,
+  },
+  {
+    render: M.Jesus,
+    duration: 20000,
+  },
+  {
+    render: M.Mitch,
+    duration: 1000,
+  },
+  {
+    render: M.Eymboard,
     duration: 1000,
   },
 ]

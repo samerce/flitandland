@@ -5,9 +5,11 @@ import * as c from '../../constants'
 
 export default DelayedReveal = (p) =>
   [classes, setClasses] = useState 'hide'
-  timers = []
 
   setTimers = =>
+    return if p.start is no
+    timers = []
+
     willShow = => setClasses 'willShow'
     timers.push setTimeout willShow, p.delay - 50
 
@@ -17,9 +19,8 @@ export default DelayedReveal = (p) =>
     if p.hideDelay
       hide = => setClasses 'hide'
       timers.push setTimeout hide, p.hideDelay
-  => clearTimeout timer for timer in timers
-
-  useLayoutEffect setTimers, []
+    => clearTimeout timer for timer in timers
+  useLayoutEffect setTimers, [p.start]
 
   <l.Root className={classes}>
     {p.children}

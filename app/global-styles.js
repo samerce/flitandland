@@ -42,12 +42,12 @@ export default createGlobalStyle`
     ${screen.small`
       font-size: 18px;
     `}
-    background-color: rgba(184, 0, 149, 0.8);
   }
   html,
   body {
     height: 100%;
     width: 100%;
+    background-color: rgba(184, 0, 149, 0.8);
   }
 
   body {
@@ -62,7 +62,6 @@ export default createGlobalStyle`
   }
 
   #app {
-    background-color: #fafafa;
     min-height: 100%;
     min-width: 100%;
     height: 100%;

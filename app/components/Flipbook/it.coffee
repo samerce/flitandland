@@ -1,22 +1,36 @@
-import React, {useState, useLayoutEffect} from 'react'
+import React from 'react'
 import Countdown from '../Countdown/it.coffee'
 
 import l from './styled'
 import * as c from '../../constants'
+import {cx} from '../../utils/style'
 
-import Pages from './pages'
+import useFlipbook from './useFlipbook.coffee'
+import useLoader from '../Bopz/useLoader.coffee'
+import * as PagesMap from '../Bopz/Mangina.coffee'
+
+Pages = Object.values(PagesMap)
 
 export default Flipbook = =>
-  [index, setIndex] = useState 0
-  page = Pages[index]
-
-  useLayoutEffect =>
-    if index < Pages.length - 1
-      advancePage = => setIndex (oldIndex) => oldIndex + 1
-      timer = setTimeout advancePage, page.duration
-    => clearTimeout timer
-
+  [activePage, activeIndex, toggle, advance] = useFlipbook Pages, useLoader
   <l.Root>
-    <Countdown duration={page.duration - 100} />
-    {page.render()}
+    {if activePage?
+      <Countdown duration={activePage.duration - 100} />
+    else
+      <l.Spinner />
+    }
+    {Pages.map (Page, i) =>
+      mode = cx {
+        hide: i < activeIndex
+        show: i is activeIndex
+        preload: i > activeIndex
+      }
+      <l.PageRoot className={mode}>
+        <Page mode={mode} />
+      </l.PageRoot>
+    }
+    <l.Fae>
+      <l.Faerie onClick={toggle} className='waiting'>🧚🏽‍</l.Faerie>
+      <l.Nails onClick={advance} className='waiting'>💅</l.Nails>
+    </l.Fae>
   </l.Root>
