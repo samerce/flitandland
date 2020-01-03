@@ -40,12 +40,6 @@
       version          : 'v5.0'
     });
     console.log('facebook inited')
-    FB.CustomerChat.update({
-      logged_in_greeting: 'hiya unicorn! do you believe in love?',
-      logged_out_greeting: 'hiya unicorn! do you believe in love?',
-      greeting_dialog_display: 'hide',
-      ref: 'eym.com',
-    });
     window.dispatchEvent(new Event('fbReady'));
   };
 </script>

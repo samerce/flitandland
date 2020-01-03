@@ -1,4 +1,5 @@
 import styled, {css, createGlobalStyle} from 'styled-components'
+import {transparentize as alpha} from 'polished'
 import Theme from './theme'
 import {
   SRC_URL,
@@ -54,6 +55,9 @@ export default createGlobalStyle`
     font-family: 'crimson pro', Georgia, serif;
     font-weight: 300;
     color: white;
+    background: linear-gradient(
+      to bottom, rgba(255, 0, 237, 0.79) 0%, rgba(255, 0, 176, 0.8) 5%, rgba(201, 23, 173, 0.81) 50%, rgba(184, 0, 149, 0.8) 95%, rgba(193, 0, 133, 0.8) 100%
+    );
   }
 
   body.fontLoaded {
@@ -91,8 +95,8 @@ export default createGlobalStyle`
   @keyframes touchMe {
     100% {
       transform: scale(1.05);
-      filter: drop-shadow(0 0 5px ${Theme.susan})
-        drop-shadow(0 0 50px ${Theme.susanVeryDark});
+      filter: drop-shadow(0 0 5px ${alpha(.3, Theme.susan)})
+        drop-shadow(0 0 50px ${alpha(.3, Theme.susanVeryDark)});
     }
   }
 `

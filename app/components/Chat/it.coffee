@@ -24,6 +24,9 @@ export default Chat = =>
     <div
       className="fb-customerchat"
       page_id="1452817055016024"
+      logged_in_greeting='hiya unicorn! do you believe in love?'
+      logged_out_greeting='hiya unicorn! do you believe in love?'
+      greeting_dialog_display='hide'
       theme_color={g.theme.susanDark}>
     </div>
     <l.Fae className={shouldShow and 'show'}>
@@ -40,7 +43,7 @@ export default Chat = =>
       </FaeButton>
       <FaeButton className='chat-button'>
         <l.Twitter href={c.TwitterUrl} target='__blank'>
-          🐤
+          🐒
         </l.Twitter>
       </FaeButton>
     </l.Fae>

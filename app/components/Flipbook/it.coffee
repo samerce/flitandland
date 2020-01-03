@@ -14,15 +14,20 @@ Pages = Object.values(PagesMap)
 
 
 export default Flipbook = =>
-  [activePage, activeIndex, toggle, advance] = useFlipbook Pages, useLoader
+  [activePage, activeIndex, toggle, advance, pause, play] = useFlipbook Pages, useLoader
   [{isLoaded}, {increment}] = useLoader()
   window.addEventListener 'fbReady', =>
+    FB.Event.subscribe 'customerchat.dialogShow', pause
+    FB.Event.subscribe 'customerchat.dialogHide', play
     FB.Event.subscribe 'customerchat.show', =>
-      FB.CustomerChat.hide()
+      FB.CustomerChat.hideDialog()
       increment()
+  next = =>
+    advance()
+    FB.CustomerChat.hideDialog()
 
   <l.Root>
-    {if isLoaded
+    {if isLoaded and activePage?
       <Countdown duration={activePage.duration - 100} />
     else
       <l.Spinner />
@@ -41,6 +46,6 @@ export default Flipbook = =>
       <l.Tinkerbell onClick={toggle}>🧚🏽‍</l.Tinkerbell>
     </FaeButton>
     <FaeButton className='flipbook-button nails'>
-      <l.Nails onClick={advance}>💅</l.Nails>
+      <l.Nails onClick={next}>💅</l.Nails>
     </FaeButton>
   </l.Root>

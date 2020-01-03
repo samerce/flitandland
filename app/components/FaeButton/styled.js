@@ -13,8 +13,8 @@ l.Root = styled(g.Flex)`
   align-items: center;
   justify-content: center;
   font-size: 108px;
-  filter: drop-shadow(0 0 1px ${g.theme.susan})
-    drop-shadow(0 0 30px ${g.theme.susanVeryDark});
+  filter: drop-shadow(0 0 1px ${alpha(.3, g.theme.susan)})
+    drop-shadow(0 0 30px ${alpha(.3, g.theme.susanVeryDark)});
   cursor: pointer;
   user-select: none;
   transition: all .3s;
@@ -27,12 +27,12 @@ l.Root = styled(g.Flex)`
   animation-delay: ${p => p.delay}s;
 
   &:hover {
-    animation-duration: .5s;
+    animation-duration: .2s;
   }
   &:active {
     animation-play-state: paused;
     transform: scale(.98);
-    filter: drop-shadow(0 0 1px ${g.theme.susan})
-      drop-shadow(0 0 10px ${g.theme.susanVeryDark});
+    filter: drop-shadow(0 0 1px ${alpha(.3, g.theme.susan)})
+      drop-shadow(0 0 10px ${alpha(.3, g.theme.susanVeryDark)});
   }
 `
