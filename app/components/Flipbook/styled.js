@@ -11,6 +11,21 @@ l.Root = styled(g.Flex)`
   height: 100%;
   overflow: hidden;
   position: relative;
+
+  .flipbook-button  {
+    position: absolute;
+    display: flex;
+    justify-content: center
+    align-items: flex-end;
+    bottom: 0;
+
+    &.tinkerbell {
+      left: 20px;
+    }
+    &.nails {
+      right: 20px;
+    }
+  }
 `
 
 l.PageRoot = styled(g.AbsoluteFlex)`
@@ -33,7 +48,7 @@ l.Spinner = styled(g.AbsoluteFlex)`
   background: inherit;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 1000;
 
   &:before {
     content: '🧚🏽‍';
@@ -52,39 +67,11 @@ l.Spinner = styled(g.AbsoluteFlex)`
   }
 `
 
-l.Fae = styled(g.AbsoluteFlex)`
-  width: 100%;
-  height: 100%;
-  justify-content: center
-  align-items: flex-end;
+l.Faerie = styled.div`
 `
 
-l.Faerie = styled(g.AbsoluteFlex)`
-  font-size: 108px;
-  left: 20px;
-  filter: drop-shadow(0 0 20px ${g.theme.susanVeryDark});
-  cursor: pointer;
-
-  @keyframes waiting {
-    100% {
-      transform: scale(1.1);
-    }
-  }
-  &.waiting {
-    animation-name: waiting;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
-    &:hover {
-      animation-duration: .5s;
-    }
-  }
+l.Tinkerbell = styled(l.Faerie)`
 `
 
 l.Nails = styled(l.Faerie)`
-  right: 20px;
-  left: initial;
-  &.waiting {
-  }
 `

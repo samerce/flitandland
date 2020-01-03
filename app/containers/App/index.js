@@ -9,7 +9,7 @@ import Eymuland from '../../components/Eymuland/it.coffee'
 import NavCloseButton from '../../components/NavCloseButton/it.coffee'
 import MailingList from '../../components/MailingList/it.coffee'
 import Flipbook from '../../components/Flipbook/it.coffee'
-import MessengerChat from '../../components/MessengerChat/it.coffee'
+import Chat from '../../components/Chat/it.coffee'
 import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
 
@@ -38,7 +38,7 @@ export default function App() {
       <Root>
         <GlobalStyle />
         <Flipbook />
-        <MessengerChat />
+        <Chat />
         {/* <Content className={popupVisible && 'popupVisible'}>
           <Icons>
             <Icon

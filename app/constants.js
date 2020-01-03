@@ -10,11 +10,12 @@ export const FAL_URL = SRC_URL + 'flitandland/'
 export const YOUTUBE_URL =
   'https://www.youtube.com/channel/UCne9Pv9CARxNz8rNMaDm7Dw';
 export const PATREON_URL = 'https://www.patreon.com/expressyourmess';
-export const INSTAGRAM_URL = 'https://www.instagram.com/flitandland';
+export const InstagramUrl = 'https://www.instagram.com/flitandland';
 export const MEDIUM_URL = 'https://www.medium.com/the-purple-republic';
 export const EMAIL_URL = 'mailto:flitandland@expressyourmess.com';
 export const SOUNDCLOUD_URL = 'https://soundcloud.com/expressyourmess';
 export const LAMPSHADE_TUMBLR_URL = 'http://ypsilampshade.tumblr.com/';
+export const TwitterUrl = 'https://twitter.com/expressyourmess';
 
 export const EASE_OUT_SINE = 'cubic-bezier(0.25, 0.1, 0.25, 1)';
 export const EASE_IN_SINE = 'cubic-bezier(0.42, 0, 1, 1)';

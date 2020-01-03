@@ -69,6 +69,7 @@ export default createGlobalStyle`
 
   a {
     color: inherit;
+    text-decoration: none;
   }
 
   section {
@@ -85,6 +86,14 @@ export default createGlobalStyle`
          url("${SRC_URL}fonts/znikomit24/znikomitno24-webfont.woff") format('woff');
     font-weight: normal;
     font-style: normal;
+  }
+
+  @keyframes touchMe {
+    100% {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 5px ${Theme.susan})
+        drop-shadow(0 0 50px ${Theme.susanVeryDark});
+    }
   }
 `
 
@@ -279,4 +288,13 @@ export const E = styled.span`
 
 export const canTilt = p => p.tilt && `
   transform: rotate(${p.tilt}deg);
+`
+
+export const cssFaerie = css`
+  font-size: 108px;
+  filter: drop-shadow(0 0 30px ${Theme.susanVeryDark});
+  cursor: pointer;
+`
+export const Faerie = styled.a`
+  ${cssFaerie}
 `

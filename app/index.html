@@ -30,6 +30,7 @@
 
 <script>
   window.fbAsyncInit = function() {
+    window.FB = FB
     FB.init({
       appId            : '2465517450387519',
       autoLogAppEvents : true,
@@ -40,11 +41,12 @@
     });
     console.log('facebook inited')
     FB.CustomerChat.update({
-      logged_in_greeting: 'Hello There!',
-      logged_out_greeting: 'Log in to Chat with Us',
-      ref: 'coupon_15',
+      logged_in_greeting: 'hiya unicorn! do you believe in love?',
+      logged_out_greeting: 'hiya unicorn! do you believe in love?',
+      greeting_dialog_display: 'hide',
+      ref: 'eym.com',
     });
-    // FB.CustomerChat.show(false)
+    window.dispatchEvent(new Event('fbReady'));
   };
 </script>
 <script async defer
