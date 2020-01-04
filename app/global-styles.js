@@ -55,9 +55,7 @@ export default createGlobalStyle`
     font-family: 'crimson pro', Georgia, serif;
     font-weight: 300;
     color: white;
-    background: linear-gradient(
-      to bottom, rgba(255, 0, 237, 0.79) 0%, rgba(255, 0, 176, 0.8) 5%, rgba(201, 23, 173, 0.81) 50%, rgba(184, 0, 149, 0.8) 95%, rgba(193, 0, 133, 0.8) 100%
-    );
+    background: ${Theme.pinkGradient};
   }
 
   body.fontLoaded {

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useLayoutEffect, useState} from 'react'
 import Countdown from '../Countdown/it.coffee'
 import FaeButton from '../FaeButton/it.coffee'
 
@@ -8,44 +8,73 @@ import {cx} from '../../utils/style'
 
 import useFlipbook from './useFlipbook.coffee'
 import useLoader from '../Bopz/useLoader.coffee'
-import * as PagesMap from '../Bopz/Mangina.coffee'
+import useIntro from '../../hooks/useIntro.coffee'
+import useChat from '../../hooks/useChat.coffee'
 
+import * as PagesMap from '../Bopz/Mangina.coffee'
 Pages = Object.values(PagesMap)
 
+FaeButtons = (p) =>
+  [{isIntro}] = useIntro()
+  classes = cx {
+    'flipbook-button': yes
+    intro: isIntro
+    disabled: isIntro
+  }
+  <>
+    <FaeButton className={classes + ' tinkerbell'}>
+      <l.Tinkerbell onClick={p.left}>🧚🏽‍</l.Tinkerbell>
+      <l.IntroText>hi! {"i'm"} jeli. i bend time</l.IntroText>
+    </FaeButton>
+    <FaeButton className={classes + ' nails'}>
+      <l.Nails onClick={p.right}>🍄</l.Nails>
+      <l.IntroText>hi! {"i'm"} pillo. {"i'm"} the fiber optics of communication.</l.IntroText>
+    </FaeButton>
+  </>
 
 export default Flipbook = =>
-  [activePage, activeIndex, toggle, advance, pause, play] = useFlipbook Pages, useLoader
-  [{isLoaded}, {increment}] = useLoader()
-  window.addEventListener 'fbReady', =>
-    FB.Event.subscribe 'customerchat.dialogShow', pause
-    FB.Event.subscribe 'customerchat.dialogHide', play
-    FB.Event.subscribe 'customerchat.show', =>
-      FB.CustomerChat.hideDialog()
-      increment()
+  [activePage, activeIndex, actions] = useFlipbook Pages, useLoader
+  [{isLoaded}] = useLoader()
+  [{isIntro}] = useIntro()
+  [isChatOpen, setIsChatOpen] = useState no
+  {onChatOpen, onChatClose, closeChat, openChat} = useChat()
+  {togglePlayPause, advance, pause, play} = actions
+
+  useLayoutEffect (=>
+    onChatOpen => setIsChatOpen yes
+    onChatClose => setIsChatOpen no
+    undefined
+  ), []
+
+  onChatChange = =>
+    return if isIntro
+    if isChatOpen then pause()
+    else play()
+  useLayoutEffect onChatChange, [isChatOpen]
+
+  startFlipbook = => play() unless isIntro or isChatOpen
+  useLayoutEffect startFlipbook, [isIntro]
+
   next = =>
+    closeChat()
     advance()
-    FB.CustomerChat.hideDialog()
+  toggleChat = =>
+    if isChatOpen then closeChat()
+    else openChat()
 
   <l.Root>
     {if isLoaded and activePage?
       <Countdown duration={activePage.duration - 100} />
-    else
-      <l.Spinner />
     }
     {Pages.map (Page, i) =>
       mode = cx {
-        hide: i < activeIndex
-        show: i is activeIndex
+        hide: i < activeIndex or isIntro
+        show: i is activeIndex and not isIntro
         preload: i > activeIndex
       }
       <l.PageRoot className={mode}>
         <Page mode={mode} />
       </l.PageRoot>
     }
-    <FaeButton className='flipbook-button tinkerbell'>
-      <l.Tinkerbell onClick={toggle}>🧚🏽‍</l.Tinkerbell>
-    </FaeButton>
-    <FaeButton className='flipbook-button nails'>
-      <l.Nails onClick={next}>💅</l.Nails>
-    </FaeButton>
+    <FaeButtons left={togglePlayPause} right={toggleChat} />
   </l.Root>

@@ -23,7 +23,7 @@ l.Root = styled(g.Flex)`
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ${c.Sexy};
   animation-delay: ${p => p.delay}s;
 
   &:hover {
@@ -34,5 +34,9 @@ l.Root = styled(g.Flex)`
     transform: scale(.98);
     filter: drop-shadow(0 0 1px ${alpha(.3, g.theme.susan)})
       drop-shadow(0 0 10px ${alpha(.3, g.theme.susanVeryDark)});
+  }
+  &.disabled {
+    pointer-events: none;
+    animation: none;
   }
 `

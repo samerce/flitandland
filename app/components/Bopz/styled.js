@@ -34,13 +34,15 @@ l.Credit = styled(g.AbsoluteFlex)`
 `
 
 l.Image = styled.img`
-  width: 100%;
+  width: 90%;
+  border-radius: 5px;
   margin: 0 auto;
-  box-shadow: ${g.theme.sexyEdge}, 0 0 20px ${g.theme.susanVeryDark};
+  box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
+    ${g.theme.prettyFrame};
 
   &.fullHeight {
     width: initial
-    height: 100%;
+    height: 90%;
   }
 `
 
@@ -60,11 +62,8 @@ l.Cell = styled.div`
   margin: 0 1%;
 `
 
-l.GridImage = styled.img`
-  width: 100%;
+l.GridImage = styled(l.Image)`
   opacity: 0;
-  border-radius: 5px;
-  box-shadow: ${g.theme.sexyEdge}, 0 0 10px ${g.theme.susanVeryDark};
   transform: rotate(${p => (Math.round(Math.random()) * -2 + 1) * Math.round(2 * (8000 / p.delay))}deg);
 
   @keyframes full {
@@ -84,10 +83,17 @@ l.GridImage = styled.img`
 `
 
 l.Video = styled.video`
-  height: 100%;
+  height: 90%;
+  box-shadow: ${g.theme.prettyFrame}, ${g.theme.sexyEdge},
+    ${g.theme.shadowVeryHeavy};
+  border-radius: 5px;
 
   &.fullWidth {
     height: initial;
-    width: 100%;
+    width: 90%;
+  }
+  &.backdrop {
+    height: 100%;
+    box-shadow: none;
   }
 `

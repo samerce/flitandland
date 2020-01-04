@@ -41,7 +41,7 @@ export default {
   veryDark: purpleVeryDark,
   veryLight: purpleVeryLight,
   semiWhite: lighten(0.2, purpleVeryLight),
-  shadowVeryHeavy: `3px 20px 40px ${alpha(0.7, purpleVeryDark)}`,
+  shadowVeryHeavy: `3px 20px 40px ${alpha(0.3, susanVeryDark)}`,
   shadowHeavy: `3px 10px 20px ${alpha(0.7, purpleVeryDark)}`,
   shadowMedium: `2px 5px 10px ${alpha(0.8, purpleVeryDark)}`,
   shadowLight: `2px 2px 8px ${alpha(0.9, purpleVeryDark)}`,
@@ -87,4 +87,8 @@ export default {
     'linear-gradient(to bottom, #4771a3 0%, #77779d 40%, #b998b3 65%, #e7a8b1 85%, #fdefb0 100%)',
   sexyEdge: `0 0 0 1px ${alpha(.5, susan)},
     0 0 0 2px ${alpha(.5, susanVeryDark)}`,
+  pinkGradient: `linear-gradient(
+    to bottom, rgba(255, 0, 237, 0.79) 0%, rgba(255, 0, 176, 0.8) 5%, rgba(201, 23, 173, 0.81) 50%, rgba(184, 0, 149, 0.8) 95%, rgba(193, 0, 133, 0.8) 100%
+  )`,
+  prettyFrame: '0 0 0 1px white, 0 0 0 2px black, 0 0 0 4px green, 0 0 0 6px blue, 0 0 0 7px red, 0 0 0 9px yellow, 0 0 0 11px black, 0 0 0 14px white',
 }

@@ -34,7 +34,7 @@ export Mangina = =>
 
 export Trump = =>
   <l.Centered>
-    <Image name='trumpf.jpg' className='fullHeight' />
+    <Image name='trumpf.jpg' />
     <l.Credit>Image by&nbsp;<a href="https://pixabay.com/users/tiburi-2851152/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273">Tibor Janosi Mozes</a>&nbsp;from&nbsp;<a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273">Pixabay</a></l.Credit>
   </l.Centered>
 
@@ -53,7 +53,7 @@ GridCell = (p) =>
 
 export PaintShow = (p) =>
   <l.Centered mode={p.mode}>
-    <Video name='paintshowq' mode={p.mode} />
+    <Video name='paintshowq' mode={p.mode} className='backdrop' />
     <l.Yearbook>
       <GridCell id='dr john' delay={1000} mode={p.mode} />
       <GridCell id='yummy boy' delay={2000} mode={p.mode} />
@@ -85,6 +85,6 @@ export Eymboard = =>
 Mangina.duration = 1500
 Trump.duration = 1000
 PaintShow.duration = 7000
-Jesus.duration = 10000
+Jesus.duration = 4000
 Mitch.duration = 2000
 Eymboard.duration = 1000

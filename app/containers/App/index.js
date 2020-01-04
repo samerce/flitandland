@@ -10,6 +10,7 @@ import NavCloseButton from '../../components/NavCloseButton/it.coffee'
 import MailingList from '../../components/MailingList/it.coffee'
 import Flipbook from '../../components/Flipbook/it.coffee'
 import Chat from '../../components/Chat/it.coffee'
+import FriendIntro from '../../components/FriendIntro/it.coffee'
 import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
 
@@ -23,6 +24,9 @@ import {
 
 import * as c from '../../constants'
 import * as g from '../../global-styles'
+
+const whyDidYouRender = require('@welldone-software/why-did-you-render')
+whyDidYouRender(React)
 
 export default function App() {
   const [state] = usePopup()
@@ -38,6 +42,7 @@ export default function App() {
       <Root>
         <GlobalStyle />
         <Flipbook />
+        <FriendIntro />
         <Chat />
         {/* <Content className={popupVisible && 'popupVisible'}>
           <Icons>

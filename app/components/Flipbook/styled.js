@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {transparentize as alpha, darken, lighten} from 'polished'
 import * as g from '../../global-styles'
 import * as c from '../../constants'
@@ -13,17 +13,45 @@ l.Root = styled(g.Flex)`
   position: relative;
 
   .flipbook-button  {
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: center
     align-items: flex-end;
     bottom: 0;
+    z-index: 500;
+    transition: all .3s ${c.Sexy};
 
+    @keyframes popIn {
+      0% {
+        filter: blur(10px);
+        opacity: 0;
+        transform: scale(.98);
+      }
+      100% {
+        filter: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
     &.tinkerbell {
       left: 20px;
+
+      &.intro {
+        bottom: calc(60% - 108px);
+      }
     }
     &.nails {
       right: 20px;
+      &.intro {
+        bottom: calc(60% - 216px);
+        animation-delay: 1s;
+      }
+    }
+    &.intro {
+      ${'' /* animation-name: popIn;
+      animation-duration: 2s;
+      animation-fill-mode: both;
+      animation-timing-function: ${c.Sexy}; */}
     }
   }
 `
@@ -32,13 +60,35 @@ l.PageRoot = styled(g.AbsoluteFlex)`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  transform: scale(1.01);
+  opacity: 0;
 
-  &.hide {
-    display: none;
-  }
   &.preload {
     visibility: hidden;
     pointer-events: none;
+  }
+
+  &.hide {
+    display: none;
+    transform: scale(.99);
+    transition:
+      transform .2s linear, opacity .2s linear, display .05s linear .3s;
+  }
+
+  &.show {
+    @keyframes show {
+      85% {
+        opacity: 1;
+      }
+      100% {
+        transform: none;
+        opacity: 1;
+      }
+    }
+    animation-name: show;
+    animation-duration: .2s;
+    animation-timing-function: ${c.Sexy};
+    animation-fill-mode: both;
   }
 `
 
@@ -67,11 +117,81 @@ l.Spinner = styled(g.AbsoluteFlex)`
   }
 `
 
+const makeFlyIn = (name, zeroStyle) => css`
+  @keyframes ${name} {
+    0% {
+      opacity: 0;
+      filter: blur(10px);
+      ${zeroStyle}
+    }
+    85% {
+      opacity: 1;
+      filter: none;
+    }
+    100% {
+      opacity: 1;
+      filter: none;
+      transform: none;
+    }
+  }
+`
+
 l.Faerie = styled.div`
+  .intro & {
+    animation-timing-function: ${c.Sexy};
+    animation-duration: .5s;
+  }
+`
+
+l.IntroText = styled.div`
+  display: none;
+  visibility: hidden;
+  font-size: 36px;
+  padding: 0 10px;
+
+  .intro & {
+    display: block;
+
+    @keyframes upReveal {
+      0% {
+        visibility: visible;
+        opacity: 0;
+        filter: blur(10px);
+      }
+      100% {
+        visibility: visible;
+        opacity: 1;
+        filter: none;
+      }
+    }
+
+    animation-name: upReveal;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-delay: 1.5s;
+    animation-timing-function: ${c.Sexy};
+  }
 `
 
 l.Tinkerbell = styled(l.Faerie)`
+  .intro & {
+    ${makeFlyIn('tinker', css`
+      transform: translate(-500px, 0) scale(.95);
+    `)}
+    animation-name: tinker;
+    animation-delay: .5s;
+  }
 `
 
 l.Nails = styled(l.Faerie)`
+  .intro & {
+    ${makeFlyIn('nails', css`
+      transform: translate(500px, 0) scale(.95);
+    `)}
+    animation-name: nails;
+    animation-delay: 1s;
+  }
+  ${l.IntroText} {
+    animation-delay: 2s;
+  }
 `

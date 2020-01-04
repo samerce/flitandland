@@ -2,42 +2,40 @@ import React, {useState, useLayoutEffect} from 'react'
 import useGlobal from 'use-global-hook'
 
 useIndex = useGlobal(React,
-  {index: -1},
-  setIndex: ({setState}, index) => setState {index}
+  {index: -1, page: null, paused: yes},
+  setState: ({setState}, state) => setState state
 )
 
 timer = null
+actions = {}
 export default useFlipbook = (pages, useLoader) =>
-  [{index}, {setIndex}] = useIndex()
-  [{paused, page}, setState] = useState {page: no, paused: no}
+  [{index, page, paused}, {setState}] = useIndex()
   [{isLoaded}] = useLoader()
 
-  onLoad = => setIndex 0 if isLoaded
-  useLayoutEffect onLoad, [isLoaded]
-
-  inflatePage = =>
-    newPage = pages[index]
-    setState page: newPage
-    if not paused
-      advanceIndex = => setIndex index + 1
-      timer = setTimeout advanceIndex, newPage.duration
-
-  inflate = =>
+  useLayoutEffect (=> setState index: 0 if isLoaded), [isLoaded]
+  useLayoutEffect (=>
     clearTimeout timer
-    inflatePage() if index < pages.length - 1 and index >= 0 and not paused
+    if index < pages.length - 1 and index >= 0
+      newPage = pages[index]
+      setState page: newPage
+      if paused
+        setState page: {...newPage, duration: 0}
+      else
+        advanceIndex = => setState index: index + 1
+        timer = setTimeout advanceIndex, newPage.duration
     => clearTimeout timer
-  useLayoutEffect inflate, [index, paused]
+  ), [index, paused]
 
-  pause = =>
-    setState page: {...page, duration: 0}, paused: Date.now()
-  play = =>
+  actions.pause = =>
+    setState paused: Date.now()
+  actions.play = =>
     setState paused: no
-  togglePlayPause = =>
-    if paused then play()
-    else pause()
-  advance = =>
+  actions.togglePlayPause = =>
+    if paused then actions.play()
+    else actions.pause()
+  actions.advance = =>
     return if index >= pages.length - 1
-    setIndex index + 1
-    play() if paused
+    setState index: index + 1
+    actions.play() if paused
 
-  [page, index, togglePlayPause, advance, pause, play]
+  [page, index, actions]
