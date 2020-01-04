@@ -82,9 +82,15 @@ export Eymboard = =>
     <Image name='eymboard.jpg' />
   </l.Centered>
 
+export Sneakers = =>
+  <l.Centered>
+    <Image name='sneakers.jpg' className='fullHeight' />
+  </l.Centered>
+
 Mangina.duration = 1500
 Trump.duration = 1000
 PaintShow.duration = 7000
 Jesus.duration = 4000
 Mitch.duration = 2000
-Eymboard.duration = 1000
+Eymboard.duration = 10000
+Sneakers.duration = 5000

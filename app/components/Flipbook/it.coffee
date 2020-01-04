@@ -16,18 +16,31 @@ Pages = Object.values(PagesMap)
 
 FaeButtons = (p) =>
   [{isIntro}] = useIntro()
+  [isTinkerbellTickled, setIsTinkerbellTickled] = useState no
   classes = cx {
     'flipbook-button': yes
     intro: isIntro
     disabled: isIntro
+    showSunrise: isTinkerbellTickled
   }
+  onClickTinkerbell = =>
+    if isTinkerbellTickled then p.play()
+    else p.pause()
+    setIsTinkerbellTickled not isTinkerbellTickled
+  onClickSunrise = =>
+    setIsTinkerbellTickled no
+    p.next()
+
   <>
     <FaeButton className={classes + ' tinkerbell'}>
-      <l.Tinkerbell onClick={p.left}>🧚🏽‍</l.Tinkerbell>
+      <l.Tinkerbell onClick={onClickTinkerbell}>🧚🏽‍</l.Tinkerbell>
       <l.IntroText>hi! {"i'm"} jeli. i bend time</l.IntroText>
     </FaeButton>
+    <FaeButton className={classes + ' sunrise'}>
+      <l.Sunrise onClick={onClickSunrise}>🌅</l.Sunrise>
+    </FaeButton>
     <FaeButton className={classes + ' nails'}>
-      <l.Nails onClick={p.right}>🍄</l.Nails>
+      <l.Nails onClick={p.toggleChat}>🍄</l.Nails>
       <l.IntroText>hi! {"i'm"} pillo. {"i'm"} the fiber optics of communication.</l.IntroText>
     </FaeButton>
   </>
@@ -47,6 +60,7 @@ export default Flipbook = =>
   ), []
 
   onChatChange = =>
+    closeChat() if isIntro and isChatOpen
     return if isIntro
     if isChatOpen then pause()
     else play()
@@ -76,5 +90,5 @@ export default Flipbook = =>
         <Page mode={mode} />
       </l.PageRoot>
     }
-    <FaeButtons left={togglePlayPause} right={toggleChat} />
+    <FaeButtons play={play} pause={pause} next={next} toggleChat={toggleChat} />
   </l.Root>

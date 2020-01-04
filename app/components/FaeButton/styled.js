@@ -19,11 +19,7 @@ l.Root = styled(g.Flex)`
   user-select: none;
   transition: all .3s;
 
-  animation-name: touchMe;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-timing-function: ${c.Sexy};
+  ${g.TouchMeCss}
   animation-delay: ${p => p.delay}s;
 
   &:hover {

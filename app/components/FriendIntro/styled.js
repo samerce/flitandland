@@ -11,7 +11,7 @@ l.Root = styled(g.AbsoluteFlex)`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 100;
+  z-index: 900;
   background: ${g.theme.pinkGradient};
   ${p => !p.isIntro && `
     display: none;

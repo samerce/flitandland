@@ -48,6 +48,7 @@ l.Root = styled(g.Flex)`
       }
     }
     &.intro {
+      z-index: 1000;
       ${'' /* animation-name: popIn;
       animation-duration: 2s;
       animation-fill-mode: both;
@@ -72,7 +73,7 @@ l.PageRoot = styled(g.AbsoluteFlex)`
     display: none;
     transform: scale(.99);
     transition:
-      transform .2s linear, opacity .2s linear, display .05s linear .3s;
+      transform .3s ${c.Sexy}, opacity .3s ${c.Sexy}, display .05s linear .3s;
   }
 
   &.show {
@@ -86,9 +87,10 @@ l.PageRoot = styled(g.AbsoluteFlex)`
       }
     }
     animation-name: show;
-    animation-duration: .2s;
+    animation-duration: .5s;
     animation-timing-function: ${c.Sexy};
     animation-fill-mode: both;
+    animation-delay: .1s;
   }
 `
 
@@ -170,6 +172,22 @@ l.IntroText = styled.div`
     animation-fill-mode: both;
     animation-delay: 1.5s;
     animation-timing-function: ${c.Sexy};
+  }
+`
+
+l.Sunrise = styled(l.Faerie)`
+  font-size: 54px;
+  opacity: 0;
+  transform: scale(.99);
+  transition: all .3s ${c.Sexy};
+
+  .showSunrise & {
+    transform: translate(180px, 0);
+    filter: none;
+    opacity: 1;
+  }
+  .intro & {
+    display: none;
   }
 `
 

@@ -17,16 +17,23 @@ const ScreenMiddle = css`
 //   transform: scale(1.5);
 //   transform-origin: left center;
 // }
+const HiddenCss = css`
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+`
 l.Style = createGlobalStyle`
   .fb_dialog {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    ${HiddenCss}
   }
   .fb_dialog, .fb-customerchat iframe {
     z-index: 200;
     box-shadow: 0 0 20px ${g.theme.susanVeryDark}, ${g.theme.sexyEdge};
     transition: all .5s;
+
+    .intro & {
+      ${HiddenCss}
+    }
   }
   .fb-customerchat iframe {
     animation-duration: 0s !important;
@@ -42,7 +49,7 @@ l.Style = createGlobalStyle`
       right: 240px;
     }
     &.twitter {
-      right: 155px;
+      right: 165px;
     }
   }
 `

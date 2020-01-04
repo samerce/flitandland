@@ -11,6 +11,8 @@ import MailingList from '../../components/MailingList/it.coffee'
 import Flipbook from '../../components/Flipbook/it.coffee'
 import Chat from '../../components/Chat/it.coffee'
 import FriendIntro from '../../components/FriendIntro/it.coffee'
+import SlackSteward from '../../components/SlackSteward/it.coffee'
+import Checkout from '../../components/Checkout/it.coffee'
 import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
 
@@ -44,6 +46,8 @@ export default function App() {
         <Flipbook />
         <FriendIntro />
         <Chat />
+        <SlackSteward />
+        <Checkout />
         {/* <Content className={popupVisible && 'popupVisible'}>
           <Icons>
             <Icon

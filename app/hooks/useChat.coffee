@@ -17,8 +17,8 @@ subscribers =
   [ChatShow]: []
   [ChatHide]: []
   [ChatLoad]: []
-openChat = => FB.CustomerChat.showDialog() if FB
-closeChat = => FB.CustomerChat.hideDialog() if FB
+openChat = => if FB then FB.CustomerChat.showDialog()
+closeChat = => if FB then FB.CustomerChat.hideDialog()
 onChatOpen = (cb) => subscribers[ChatShow].push cb
 onChatClose = (cb) => subscribers[ChatHide].push cb
 onChatLoaded = (cb) => subscribers[ChatLoad].push cb

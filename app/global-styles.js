@@ -7,6 +7,7 @@ import {
   SCREEN_WIDTH_S, SCREEN_WIDTH_MMS, SCREEN_WIDTH_MS,
   SCREEN_WIDTH_M, SCREEN_WIDTH_ML, SCREEN_WIDTH_L, SCREEN_WIDTH_XL
 } from './constants'
+import * as c from './constants'
 
 const sizes = {
   small: SCREEN_WIDTH_S,
@@ -25,6 +26,14 @@ export const screen = Object.keys(sizes).reduce((result, key) => {
   `
   return result
 }, {})
+
+export const TouchMeCss = css`
+  animation-name: touchMe;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-out;
+`
 
 export default createGlobalStyle`
   html {
@@ -96,6 +105,9 @@ export default createGlobalStyle`
       filter: drop-shadow(0 0 5px ${alpha(.3, Theme.susan)})
         drop-shadow(0 0 50px ${alpha(.3, Theme.susanVeryDark)});
     }
+  }
+  .touchMe {
+    ${TouchMeCss}
   }
 `
 
@@ -299,4 +311,33 @@ export const cssFaerie = css`
 `
 export const Faerie = styled.a`
   ${cssFaerie}
+`
+
+export const TextInput = styled.input`
+  text-align: center;
+  font-size: 22px;
+  font-family: alice;
+  color: white;
+  transition: all .3s ${c.EASE_OUT};
+  flex: 1 0 auto;
+  height: 100%;
+  border: 2px solid transparent;
+  border-bottom-color: ${Theme.veryLight};
+  padding: 10px;
+  background: ${Theme.veryDark};
+
+  ::placeholder, ::-webkit-input-placeholder {
+    color: white;
+    opacity: .8;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:focus {
+    opacity: 1;
+    outline: none;
+    border-color: ${Theme.semiWhite};
+  }
 `
