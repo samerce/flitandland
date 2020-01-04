@@ -9,6 +9,8 @@ import {cx} from '../../utils/style'
 import useChat from '../../hooks/useChat.coffee'
 import useIntro from '../../hooks/useIntro.coffee'
 
+Greeting = 'hiya unicorn! do you believe in love?'
+
 export default Chat = =>
   [isChatOpen, setIsChatOpen] = useState no
   {onChatOpen, onChatClose, closeChat} = useChat()
@@ -39,8 +41,8 @@ export default Chat = =>
     <div
       className='fb-customerchat'
       page_id='1452817055016024'
-      logged_in_greeting='hiya unicorn! do you believe in love?'
-      logged_out_greeting='hiya unicorn! do you believe in love?'
+      logged_in_greeting={Greeting}
+      logged_out_greeting={Greeting}
       greeting_dialog_display='hide'
       theme_color={g.theme.susanDark}>
     </div>

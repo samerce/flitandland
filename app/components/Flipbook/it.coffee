@@ -37,7 +37,7 @@ FaeButtons = (p) =>
       <l.IntroText>hi! {"i'm"} jeli. i bend time</l.IntroText>
     </FaeButton>
     <FaeButton className={classes + ' sunrise'}>
-      <l.Sunrise onClick={onClickSunrise}>🌅</l.Sunrise>
+      <l.Sunrise onClick={onClickSunrise}>🍊🍊🍊</l.Sunrise>
     </FaeButton>
     <FaeButton className={classes + ' nails'}>
       <l.Nails onClick={p.toggleChat}>🍄</l.Nails>

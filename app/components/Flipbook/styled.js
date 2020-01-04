@@ -17,7 +17,7 @@ l.Root = styled(g.Flex)`
     display: flex;
     justify-content: center
     align-items: flex-end;
-    bottom: 0;
+    bottom: 50px;
     z-index: 500;
     transition: all .3s ${c.Sexy};
 
@@ -53,6 +53,21 @@ l.Root = styled(g.Flex)`
       animation-duration: 2s;
       animation-fill-mode: both;
       animation-timing-function: ${c.Sexy}; */}
+    }
+    &.sunrise {
+      opacity: 0;
+      transform: scale(.99);
+      pointer-events: none;
+      transition: all .3s ${c.Sexy};
+
+      &.showSunrise {
+        pointer-events: all;
+        transform: translate(180px, 0);
+        opacity: 1;
+      }
+      &.intro {
+        display: none;
+      }
     }
   }
 `
@@ -146,24 +161,24 @@ l.Faerie = styled.div`
 `
 
 l.IntroText = styled.div`
-  display: none;
   visibility: hidden;
   font-size: 36px;
   padding: 0 10px;
+  width: 0;
 
   .intro & {
-    display: block;
-
     @keyframes upReveal {
       0% {
         visibility: visible;
         opacity: 0;
         filter: blur(10px);
+        width: 0;
       }
       100% {
         visibility: visible;
         opacity: 1;
         filter: none;
+        width: initial;
       }
     }
 
@@ -177,18 +192,6 @@ l.IntroText = styled.div`
 
 l.Sunrise = styled(l.Faerie)`
   font-size: 54px;
-  opacity: 0;
-  transform: scale(.99);
-  transition: all .3s ${c.Sexy};
-
-  .showSunrise & {
-    transform: translate(180px, 0);
-    filter: none;
-    opacity: 1;
-  }
-  .intro & {
-    display: none;
-  }
 `
 
 l.Tinkerbell = styled(l.Faerie)`

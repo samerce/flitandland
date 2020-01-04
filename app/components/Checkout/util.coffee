@@ -1,9 +1,11 @@
+export ShippingTotal = 5
+
 getPrice = (intPrice) => {
     value: intPrice.toString()
     currency_code: 'USD'
 }
 
-export getOrderDetails = (order, shipping) => {
+export makePaypalOrder = (order, shipping) => {
   intent: 'CAPTURE',
   application_context: {
     brand_name: 'express your mess',
@@ -22,12 +24,12 @@ export getOrderDetails = (order, shipping) => {
       email_address: 'rise@purplerepublic.us',
     },
     description: order.description, # max 127 chars
-    items: order.items.map(item => ({
+    items: order.items.map (item) => {
       ...item,
       category: 'PHYSICAL_GOODS',
       unit_amount: getPrice(item.price),
       tax: getPrice(item.tax || 0),
-    })),
+    },
     shipping: {
       name: {
         full_name: shipping.name,
@@ -48,12 +50,33 @@ export getOrderDetails = (order, shipping) => {
   }],
 }
 
-export createOrder = (orderData, shippingData, actions) =>
+export makeOrder = (details) =>
+  itemPrice = details.total - ShippingTotal
+  {
+    total: details.total,
+    subtotal: itemPrice,
+    shippingTotal: ShippingTotal,
+    description: 'pick your price faerie offering!',
+    items: [
+      {
+        name: details.name + ' — 11 x 14 metallic print',
+        description: 'a gorgeous, shiny new print of original artwork',
+        price: itemPrice,
+        quantity: 1,
+        sku: details.id,
+      },
+    ],
+  }
+
+export createOrder = (order, actions) =>
   # ga 'send', 'event', {
   #   eventCategory: 'checkout',
   #   eventAction: 'paypal button clicked',
   # }
-  actions.order.create getOrderDetails(orderData, shippingData)
+  console.log 'shipping', order.shipping
+  paypalOrder = makePaypalOrder makeOrder(order), order.shipping
+  console.log paypalOrder
+  actions.order.create paypalOrder
 
 export onApprove = (data, actions) =>
   actions.order.capture().then (detail) =>

@@ -28,11 +28,28 @@ export const screen = Object.keys(sizes).reduce((result, key) => {
 }, {})
 
 export const TouchMeCss = css`
+  filter: drop-shadow(0 0 1px ${alpha(.3, Theme.susan)})
+    drop-shadow(0 0 30px ${alpha(.3, Theme.susanVeryDark)});
   animation-name: touchMe;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-timing-function: ease-out;
+  transition: all .3s;
+
+  &:hover {
+    animation-duration: .2s;
+  }
+  &:active {
+    animation-play-state: paused;
+    transform: scale(.98);
+    filter: drop-shadow(0 0 1px ${alpha(.3, Theme.susan)})
+      drop-shadow(0 0 10px ${alpha(.3, Theme.susanVeryDark)});
+  }
+  &.disabled {
+    pointer-events: none;
+    animation: none;
+  }
 `
 
 export default createGlobalStyle`
@@ -101,8 +118,7 @@ export default createGlobalStyle`
 
   @keyframes touchMe {
     100% {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 5px ${alpha(.3, Theme.susan)})
+      filter: drop-shadow(0 0 5px ${Theme.susan})
         drop-shadow(0 0 50px ${alpha(.3, Theme.susanVeryDark)});
     }
   }

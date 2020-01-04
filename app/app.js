@@ -11,6 +11,7 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'sanitize.css/sanitize.css';
+import './utils/lang'
 
 // third party global imports
 import '../node_modules/react-image-gallery/styles/css/image-gallery-no-icon.css'
