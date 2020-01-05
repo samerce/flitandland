@@ -44,14 +44,14 @@ GridCell = (p) =>
   [s, {increment}] = useLoader()
   <l.Cell>
     {p.images.map (image, i) =>
-      <DelayedReveal delay={BaseDelay + ((i * FullCycleDuration) + p.delay)}
+      <DelayedReveal delay={BaseDelay + i * FullCycleDuration + p.delay}
         start={p.mode is 'show'} key={image}>
         <l.GridImage
           src={c.SRC_URL + 'commons/' + image + '.jpg'}
           delay={p.delay}
           onLoad={increment}
           mode={p.mode}
-          style={{zIndex: (i * 1000)}}
+          style={{zIndex: (i+1) * 1000}}
         />
       </DelayedReveal>
     }
@@ -61,17 +61,22 @@ export PaintShow = (p) =>
   <l.Centered mode={p.mode}>
     <Video name='paintshowq' mode={p.mode} className='backdrop' />
     <l.Yearbook>
-      <GridCell delay={1000} mode={p.mode} images={[
-          'dr john', 'sneakers',
-      ]} />
-      <GridCell images={['yummy boy']} delay={2000} mode={p.mode} />
-      <GridCell images={['chaquita']} delay={3000} mode={p.mode} />
-      <GridCell images={['easter jesus']} delay={4000} mode={p.mode} />
-      <GridCell images={['jojo']} delay={4500} mode={p.mode} />
-      <GridCell images={['merman 7']} delay={3500} mode={p.mode} />
-      <GridCell images={['rainbow eyes']} delay={2500} mode={p.mode} />
-      <GridCell images={['lost at sea']} delay={1500} mode={p.mode} />
-      <GridCell images={['sunset babe']} delay={500} mode={p.mode} />
+      <GridCell images={['dr john', 'sneakers', 'needs work but']}
+        delay={1000} mode={p.mode} />
+      <GridCell images={['yummy boy', 'a meeting', 'gayclub']} delay={2000} mode={p.mode} />
+      <GridCell images={['chaquita', 'gee, i jus love him', 'beadme']}
+        delay={3000} mode={p.mode} />
+      <GridCell images={['easter jesus', 'desire-vignette', 'im a man, maam']}
+        delay={4000} mode={p.mode} />
+      <GridCell images={['jojo 3', 'mama y yo', 'love']}
+        delay={4500} mode={p.mode} />
+      <GridCell images={['merman 7', 'grain train', 'jojo']} delay={3500} mode={p.mode} />
+      <GridCell images={['rainbow eyes', 'mama y rick', 'flaggot']}
+        delay={2500} mode={p.mode} />
+      <GridCell images={['lost at sea', 'glitterfysh', 'boys being girly boys']}
+        delay={1500} mode={p.mode} />
+      <GridCell images={['sunset babe', 'mama y yo 2', 'delusion']}
+        delay={500} mode={p.mode} />
     </l.Yearbook>
   </l.Centered>
 

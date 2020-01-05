@@ -1,41 +1,33 @@
-import React, {useState, useLayoutEffect} from 'react'
-import useGlobal from 'use-global-hook'
+import React, {useState, useRef, useLayoutEffect} from 'react'
 
-useIndex = useGlobal(React,
-  {index: -1, page: null, paused: yes},
-  setState: ({setState}, state) => setState state
-)
-
-timer = null
-actions = {}
 export default useFlipbook = (pages, useLoader) =>
-  [{index, page, paused}, {setState}] = useIndex()
+  [index, setIndex] = useState -1
+  [page, setPage] = useState {page: null}
+  [paused, setPaused] = useState yes
+  [actions] = useState {}
+  [timer, setTimer] = useState {clear: =>}
   [{isLoaded}] = useLoader()
 
-  useLayoutEffect (=> setState index: 0 if isLoaded), [isLoaded]
+  useLayoutEffect (=> setIndex 0 if isLoaded), [isLoaded]
   useLayoutEffect (=>
-    clearTimeout timer
-    if index < pages.length - 1 and index >= 0
-      newPage = pages[index]
-      setState page: newPage
-      if paused
-        setState page: {...newPage, duration: 0}
-      else
-        advanceIndex = => setState index: index + 1
-        timer = setTimeout advanceIndex, newPage.duration
-    => clearTimeout timer
+    return unless index < pages.length - 1 and index >= 0
+    newPage = pages[index]
+    if paused
+      setPage page: {...newPage, duration: 0}
+    else
+      setPage page: newPage
+      setTimer after newPage.duration, => setIndex (i) => i + 1
+    => timer.clear()
   ), [index, paused]
 
-  actions.pause = =>
-    setState paused: Date.now()
-  actions.play = =>
-    setState paused: no
+  actions.pause = => setPaused Date.now()
+  actions.play = => setPaused no
   actions.togglePlayPause = =>
     if paused then actions.play()
     else actions.pause()
   actions.advance = =>
     return if index >= pages.length - 1
-    setState index: index + 1
+    setIndex (i) => i + 1
     actions.play() if paused
 
-  [page, index, actions]
+  [page.page, index, actions]

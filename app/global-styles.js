@@ -36,15 +36,17 @@ export const TouchMeCss = css`
   animation-direction: alternate;
   animation-timing-function: ease-out;
   transition: all .3s;
+  opacity: .8;
 
   &:hover {
     animation-duration: .2s;
+    opacity: 1;
   }
   &:active {
     animation-play-state: paused;
     transform: scale(.98);
     filter: drop-shadow(0 0 1px ${alpha(.3, Theme.susan)})
-      drop-shadow(0 0 10px ${alpha(.3, Theme.susanVeryDark)});
+      drop-shadow(0 0 30px ${alpha(.3, Theme.susanVeryDark)});
   }
   &.disabled {
     pointer-events: none;
@@ -119,7 +121,7 @@ export default createGlobalStyle`
   @keyframes touchMe {
     100% {
       filter: drop-shadow(0 0 5px ${Theme.susan})
-        drop-shadow(0 0 50px ${alpha(.3, Theme.susanVeryDark)});
+        drop-shadow(0 0 30px ${alpha(.3, Theme.susanVeryDark)});
     }
   }
   .touchMe {

@@ -11,13 +11,20 @@ l.Root = styled(g.Flex)`
   height: 100%;
   overflow: hidden;
   position: relative;
+  user-select: none;
+
+  .swipe-page {
+    width: 100%;
+    height: 100%;
+    transform: translate3d(${p => p.x}px, ${p => p.y}px, 0);
+  }
 
   .flipbook-button  {
     position: fixed;
     display: flex;
     justify-content: center
     align-items: flex-end;
-    bottom: 50px;
+    bottom: 40px;
     z-index: 500;
     transition: all .3s ${c.Sexy};
 
@@ -34,6 +41,7 @@ l.Root = styled(g.Flex)`
       }
     }
     &.tinkerbell {
+      display: none;
       left: 20px;
 
       &.intro {
@@ -41,7 +49,8 @@ l.Root = styled(g.Flex)`
       }
     }
     &.nails {
-      right: 20px;
+      right: 50%;
+      transform: translate(50%, 0);
       &.intro {
         bottom: calc(60% - 216px);
         animation-delay: 1s;
@@ -68,6 +77,13 @@ l.Root = styled(g.Flex)`
       &.intro {
         display: none;
       }
+    }
+    &.yes, &.no {
+      right: 25%;
+      transform: translate(50%, 0px);
+    }
+    &.no {
+      right: 75%;
     }
   }
 `
@@ -164,21 +180,22 @@ l.IntroText = styled.div`
   visibility: hidden;
   font-size: 36px;
   padding: 0 10px;
+  opacity: 0;
   width: 0;
+  height: 0;
+  display: none;
 
   .intro & {
+    display: block;
     @keyframes upReveal {
       0% {
         visibility: visible;
-        opacity: 0;
-        filter: blur(10px);
-        width: 0;
       }
       100% {
         visibility: visible;
         opacity: 1;
-        filter: none;
         width: initial;
+        height: initial;
       }
     }
 
@@ -202,6 +219,14 @@ l.Tinkerbell = styled(l.Faerie)`
     animation-name: tinker;
     animation-delay: .5s;
   }
+`
+
+l.Yes = styled(l.Faerie)`
+
+`
+
+l.No = styled(l.Faerie)`
+
 `
 
 l.Nails = styled(l.Faerie)`

@@ -10,6 +10,8 @@ import useFlipbook from './useFlipbook.coffee'
 import useLoader from '../Bopz/useLoader.coffee'
 import useIntro from '../../hooks/useIntro.coffee'
 import useChat from '../../hooks/useChat.coffee'
+import { useSpring, animated } from 'react-spring'
+import { useDrag } from 'react-use-gesture'
 
 import * as PagesMap from '../Bopz/Mangina.coffee'
 Pages = Object.values(PagesMap)
@@ -39,11 +41,32 @@ FaeButtons = (p) =>
     <FaeButton className={classes + ' sunrise'}>
       <l.Sunrise onClick={onClickSunrise}>🍊🍊🍊</l.Sunrise>
     </FaeButton>
+    <FaeButton className={classes + ' yes'}>
+      <l.Yes>🧞‍</l.Yes>
+    </FaeButton>
+    <FaeButton className={classes + ' no'}>
+      <l.No>🦠</l.No>
+    </FaeButton>
     <FaeButton className={classes + ' nails'}>
       <l.Nails onClick={p.toggleChat}>🍄</l.Nails>
       <l.IntroText>hi! {"i'm"} pillo. {"i'm"} the fiber optics of communication.</l.IntroText>
     </FaeButton>
   </>
+
+
+SwipePage = (p) =>
+  [{ x, y }, setit] = useSpring => x: 0, y: 0
+  withDrag = useDrag ({ first, down, movement: [mx, my] }) =>
+    if down
+      setit {x: mx, y: my}
+    else if mx < -100 or my < -100
+      p.onTickled()
+    else if Math.abs(mx) < 10 or Math.abs(my) < 10
+      p.onTouched()
+
+  <animated.div {...withDrag()} x={x.value} y ={y.value} className='swipe-page'>
+    {p.children}
+  </animated.div>
 
 export default Flipbook = =>
   [activePage, activeIndex, actions] = useFlipbook Pages, useLoader
@@ -87,7 +110,9 @@ export default Flipbook = =>
         preload: i > activeIndex
       }
       <l.PageRoot className={mode}>
-        <Page mode={mode} />
+        <SwipePage onTickled={next} onTouched={togglePlayPause}>
+          <Page mode={mode} />
+        </SwipePage>
       </l.PageRoot>
     }
     <FaeButtons play={play} pause={pause} next={next} toggleChat={toggleChat} />

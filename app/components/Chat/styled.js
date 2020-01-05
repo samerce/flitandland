@@ -40,16 +40,20 @@ l.Style = createGlobalStyle`
     z-index: 300 !important;
     box-shadow: 0 0 20px ${g.theme.susanVeryDark};
     background: rgba(255,255,255,.5);
+    right: 50% !important;
+    bottom: 140pt !important;
+    transform: translate(50%, 0);
   }
   .chat-button {
     position: fixed;
-    bottom: 65px;
-    right: 315px;
+    bottom: 130px;
+    right: 50%;
+    transform: translate(50%, 0);
     &.insta {
-      right: 240px;
+      transform: translate(-54px, 0);
     }
     &.twitter {
-      right: 165px;
+      transform: translate(108px, 0);
     }
   }
 `

@@ -39,6 +39,7 @@ l.Image = styled.img`
   margin: 0 auto;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
     ${g.theme.prettyFrame};
+  pointer-events: none;
 
   &.fullHeight {
     width: initial
@@ -57,6 +58,7 @@ l.Yearbook = styled(g.AbsoluteFlex)`
 `
 
 l.Cell = styled.div`
+  position: relative;
   flex: 0 0 30%;
   height: 20%;
   margin: 0 1%;
@@ -65,6 +67,9 @@ l.Cell = styled.div`
 l.GridImage = styled(l.Image)`
   opacity: 0;
   transform: rotate(${p => (Math.round(Math.random()) * -2 + 1) * Math.round(2 * (8000 / p.delay))}deg);
+  position: absolute;
+  top: 0;
+  left: 0;
 
   @keyframes full {
     100% {
