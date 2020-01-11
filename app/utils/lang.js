@@ -12,3 +12,12 @@ export function makeEnum(valueArray) {
 
 window.after = after
 window.makeEnum = makeEnum
+window.dispatch = (eventName, props) => {
+  let event = null
+  if (props) {
+    event = new CustomEvent(eventName, {detail: props})
+  } else event = new Event(eventName)
+  dispatchEvent(event)
+}
+window.listen = addEventListener
+window.deafen = removeEventListener

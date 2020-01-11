@@ -12,6 +12,11 @@ l.Root = styled(g.Flex)`
   overflow: hidden;
   position: relative;
   user-select: none;
+  z-index: 2000;
+
+  &.intro {
+    pointer-events: none;
+  }
 
   .swipe-page {
     width: 100%;
@@ -24,9 +29,10 @@ l.Root = styled(g.Flex)`
     display: flex;
     justify-content: center
     align-items: flex-end;
-    bottom: 40px;
+    bottom: 20px;
     z-index: 500;
     transition: all .3s ${c.Sexy};
+    pointer-events: all;
 
     @keyframes popIn {
       0% {
@@ -49,12 +55,14 @@ l.Root = styled(g.Flex)`
       }
     }
     &.nails {
+      bottom: 50%;
       right: 50%;
-      transform: translate(50%, 0);
-      &.intro {
-        bottom: calc(60% - 216px);
+      transform: translate(50%, 50%);
+      align-items: center;
+      ${'' /* &.intro {
+        transform: translate(50%, -50%);
         animation-delay: 1s;
-      }
+      } */}
     }
     &.intro {
       z-index: 1000;
@@ -154,55 +162,60 @@ const makeFlyIn = (name, zeroStyle) => css`
   @keyframes ${name} {
     0% {
       opacity: 0;
-      filter: blur(10px);
       ${zeroStyle}
     }
     85% {
       opacity: 1;
-      filter: none;
     }
     100% {
       opacity: 1;
-      filter: none;
       transform: none;
     }
   }
 `
 
 l.Faerie = styled.div`
+  animation-timing-function: ${c.Sexy};
+  animation-fill-mode: both;
+
   .intro & {
-    animation-timing-function: ${c.Sexy};
     animation-duration: .5s;
   }
 `
 
 l.IntroText = styled.div`
   visibility: hidden;
-  font-size: 36px;
-  padding: 0 10px;
+  font-size: 42px;
+  line-height: 46px;
+  padding: 20px;
+  flex: 0 0 100%;
+  max-width: 780px;
   opacity: 0;
-  width: 0;
-  height: 0;
   display: none;
+  font-family: just another hand;
+  background: ${g.theme.pinkGradient};
+  color: ${g.theme.susan};
+  box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
 
   .intro & {
     display: block;
+    transform-origin: left center;
     @keyframes upReveal {
       0% {
         visibility: visible;
+        transform: scale(0);
       }
       100% {
         visibility: visible;
         opacity: 1;
-        width: initial;
-        height: initial;
+        transform: none;
       }
     }
 
     animation-name: upReveal;
     animation-duration: .5s;
     animation-fill-mode: both;
-    animation-delay: 1.5s;
+    animation-delay: 4.5s;
     animation-timing-function: ${c.Sexy};
   }
 `
@@ -230,14 +243,29 @@ l.No = styled(l.Faerie)`
 `
 
 l.Nails = styled(l.Faerie)`
+  ${'' /* transform: scale(.95);
+  opacity: 0;
   .intro & {
     ${makeFlyIn('nails', css`
-      transform: translate(500px, 0) scale(.95);
+      opacity: 0;
+      transform: scale(.95);
     `)}
     animation-name: nails;
-    animation-delay: 1s;
-  }
+    animation-delay: 4s;
+  } */}
+
+  background: linear-gradient(to bottom,
+    ${g.theme.susanDark} 0%, ${g.theme.susanVeryDark} 100%
+  );
+  border-radius: 100%;
+  padding: 36px;
+  box-shadow: ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy},
+    inset 0 0 10px ${g.theme.susanVeryDark};
+
   ${l.IntroText} {
     animation-delay: 2s;
+  }
+  img {
+    width: 100px;
   }
 `

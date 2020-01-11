@@ -13,17 +13,16 @@ import Chat from '../../components/Chat/it.coffee'
 import FriendIntro from '../../components/FriendIntro/it.coffee'
 import SlackSteward from '../../components/SlackSteward/it.coffee'
 import Checkout from '../../components/Checkout/it.coffee'
+import Curtain from '../../components/Curtain/it.coffee'
 import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
 
 import useScroller from '../../hooks/useScroller.coffee'
+import useIntro from '../../hooks/useIntro.coffee'
 import {openInNewTab} from '../../utils/nav'
 
 import GlobalStyle from '../../global-styles'
-import {
-  Root, Content, Icon, Icons,
-} from './styled'
-
+import * as l from './styled'
 import * as c from '../../constants'
 import * as g from '../../global-styles'
 
@@ -41,13 +40,14 @@ export default function App() {
   // const {showReturnToTop} = Scroller.triggers
 
   return (
-      <Root>
+      <l.Root>
         <GlobalStyle />
-        <Flipbook />
+        <Curtain />
         <FriendIntro />
-        <Chat />
+        <Flipbook />
+        {/* <Chat /> */}
         <SlackSteward />
-        <Checkout />
+        {/* <Checkout /> */}
         {/* <Content className={popupVisible && 'popupVisible'}>
           <Icons>
             <Icon
@@ -71,6 +71,6 @@ export default function App() {
           </Content>
           <NavCloseButton />
         <Popup /> */}
-      </Root>
+      </l.Root>
   )
 }

@@ -1,7 +1,5 @@
 import styled from 'styled-components'
-import {
-  theme, screen, FlexColumn, Flex,
-} from '../../global-styles'
+import * as g from '../../global-styles'
 import * as c from '../../constants'
 
 const BackgroundUrl = c.SRC_URL + 'commons/bursting-lq.jpg'
@@ -29,23 +27,20 @@ export const Root = styled.div`
       pointer-events: all;
     }
 
-    ${screen.medium`
+    ${g.screen.medium`
       bottom: 20px;
       right: 20px;
     `}
   }
 `
 
-export const Content = styled(FlexColumn)`
+export const Content = styled(g.FlexColumn)`
   height: 100%;
   width: 100%;
   filter: blur(0);
   transition: all .5s;
   overflow-y: scroll;
   padding: 0 0 60px;
-  background: linear-gradient(
-    to bottom, rgba(255, 0, 237, 0.79) 0%, rgba(255, 0, 176, 0.8) 5%, rgba(201, 23, 173, 0.81) 50%, rgba(184, 0, 149, 0.8) 95%, rgba(193, 0, 133, 0.8) 100%
-  );
 
   &.popupVisible {
     filter: blur(10px);
@@ -55,7 +50,7 @@ export const Content = styled(FlexColumn)`
   }
 `
 
-export const Icons = styled(Flex)`
+export const Icons = styled(g.Flex)`
   justify-content: flex-end;
   align-items: center;
   margin: 20px 10px;
@@ -65,11 +60,11 @@ export const Icon = styled.i`
   margin: 0 10px;
   font-size: 27px;
   cursor: pointer;
-  text-shadow: ${theme.shadowHeavy};
+  text-shadow: ${g.theme.shadowHeavy};
   transition: all .3s;
 
   &:hover {
-    color: ${theme.shelly};
+    color: ${g.theme.shelly};
   }
   ${'' /* &.fa-twitter {
     right: 60px;
@@ -78,6 +73,6 @@ export const Icon = styled.i`
     right: 120px;
   } */}
 
-  ${screen.medium`
+  ${g.screen.medium`
   `}
 `

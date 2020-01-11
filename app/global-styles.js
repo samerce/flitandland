@@ -36,7 +36,6 @@ export const TouchMeCss = css`
   animation-direction: alternate;
   animation-timing-function: ease-out;
   transition: all .3s;
-  opacity: .8;
 
   &:hover {
     animation-duration: .2s;
@@ -71,19 +70,29 @@ export default createGlobalStyle`
     ${screen.small`
       font-size: 18px;
     `}
+
+    background: transparent; /*rgba(184, 0, 149, 0.8);*/
+    @keyframes fadeInBg {
+      100% {
+        background: rgba(184, 0, 149, 1);
+      }
+    }
+    animation-name: fadeInBg;
+    animation-duration: .1s;
+    animation-delay: 2s;
+    animation-fill-mode: both;
   }
   html,
   body {
     height: 100%;
     width: 100%;
-    background-color: rgba(184, 0, 149, 0.8);
   }
 
   body {
     font-family: 'crimson pro', Georgia, serif;
     font-weight: 300;
-    color: white;
-    background: ${Theme.pinkGradient};
+    color: rgba(255, 0, 237, 1);
+    background: white;
   }
 
   body.fontLoaded {

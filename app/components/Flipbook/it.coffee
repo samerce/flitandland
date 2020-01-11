@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react'
+import React, {useLayoutEffect, useState, useEffect} from 'react'
 import Countdown from '../Countdown/it.coffee'
 import FaeButton from '../FaeButton/it.coffee'
 
@@ -7,9 +7,6 @@ import * as c from '../../constants'
 import {cx} from '../../utils/style'
 
 import useFlipbook from './useFlipbook.coffee'
-import useLoader from '../Bopz/useLoader.coffee'
-import useIntro from '../../hooks/useIntro.coffee'
-import useChat from '../../hooks/useChat.coffee'
 import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 
@@ -17,12 +14,11 @@ import * as PagesMap from '../Bopz/Mangina.coffee'
 Pages = Object.values(PagesMap)
 
 FaeButtons = (p) =>
-  [{isIntro}] = useIntro()
   [isTinkerbellTickled, setIsTinkerbellTickled] = useState no
   classes = cx {
     'flipbook-button': yes
-    intro: isIntro
-    disabled: isIntro
+    intro: p.isIntro
+    disabled: p.isIntro
     showSunrise: isTinkerbellTickled
   }
   onClickTinkerbell = =>
@@ -42,17 +38,47 @@ FaeButtons = (p) =>
       <l.Sunrise onClick={onClickSunrise}>🍊🍊🍊</l.Sunrise>
     </FaeButton>
     <FaeButton className={classes + ' yes'}>
-      <l.Yes>🧞‍</l.Yes>
+      <l.Yes>🧞‍♀️‍</l.Yes>
     </FaeButton>
     <FaeButton className={classes + ' no'}>
       <l.No>🦠</l.No>
     </FaeButton>
-    <FaeButton className={classes + ' nails'}>
-      <l.Nails onClick={p.toggleChat}>🍄</l.Nails>
-      <l.IntroText>hi! {"i'm"} pillo. {"i'm"} the fiber optics of communication.</l.IntroText>
-    </FaeButton>
+
   </>
 
+SpringConfig = friction: 10, tension: 58, mass: 1
+FaeSol = (p) =>
+  [anim, setAnim] = useState
+    from: {opacity: 0, scale: .95}
+    to: {opacity: 1, scale: 1}
+    delay: 1000
+  style = useSpring {...anim}
+  classes = cx {
+    'flipbook-button': yes
+    intro: p.isIntro
+    disabled: p.isIntro
+  }
+  <FaeButton className={classes + ' nails'}>
+    <animated.div style={{
+      ...style,
+      pointerEvents: 'all'
+      zIndex: 1
+      transform: style.scale.interpolate((s) => "scale(#{s})")
+    }}>
+      <l.Nails onClick={p.onClick}
+        onMouseEnter={=> setAnim to: {scale: 1.1}}
+        onMouseLeave={=> setAnim to: {scale: 1}}
+        onMouseDown={=> setAnim to: {scale: .95}}
+        onMouseUp={=> setAnim to: {scale: 1.1}}
+      >
+        <img src={c.SRC_URL + 'commons/solwhite.png'} />
+      </l.Nails>
+    </animated.div>
+    <l.IntroText>
+      if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million dollars a day would circulate into the hands of those who need a break. that’s 365 billion dollars a year, one quarter at a time.<br/><br/>
+      power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets. it’s the lie of our lifetime.
+    </l.IntroText>
+  </FaeButton>
 
 SwipePage = (p) =>
   [{ x, y }, setit] = useSpring => x: 0, y: 0
@@ -64,42 +90,15 @@ SwipePage = (p) =>
     else if Math.abs(mx) < 10 or Math.abs(my) < 10
       p.onTouched()
 
-  <animated.div {...withDrag()} x={x.value} y ={y.value} className='swipe-page'>
+  <animated.div {...withDrag()} style={{x,y}} className='swipe-page'>
     {p.children}
   </animated.div>
 
 export default Flipbook = =>
-  [activePage, activeIndex, actions] = useFlipbook Pages, useLoader
-  [{isLoaded}] = useLoader()
-  [{isIntro}] = useIntro()
-  [isChatOpen, setIsChatOpen] = useState no
-  {onChatOpen, onChatClose, closeChat, openChat} = useChat()
-  {togglePlayPause, advance, pause, play} = actions
+  [activePage, activeIndex, isLoaded, isIntro, actions] = useFlipbook Pages
+  {togglePlayPause, advance} = actions
 
-  useLayoutEffect (=>
-    onChatOpen => setIsChatOpen yes
-    onChatClose => setIsChatOpen no
-    undefined
-  ), []
-
-  onChatChange = =>
-    closeChat() if isIntro and isChatOpen
-    return if isIntro
-    if isChatOpen then pause()
-    else play()
-  useLayoutEffect onChatChange, [isChatOpen]
-
-  startFlipbook = => play() unless isIntro or isChatOpen
-  useLayoutEffect startFlipbook, [isIntro]
-
-  next = =>
-    closeChat()
-    advance()
-  toggleChat = =>
-    if isChatOpen then closeChat()
-    else openChat()
-
-  <l.Root>
+  <l.Root className={cx intro: isIntro}>
     {if isLoaded and activePage?
       <Countdown duration={activePage.duration - 100} />
     }
@@ -110,10 +109,10 @@ export default Flipbook = =>
         preload: i > activeIndex
       }
       <l.PageRoot className={mode}>
-        <SwipePage onTickled={next} onTouched={togglePlayPause}>
+        <SwipePage onTickled={advance} onTouched={togglePlayPause}>
           <Page mode={mode} />
         </SwipePage>
       </l.PageRoot>
     }
-    <FaeButtons play={play} pause={pause} next={next} toggleChat={toggleChat} />
+    <FaeSol onClick={actions.toggleChat} isIntro={isIntro} />
   </l.Root>

@@ -1,4 +1,4 @@
-import React, {useLayoutEffect} from 'react'
+import React, {useEffect} from 'react'
 import useGlobal from 'use-global-hook'
 import useChat from '../../hooks/useChat.coffee'
 
@@ -12,7 +12,7 @@ useLoader = useGlobal(React,
 export default =>
   [s, {increment}] = useLoader()
   {onChatLoaded} = useChat()
-  useLayoutEffect (=>
+  useEffect (=>
     onChatLoaded increment
     undefined
   ), []

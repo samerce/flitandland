@@ -23,7 +23,7 @@ export const EASE_SINE = 'cubic-bezier(0.445, 0.05, 0.55, 0.95)';
 export const EASE_OUT = 'cubic-bezier(0.2, .8, 0.2, 1)';
 export const EASE_IN = 'cubic-bezier(0.755, 0.05, 0.855, 0.06)';
 export const EASE = 'cubic-bezier(0.86, 0, 0.07, 1)';
-export const Sexy = 'cubic-bezier(.43,0,.13,.99)';
+export const Sexy = 'cubic-bezier(.27,.49,0,.98)'//'cubic-bezier(.43,0,.13,.99)';
 
 export const SCREEN_WIDTH_S = 375;
 export const SCREEN_WIDTH_MMS = 425;
