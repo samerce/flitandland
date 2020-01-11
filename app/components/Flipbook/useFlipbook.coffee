@@ -14,8 +14,12 @@ export default useFlipbook = (pages) =>
   {onChatOpen, onChatClose, closeChat, openChat, toggleChat} = useChat()
 
   actions.toggleChat = toggleChat
-  actions.pause = => setPaused Date.now()
-  actions.play = => setPaused no
+  actions.pause = =>
+    setPaused Date.now()
+    dispatch 'fal.flipbook.paused'
+  actions.play = =>
+    setPaused no
+    dispatch 'fal.flipbook.playing'
   actions.togglePlayPause = =>
     if paused then actions.play()
     else actions.pause()
@@ -44,7 +48,10 @@ export default useFlipbook = (pages) =>
   useLayoutEffect (=>
     if isLoaded
       dispatch 'fal.flipbook.loaded'
-      dispatch 'fal.announcer.show', 'touch me'
+      after 5000, =>
+        return unless paused
+        dispatch 'fal.announcer.show', content: 'touch me', duration: 5000
+      after 10000, => actions.play() if index is 0 and paused
   ), [isLoaded]
   useLayoutEffect (=>
     listen 'fal.bgWasClicked', => actions.togglePlayPause()

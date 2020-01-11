@@ -1,10 +1,11 @@
-import React, {useRef, useEffect} from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 import DelayedReveal from '../DelayedReveal/it.coffee'
 
 import l from './styled'
 import * as c from '../../constants'
 import {cx} from '../../utils/style'
 import useLoader from './useLoader.coffee'
+import {useSpring} from 'react-spring'
 
 Image = (p) =>
   [s, {increment}] = useLoader()
@@ -28,11 +29,22 @@ Video = (p) =>
   />
 
 export Intro = (p) =>
+  [ani, setAni] = useState
+    from: {opacity: 0, scale: .95}
+    to: {opacity: 1, scale: 1}
+    delay: 1500
+  style = useSpring {...ani}
   useEffect (=>
-    timer = after 9000, p.actions.play
-    => timer.clear()
+    hideAnnouncer = null
+    hideAnnouncer = =>
+      dispatch 'fal.announcer.hide'
+      deafen 'fal.flipbook.playing', hideAnnouncer
+    listen 'fal.flipbook.playing', hideAnnouncer
   ), []
-  <l.Centered className='intro'>
+  <l.Centered className='intro' style={{
+    ...style,
+    transform: "scale(#{style.scale})"
+  }}>
     <l.IntroText>
       if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.<br/> that’s $365 billion a year, one quarter at a time.<br/><br/>
       power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets. <br/><br/>it’s the lie of our lifetime.

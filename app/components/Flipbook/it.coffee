@@ -70,27 +70,20 @@ FaeSol = (p) =>
     </animated.div>
   </FaeButton>
 
-SwipePage = (p) =>
-  # [{ x, y }, setit] = useSpring => x: 0, y: 0
-  # withDrag = useDrag ({ first, down, movement: [mx, my] }) =>
-  #   if down
-  #     setit {x: mx, y: my}
-  #   else if mx < -100 or my < -100
-  #     p.onTickled()
-  #   else if Math.abs(mx) < 10 or Math.abs(my) < 10
-  #     p.onTouched()
-
-  <animated.div className='swipe-page'>
-    {p.children}
-  </animated.div>
-
+swipeLeft = no
 export default Flipbook = =>
   [activePage, activeIndex, isLoaded, actions] = useFlipbook Pages
   {togglePlayPause, advance} = actions
+  withDrag = useDrag ({down, movement: [mx, my]}) =>
+    if down
+      swipeLeft = mx < -100 or my < -100
+    else
+      if swipeLeft then advance()
+      else togglePlayPause()
 
-  <l.Root onClick={=> dispatch 'fal.bgWasClicked'}>
+  <l.Root {...withDrag()}>
     <Countdown duration={activePage.duration - 100} />
-    <FaeSol onClick={actions.toggleChat} />
+    <FaeSol />
     {Pages.map (Page, i) =>
       mode = cx {
         hide: i < activeIndex

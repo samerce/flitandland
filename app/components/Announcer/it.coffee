@@ -15,27 +15,31 @@ export default Announcer = =>
     timer.clear() if timer
     setVisible false
     setAnim
-      from: {opacity: 1, transform: 'translate(0, 0)'}
-      to: {opacity: 0, transform: 'translate(0, 36px)'}
-  show = (innards) =>
+      from: {opacity: 1, y: 0}
+      to: {opacity: 0, y: 36}
+  show = (p) =>
     timer.clear() if timer
     if visible
       hide()
-      setTimer after 300, => show(innards)
+      setTimer after 300, => show(p)
     else
       setVisible yes
-      setInnards innards
+      setInnards p.content
       setAnim
-        from: {opacity: 0, transform: 'translate(0, 36px)', filter: 'blur(10px)'}
-        to: {opacity: 1, transform: 'translate(0, 0)', filter: 'blur(0)'}
+        from: {opacity: 0, y: 36}
+        to: {opacity: 1, y: 0}
 
   useLayoutEffect (=>
-    listen 'fal.announcer.show', (e) => show(e.detail)
+    listen 'fal.announcer.show', (e) =>
+      show(e.detail)
+      if e.detail.duration then setTimer after e.detail.duration, hide
     listen 'fal.announcer.hide', hide
   ), []
 
   <l.Root>
-    <l.Go style={style}>
+    <l.Go style={{
+      ...style, transform: "translate(0, #{style.y}px)"
+    }}>
       {
         if typeof innards is 'string'
           <div>{innards}</div>

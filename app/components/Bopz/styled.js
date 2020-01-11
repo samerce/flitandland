@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import {transparentize as alpha, darken, lighten} from 'polished'
+import {animated} from 'react-spring'
 import * as g from '../../global-styles'
 import * as c from '../../constants'
 
@@ -10,7 +11,7 @@ l.Root = styled(g.Flex)`
   width: 100%;
 `
 
-l.Centered = styled(g.Flex)`
+l.Centered = animated(styled(g.Flex)`
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -24,7 +25,7 @@ l.Centered = styled(g.Flex)`
   &.intro {
     padding: 18px;
   }
-`
+`)
 
 l.Credit = styled(g.AbsoluteFlex)`
   bottom: 0;
@@ -116,21 +117,4 @@ l.IntroText = styled.div`
   background: ${g.theme.pinkGradient};
   color: ${g.theme.susan};
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
-  transform-origin: left center;
-
-  @keyframes upReveal {
-    0% {
-      transform: scale(0);
-    }
-    100% {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  animation-name: upReveal;
-  animation-duration: .5s;
-  animation-fill-mode: both;
-  animation-delay: 3.5s;
-  animation-timing-function: ${c.Sexy};
 `
