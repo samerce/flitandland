@@ -28,19 +28,13 @@ Video = (p) =>
     onCanPlay={increment} loop={yes}
   />
 
+showTouchMe = null
 export Intro = (p) =>
   [ani, setAni] = useState
     from: {opacity: 0, scale: .95}
     to: {opacity: 1, scale: 1}
     delay: 1500
   style = useSpring {...ani}
-  useEffect (=>
-    hideAnnouncer = null
-    hideAnnouncer = =>
-      dispatch 'fal.announcer.hide'
-      deafen 'fal.flipbook.playing', hideAnnouncer
-    listen 'fal.flipbook.playing', hideAnnouncer
-  ), []
   <l.Centered className='intro' style={{
     ...style,
     transform: "scale(#{style.scale})"

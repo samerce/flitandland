@@ -18,6 +18,7 @@ export default useFlipbook = (pages) =>
     setPaused Date.now()
     dispatch 'fal.flipbook.paused'
   actions.play = =>
+    dispatch 'fal.announcer.hide' if index is 0
     setPaused no
     dispatch 'fal.flipbook.playing'
   actions.togglePlayPause = =>
@@ -49,13 +50,9 @@ export default useFlipbook = (pages) =>
     if isLoaded
       dispatch 'fal.flipbook.loaded'
       after 5000, =>
-        return unless paused
-        dispatch 'fal.announcer.show', content: 'touch me', duration: 5000
+        if index is 0 and paused
+          dispatch 'fal.announcer.show', content: 'touch me'
       after 10000, => actions.play() if index is 0 and paused
   ), [isLoaded]
-  useLayoutEffect (=>
-    listen 'fal.bgWasClicked', => actions.togglePlayPause()
-    => deafen 'fal.bgWasClicked', => actions.togglePlayPause()
-  ), []
 
   [page.page, index, isLoaded, actions]

@@ -81,7 +81,9 @@ export default Flipbook = =>
       if swipeLeft then advance()
       else togglePlayPause()
 
-  <l.Root {...withDrag()}>
+  <l.Root {...withDrag()} style={{
+    pointerEvents: if isLoaded then 'all' else 'none'
+  }}>
     <Countdown duration={activePage.duration - 100} />
     <FaeSol />
     {Pages.map (Page, i) =>
@@ -91,7 +93,7 @@ export default Flipbook = =>
         preload: i > activeIndex
       }
       <l.PageRoot className={mode}>
-        <Page mode={mode} actions={actions} />
+        <Page mode={mode} actions={actions} isLoaded={isLoaded} />
       </l.PageRoot>
     }
   </l.Root>
