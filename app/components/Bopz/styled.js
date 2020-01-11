@@ -21,6 +21,9 @@ l.Centered = styled(g.Flex)`
     overflow-x: scroll;
     justify-content: flex-start;
   }
+  &.intro {
+    padding: 18px;
+  }
 `
 
 l.Credit = styled(g.AbsoluteFlex)`
@@ -101,4 +104,33 @@ l.Video = styled.video`
     height: 100%;
     box-shadow: none;
   }
+`
+
+l.IntroText = styled.div`
+  font-size: 27px;
+  line-height: 30px;
+  padding: 27px;
+  flex: 0 0 100%;
+  max-width: 794px;
+  font-family: aladin;
+  background: ${g.theme.pinkGradient};
+  color: ${g.theme.susan};
+  box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
+  transform-origin: left center;
+
+  @keyframes upReveal {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  animation-name: upReveal;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-delay: 3.5s;
+  animation-timing-function: ${c.Sexy};
 `

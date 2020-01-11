@@ -17,8 +17,6 @@ FaeButtons = (p) =>
   [isTinkerbellTickled, setIsTinkerbellTickled] = useState no
   classes = cx {
     'flipbook-button': yes
-    intro: p.isIntro
-    disabled: p.isIntro
     showSunrise: isTinkerbellTickled
   }
   onClickTinkerbell = =>
@@ -48,71 +46,59 @@ FaeButtons = (p) =>
 
 SpringConfig = friction: 10, tension: 58, mass: 1
 FaeSol = (p) =>
-  [anim, setAnim] = useState
+  [nailsAni, setNailsAni] = useState
     from: {opacity: 0, scale: .95}
     to: {opacity: 1, scale: 1}
     delay: 1000
-  style = useSpring {...anim}
-  classes = cx {
-    'flipbook-button': yes
-    intro: p.isIntro
-    disabled: p.isIntro
-  }
-  <FaeButton className={classes + ' nails'}>
-    <animated.div style={{
-      ...style,
-      pointerEvents: 'all'
-      zIndex: 1
-      transform: style.scale.interpolate((s) => "scale(#{s})")
-    }}>
-      <l.Nails onClick={p.onClick}
-        onMouseEnter={=> setAnim to: {scale: 1.1}}
-        onMouseLeave={=> setAnim to: {scale: 1}}
-        onMouseDown={=> setAnim to: {scale: .95}}
-        onMouseUp={=> setAnim to: {scale: 1.1}}
+  nailsStyle = useSpring {...nailsAni}
+
+  [rootAni, setRootAni] = useState {}
+  rootStyle = useSpring {...rootAni}
+
+  <FaeButton className='flipbook-button nails'>
+    <animated.div style={{...rootStyle, zIndex: 1}}>
+      <l.Nails onClick={p.onClick} style={{
+          ...nailsStyle, transform: nailsStyle.scale.interpolate (s) => "scale(#{s})"
+        }}
+        onMouseEnter={=> setNailsAni to: scale: 1.1}
+        onMouseLeave={=> setNailsAni to: scale: 1}
+        onMouseDown={=> setNailsAni to: scale: .95}
+        onMouseUp={=> setNailsAni to: scale: 1.1}
       >
         <img src={c.SRC_URL + 'commons/solwhite.png'} />
       </l.Nails>
     </animated.div>
-    <l.IntroText>
-      if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million dollars a day would circulate into the hands of those who need a break. that’s 365 billion dollars a year, one quarter at a time.<br/><br/>
-      power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets. it’s the lie of our lifetime.
-    </l.IntroText>
   </FaeButton>
 
 SwipePage = (p) =>
-  [{ x, y }, setit] = useSpring => x: 0, y: 0
-  withDrag = useDrag ({ first, down, movement: [mx, my] }) =>
-    if down
-      setit {x: mx, y: my}
-    else if mx < -100 or my < -100
-      p.onTickled()
-    else if Math.abs(mx) < 10 or Math.abs(my) < 10
-      p.onTouched()
+  # [{ x, y }, setit] = useSpring => x: 0, y: 0
+  # withDrag = useDrag ({ first, down, movement: [mx, my] }) =>
+  #   if down
+  #     setit {x: mx, y: my}
+  #   else if mx < -100 or my < -100
+  #     p.onTickled()
+  #   else if Math.abs(mx) < 10 or Math.abs(my) < 10
+  #     p.onTouched()
 
-  <animated.div {...withDrag()} style={{x,y}} className='swipe-page'>
+  <animated.div className='swipe-page'>
     {p.children}
   </animated.div>
 
 export default Flipbook = =>
-  [activePage, activeIndex, isLoaded, isIntro, actions] = useFlipbook Pages
+  [activePage, activeIndex, isLoaded, actions] = useFlipbook Pages
   {togglePlayPause, advance} = actions
 
-  <l.Root className={cx intro: isIntro}>
-    {if isLoaded and activePage?
-      <Countdown duration={activePage.duration - 100} />
-    }
+  <l.Root onClick={=> dispatch 'fal.bgWasClicked'}>
+    <Countdown duration={activePage.duration - 100} />
+    <FaeSol onClick={actions.toggleChat} />
     {Pages.map (Page, i) =>
       mode = cx {
-        hide: i < activeIndex or isIntro
-        show: i is activeIndex and not isIntro
+        hide: i < activeIndex
+        show: i is activeIndex
         preload: i > activeIndex
       }
       <l.PageRoot className={mode}>
-        <SwipePage onTickled={advance} onTouched={togglePlayPause}>
-          <Page mode={mode} />
-        </SwipePage>
+        <Page mode={mode} actions={actions} />
       </l.PageRoot>
     }
-    <FaeSol onClick={actions.toggleChat} isIntro={isIntro} />
   </l.Root>

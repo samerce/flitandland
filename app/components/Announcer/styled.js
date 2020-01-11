@@ -23,19 +23,24 @@ l.Go = animated(styled(g.Flex)`
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 108px;
   text-align: right;
-  font-family: aladin;
-  font-size: 27px;
+  font-family: princess sofia;
+  font-size: 36px;
   color: ${g.theme.susan};
   background: linear-gradient(to bottom,
-    transparent 0%, ${g.theme.susanVeryDark} 100%
+    transparent 0%, ${alpha(.3, g.theme.susanVeryDark)} 100%
   );
   padding: 10px;
   align-items: center;
   justify-content: center;
+  opacity: 0;
 
   i {
     margin: 0 5px;
+  }
+  div {
+    filter: drop-shadow(0px 0px 1px black) drop-shadow(0 0 2px white);
   }
 ${'' /*
   @keyframes show {

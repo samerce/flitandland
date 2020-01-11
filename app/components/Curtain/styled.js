@@ -13,12 +13,24 @@ l.Root = styled(g.Flex)`
   width: 100%;
   height: 100%;
   transform: rotate(45deg) scale(1.5);
+  cursor: pointer;
+  pointer-events: none;
+
+  @keyframes enable {
+    100% {
+      pointer-events: all;
+    }
+  }
+  animation-name: enable;
+  animation-duration: .1s;
+  animation-fill-mode: both;
+  animation-delay: 10s;
 `
 
 l.Fold = styled.div`
   flex: ${p => (p.i % 2)? 1 : 2} 0 auto;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
-  height: 100%;
+  height: 150%;
   background: ${p => (p.i % 2)? g.theme.susan : g.theme.susanVeryDark};
   border-radius: 54px;
 

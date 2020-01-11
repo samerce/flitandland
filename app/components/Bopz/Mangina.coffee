@@ -27,12 +27,24 @@ Video = (p) =>
     onCanPlay={increment} loop={yes}
   />
 
-export Mangina = =>
+export Intro = (p) =>
+  useEffect (=>
+    timer = after 9000, p.actions.play
+    => timer.clear()
+  ), []
+  <l.Centered className='intro'>
+    <l.IntroText>
+      if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.<br/> that’s $365 billion a year, one quarter at a time.<br/><br/>
+      power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets. <br/><br/>it’s the lie of our lifetime.
+    </l.IntroText>
+  </l.Centered>
+
+export Mangina = (p) =>
   <l.Centered>
     <Image name='mangina.jpg' className='fullHeight' />
   </l.Centered>
 
-export Trump = =>
+export Trump = (p) =>
   <l.Centered>
     <Image name='trumpf.jpg' />
     <l.Credit>Image by&nbsp;<a href="https://pixabay.com/users/tiburi-2851152/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273">Tibor Janosi Mozes</a>&nbsp;from&nbsp;<a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273">Pixabay</a></l.Credit>
@@ -85,21 +97,22 @@ export Jesus = (p) =>
     <Video name='jubileeq' mode={p.mode} className='fullWidth' />
   </l.Centered>
 
-export Mitch = =>
+export Mitch = (p) =>
   <l.Centered>
     <Image name='mitch.jpg' />
   </l.Centered>
 
-export Eymboard = =>
+export Eymboard = (p) =>
   <l.Centered className='scrollX'>
     <Image name='eymboard.jpg' />
   </l.Centered>
 
-export Sneakers = =>
+export Sneakers = (p) =>
   <l.Centered>
     <Image name='sneakers.jpg' className='fullHeight' />
   </l.Centered>
 
+Intro.duration = 3000
 Mangina.duration = 1500
 Trump.duration = 1000
 PaintShow.duration = 15000

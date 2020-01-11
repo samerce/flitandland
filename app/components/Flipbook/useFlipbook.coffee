@@ -1,16 +1,16 @@
 import React, {useState, useLayoutEffect, useEffect} from 'react'
 import useChat from '../../hooks/useChat.coffee'
 import useLoader from '../Bopz/useLoader.coffee'
-import useIntro from '../../hooks/useIntro.coffee'
 
+DefaultPage = {duration: 0}
+PausePage = DefaultPage
 export default useFlipbook = (pages) =>
-  [index, setIndex] = useState -1
-  [page, setPage] = useState {page: null}
+  [index, setIndex] = useState 0
+  [page, setPage] = useState {page: DefaultPage}
   [paused, setPaused] = useState yes
   [actions] = useState {}
   [timer, setTimer] = useState {clear: =>}
   [{isLoaded}] = useLoader()
-  [{isIntro}] = useIntro()
   {onChatOpen, onChatClose, closeChat, openChat, toggleChat} = useChat()
 
   actions.toggleChat = toggleChat
@@ -25,24 +25,30 @@ export default useFlipbook = (pages) =>
     setIndex (i) => i + 1
     actions.play() if paused
 
-  useEffect (=> setIndex 0 if isLoaded), [isLoaded]
-  useEffect (=>
+  useLayoutEffect (=>
     return unless index < pages.length - 1 and index >= 0
     newPage = pages[index]
     if paused
-      setPage page: {...newPage, duration: 0}
-    else
+      timer.clear()
+      setPage page: {...newPage, ...PausePage}
+    else # playing
       setPage page: newPage
       setTimer after newPage.duration, => setIndex (i) => i + 1
     => timer.clear()
   ), [index, paused]
   useEffect (=>
-    onChatOpen =>
-      if isIntro then closeChat()
-      actions.pause()
-    onChatClose => actions.play() unless isIntro
+    onChatOpen actions.pause
+    onChatClose actions.play
     undefined
   ), []
-  useEffect (=> actions.play() unless isIntro), [isIntro]
+  useLayoutEffect (=>
+    if isLoaded
+      dispatch 'fal.flipbook.loaded'
+      dispatch 'fal.announcer.show', 'touch me'
+  ), [isLoaded]
+  useLayoutEffect (=>
+    listen 'fal.bgWasClicked', => actions.togglePlayPause()
+    => deafen 'fal.bgWasClicked', => actions.togglePlayPause()
+  ), []
 
-  [page.page, index, isLoaded, isIntro, actions]
+  [page.page, index, isLoaded, actions]

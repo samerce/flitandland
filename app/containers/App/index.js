@@ -10,7 +10,7 @@ import NavCloseButton from '../../components/NavCloseButton/it.coffee'
 import MailingList from '../../components/MailingList/it.coffee'
 import Flipbook from '../../components/Flipbook/it.coffee'
 import Chat from '../../components/Chat/it.coffee'
-import FriendIntro from '../../components/FriendIntro/it.coffee'
+import Announcer from '../../components/Announcer/it.coffee'
 import SlackSteward from '../../components/SlackSteward/it.coffee'
 import Checkout from '../../components/Checkout/it.coffee'
 import Curtain from '../../components/Curtain/it.coffee'
@@ -18,7 +18,6 @@ import Popup, {usePopup} from '../../components/Popup/it.coffee'
 import BouncyPointer from '../../components/BouncyPointer/it.coffee'
 
 import useScroller from '../../hooks/useScroller.coffee'
-import useIntro from '../../hooks/useIntro.coffee'
 import {openInNewTab} from '../../utils/nav'
 
 import GlobalStyle from '../../global-styles'
@@ -43,7 +42,7 @@ export default function App() {
       <l.Root>
         <GlobalStyle />
         <Curtain />
-        <FriendIntro />
+        <Announcer />
         <Flipbook />
         {/* <Chat /> */}
         <SlackSteward />

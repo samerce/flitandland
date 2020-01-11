@@ -161,7 +161,7 @@ export const AbsoluteFlexFillParent = styled(AbsoluteFlex)`
 `
 
 export const H1 = styled.h1`
-  font-family: just another hand;
+  font-family: princess sofia;
   font-weight: 400;
   font-size: 400%;
   line-height: 90%;
