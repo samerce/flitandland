@@ -70,20 +70,21 @@ FaeSol = (p) =>
     </animated.div>
   </FaeButton>
 
-swipeLeft = no
+downTime = null
 export default Flipbook = =>
   [activePage, activeIndex, isLoaded, actions] = useFlipbook Pages
   {togglePlayPause, advance} = actions
-  withDrag = useDrag ({down, movement: [mx, my]}) =>
-    if down
-      swipeLeft = mx < -100 or my < -100
-    else
-      if swipeLeft then advance()
-      else togglePlayPause()
 
-  <l.Root {...withDrag()} style={{
-    pointerEvents: if isLoaded then 'all' else 'none'
-  }}>
+  withDrag = useDrag ({down, first, elapsedTime, movement: [mx, my]}) =>
+    return unless isLoaded
+    if first
+      actions.pause()
+      downTime = Date.now()
+    if not down
+      if (Date.now() - downTime) < 500 then advance()
+      else actions.play()
+
+  <l.Root>
     <Countdown duration={activePage.duration - 100} />
     {Pages.map (Page, i) =>
       mode = cx {
@@ -91,9 +92,9 @@ export default Flipbook = =>
         show: i is activeIndex
         preload: i > activeIndex
       }
-      <l.PageRoot className={mode}>
+      <l.PageRoot className={mode} {...withDrag()}>
         <Page mode={mode} actions={actions} isLoaded={isLoaded} />
       </l.PageRoot>
     }
-    <FaeSol />
+    <FaeSol onClick={togglePlayPause} />
   </l.Root>

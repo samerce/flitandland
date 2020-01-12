@@ -46,13 +46,5 @@ export default useFlipbook = (pages) =>
     onChatClose actions.play
     undefined
   ), []
-  # useLayoutEffect (=>
-  #   if isLoaded
-  #     dispatch 'fal.flipbook.loaded'
-  #     setTimer after 5000, =>
-  #       if index is 0 and paused
-  #         setTimer after 8000, => actions.play() if index is 0 and paused
-  #   undefined
-  # ), [isLoaded]
 
   [page.page, index, isLoaded, actions]

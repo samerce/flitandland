@@ -41,23 +41,39 @@ l.Root = styled(g.FlexColumn)`
 `
 
 l.PageRoot = styled(g.Flex)`
-  transform: scale(1.01);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.05);
   opacity: 0;
-  flex: 0 0 100%;
   overflow: scroll;
   pointer-events: none;
 
   &.preload {
     visibility: hidden;
-    pointer-events: none;
-    flex: 0 0 0;
   }
 
   &.hide {
-    display: none;
-    transform: scale(.99);
-    transition:
-      transform .3s ${c.Sexy}, opacity .3s ${c.Sexy}, display .05s linear .3s;
+    @keyframes hide {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      99% {
+        transform: scale(.95);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(.95);
+        opacity: 0;
+      }
+    }
+    animation-name: hide;
+    animation-duration: .3s;
+    animation-fill-mode: both;
+    animation-timing-function: ${c.Sexy};
   }
 
   &.show {
