@@ -47,9 +47,3 @@ export default Announcer = =>
       }
     </l.Go>
   </l.Root>
-
-# else
-#   <l.Go style={style}>
-#     <i className='fa fa-spinner' />
-#     <div>still decorating, gimme a sec...</div>
-#   </l.Go>

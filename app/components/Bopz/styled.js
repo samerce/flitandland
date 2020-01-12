@@ -22,9 +22,6 @@ l.Centered = animated(styled(g.Flex)`
     overflow-x: scroll;
     justify-content: flex-start;
   }
-  &.intro {
-    padding: 18px;
-  }
 `)
 
 l.Credit = styled(g.AbsoluteFlex)`
@@ -107,14 +104,58 @@ l.Video = styled.video`
   }
 `
 
-l.IntroText = styled.div`
+l.IntroRoot = styled(l.Centered)`
+  flex-direction: column;
+  padding: 0 0 180px;
+  height: initial;
+  position: relative;
+  justify-content: flex-end;
+`
+
+l.IntroText = animated(styled.div`
   font-size: 27px;
   line-height: 30px;
-  padding: 27px;
-  flex: 0 0 100%;
+  flex: 0 0 auto;
+  height: 0;
+  width: fit-content;
   max-width: 794px;
   font-family: aladin;
   background: ${g.theme.pinkGradient};
   color: ${g.theme.susan};
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
-`
+  border-radius: 54px;
+  opacity: 0;
+  transform: scale(.9);
+
+  @keyframes reveal {
+    100% {
+      height: initial;
+      margin: 18px 0;
+      padding: 36px;
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  animation-name: reveal;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-timing-function: ${c.Sexy};
+  animation-delay: ${p => p.delay}ms;
+
+  i {
+    margin: 0 9px;
+    @keyframes spin {
+      100% {
+        transform: rotate(720deg);
+      }
+    }
+    animation-name: spin;
+    animation-duration: .5s;
+    animation-timing-function: ${c.Sexy};
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+  div {
+    display: inline;
+  }
+`)

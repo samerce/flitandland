@@ -7,14 +7,14 @@ import * as c from '../../constants'
 const l = {}
 export default l
 
-l.Root = styled(g.Flex)`
+l.Root = styled(g.FlexColumn)`
   width: 100%;
   height: 100%
-  padding: 27px;
   overflow: hidden;
   position: relative;
   user-select: none;
   z-index: 2000;
+  justify-content: flex-end;
 
   ${g.screen.medsmall`
     padding: 9px;
@@ -33,14 +33,18 @@ l.Root = styled(g.Flex)`
     transition: all .3s ${c.Sexy};
     pointer-events: all;
     cursor: pointer;
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 `
 
 l.PageRoot = styled(g.Flex)`
   transform: scale(1.01);
   opacity: 0;
-  flex: 1;
-  overflow: hidden;
+  flex: 0 0 100%;
+  overflow: scroll;
   pointer-events: none;
 
   &.preload {
@@ -57,6 +61,8 @@ l.PageRoot = styled(g.Flex)`
   }
 
   &.show {
+    pointer-events: all;
+
     @keyframes show {
       85% {
         opacity: 1;
@@ -151,7 +157,7 @@ l.Nails = animated(styled(l.Faerie)`
     ${g.theme.susanDark} 0%, ${g.theme.susanVeryDark} 100%
   );
   border-radius: 100%;
-  padding: 36px;
+  padding: 18px;
   box-shadow: ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy},
     inset 0 0 10px ${g.theme.susanVeryDark};
 
@@ -159,6 +165,6 @@ l.Nails = animated(styled(l.Faerie)`
     animation-delay: 2s;
   }
   img {
-    width: 100px;
+    width: 50px;
   }
 `)

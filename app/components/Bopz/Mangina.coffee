@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React, {useRef, useEffect, useState, useLayoutEffect} from 'react'
 import DelayedReveal from '../DelayedReveal/it.coffee'
 
 import l from './styled'
@@ -28,22 +28,43 @@ Video = (p) =>
     onCanPlay={increment} loop={yes}
   />
 
-showTouchMe = null
+Texts = [
+  {content: ':) heyo. think about this...', duration: 0},
+  {content: 'if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.', duration: 1000},
+  {content: 'that’s $365 billion a year, one quarter at a time.', duration: 5000},
+  # {content: 'power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets.', duration: 1000},
+  # {content: 'it’s the lie of our lifetime.', duration: 1000},
+  {content: <div>
+    whenever you’re looking to explore, tickle me.<br/>
+    i’m ash, nice to meetcha.
+  </div>, duration: 3000},
+  {content: <>
+    <i className='fa fa-spinner' />
+    <div>still decorating, gimme a sec...</div>
+  </>, duration: 3000}
+]
+reducer = (duration, t) => duration + t.duration
+TotalDuration = Texts.reduce reducer, 3000
 export Intro = (p) =>
-  [ani, setAni] = useState
-    from: {opacity: 0, scale: .95}
-    to: {opacity: 1, scale: 1}
-    delay: 1500
-  style = useSpring {...ani}
-  <l.Centered className='intro' style={{
-    ...style,
-    transform: "scale(#{style.scale})"
-  }}>
-    <l.IntroText>
-      if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.<br/> that’s $365 billion a year, one quarter at a time.<br/><br/>
-      power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets. <br/><br/>it’s the lie of our lifetime.
-    </l.IntroText>
-  </l.Centered>
+  [texts, setTexts] = useState Texts
+  useLayoutEffect (=>
+    if p.isLoaded
+      after TotalDuration + 5000, p.actions.play
+      setTexts (t) =>
+        t.pop()
+        [...t, {content: 'touch anywhere when you’re ready', duration: 3000}]
+    undefined
+  ), [p.isLoaded]
+
+  duration = 0
+  <l.IntroRoot>
+    {texts.map (text) =>
+      duration += text.duration
+      <l.IntroText delay={duration + 3000}>
+        {text.content}
+      </l.IntroText>
+    }
+  </l.IntroRoot>
 
 export Mangina = (p) =>
   <l.Centered>

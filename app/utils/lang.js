@@ -21,3 +21,10 @@ window.dispatch = (eventName, props) => {
 }
 window.listen = addEventListener
 window.deafen = removeEventListener
+window.every = (timeout, fn) => {
+  const id = setInterval(fn, timeout)
+  return {
+    id,
+    clear: () => clearInterval(id)
+  }
+}

@@ -85,7 +85,6 @@ export default Flipbook = =>
     pointerEvents: if isLoaded then 'all' else 'none'
   }}>
     <Countdown duration={activePage.duration - 100} />
-    <FaeSol />
     {Pages.map (Page, i) =>
       mode = cx {
         hide: i < activeIndex
@@ -96,4 +95,5 @@ export default Flipbook = =>
         <Page mode={mode} actions={actions} isLoaded={isLoaded} />
       </l.PageRoot>
     }
+    <FaeSol />
   </l.Root>
