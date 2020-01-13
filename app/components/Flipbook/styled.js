@@ -189,10 +189,10 @@ l.YesRoot = styled(g.AbsoluteFlex)`
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0;
+  padding: 0 54px;
+
   &.visible {
     pointer-events: all;
-    opacity: 1;
   }
 `
 
@@ -206,7 +206,7 @@ const Actions = styled(g.AbsoluteFlex)`
   width: 50%;
   height: 180px;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   bottom: 0;
 `
 
@@ -220,9 +220,37 @@ l.RightActions = styled(Actions)`
   padding: 0 0 0 54px;
 `
 
-const Action = styled.div`
+const Action = styled(g.Flex)`
+  align-items: center;
+  justify-content: center;
   font-size: 36px;
   cursor: pointer;
+  flex: 0 0 108px;
+  height: 108px;
+  padding: 12px;
+  background: ${g.theme.blackGradient};
+  border-radius: 100%;
+  box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
+    0 0 0 3px ${g.theme.susanDark}, 0 0 6px 3px ${g.theme.susanDark};
+  transition: all .3s ${c.Sexy};
+  opacity: 0;
+
+  .left & {
+    transform: translate(108px, 0) scale(.95);
+  }
+  .right & {
+    transform: translate(-108px, 0) scale(.95);
+  }
+  .visible && {
+    transform: none;
+    opacity: 1;
+    transition-delay: ${p => p.delay || 0}ms;
+    transition-duration: .7s;
+  }
+
+  img {
+    height: 90%;
+  }
 `
 
 l.No = styled(Action)`

@@ -70,16 +70,20 @@ YesSheet = (p) =>
   [checkoutIsVisible, setCheckoutIsVisible] = useState no
   <l.YesRoot className={cx visible: p.visible}>
     <l.Juice>{p.juice}</l.Juice>
-    <l.LeftActions>
+    <l.LeftActions className='left'>
       <l.No>😶</l.No>
-      <l.Yes>🤩</l.Yes>
+      <l.Yes delay={100}>🤩</l.Yes>
     </l.LeftActions>
-    <l.RightActions>
+    <l.RightActions className='right'>
       <l.CheckoutRoot className={cx show: checkoutIsVisible}>
         <Checkout />
       </l.CheckoutRoot>
-      <l.Buy onClick={=> setCheckoutIsVisible (v) => not v}>💲</l.Buy>
-      <l.Chat onClick={p.toggleChat}>💬</l.Chat>
+      <l.Buy onClick={=> setCheckoutIsVisible (v) => not v} delay={100}>
+        <img src={c.SRC_URL + 'commons/buy.png'} />
+      </l.Buy>
+      <l.Chat onClick={p.toggleChat}>
+        <img src={c.SRC_URL + 'commons/letschat.png'} />
+      </l.Chat>
     </l.RightActions>
   </l.YesRoot>
 
