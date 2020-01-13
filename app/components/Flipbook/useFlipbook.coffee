@@ -8,7 +8,7 @@ export default useFlipbook = (pages) =>
   [index, setIndex] = useState 0
   [page, setPage] = useState {page: DefaultPage}
   [paused, setPaused] = useState yes
-  [solIsOpen, setSolIsOpen] = useState no
+  [locked, setLocked] = useState no
   [actions] = useState {}
   [timer, setTimer] = useState {clear: =>}
   [{isLoaded}] = useLoader()
@@ -17,11 +17,11 @@ export default useFlipbook = (pages) =>
   actions.toggleChat = toggleChat
   actions.pause = =>
     setPaused Date.now()
-    dispatch 'fal.flipbook.paused'
+    cast 'flipbook.paused'
   actions.play = =>
-    dispatch 'fal.announcer.hide' if index is 0
+    return if locked
     setPaused no
-    dispatch 'fal.flipbook.playing'
+    cast 'flipbook.playing'
   actions.togglePlayPause = =>
     if paused then actions.play()
     else actions.pause()
@@ -32,6 +32,7 @@ export default useFlipbook = (pages) =>
     actions.play() if paused
 
   useLayoutEffect (=>
+    if index >= pages.length - 1 then cast 'flipbook.closed'
     return unless index < pages.length - 1 and index >= 0
     newPage = pages[index]
     if paused
@@ -43,14 +44,14 @@ export default useFlipbook = (pages) =>
     => timer.clear()
   ), [index, paused]
   useLayoutEffect (=>
-    listen 'fal.flipbook.solWasClicked', =>
-      if solIsOpen
-        setSolIsOpen no
-        closeChat()
-        actions.play()
-      else
-        setSolIsOpen yes
-        actions.pause()
-  ), [solIsOpen]
+    upon 'sol.opened', =>
+      setLocked yes
+      actions.pause()
+    upon 'sol.closed', =>
+      setLocked no
+      cast 'chat.close'
+      cast 'checkout.close'
+      actions.play()
+  ), []
 
-  [page.page, index, isLoaded, solIsOpen, actions]
+  [page.page, index, isLoaded, actions]

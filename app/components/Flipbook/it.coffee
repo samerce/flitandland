@@ -7,9 +7,11 @@ import l from './styled'
 import * as c from '../../constants'
 import {cx} from '../../utils/style'
 
-import useFlipbook from './useFlipbook.coffee'
 import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
+import useFlipbook from './useFlipbook.coffee'
+import useToggle from '../../hooks/useToggle.coffee'
+import useBus from '../../hooks/useBus.coffee'
 
 import * as PagesMap from '../Bopz/Mangina.coffee'
 Pages = Object.values(PagesMap)
@@ -42,11 +44,11 @@ FaeButtons = (p) =>
     <FaeButton className={classes + ' no'}>
       <l.No>🦠</l.No>
     </FaeButton>
-
   </>
 
 SpringConfig = friction: 10, tension: 58, mass: 1
 FaeSol = (p) =>
+  [isOpen, toggleIsOpen] = useToggle no, 'sol.opened', 'sol.closed'
   [nailsAni, setNailsAni] = useState
     from: {opacity: 0, scale: .95}
     to: {opacity: 1, scale: 1}
@@ -58,8 +60,8 @@ FaeSol = (p) =>
 
   <FaeButton className='flipbook-button nails'>
     <animated.div style={{...rootStyle, zIndex: 1}}>
-      <l.Nails onClick={=> dispatch 'fal.flipbook.solWasClicked'} style={{
-          ...nailsStyle, transform: nailsStyle.scale.interpolate (s) => "scale(#{s})"
+      <l.Nails onClick={toggleIsOpen} style={{
+          ...nailsStyle, transform: "scale(#{nailsStyle.scale})"
         }}>
         <img src={c.SRC_URL + 'commons/solwhite.png'} />
       </l.Nails>
@@ -67,21 +69,28 @@ FaeSol = (p) =>
   </FaeButton>
 
 YesSheet = (p) =>
-  [checkoutIsVisible, setCheckoutIsVisible] = useState no
-  <l.YesRoot className={cx visible: p.visible}>
+  [visible, setVisible] = useState no
+  [checkoutIsOpen, toggleCheckout, setCheckoutIsOpen
+  ] = useToggle no, 'checkout.closed', 'checkout.opened'
+  useBus
+    'sol.opened': => setVisible yes
+    'sol.closed': => setVisible no
+    'checkout.close': => setCheckoutIsOpen no
+    'checkout.open': => setCheckoutIsOpen yes
+  <l.YesRoot className={cx {visible}}>
     <l.Juice>{p.juice}</l.Juice>
     <l.LeftActions className='left'>
       <l.No>😶</l.No>
       <l.Yes delay={100}>🤩</l.Yes>
     </l.LeftActions>
     <l.RightActions className='right'>
-      <l.CheckoutRoot className={cx show: checkoutIsVisible}>
+      <l.CheckoutRoot className={cx show: checkoutIsOpen}>
         <Checkout />
       </l.CheckoutRoot>
-      <l.Buy onClick={=> setCheckoutIsVisible (v) => not v} delay={100}>
+      <l.Buy onClick={toggleCheckout} delay={100}>
         <img src={c.SRC_URL + 'commons/buy.png'} />
       </l.Buy>
-      <l.Chat onClick={p.toggleChat}>
+      <l.Chat onClick={=> cast 'chat.toggle'}>
         <img src={c.SRC_URL + 'commons/letschat.png'} />
       </l.Chat>
     </l.RightActions>
@@ -89,8 +98,7 @@ YesSheet = (p) =>
 
 downTime = null
 export default Flipbook = =>
-  [activePage, activeIndex, isLoaded, solIsOpen, actions] = useFlipbook Pages
-  {togglePlayPause, advance} = actions
+  [activePage, activeIndex, isLoaded, actions] = useFlipbook Pages
 
   withDrag = useDrag ({down, first, elapsedTime, movement: [mx, my]}) =>
     return unless isLoaded
@@ -98,7 +106,7 @@ export default Flipbook = =>
       actions.pause()
       downTime = Date.now()
     if not down
-      if (Date.now() - downTime) < 500 then advance()
+      if (Date.now() - downTime) < 500 then actions.advance()
       else actions.play()
 
   <l.Root>
@@ -114,5 +122,5 @@ export default Flipbook = =>
       </l.PageRoot>
     }
     <FaeSol />
-    <YesSheet visible={solIsOpen} {...actions} />
+    <YesSheet />
   </l.Root>

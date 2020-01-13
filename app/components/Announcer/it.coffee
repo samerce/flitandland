@@ -30,10 +30,12 @@ export default Announcer = =>
         to: {opacity: 1, y: 0}
 
   useLayoutEffect (=>
-    listen 'fal.announcer.show', (e) =>
-      show(e.detail)
-      if e.detail.duration then setTimer after e.detail.duration, hide
+    listen 'fal.announcer.show', show
     listen 'fal.announcer.hide', hide
+    =>
+      deafen 'fal.announcer.show', showHandler
+      deafen 'fal.announcer.hide', hide
+      timer.clear() if timer?
   ), []
 
   <l.Root>

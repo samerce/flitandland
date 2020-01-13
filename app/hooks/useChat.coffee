@@ -22,15 +22,21 @@ onChatOpen = (cb) => subscribers[ChatShow].push cb
 onChatClose = (cb) => subscribers[ChatHide].push cb
 onChatLoaded = (cb) => subscribers[ChatLoad].push cb
 
-listen 'fb.ready', =>
+upon 'chat.close', closeChat
+upon 'chat.open', openChat
+upon 'chat.toggle', toggleChat
+upon 'fb.ready', =>
   FB.Event.subscribe ChatShow, =>
     isChatOpen = yes
+    cast 'chat.opened'
     cb() for cb in subscribers[ChatShow]
   FB.Event.subscribe ChatHide, =>
     isChatOpen = no
+    cast 'chat.closed'
     cb() for cb in subscribers[ChatHide]
   FB.Event.subscribe ChatLoad, =>
     isChatLoaded = yes
+    cast 'chat.loaded'
     cb() for cb in subscribers[ChatLoad]
 
 export default useChat = =>

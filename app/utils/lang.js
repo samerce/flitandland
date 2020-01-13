@@ -12,15 +12,20 @@ export function makeEnum(valueArray) {
 
 window.after = after
 window.makeEnum = makeEnum
-window.dispatch = (eventName, props) => {
+window.dispatch = window.cast = (eventName, props) => {
   let event = null
   if (props) {
     event = new CustomEvent(eventName, {detail: props})
   } else event = new Event(eventName)
   dispatchEvent(event)
 }
-window.listen = addEventListener
-window.deafen = removeEventListener
+window.listen = window.upon = (event, listener) => {
+  return addEventListener(event, (e) => {
+    if (e.detail) listener(e.detail, e)
+    else listener(e)
+  })
+}
+window.deafen = window.end = removeEventListener
 window.every = (timeout, fn) => {
   const id = setInterval(fn, timeout)
   return {

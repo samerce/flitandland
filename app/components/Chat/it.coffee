@@ -7,32 +7,15 @@ import * as g from '../../global-styles'
 import {cx} from '../../utils/style'
 
 import useChat from '../../hooks/useChat.coffee'
+import useBus from '../../hooks/useBus.coffee'
 
 Greeting = 'hiya unicorn! do you believe in love?'
 
 export default Chat = =>
   [isChatOpen, setIsChatOpen] = useState no
-  {onChatOpen, onChatClose, closeChat} = useChat()
-
-  useLayoutEffect (=>
-    onChatOpen => setIsChatOpen yes
-    onChatClose => setIsChatOpen no
-    undefined
-  ), []
-
-  init = =>
-    window.addEventListener 'fb.ready', =>
-      closeChat()
-      fbChat = document.getElementById('fb-root')
-      # fbChat.classList.add 'intro'
-  useLayoutEffect init, []
-
-  # onExitIntro = =>
-  #   return if isIntro
-  #   fbChat = document.getElementById('fb-root')
-  #   fbChat.classList.remove 'intro'
-  #   fbChat.classList.add 'waiting'
-  # useLayoutEffect onExitIntro, [isIntro]
+  useBus
+    'chat.opened': => setIsChatOpen yes
+    'chat.closed': => setIsChatOpen no
 
   <>
     <l.Style />
