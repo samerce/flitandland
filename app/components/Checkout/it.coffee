@@ -26,7 +26,8 @@ export default (p) =>
   [mode, setMode] = useState Mode.teasing
 
   useEffect (=>
-    paypal.Buttons({
+    return unless window.paypal
+    window.paypal.Buttons({
       style: {
         shape: 'pill'
       }
@@ -43,7 +44,7 @@ export default (p) =>
           please try again!\
         "
     }).render '#paypalButtons'
-  ), []
+  ), [window.paypal]
 
   onChangePrice = ({target}) =>
     # ga.sendEvent 'checkout', 'price changed'

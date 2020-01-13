@@ -52,7 +52,11 @@ export Intro = (p) =>
       after TotalDuration + 5000, p.actions.play
       setTexts (t) =>
         t.pop()
-        [...t, {content: 'touch anywhere when you’re ready', duration: 3000}]
+        [...t, {content: <>
+          <div>touch anywhere to move on.<br/></div>
+          <div>hold anywhere to pause the action.</div>
+          </>, duration: 3000
+        }]
     undefined
   ), [p.isLoaded]
 

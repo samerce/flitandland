@@ -1,6 +1,7 @@
 import React, {useLayoutEffect, useState, useEffect} from 'react'
 import Countdown from '../Countdown/it.coffee'
 import FaeButton from '../FaeButton/it.coffee'
+import Checkout from '../Checkout/it.coffee'
 
 import l from './styled'
 import * as c from '../../constants'
@@ -57,22 +58,34 @@ FaeSol = (p) =>
 
   <FaeButton className='flipbook-button nails'>
     <animated.div style={{...rootStyle, zIndex: 1}}>
-      <l.Nails onClick={p.onClick} style={{
+      <l.Nails onClick={=> dispatch 'fal.flipbook.solWasClicked'} style={{
           ...nailsStyle, transform: nailsStyle.scale.interpolate (s) => "scale(#{s})"
-        }}
-        onMouseEnter={=> setNailsAni to: scale: 1.1}
-        onMouseLeave={=> setNailsAni to: scale: 1}
-        onMouseDown={=> setNailsAni to: scale: .95}
-        onMouseUp={=> setNailsAni to: scale: 1.1}
-      >
+        }}>
         <img src={c.SRC_URL + 'commons/solwhite.png'} />
       </l.Nails>
     </animated.div>
   </FaeButton>
 
+YesSheet = (p) =>
+  [checkoutIsVisible, setCheckoutIsVisible] = useState no
+  <l.YesRoot className={cx visible: p.visible}>
+    <l.Juice>{p.juice}</l.Juice>
+    <l.LeftActions>
+      <l.No>😶</l.No>
+      <l.Yes>🤩</l.Yes>
+    </l.LeftActions>
+    <l.RightActions>
+      <l.CheckoutRoot className={cx show: checkoutIsVisible}>
+        <Checkout />
+      </l.CheckoutRoot>
+      <l.Buy onClick={=> setCheckoutIsVisible (v) => not v}>💲</l.Buy>
+      <l.Chat onClick={p.toggleChat}>💬</l.Chat>
+    </l.RightActions>
+  </l.YesRoot>
+
 downTime = null
 export default Flipbook = =>
-  [activePage, activeIndex, isLoaded, actions] = useFlipbook Pages
+  [activePage, activeIndex, isLoaded, solIsOpen, actions] = useFlipbook Pages
   {togglePlayPause, advance} = actions
 
   withDrag = useDrag ({down, first, elapsedTime, movement: [mx, my]}) =>
@@ -96,5 +109,6 @@ export default Flipbook = =>
         <Page mode={mode} actions={actions} isLoaded={isLoaded} />
       </l.PageRoot>
     }
-    <FaeSol onClick={togglePlayPause} />
+    <FaeSol />
+    <YesSheet visible={solIsOpen} {...actions} />
   </l.Root>

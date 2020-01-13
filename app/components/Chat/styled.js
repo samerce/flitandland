@@ -27,33 +27,26 @@ l.Style = createGlobalStyle`
     ${HiddenCss}
   }
   .fb_dialog, .fb-customerchat iframe {
-    z-index: 200;
+    z-index: 2000;
     box-shadow: 0 0 20px ${g.theme.susanVeryDark}, ${g.theme.sexyEdge};
     transition: all .5s;
-
-    .intro & {
-      ${HiddenCss}
-    }
   }
   .fb-customerchat iframe {
     animation-duration: 0s !important;
-    z-index: 300 !important;
+    z-index: 3000 !important;
     box-shadow: 0 0 20px ${g.theme.susanVeryDark};
-    background: rgba(255,255,255,.5);
-    right: 50% !important;
-    bottom: 140pt !important;
-    transform: translate(50%, 0);
+    background: ${g.theme.susanDark};
+    bottom: 216px !important;
   }
   .chat-button {
     position: fixed;
-    bottom: 130px;
-    right: 50%;
-    transform: translate(50%, 0);
+    bottom: 162px;
+    right: 27px;
     &.insta {
-      transform: translate(-54px, 0);
+      transform: translate(-108px, 0);
     }
     &.twitter {
-      transform: translate(108px, 0);
+      transform: translate(-216px, 0);
     }
   }
 `
@@ -69,7 +62,7 @@ l.Fae = styled(g.AbsoluteFlex)`
   filter: blur(10px);
   opacity: 0;
   transition: all .3s;
-  z-index: 400;
+  z-index: 4000;
   visibility: hidden;
 
   &.show {

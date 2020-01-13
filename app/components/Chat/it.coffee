@@ -21,10 +21,10 @@ export default Chat = =>
   ), []
 
   init = =>
-    window.addEventListener 'fbReady', =>
+    window.addEventListener 'fb.ready', =>
       closeChat()
       fbChat = document.getElementById('fb-root')
-      fbChat.classList.add 'intro'
+      # fbChat.classList.add 'intro'
   useLayoutEffect init, []
 
   # onExitIntro = =>

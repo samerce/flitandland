@@ -22,7 +22,7 @@ onChatOpen = (cb) => subscribers[ChatShow].push cb
 onChatClose = (cb) => subscribers[ChatHide].push cb
 onChatLoaded = (cb) => subscribers[ChatLoad].push cb
 
-window.addEventListener 'fbReady', =>
+listen 'fb.ready', =>
   FB.Event.subscribe ChatShow, =>
     isChatOpen = yes
     cb() for cb in subscribers[ChatShow]

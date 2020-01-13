@@ -184,3 +184,74 @@ l.Nails = animated(styled(l.Faerie)`
     width: 50px;
   }
 `)
+
+l.YesRoot = styled(g.AbsoluteFlex)`
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  &.visible {
+    pointer-events: all;
+    opacity: 1;
+  }
+`
+
+l.Juice = styled(g.AbsoluteFlex)`
+  bottom: 180px;
+  left: 0;
+  width: 100%;
+`
+
+const Actions = styled(g.AbsoluteFlex)`
+  width: 50%;
+  height: 180px;
+  align-items: center;
+  justify-content: space-around;
+  bottom: 0;
+`
+
+l.LeftActions = styled(Actions)`
+  left: 0;
+  padding: 0 54px 0 0;
+`
+
+l.RightActions = styled(Actions)`
+  right: 0;
+  padding: 0 0 0 54px;
+`
+
+const Action = styled.div`
+  font-size: 36px;
+  cursor: pointer;
+`
+
+l.No = styled(Action)`
+
+`
+
+l.Yes = styled(Action)`
+
+`
+
+l.Buy = styled(Action)`
+
+`
+
+l.Chat = styled(Action)`
+
+`
+
+l.CheckoutRoot = styled(g.AbsoluteFlex)`
+  bottom: 90%;
+  left: 108px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.1);
+  transition: all .3s ${c.Sexy};
+
+  &.show {
+    opacity: 1;
+    pointer-events: all;
+    transform: none;
+  }
+`

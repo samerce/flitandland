@@ -8,6 +8,7 @@ export default useFlipbook = (pages) =>
   [index, setIndex] = useState 0
   [page, setPage] = useState {page: DefaultPage}
   [paused, setPaused] = useState yes
+  [solIsOpen, setSolIsOpen] = useState no
   [actions] = useState {}
   [timer, setTimer] = useState {clear: =>}
   [{isLoaded}] = useLoader()
@@ -41,10 +42,15 @@ export default useFlipbook = (pages) =>
       setTimer after newPage.duration, => setIndex (i) => i + 1
     => timer.clear()
   ), [index, paused]
-  useEffect (=>
-    onChatOpen actions.pause
-    onChatClose actions.play
-    undefined
-  ), []
+  useLayoutEffect (=>
+    listen 'fal.flipbook.solWasClicked', =>
+      if solIsOpen
+        setSolIsOpen no
+        closeChat()
+        actions.play()
+      else
+        setSolIsOpen yes
+        actions.pause()
+  ), [solIsOpen]
 
-  [page.page, index, isLoaded, actions]
+  [page.page, index, isLoaded, solIsOpen, actions]

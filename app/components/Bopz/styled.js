@@ -126,6 +126,7 @@ l.IntroText = animated(styled.div`
   border-radius: 54px;
   opacity: 0;
   transform: scale(.9);
+  padding: 0 36px;
 
   @keyframes reveal {
     100% {
