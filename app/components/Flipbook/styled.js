@@ -71,7 +71,7 @@ l.PageRoot = styled(g.Flex)`
       }
     }
     animation-name: hide;
-    animation-duration: .3s;
+    animation-duration: .5s;
     animation-fill-mode: both;
     animation-timing-function: ${c.Sexy};
   }
@@ -92,10 +92,9 @@ l.PageRoot = styled(g.Flex)`
       }
     }
     animation-name: show;
-    animation-duration: .5s;
+    animation-duration: .3s;
     animation-timing-function: ${c.Sexy};
     animation-fill-mode: both;
-    animation-delay: .1s;
 
     &.blur {
       & > div {

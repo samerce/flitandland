@@ -48,11 +48,11 @@ FaeButtons = (p) =>
 
 SpringConfig = friction: 10, tension: 58, mass: 1
 FaeSol = (p) =>
-  [isOpen, toggleIsOpen] = useToggle no, 'sol.opened', 'sol.closed'
+  [isOpen, toggleIsOpen] = useToggle off, 'sol.opened', 'sol.closed'
   [nailsAni, setNailsAni] = useState
-    from: {opacity: 0, scale: .95}
-    to: {opacity: 1, scale: 1}
-    delay: 1000
+    from: {opacity: 0, scale: .95, my: 200}
+    to: {opacity: 1, scale: 1, my: 0}
+    delay: 2000
   nailsStyle = useSpring {...nailsAni}
 
   [rootAni, setRootAni] = useState {}
@@ -61,7 +61,8 @@ FaeSol = (p) =>
   <FaeButton className='flipbook-button nails'>
     <animated.div style={{...rootStyle, zIndex: 1}}>
       <l.Nails onClick={toggleIsOpen} style={{
-          ...nailsStyle, transform: "scale(#{nailsStyle.scale})"
+          ...nailsStyle,
+          transform: "scale(#{nailsStyle.scale}) translate(0, #{nailsStyle.my}px)"
         }}>
         <img src={c.SRC_URL + 'commons/solwhite.png'} />
       </l.Nails>
@@ -69,14 +70,9 @@ FaeSol = (p) =>
   </FaeButton>
 
 YesSheet = (p) =>
-  [visible, setVisible] = useState no
-  [checkoutIsOpen, toggleCheckout, setCheckoutIsOpen
-  ] = useToggle no, 'checkout.opened', 'checkout.closed'
-  useBus
-    'sol.opened': => setVisible yes
-    'sol.closed': => setVisible no
-    'checkout.close': => setCheckoutIsOpen no
-    'checkout.open': => setCheckoutIsOpen yes
+  [visible] = useToggle off, no, no, 'sol.opened', 'sol.closed'
+  [checkoutIsOpen, toggleCheckout] = useToggle off,
+    'checkout.opened', 'checkout.closed', 'checkout.open', 'checkout.close'
   <l.YesRoot className={cx {visible}}>
     <l.Juice>{p.juice}</l.Juice>
     <l.LeftActions className='left'>
@@ -96,17 +92,10 @@ YesSheet = (p) =>
     </l.RightActions>
   </l.YesRoot>
 
-useBusToggle = (yesCast, noCast, init) =>
-  [thing, setit] = useState init
-  useBus
-    [yesCast]: => setit yes
-    [noCast]: => setit no
-  [thing, setit]
-
 downTime = null
 export default Flipbook = =>
   [activePage, activeIndex, isLoaded, actions] = useFlipbook Pages
-  [checkoutIsOpen] = useBusToggle 'checkout.opened', 'checkout.closed'
+  [checkoutIsOpen] = useToggle off, no, no, 'checkout.opened', 'checkout.closed'
 
   withDrag = useDrag ({down, first, elapsedTime, movement: [mx, my]}) =>
     return unless isLoaded
