@@ -191,6 +191,9 @@ l.Nails = animated(styled(l.Faerie)`
   }
   img {
     width: 50px;
+    ${g.screen.medsmall`
+      width: 30px;
+    `}
   }
 `)
 
@@ -260,6 +263,11 @@ const Action = styled(g.Flex)`
   img {
     height: 90%;
   }
+
+  ${g.screen.medsmall`
+    flex: 0 0 54px;
+    height: 54px;
+  `}
 `
 
 l.No = styled(Action)`
