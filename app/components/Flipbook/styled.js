@@ -62,11 +62,11 @@ l.PageRoot = styled(g.Flex)`
         transform: scale(1);
       }
       99% {
-        transform: scale(.95);
+        transform: scale(.95) translate(0, -20px);
         opacity: 0;
       }
       100% {
-        transform: scale(.95);
+        transform: scale(.95) translate(0, -20px);
         opacity: 0;
       }
     }
@@ -80,6 +80,9 @@ l.PageRoot = styled(g.Flex)`
     pointer-events: all;
 
     @keyframes show {
+      0% {
+        transform: translate(0, -20px) scale(1.05);
+      }
       85% {
         opacity: 1;
       }
@@ -93,6 +96,12 @@ l.PageRoot = styled(g.Flex)`
     animation-timing-function: ${c.Sexy};
     animation-fill-mode: both;
     animation-delay: .1s;
+
+    &.blur {
+      & > div {
+        filter: blur(4px);
+      }
+    }
   }
 `
 
@@ -270,8 +279,13 @@ l.Chat = styled(Action)`
 `
 
 l.CheckoutRoot = styled(g.AbsoluteFlex)`
-  bottom: 90%;
-  left: 108px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100%  - 180px);
+  justify-content: center;
+  align-items: center;
   opacity: 0;
   pointer-events: none;
   transform: scale(1.1);

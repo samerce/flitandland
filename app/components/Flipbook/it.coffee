@@ -71,7 +71,7 @@ FaeSol = (p) =>
 YesSheet = (p) =>
   [visible, setVisible] = useState no
   [checkoutIsOpen, toggleCheckout, setCheckoutIsOpen
-  ] = useToggle no, 'checkout.closed', 'checkout.opened'
+  ] = useToggle no, 'checkout.opened', 'checkout.closed'
   useBus
     'sol.opened': => setVisible yes
     'sol.closed': => setVisible no
@@ -96,9 +96,17 @@ YesSheet = (p) =>
     </l.RightActions>
   </l.YesRoot>
 
+useBusToggle = (yesCast, noCast, init) =>
+  [thing, setit] = useState init
+  useBus
+    [yesCast]: => setit yes
+    [noCast]: => setit no
+  [thing, setit]
+
 downTime = null
 export default Flipbook = =>
   [activePage, activeIndex, isLoaded, actions] = useFlipbook Pages
+  [checkoutIsOpen] = useBusToggle 'checkout.opened', 'checkout.closed'
 
   withDrag = useDrag ({down, first, elapsedTime, movement: [mx, my]}) =>
     return unless isLoaded
@@ -116,6 +124,7 @@ export default Flipbook = =>
         hide: i < activeIndex
         show: i is activeIndex
         preload: i > activeIndex
+        blur: checkoutIsOpen
       }
       <l.PageRoot className={mode} {...withDrag()}>
         <Page mode={mode} actions={actions} isLoaded={isLoaded} />

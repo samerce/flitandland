@@ -1,5 +1,5 @@
 import React, {useState, useLayoutEffect, useEffect} from 'react'
-import useChat from '../../hooks/useChat.coffee'
+import useBus from '../../hooks/useBus.coffee'
 import useLoader from '../Bopz/useLoader.coffee'
 
 DefaultPage = {duration: 0}
@@ -12,9 +12,7 @@ export default useFlipbook = (pages) =>
   [actions] = useState {}
   [timer, setTimer] = useState {clear: =>}
   [{isLoaded}] = useLoader()
-  {onChatOpen, onChatClose, closeChat, openChat, toggleChat} = useChat()
 
-  actions.toggleChat = toggleChat
   actions.pause = =>
     setPaused Date.now()
     cast 'flipbook.paused'
@@ -27,12 +25,11 @@ export default useFlipbook = (pages) =>
     else actions.pause()
   actions.advance = =>
     return if index >= pages.length - 1
-    closeChat()
+    cast 'chat.close'
     setIndex (i) => i + 1
     actions.play() if paused
 
   useLayoutEffect (=>
-    if index >= pages.length - 1 then cast 'flipbook.closed'
     return unless index < pages.length - 1 and index >= 0
     newPage = pages[index]
     if paused
@@ -40,18 +37,20 @@ export default useFlipbook = (pages) =>
       setPage page: {...newPage, ...PausePage}
     else # playing
       setPage page: newPage
-      setTimer after newPage.duration, => setIndex (i) => i + 1
+      setTimer after newPage.duration, =>
+        setIndex (i) => i + 1
+        if index is pages.length - 1
+          after newPage.duration, => cast 'flipbook.closed'
     => timer.clear()
   ), [index, paused]
-  useLayoutEffect (=>
-    upon 'sol.opened', =>
+  useBus
+    'sol.opened': =>
       setLocked yes
       actions.pause()
-    upon 'sol.closed', =>
+    'sol.closed': =>
       setLocked no
       cast 'chat.close'
       cast 'checkout.close'
       actions.play()
-  ), []
 
   [page.page, index, isLoaded, actions]

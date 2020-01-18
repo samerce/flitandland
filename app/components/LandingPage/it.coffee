@@ -13,6 +13,7 @@ export default LandingPage = =>
   [visible, setVisible] = useState no
   useBus
     'flipbook.closed': => setVisible yes
+
   <l.Root className={cx {visible}}>
     {Pages.map (Page) =>
       <l.PageRoot><Page mode='show' /></l.PageRoot>

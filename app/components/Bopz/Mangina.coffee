@@ -16,16 +16,22 @@ Image = (p) =>
   />
 
 Video = (p) =>
+  [ready, setReady] = useState no
+  [triggered, setTriggered] = useState no
   [s, {increment}] = useLoader()
   video = useRef()
   playVideo = =>
-    video.current.play() if p.mode is 'show'
+    setTriggered yes
+    video.current.play() if p.mode is 'show' and ready
     undefined
   useEffect playVideo, [p.mode]
-  <l.Video src={c.SRC_URL + 'videos/' + p.name + '.mp4'}
+  <l.Video src={c.CDN_URL + 'videos/' + p.name + '.mp4'}
     ref={video} className={p.className}
     muted autoPlay={p.mode is 'show'} playsInline preload='auto'
-    onCanPlay={increment} loop={yes}
+    loop={yes} onCanPlay={=>
+      setReady yes
+      playVideo() if triggered
+    }
   />
 
 Texts = [
