@@ -3,16 +3,21 @@ import DelayedReveal from '../DelayedReveal/it.coffee'
 
 import l from './styled'
 import * as c from '../../constants'
+
+import {useSpring} from 'react-spring'
 import {cx} from '../../utils/style'
 import useLoader from './useLoader.coffee'
-import {useSpring} from 'react-spring'
+import useScreenSize from '../../hooks/useScreenSize.coffee'
 
+FullHeightStyle = width: 'initial', height: '90%'
 Image = (p) =>
   [s, {increment}] = useLoader()
+  {screenWidth} = useScreenSize()
   <l.Image
     src={c.SRC_URL + 'commons/' + p.name}
     className={p.className}
     onLoad={increment}
+    style={if screenWidth > 1920 then FullHeightStyle else {}}
   />
 
 Video = (p) =>

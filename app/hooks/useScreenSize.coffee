@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from 'react'
 
 import {throttle} from 'lodash'
+import useBus from './useBus.coffee'
 
-export default useScreenSize = =>
+export default =>
   [screenWidth, setWidth] = useState window.innerWidth
   [screenHeight, setHeight] = useState window.innerHeight
 
-  useEffect =>
-    onResize = =>
-      setWidth(window.innerWidth)
-      setHeight(window.innerHeight)
-    onResizeThrottled = throttle onResize, 100
-    window.addEventListener 'resize', onResizeThrottled
-    => window.removeEventListener 'resize', onResizeThrottled
-
+  useBus
+    resize: throttle (=>
+      setWidth window.innerWidth
+      setHeight window.innerHeight
+    ), 100
   {screenWidth, screenHeight}
