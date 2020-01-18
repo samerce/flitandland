@@ -43,7 +43,7 @@ l.Image = styled.img`
   pointer-events: none;
 
   &.fullHeight {
-    width: initial
+    width: initial;
     height: 90%;
   }
 `
