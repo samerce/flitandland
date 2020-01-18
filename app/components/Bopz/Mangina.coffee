@@ -15,9 +15,8 @@ Image = (p) =>
   {screenWidth} = useScreenSize()
   <l.Image
     src={c.SRC_URL + 'commons/' + p.name}
-    className={p.className}
+    className={p.className + (if screenWidth > 1400 then ' fullHeight' else '')}
     onLoad={increment}
-    style={if screenWidth > 1920 then FullHeightStyle else {}}
   />
 
 Video = (p) =>

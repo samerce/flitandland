@@ -46,10 +46,6 @@ l.Image = styled.img`
     width: initial;
     height: 90%;
   }
-  ${p => (innerHeight > 1920)? `
-    width: intiial;
-    height: 90%;
-  ` : ''}
 `
 
 l.Yearbook = styled(g.AbsoluteFlex)`
