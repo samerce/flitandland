@@ -4,7 +4,6 @@ import Chat from '../../components/Chat/it.coffee'
 import Announcer from '../../components/Announcer/it.coffee'
 import SlackSteward from '../../components/SlackSteward/it.coffee'
 import Curtain from '../../components/Curtain/it.coffee'
-import LandingPage from '../../components/LandingPage/it.coffee'
 
 import GlobalStyle from '../../global-styles'
 import * as l from './styled'
@@ -31,7 +30,6 @@ export default function App() {
         <Curtain />
         <Announcer />
         <Flipbook />
-        <LandingPage />
         <Chat />
         {/* <Content className={popupVisible && 'popupVisible'}>
           <Icons>

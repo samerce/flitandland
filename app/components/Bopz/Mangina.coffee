@@ -153,6 +153,9 @@ export Sneakers = (p) =>
     <Image name='sneakers.jpg' className='fullHeight' />
   </l.Centered>
 
+export LandingPage = (p) =>
+  <div>parrttyyyyyyyyyy</div>
+
 Intro.duration = 3000
 Mangina.duration = 1500
 Trump.duration = 1000
@@ -161,3 +164,4 @@ Jesus.duration = 4000
 Mitch.duration = 2000
 Eymboard.duration = 10000
 Sneakers.duration = 5000
+LandingPage.duration = 0

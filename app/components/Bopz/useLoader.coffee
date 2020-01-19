@@ -6,7 +6,7 @@ useLoader = useGlobal(React,
   {counter: 0, isLoaded: no},
   increment: ({setState, state}) =>
     newCounter = state.counter + 1
-    setState counter: newCounter, isLoaded: newCounter >= 33
+    setState counter: newCounter, isLoaded: newCounter >= 32
 )
 
 export default =>

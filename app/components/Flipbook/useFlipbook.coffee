@@ -24,11 +24,8 @@ export default useFlipbook = (pages) =>
     if paused then actions.play()
     else actions.pause()
   actions.advance = =>
-    return if index >= pages.length
-    newIndex = index + 1
-    setIndex newIndex
-    if newIndex is pages.length then cast 'flipbook.closed'
-
+    return unless index < pages.length - 1
+    setIndex index + 1
     cast 'chat.close'
     cast 'checkout.close'
     actions.play() if paused
@@ -40,7 +37,8 @@ export default useFlipbook = (pages) =>
       setPage page: {...newPage, ...PausePage}
     else
       setPage page: newPage
-      setTimer after newPage.duration, actions.advance
+      if newPage.duration
+        setTimer after newPage.duration, actions.advance
     => timer.clear()
   ), [index, paused]
   useBus

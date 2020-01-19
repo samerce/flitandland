@@ -115,7 +115,7 @@ export default Flipbook = =>
         preload: i > activeIndex
         blur: checkoutIsOpen
       }
-      <l.PageRoot className={mode} {...withDrag()}>
+      <l.PageRoot className={mode} {...withDrag()} key={i}>
         <Page mode={mode} actions={actions} isLoaded={isLoaded} />
       </l.PageRoot>
     }
