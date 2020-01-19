@@ -61,10 +61,6 @@ l.PageRoot = styled(g.Flex)`
         opacity: 1;
         transform: scale(1);
       }
-      99% {
-        transform: scale(.95) translate(0, -20px);
-        opacity: 0;
-      }
       100% {
         transform: scale(.95) translate(0, -20px);
         opacity: 0;
@@ -92,7 +88,7 @@ l.PageRoot = styled(g.Flex)`
       }
     }
     animation-name: show;
-    animation-duration: .3s;
+    animation-duration: .5s;
     animation-timing-function: ${c.Sexy};
     animation-fill-mode: both;
 

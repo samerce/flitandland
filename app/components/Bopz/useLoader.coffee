@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import useGlobal from 'use-global-hook'
-import useChat from '../../hooks/useChat.coffee'
+import useBus from '../../hooks/useBus.coffee'
 
 useLoader = useGlobal(React,
   {counter: 0, isLoaded: no},
@@ -10,10 +10,7 @@ useLoader = useGlobal(React,
 )
 
 export default =>
-  [s, {increment}] = useLoader()
-  {onChatLoaded} = useChat()
-  useEffect (=>
-    onChatLoaded increment
-    undefined
-  ), []
-  useLoader()
+  [{isLoaded}, {increment}] = useLoader()
+  useBus
+    'chat.loaded': increment
+  [isLoaded, increment]

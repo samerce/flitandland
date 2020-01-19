@@ -11,7 +11,7 @@ import useScreenSize from '../../hooks/useScreenSize.coffee'
 
 FullHeightStyle = width: 'initial', height: '90%'
 Image = (p) =>
-  [s, {increment}] = useLoader()
+  [s, increment] = useLoader()
   {screenWidth} = useScreenSize()
   <l.Image
     src={c.SRC_URL + 'commons/' + p.name}
@@ -22,7 +22,7 @@ Image = (p) =>
 Video = (p) =>
   [ready, setReady] = useState no
   [triggered, setTriggered] = useState no
-  [s, {increment}] = useLoader()
+  [s, increment] = useLoader()
   video = useRef()
   playVideo = =>
     setTriggered yes
@@ -94,7 +94,7 @@ export Trump = (p) =>
 FullCycleDuration = 4500
 BaseDelay = 1000
 GridCell = (p) =>
-  [s, {increment}] = useLoader()
+  [s, increment] = useLoader()
   <l.Cell>
     {p.images.map (image, i) =>
       <DelayedReveal delay={BaseDelay + i * FullCycleDuration + p.delay}
