@@ -160,3 +160,20 @@ l.IntroText = animated(styled.div`
     display: inline;
   }
 `)
+
+l.LandingPage = styled(l.Centered)`
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`
+
+l.BookRoot = styled(g.Flex)`
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  flex: 0 0 100%;
+
+  img {
+    height: 100%;
+    box-shadow: ${g.theme.prettyFrame}, ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
+  }
+`

@@ -1,5 +1,6 @@
 import React, {useRef, useEffect, useState, useLayoutEffect} from 'react'
 import DelayedReveal from '../DelayedReveal/it.coffee'
+import MailingList from '../MailingList/it.coffee'
 
 import l from './styled'
 import * as c from '../../constants'
@@ -154,7 +155,13 @@ export Sneakers = (p) =>
   </l.Centered>
 
 export LandingPage = (p) =>
-  <div>parrttyyyyyyyyyy</div>
+  <l.LandingPage>
+    <div>new book out soon!</div>
+    <MailingList />
+    <l.BookRoot>
+      <img src={c.SRC_URL + 'commons/flit & land front cover.jpg'} />
+    </l.BookRoot>
+  </l.LandingPage>
 
 Intro.duration = 3000
 Mangina.duration = 1500
