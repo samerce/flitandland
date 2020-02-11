@@ -11,24 +11,30 @@ l.Root = styled(g.Flex)`
   width: 100%;
 `
 
-l.Centered = animated(styled(g.Flex)`
+l.Centered = animated(styled(g.FlexColumn)`
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
   background: inherit;
+  overflow: hidden;
+  position: relative;
 
   &.scrollX {
     overflow-x: scroll;
     justify-content: flex-start;
   }
+  .youtubeVid {
+    box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
+      ${g.theme.prettyFrame};
+    border-radius: 5px;
+  }
 `)
 
-l.Credit = styled(g.AbsoluteFlex)`
-  bottom: 0;
-  left: 0;
+l.Credit = styled(g.Flex)`
   width: 100%;
   height: 30px;
+  margin: 20px 0;
   color: white;
   justify-content: center;
   font-size: 10px;
@@ -75,17 +81,13 @@ l.GridImage = styled(l.Image)`
   @keyframes full {
     100% {
       opacity: 1;
-
     }
   }
   animation-duration: 2s;
   animation-timing-function: ease-out;
   animation-fill-mode: both;
   animation-iteration-count: 1;
-
-  ${p => p.mode === 'show' && `
-    animation-name: full;
-  `}
+  animation-name: ${p => p.show? 'full' : ''};
 `
 
 l.Video = styled.video`
@@ -137,11 +139,14 @@ l.IntroText = animated(styled.div`
       transform: scale(1);
     }
   }
-  animation-name: reveal;
   animation-duration: .5s;
   animation-fill-mode: both;
   animation-timing-function: ${c.Sexy};
   animation-delay: ${p => p.delay}ms;
+
+  &.show {
+    animation-name: reveal;
+  }
 
   i {
     margin: 0 9px;

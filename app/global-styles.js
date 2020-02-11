@@ -71,16 +71,16 @@ export default createGlobalStyle`
       font-size: 18px;
     `}
 
-    background: transparent; /*rgba(184, 0, 149, 0.8);*/
-    @keyframes fadeInBg {
+    background: #C004D9;
+    /*@keyframes fadeInBg {
       100% {
-        background: rgba(184, 0, 149, 1);
+        background: #C004D9;
       }
     }
     animation-name: fadeInBg;
     animation-duration: .1s;
     animation-delay: 2s;
-    animation-fill-mode: both;
+    animation-fill-mode: both;*/
   }
   html,
   body {
@@ -91,7 +91,7 @@ export default createGlobalStyle`
   body {
     font-family: 'crimson pro', Georgia, serif;
     font-weight: 300;
-    color: rgba(255, 0, 237, 1);
+    color: #C004D9;
     background: white;
   }
 
@@ -107,8 +107,12 @@ export default createGlobalStyle`
   }
 
   a {
-    color: inherit;
+    color: #f0b1f9;
     text-decoration: none;
+
+    &:hover {
+      color: white;
+    }
   }
 
   section {
@@ -123,6 +127,20 @@ export default createGlobalStyle`
     font-family: 'znikomit24';
     src: url("${SRC_URL}fonts/znikomit24/znikomitno24-webfont.woff2") format('woff2'),
          url("${SRC_URL}fonts/znikomit24/znikomitno24-webfont.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'big john';
+    src: url("${SRC_URL}fonts/big john/big_john-webfont.woff2") format('woff2'),
+         url("${SRC_URL}fonts/big john/big_john-webfont.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'slim joe';
+    src: url("${SRC_URL}fonts/slim joe/slim_joe-webfont.woff2") format('woff2'),
+         url("${SRC_URL}fonts/slim joe/slim_joe-webfont.woff") format('woff');
     font-weight: normal;
     font-style: normal;
   }

@@ -46,12 +46,12 @@ l.PageRoot = styled(g.Flex)`
   left: 0;
   width: 100%;
   height: 100%;
-  transform: scale(1.05);
-  opacity: 0;
+  ${'' /* transform: scale(1.05);
+  opacity: 0; */}
   overflow: scroll;
   pointer-events: none;
 
-  &.preload {
+  ${'' /* &.preload {
     visibility: hidden;
   }
 
@@ -101,7 +101,7 @@ l.PageRoot = styled(g.Flex)`
       & > div {
         filter: blur(4px);
       }
-    }
+    } */}
   }
 `
 
