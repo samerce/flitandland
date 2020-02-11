@@ -11,7 +11,7 @@ export default useFlipbook = (pages) =>
   [locked, setLocked] = useState no
   [actions] = useState {}
   [timer, setTimer] = useState {clear: =>}
-  [{isLoaded}] = useLoader()
+  [isLoaded] = useLoader()
 
   actions.pause = =>
     setPaused Date.now()
@@ -24,23 +24,21 @@ export default useFlipbook = (pages) =>
     if paused then actions.play()
     else actions.pause()
   actions.advance = =>
-    return if index >= pages.length - 1
+    return unless index < pages.length - 1
+    setIndex index + 1
     cast 'chat.close'
-    setIndex (i) => i + 1
+    cast 'checkout.close'
     actions.play() if paused
 
   useLayoutEffect (=>
-    return unless index < pages.length - 1 and index >= 0
+    return unless index < pages.length and index >= 0
     newPage = pages[index]
     if paused
-      timer.clear()
       setPage page: {...newPage, ...PausePage}
-    else # playing
+    else
       setPage page: newPage
-      setTimer after newPage.duration, =>
-        setIndex (i) => i + 1
-        if index is pages.length - 1
-          after newPage.duration, => cast 'flipbook.closed'
+      if newPage.duration
+        setTimer after newPage.duration, actions.advance
     => timer.clear()
   ), [index, paused]
   useBus

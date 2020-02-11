@@ -1,5 +1,6 @@
 import React, {useRef, useEffect, useState, useLayoutEffect, useMemo} from 'react'
 import DelayedReveal from '../DelayedReveal/it.coffee'
+import MailingList from '../MailingList/it.coffee'
 
 import l from './styled'
 import * as c from '../../constants'
@@ -12,7 +13,7 @@ import useScreenSize from '../../hooks/useScreenSize.coffee'
 
 FullHeightStyle = width: 'initial', height: '90%'
 Image = (p) =>
-  [s, {increment}] = useLoader()
+  [s, increment] = useLoader()
   {screenWidth} = useScreenSize()
   <l.Image
     src={c.SRC_URL + 'commons/' + p.name}
@@ -85,7 +86,7 @@ export Intro = (p) =>
 FullCycleDuration = 4500
 BaseDelay = 1000
 GridCell = (p) =>
-  [s, {increment}] = useLoader()
+  [s, increment] = useLoader()
   <l.Cell>
     {p.images.map (image, i) =>
       <DelayedReveal delay={BaseDelay + i * FullCycleDuration + p.delay}
@@ -146,6 +147,15 @@ export Sneakers = (p) =>
     <Image name='sneakers.jpg' className='fullHeight' />
   </l.Centered>
 
+export LandingPage = (p) =>
+  <l.LandingPage>
+    <div>new book out soon!</div>
+    <MailingList />
+    <l.BookRoot>
+      <img src={c.SRC_URL + 'commons/flit & land front cover.jpg'} />
+    </l.BookRoot>
+  </l.LandingPage>
+
 Intro.duration = 3000
 Mangina.duration = 1500
 Trump.duration = 1000
@@ -154,3 +164,4 @@ Jesus.duration = 4000
 Mitch.duration = 2000
 Eymboard.duration = 10000
 Sneakers.duration = 5000
+LandingPage.duration = 0
