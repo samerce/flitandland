@@ -93,5 +93,5 @@ export default {
   blackGradient: `linear-gradient(
     to bottom, rgb(43, 43, 43) 0%, rgba(50, 49, 49, 1) 5%, rgba(31, 31, 31, 1) 50%, rgba(24, 24, 24, 1) 95%, rgba(0, 0, 0, 1) 100%
   )`,
-  prettyFrame: '0 0 0 1px white, 0 0 0 2px black, 0 0 0 4px orange, 0 0 0 6px rgb(82, 0, 255), 0 0 0 7px red, 0 0 0 9px rgb(255, 0, 168), 0 0 0 11px black, 0 0 0 14px white',
+  prettyFrame: '0 0 0 1px white, 0 0 0 2px black, 0 0 0 4px #AB05F2, 0 0 0 6px #6D0FF2, 0 0 0 7px #3316F2, 0 0 0 9px #AB05F2, 0 0 0 11px black, 0 0 0 14px white',
 }

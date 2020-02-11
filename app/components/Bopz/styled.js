@@ -52,6 +52,12 @@ l.Image = styled.img`
     width: initial;
     height: 90%;
   }
+  &.revo {
+    background: radial-gradient(circle at center, white 0%, #6D0FF2 100%);
+  }
+  &.cover {
+    margin: 27px 0;
+  }
 `
 
 l.Yearbook = styled(g.AbsoluteFlex)`
@@ -106,14 +112,6 @@ l.Video = styled.video`
   }
 `
 
-l.IntroRoot = styled(l.Centered)`
-  flex-direction: column;
-  padding: 0 0 180px;
-  height: initial;
-  position: relative;
-  justify-content: flex-end;
-`
-
 l.IntroText = animated(styled.div`
   font-size: 27px;
   line-height: 30px;
@@ -125,7 +123,7 @@ l.IntroText = animated(styled.div`
   background: ${g.theme.pinkGradient};
   color: ${g.theme.susan};
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
-  border-radius: 54px;
+  border-radius: 108px;
   opacity: 0;
   transform: scale(.9);
   padding: 0 36px;
@@ -133,8 +131,8 @@ l.IntroText = animated(styled.div`
   @keyframes reveal {
     100% {
       height: initial;
-      margin: 18px 0;
-      padding: 36px;
+      margin: 27px 0;
+      padding: 36px 54px;
       opacity: 1;
       transform: scale(1);
     }
@@ -169,16 +167,15 @@ l.IntroText = animated(styled.div`
 l.LandingPage = styled(l.Centered)`
   flex-wrap: wrap;
   justify-content: space-evenly;
+  height: initial;
+  margin: 54px 0;
 `
 
-l.BookRoot = styled(g.Flex)`
-  justify-content: center;
-  align-items: center;
-  height: 50%;
-  flex: 0 0 100%;
-
-  img {
-    height: 100%;
-    box-shadow: ${g.theme.prettyFrame}, ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
-  }
+l.Header = styled.div`
+  font-size: 54px;
+  font-family: big john;
+  color: white;
+  height: 54px;
+  line-height: 54px;
+  margin: 27px 0;
 `

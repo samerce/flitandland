@@ -19,6 +19,7 @@ Image = (p) =>
     src={c.SRC_URL + 'commons/' + p.name}
     className={p.className + (if screenWidth > 1400 then ' fullHeight' else '')}
     onLoad={increment}
+    style={p.style || {}}
   />
 
 Video = (p) =>
@@ -66,7 +67,7 @@ export TJ = =>
   </l.Centered>
 
 Texts = [
-  {content: 'if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.', delay: 500},
+  {content: 'if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.', delay: 200},
   {content: 'that’s $365 billion a year, one quarter at a time.', delay: 5000},
   # {content: 'power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets.', duration: 1000},
   # {content: 'it’s the lie of our lifetime.', duration: 1000},
@@ -74,14 +75,14 @@ Texts = [
 export Intro = (p) =>
   [ref, inView] = useInView(threshold: .5, triggerOnce: yes)
   delay = 0
-  <l.IntroRoot ref={ref}>
+  <l.Centered ref={ref}>
     {Texts.map (text) =>
       delay += text.delay
       <l.IntroText delay={delay} className={cx show: inView}>
         {text.content}
       </l.IntroText>
     }
-  </l.IntroRoot>
+  </l.Centered>
 
 FullCycleDuration = 4500
 BaseDelay = 1000
@@ -126,6 +127,11 @@ export PaintShow = (p) =>
     </l.Yearbook>
   </l.Centered>
 
+export Revolution = =>
+  <l.Centered>
+    <Image name='nonviolent revolution small.png' className='revo' />
+  </l.Centered>
+
 export Jesus = (p) =>
   [ref, inView] = useInView(threshold: .5)
   <l.Centered ref={ref}>
@@ -148,12 +154,15 @@ export Sneakers = (p) =>
   </l.Centered>
 
 export LandingPage = (p) =>
+  {screenHeight} = useScreenSize()
+  imageHeight = useMemo (=> screenHeight * .8), [screenHeight]
+  console.log imageHeight
   <l.LandingPage>
-    <div>new book out soon!</div>
+    <l.Header>new book out soon!</l.Header>
+    <Image name='dragwhitehouse.jpg' className='cover fullHeight'
+      style={{height: imageHeight + 'px'}}
+    />
     <MailingList />
-    <l.BookRoot>
-      <img src={c.SRC_URL + 'commons/flit & land front cover.jpg'} />
-    </l.BookRoot>
   </l.LandingPage>
 
 Intro.duration = 3000
