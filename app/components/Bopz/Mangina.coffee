@@ -16,10 +16,10 @@ Image = (p) =>
   [s, increment] = useLoader()
   {screenWidth} = useScreenSize()
   <l.Image
+    {...p}
     src={c.SRC_URL + 'commons/' + p.name}
     className={p.className + (if screenWidth > 1400 then ' fullHeight' else '')}
     onLoad={increment}
-    style={p.style || {}}
   />
 
 Video = (p) =>
@@ -59,7 +59,7 @@ export Trump = (p) =>
 
 export TJ = =>
   {screenWidth} = useScreenSize()
-  videoWidth = useMemo (=> screenWidth * .9), [screenWidth]
+  videoWidth = useMemo (=> screenWidth * .85), [screenWidth]
   videoHeight = useMemo (=> (9/16) * videoWidth), [videoWidth]
   <l.Centered>
     <iframe width={videoWidth} height={videoHeight} className='youtubeVid'
@@ -67,7 +67,7 @@ export TJ = =>
   </l.Centered>
 
 Texts = [
-  {content: 'if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.', delay: 200},
+  {content: 'if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.', delay: 0},
   {content: 'that’s $365 billion a year, one quarter at a time.', delay: 5000},
   # {content: 'power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets.', duration: 1000},
   # {content: 'it’s the lie of our lifetime.', duration: 1000},
@@ -75,7 +75,7 @@ Texts = [
 export Intro = (p) =>
   [ref, inView] = useInView(threshold: .5, triggerOnce: yes)
   delay = 0
-  <l.Centered ref={ref}>
+  <l.Centered ref={ref} className='intro'>
     {Texts.map (text) =>
       delay += text.delay
       <l.IntroText delay={delay} className={cx show: inView}>
@@ -103,29 +103,29 @@ GridCell = (p) =>
     }
   </l.Cell>
 
-export PaintShow = (p) =>
-  [ref, inView] = useInView(threshold: .5, triggerOnce: yes)
-  <l.Centered ref={ref}>
-    <Video name='paintshowq' inView={inView} className='backdrop' />
-    <l.Yearbook>
-      <GridCell images={['dr john', 'sneakers', 'needs work but']}
-        delay={1000} mode={inView} />
-      <GridCell images={['yummy boy', 'a meeting', 'gayclub']} delay={2000} mode={inView} />
-      <GridCell images={['chaquita', 'gee, i jus love him', 'beadme']}
-        delay={3000} mode={inView} />
-      <GridCell images={['easter jesus', 'desire-vignette', 'im a man, maam']}
-        delay={4000} mode={inView} />
-      <GridCell images={['jojo 3', 'mama y yo', 'love']}
-        delay={4500} mode={inView} />
-      <GridCell images={['merman 7', 'grain train', 'jojo']} delay={3500} mode={inView} />
-      <GridCell images={['rainbow eyes', 'mama y rick', 'flaggot']}
-        delay={2500} mode={inView} />
-      <GridCell images={['lost at sea', 'glitterfysh', 'boys being girly boys']}
-        delay={1500} mode={inView} />
-      <GridCell images={['sunset babe', 'mama y yo 2', 'delusion']}
-        delay={500} mode={inView} />
-    </l.Yearbook>
-  </l.Centered>
+# export PaintShow = (p) =>
+#   [ref, inView] = useInView(threshold: .5, triggerOnce: yes)
+#   <l.Centered ref={ref}>
+#     <Video name='paintshowq' inView={inView} className='backdrop' />
+#     <l.Yearbook>
+#       <GridCell images={['dr john', 'sneakers', 'needs work but']}
+#         delay={1000} mode={inView} />
+#       <GridCell images={['yummy boy', 'a meeting', 'gayclub']} delay={2000} mode={inView} />
+#       <GridCell images={['chaquita', 'gee, i jus love him', 'beadme']}
+#         delay={3000} mode={inView} />
+#       <GridCell images={['easter jesus', 'desire-vignette', 'im a man, maam']}
+#         delay={4000} mode={inView} />
+#       <GridCell images={['jojo 3', 'mama y yo', 'love']}
+#         delay={4500} mode={inView} />
+#       <GridCell images={['merman 7', 'grain train', 'jojo']} delay={3500} mode={inView} />
+#       <GridCell images={['rainbow eyes', 'mama y rick', 'flaggot']}
+#         delay={2500} mode={inView} />
+#       <GridCell images={['lost at sea', 'glitterfysh', 'boys being girly boys']}
+#         delay={1500} mode={inView} />
+#       <GridCell images={['sunset babe', 'mama y yo 2', 'delusion']}
+#         delay={500} mode={inView} />
+#     </l.Yearbook>
+#   </l.Centered>
 
 export Revolution = =>
   <l.Centered>
@@ -149,28 +149,27 @@ export Eymboard = (p) =>
   </l.Centered>
 
 export Sneakers = (p) =>
-  <l.Centered>
+  <l.Centered className='sneakers'>
     <Image name='sneakers.jpg' className='fullHeight' />
   </l.Centered>
 
 export LandingPage = (p) =>
   {screenHeight} = useScreenSize()
   imageHeight = useMemo (=> screenHeight * .8), [screenHeight]
-  console.log imageHeight
   <l.LandingPage>
     <l.Header>new book out soon!</l.Header>
     <Image name='dragwhitehouse.jpg' className='cover fullHeight'
-      style={{height: imageHeight + 'px'}}
+      height={imageHeight}
     />
     <MailingList />
   </l.LandingPage>
 
-Intro.duration = 3000
-Mangina.duration = 1500
-Trump.duration = 1000
-PaintShow.duration = 15000
-Jesus.duration = 4000
-Mitch.duration = 2000
-Eymboard.duration = 10000
-Sneakers.duration = 5000
-LandingPage.duration = 0
+# Intro.duration = 3000
+# Mangina.duration = 1500
+# Trump.duration = 1000
+# PaintShow.duration = 15000
+# Jesus.duration = 4000
+# Mitch.duration = 2000
+# Eymboard.duration = 10000
+# Sneakers.duration = 5000
+# LandingPage.duration = 0

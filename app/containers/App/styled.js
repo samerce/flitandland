@@ -7,6 +7,8 @@ const BackgroundUrl = c.SRC_URL + 'commons/bursting-lq.jpg'
 export const Root = styled.div`
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
+  background: rgba(216, 4, 202, 1);
   ${'' /* background: url("${BackgroundUrl}");
   background-repeat: repeat-y;
   background-size: cover; */}

@@ -1,5 +1,5 @@
 import React from 'react'
-import Chat from '../../components/Chat/it.coffee'
+// import Chat from '../../components/Chat/it.coffee'
 // import SlackSteward from '../../components/SlackSteward/it.coffee'
 // import Curtain from '../../components/Curtain/it.coffee'
 import QuickHit from '../../components/QuickHit/it.coffee'
@@ -22,7 +22,7 @@ export default function App() {
         {/* <SlackSteward /> */}
         <GlobalStyle />
         {/* <Curtain /> */}
-        <Chat />
+        {/*<Chat />*/}
         <QuickHit />
         {Pages.map((Page) => <Page />)}
       </l.Root>

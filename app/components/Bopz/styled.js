@@ -13,16 +13,26 @@ l.Root = styled(g.Flex)`
 
 l.Centered = animated(styled(g.FlexColumn)`
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   justify-content: center;
   align-items: center;
   background: inherit;
-  overflow: hidden;
   position: relative;
+  margin: 27px 0;
 
   &.scrollX {
     overflow-x: scroll;
     justify-content: flex-start;
+  }
+  &.intro {
+    padding: 12px 27px;
+  }
+  &.sneakers {
+    height: 100%;
+
+    ${g.screen.medium`
+      height: initial;
+    `}
   }
   .youtubeVid {
     box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
@@ -41,7 +51,7 @@ l.Credit = styled(g.Flex)`
 `
 
 l.Image = styled.img`
-  width: 90%;
+  width: 85%;
   border-radius: 5px;
   margin: 0 auto;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
@@ -57,7 +67,14 @@ l.Image = styled.img`
   }
   &.cover {
     margin: 27px 0;
+    height: ${p => p.height}px;
   }
+  ${g.screen.medium`
+    &, &.fullHeight {
+      width: 85%;
+      height: initial;
+    }
+  `}
 `
 
 l.Yearbook = styled(g.AbsoluteFlex)`
@@ -97,7 +114,7 @@ l.GridImage = styled(l.Image)`
 `
 
 l.Video = styled.video`
-  height: 90%;
+  height: 85%;
   box-shadow: ${g.theme.prettyFrame}, ${g.theme.sexyEdge},
     ${g.theme.shadowVeryHeavy};
   border-radius: 5px;
@@ -109,7 +126,17 @@ l.Video = styled.video`
   &.backdrop {
     height: 100%;
     box-shadow: none;
+    ${g.screen.medsmall`
+      height: 100%;
+      width: initial;
+    `}
   }
+  ${g.screen.medsmall`
+    &, &.fullWidth {
+      width: 85%;
+      height: initial;
+    }
+  `}
 `
 
 l.IntroText = animated(styled.div`
@@ -135,6 +162,10 @@ l.IntroText = animated(styled.div`
       padding: 36px 54px;
       opacity: 1;
       transform: scale(1);
+
+      ${g.screen.medsmall`
+        padding: 27px 18px;
+      `}
     }
   }
   animation-duration: .5s;
@@ -162,6 +193,11 @@ l.IntroText = animated(styled.div`
   div {
     display: inline;
   }
+  ${g.screen.medsmall`
+    font-size: 18px;
+    line-height: 22px;
+    padding: 0 18px;
+  `}
 `)
 
 l.LandingPage = styled(l.Centered)`
@@ -178,4 +214,15 @@ l.Header = styled.div`
   height: 54px;
   line-height: 54px;
   margin: 27px 0;
+  text-align: center;
+
+  ${g.screen.medium`
+    font-size: 36px;
+  `}
+  ${g.screen.medsmall`
+    font-size: 27px;
+  `}
+  ${g.screen.small`
+    font-size: 18px;
+  `}
 `
