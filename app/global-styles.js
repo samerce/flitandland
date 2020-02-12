@@ -125,22 +125,22 @@ export default createGlobalStyle`
 
   @font-face {
     font-family: 'znikomit24';
-    src: url("${SRC_URL}fonts/znikomit24/znikomitno24-webfont.woff2") format('woff2'),
-         url("${SRC_URL}fonts/znikomit24/znikomitno24-webfont.woff") format('woff');
+    src: url("${CDN_URL}fonts/znikomit24/znikomitno24-webfont.woff2") format('woff2'),
+         url("${CDN_URL}fonts/znikomit24/znikomitno24-webfont.woff") format('woff');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'big john';
-    src: url("${SRC_URL}fonts/big john/big_john-webfont.woff2") format('woff2'),
-         url("${SRC_URL}fonts/big john/big_john-webfont.woff") format('woff');
+    src: url("${CDN_URL}fonts/big john/big_john-webfont.woff2") format('woff2'),
+         url("${CDN_URL}fonts/big john/big_john-webfont.woff") format('woff');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'slim joe';
-    src: url("${SRC_URL}fonts/slim joe/slim_joe-webfont.woff2") format('woff2'),
-         url("${SRC_URL}fonts/slim joe/slim_joe-webfont.woff") format('woff');
+    src: url("${CDN_URL}fonts/slim joe/slim_joe-webfont.woff2") format('woff2'),
+         url("${CDN_URL}fonts/slim joe/slim_joe-webfont.woff") format('woff');
     font-weight: normal;
     font-style: normal;
   }
