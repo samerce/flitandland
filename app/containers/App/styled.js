@@ -2,16 +2,14 @@ import styled from 'styled-components'
 import * as g from '../../global-styles'
 import * as c from '../../constants'
 
-const BackgroundUrl = c.SRC_URL + 'commons/bursting-lq.jpg'
-
 export const Root = styled.div`
   height: 100%;
   width: 100%;
   overflow-x: hidden;
   background: rgba(216, 4, 202, 1);
-  ${'' /* background: url("${BackgroundUrl}");
-  background-repeat: repeat-y;
-  background-size: cover; */}
+  background: url("${c.SRC_URL + 'commons/yeshurricane.jpg'}");
+  background-size: cover;
+  background-attachment: fixed;
 
   .returnToTop {
     position: fixed;

@@ -63,7 +63,8 @@ l.Image = styled.img`
     height: 90%;
   }
   &.revo {
-    background: radial-gradient(circle at center, white 0%, #6D0FF2 100%);
+    background: ${g.theme.gradient};
+    filter: invert();
   }
   &.cover {
     margin: 27px 0;
@@ -113,7 +114,7 @@ l.GridImage = styled(l.Image)`
   animation-name: ${p => p.show? 'full' : ''};
 `
 
-l.Video = styled.video`
+l.Video = styled.div`
   height: 85%;
   box-shadow: ${g.theme.prettyFrame}, ${g.theme.sexyEdge},
     ${g.theme.shadowVeryHeavy};
@@ -147,8 +148,8 @@ l.IntroText = animated(styled.div`
   width: fit-content;
   max-width: 794px;
   font-family: aladin;
-  background: ${g.theme.pinkGradient};
-  color: ${g.theme.susan};
+  background: ${g.theme.gradient};
+  color: white;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
   border-radius: 108px;
   opacity: 0;
@@ -215,6 +216,7 @@ l.Header = styled.div`
   line-height: 54px;
   margin: 27px 0;
   text-align: center;
+  text-shadow: 1px 1px black, 2px 2px black, 3px 3px black;
 
   ${g.screen.medium`
     font-size: 36px;

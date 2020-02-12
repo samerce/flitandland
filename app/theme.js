@@ -19,6 +19,17 @@ const susanDark = '#7a0b67'
 const susanVeryDark = darken(.2, susanDark)
 const susanLight = lighten(.1, susan)
 
+const ann = '#148E99'
+const ben = '#FF863E'
+const cal = '#FF5037'
+const dan = '#F0224F'
+const eli = '#D10079'
+// const ann = '#0084A9'
+// const ben = '#4588A7'
+// const cal = '#D2EDF7'
+// const dan = '#EEF1FF'
+// const eli = '#F1FFFF'
+
 export const getRandomColor = () => {
   const rand = Math.random();
   if (rand < 0.3) {
@@ -36,6 +47,7 @@ export default {
   susanDark,
   susanVeryDark,
   susanLight,
+  ann, ben, cal, dan, eli,
   slightlyDark: purpleSlightlyDark,
   slightlyLight: purpleSlightlyLight,
   veryDark: purpleVeryDark,
@@ -90,8 +102,11 @@ export default {
   pinkGradient: `linear-gradient(
     to bottom, rgba(255, 0, 237, 0.79) 0%, rgba(255, 0, 176, 0.8) 5%, rgba(201, 23, 173, 0.81) 50%, rgba(184, 0, 149, 0.8) 95%, rgba(193, 0, 133, 0.8) 100%
   )`,
+  gradient: `linear-gradient(
+    45deg, ${eli} 0%, ${cal} 50%, ${eli} 100%
+  )`,
   blackGradient: `linear-gradient(
     to bottom, rgb(43, 43, 43) 0%, rgba(50, 49, 49, 1) 5%, rgba(31, 31, 31, 1) 50%, rgba(24, 24, 24, 1) 95%, rgba(0, 0, 0, 1) 100%
   )`,
-  prettyFrame: '0 0 0 1px white, 0 0 0 2px black, 0 0 0 4px #AB05F2, 0 0 0 6px #6D0FF2, 0 0 0 7px #3316F2, 0 0 0 9px #AB05F2, 0 0 0 11px black, 0 0 0 14px white',
+  prettyFrame: `0 0 0 1px white, 0 0 0 2px black, 0 0 0 4px ${ann}, 0 0 0 6px ${ben}, 0 0 0 7px ${cal}, 0 0 0 9px ${dan}, 0 0 0 11px black, 0 0 0 14px white`,
 }

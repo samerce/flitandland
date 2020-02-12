@@ -9,18 +9,17 @@ export default l
 l.Root = styled(g.FlexColumn)`
   width: 100%;
   height: 100%;
-  background: url("${c.SRC_URL + 'commons/yeshurricane.jpg'}");
-  background-size: cover;
+
 `
 
 l.Text = styled(g.Flex)`
   font-family: big john;
-  color: black;
-  text-shadow: 1px 1px white, 2px 2px white, 3px 3px white;
+  color: white;
+  ${'' /* text-shadow: 1px 1px white, 2px 2px white, 3px 3px white; */}
   justify-content: center;
   flex: 1 0 auto;
   align-items: center;
-  padding-top: 27px;
+  padding-top: 18px;
   font-size: 108px;
 
   @keyframes in {
@@ -53,15 +52,15 @@ l.Text = styled(g.Flex)`
 `
 
 l.Time = styled(l.Text)`
-  /* background: rgba(140, 4, 92, 0.4); */
-  font-size: 108px;
-  width: 100%;
+  background: ${g.theme.ann};
+  font-family: slim joe;
+  padding-top: 12px;
 `
 
 l.For = styled(l.Text)`
   font-family: slim joe;
   font-size: 27px;
-  /* background: rgba(165, 3, 122, 0.4); */
+  background: ${g.theme.ben};
   flex: 0 0 54px;
   padding: 0;
 
@@ -75,7 +74,7 @@ l.For = styled(l.Text)`
 `
 
 l.Ott = styled(l.Text)`
-  /* background: rgba(216, 4, 202, 0.4); */
+  background: ${g.theme.cal};
   animation-delay: .2s;
   div {
     animation-delay: .3s;
@@ -85,7 +84,7 @@ l.Ott = styled(l.Text)`
 l.Real = styled(l.Text)`
   padding: 0;
   font-family: znikomit24;
-  /* background: rgba(214, 4, 242, 0.4); */
+  background: ${g.theme.dan};
   animation-delay: .3s;
   div {
     animation-delay: .4s;
@@ -94,8 +93,7 @@ l.Real = styled(l.Text)`
 
 l.To = styled(l.For)`
   font-family: slim joe;
-  font-size: 18px;
-  /* background: rgba(3, 43, 165, 0.4); */
+  background: ${g.theme.eli};
   animation-delay: .4s;
   div {
     animation-delay: .5s;
@@ -106,7 +104,7 @@ l.To = styled(l.For)`
 `
 
 l.Shock = styled(l.Text)`
-  /* background: rgba(140, 4, 92, 0.4); */
+  background: ${g.theme.ann};
   animation-delay: .5s;
   div {
     animation-delay: .6s;
@@ -115,8 +113,7 @@ l.Shock = styled(l.Text)`
 
 l.The = styled(l.For)`
   font-family: slim joe;
-  font-size: 18px;
-  /* background: rgba(165, 3, 122, 0.4); */
+  background: ${g.theme.ben};
   animation-delay: .6s;
   div {
     animation-delay: .7s;
@@ -129,7 +126,7 @@ l.The = styled(l.For)`
 l.Conscience = styled(l.Text)`
   padding: 0;
   font-family: znikomit24;
-  /* background: rgba(216, 4, 202, 0.4); */
+  background: ${g.theme.cal};
   animation-delay: .7s;
   div {
     animation-delay: .8s;
@@ -139,13 +136,18 @@ l.Conscience = styled(l.Text)`
   `}
 `
 
-l.Nation = styled(l.Text)`
-  font-family: slim joe;
-  font-size: 54px;
-  flex: 0 0 108px;
-  /* background: rgba(214, 4, 242, 0.4); */
+l.Of = styled(l.The)`
+  background: ${g.theme.dan};
   animation-delay: .8s;
   div {
     animation-delay: .9s;
+  }
+`
+
+l.Nation = styled(l.Time)`
+  background: ${g.theme.eli};
+  animation-delay: .9s;
+  div {
+    animation-delay: 1s;
   }
 `

@@ -13,5 +13,6 @@ export default QuickHit = =>
     <l.Shock><div>shock</div></l.Shock>
     <l.The><div>the</div></l.The>
     <l.Conscience><div>conscience</div></l.Conscience>
-    <l.Nation><div>of our nation</div></l.Nation>
+    <l.Of><div>of</div></l.Of>
+    <l.Nation><div>our nation</div></l.Nation>
   </l.Root>

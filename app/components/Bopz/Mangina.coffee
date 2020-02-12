@@ -1,6 +1,7 @@
 import React, {useRef, useEffect, useState, useLayoutEffect, useMemo} from 'react'
 import DelayedReveal from '../DelayedReveal/it.coffee'
 import MailingList from '../MailingList/it.coffee'
+import Player from 'react-player'
 
 import l from './styled'
 import * as c from '../../constants'
@@ -22,25 +23,30 @@ Image = (p) =>
     onLoad={increment}
   />
 
+VideoConfig =
+  file:
+    attributes: {preload: 'auto'}
+  youtube:
+    preload: yes
+    playerVars: {controls: yes, modestbranding: yes, rel: no}
 Video = (p) =>
-  video = useRef()
-  [ready, setReady] = useState no
-  [s, {increment}] = useLoader()
+  [didStop, setDidStop] = useState no
+  [didClickOnce, setDidClickOnce] = useState no
+  {screenWidth} = useScreenSize()
 
-  useEffect (=>
-    if ready and p.inView
-      video.current.play()
-    else video.current.pause()
-    undefined
-  ), [p.inView]
+  videoWidth = useMemo (=> screenWidth * .85), [screenWidth]
+  videoHeight = useMemo (=> (9/16) * videoWidth), [videoWidth]
+  url =
+    if p.name then c.CDN_URL + 'videos/' + p.name + '.mp4'
+    else p.url
 
-  <l.Video src={c.CDN_URL + 'videos/' + p.name + '.mp4'}
-    ref={video} className={p.className}
-    muted autoPlay={p.mode is 'show'} playsInline preload='auto'
-    loop={yes} onCanPlay={=>
-      setReady yes
-      video.current.play() if p.inView
+  <Player url={url} wrapper={l.Video} width={videoWidth} height={videoHeight}
+    playing={p.inView and not didStop} playsinline muted={not didClickOnce}
+    loop={yes} onClick={=>
+      if didClickOnce then setDidStop not didStop
+      else setDidClickOnce yes
     }
+    config={VideoConfig}
   />
 
 export Mangina = (p) =>
@@ -58,12 +64,9 @@ export Trump = (p) =>
   </l.Centered>
 
 export TJ = =>
-  {screenWidth} = useScreenSize()
-  videoWidth = useMemo (=> screenWidth * .85), [screenWidth]
-  videoHeight = useMemo (=> (9/16) * videoWidth), [videoWidth]
-  <l.Centered>
-    <iframe width={videoWidth} height={videoHeight} className='youtubeVid'
-   src="https://www.youtube-nocookie.com/embed/rmXjuF1GLK0?controls=0" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+  [ref, inView] = useInView(threshold: .5)
+  <l.Centered ref={ref}>
+    <Video url='https://www.youtube.com/watch?v=rmXjuF1GLK0' inView={inView} />
   </l.Centered>
 
 Texts = [
@@ -135,7 +138,7 @@ export Revolution = =>
 export Jesus = (p) =>
   [ref, inView] = useInView(threshold: .5)
   <l.Centered ref={ref}>
-    <Video name='jubileeq' className='fullWidth' inView={inView} />
+    <Video name='jubileeq' inView={inView} />
   </l.Centered>
 
 export Mitch = (p) =>
