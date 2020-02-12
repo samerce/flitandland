@@ -11,8 +11,8 @@ import {useSpring} from 'react-spring'
 import {cx} from '../../utils/style'
 import useLoader from './useLoader.coffee'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
+import useToggle from '../../hooks/useToggle.coffee'
 
-FullHeightStyle = width: 'initial', height: '90%'
 Image = (p) =>
   {screenWidth, screenHeight} = useScreenSize()
   height = useMemo (=> screenHeight * .9), [screenHeight]
@@ -28,26 +28,33 @@ VideoConfig =
     attributes: {preload: 'auto'}
   youtube:
     preload: yes
-    playerVars: {controls: yes, modestbranding: yes, rel: no}
+    playerVars: {modestbranding: yes, rel: no, controls: yes}
 Video = (p) =>
-  [didStop, setDidStop] = useState no
+  [playing, togglePlaying] = useToggle yes
   [didClickOnce, setDidClickOnce] = useState no
   {screenWidth} = useScreenSize()
 
-  videoWidth = useMemo (=> screenWidth * .85), [screenWidth]
-  videoHeight = useMemo (=> (9/16) * videoWidth), [videoWidth]
+  size = useMemo (=>
+    width = screenWidth * .85
+    width: width, height: (9/16) * width
+  ), [screenWidth]
   url =
     if p.name then c.CDN_URL + 'videos/' + p.name + '.mp4'
     else p.url
+  onClick = =>
+    if didClickOnce then togglePlaying()
+    else setDidClickOnce yes
 
-  <Player url={url} wrapper={l.Video} width={videoWidth} height={videoHeight}
-    playing={p.inView and not didStop} playsinline muted={not didClickOnce}
-    loop={yes} onClick={=>
-      if didClickOnce then setDidStop not didStop
-      else setDidClickOnce yes
-    }
-    config={VideoConfig}
-  />
+  <l.VideoRoot>
+    <Player url={url} wrapper={l.Video} width={size.width} height={size.height}
+      playing={p.inView and playing} playsinline muted={not didClickOnce}
+      loop={yes} onClick={onClick} controls={didClickOnce}
+      config={VideoConfig}
+    />
+    <l.VideoSoundPrompt className={cx hide: didClickOnce} onClick={onClick}>
+      click for audio
+    </l.VideoSoundPrompt>
+  </l.VideoRoot>
 
 export Mangina = (p) =>
   <l.Centered>
@@ -152,10 +159,18 @@ export Jesus = (p) =>
     <Video name='jubileeq' inView={inView} />
   </l.Centered>
 
+export Heart = =>
+  <l.Centered className='pong'>
+    <l.Pot>
+      <l.zon>hollywood</l.zon> heads to the<l.zon>&nbsp;heartland</l.zon>
+    </l.Pot>
+  </l.Centered>
+
 export Revolution = =>
   <l.Centered>
     <Image name='nonviolent revolution small.png' className='revo' />
   </l.Centered>
+
 
 export Mitch = (p) =>
   <l.Centered>

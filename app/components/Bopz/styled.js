@@ -146,6 +146,23 @@ l.Video = styled.div`
   `}
 `
 
+l.VideoRoot = styled.div`
+  position: relative;
+`
+l.VideoSoundPrompt = styled(g.AbsoluteFlexFillParent)`
+  justify-content: center;
+  align-items: flex-end;
+  padding: 36px;
+  font-size: 18px;
+  font-family: aladin;
+  color: white;
+  opacity: .81;
+  &.hide {
+    display: none;
+    pointer-events: none;
+  }
+`
+
 l.IntroText = animated(styled.div`
   font-size: 27px;
   line-height: 30px;
@@ -258,4 +275,8 @@ l.zon = styled.span`
 
 l.yow = styled.span`
   font-family: slim joe;
+`
+
+l.woo = styled.span`
+  font-family: big john;
 `
