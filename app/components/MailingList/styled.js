@@ -40,7 +40,7 @@ export const Root = styled(g.FlexColumn)`
 
 export const JoinImage = styled.img`
   width: 100%;
-  filter: brightness(100%);
+  filter: invert() brightness(500%);
   transition: all .1s;
   pointer-events: none;
 
@@ -59,7 +59,7 @@ export const JoinImage = styled.img`
     `}
   }
   ${Root}:hover & {
-    filter: hue-rotate(540deg) brightness(120%);
+    filter: brightness(100%);
   }
 `
 
@@ -67,7 +67,7 @@ export const EmailInput = styled.input`
   height: 100%;
   width: 80%;
   text-align: center;
-  color: ${g.theme.susan};
+  color: ${g.theme.ann};
   border: none;
   ${'' /* border-bottom: 1px solid ${g.theme.susanLight}; */}
   background: none;
@@ -84,7 +84,7 @@ export const EmailInput = styled.input`
     ${'' /* border-bottom: 1px solid ${g.theme.susanDark}; */}
   }
   &::placeholder {
-    color: ${g.theme.susan};
+    color: ${g.theme.ben};
   }
   &:-webkit-autofill {
     font-family: aladin;

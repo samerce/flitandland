@@ -71,7 +71,7 @@ export default createGlobalStyle`
       font-size: 18px;
     `}
 
-    background: #C004D9;
+    background: ${Theme.ann};
     /*@keyframes fadeInBg {
       100% {
         background: #C004D9;
@@ -91,7 +91,7 @@ export default createGlobalStyle`
   body {
     font-family: 'crimson pro', Georgia, serif;
     font-weight: 300;
-    color: #C004D9;
+    color: black;
     background: white;
   }
 
@@ -107,7 +107,7 @@ export default createGlobalStyle`
   }
 
   a {
-    color: #f0b1f9;
+    color: ${Theme.ben};
     text-decoration: none;
 
     &:hover {

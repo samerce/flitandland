@@ -16,16 +16,15 @@ l.Centered = animated(styled(g.FlexColumn)`
   min-height: 100%;
   justify-content: center;
   align-items: center;
-  background: inherit;
   position: relative;
-  margin: 27px 0;
+  padding: 27px 0;
 
   &.scrollX {
     overflow-x: scroll;
     justify-content: flex-start;
   }
   &.intro {
-    padding: 12px 27px;
+    padding: 27px;
   }
   &.sneakers {
     height: 100%;
@@ -33,6 +32,14 @@ l.Centered = animated(styled(g.FlexColumn)`
     ${g.screen.medium`
       height: initial;
     `}
+  }
+  &.ping {
+    background: ${g.theme.ann};
+    color: white;
+  }
+  &.pong {
+    background: ${g.theme.ben};
+    color: white;
   }
   .youtubeVid {
     box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
@@ -60,11 +67,10 @@ l.Image = styled.img`
 
   &.fullHeight {
     width: initial;
-    height: 90%;
+    height: ${p => p.fullHeight}px;
   }
   &.revo {
     background: ${g.theme.gradient};
-    filter: invert();
   }
   &.cover {
     margin: 27px 0;
@@ -149,7 +155,7 @@ l.IntroText = animated(styled.div`
   max-width: 794px;
   font-family: aladin;
   background: ${g.theme.gradient};
-  color: white;
+  color: black;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
   border-radius: 108px;
   opacity: 0;
@@ -211,12 +217,12 @@ l.LandingPage = styled(l.Centered)`
 l.Header = styled.div`
   font-size: 54px;
   font-family: big john;
-  color: white;
+  color: black;
   height: 54px;
   line-height: 54px;
   margin: 27px 0;
   text-align: center;
-  text-shadow: 1px 1px black, 2px 2px black, 3px 3px black;
+  ${'' /* text-shadow: 1px 1px white, 2px 2px white, 3px 3px white; */}
 
   ${g.screen.medium`
     font-size: 36px;
@@ -227,4 +233,29 @@ l.Header = styled.div`
   ${g.screen.small`
     font-size: 18px;
   `}
+`
+
+l.Pot = styled.div`
+  font-size: 54px;
+  line-height: 62px;
+  font-family: aladin;
+  margin: 27px;
+  text-align: center;
+
+  ${g.screen.medsmall`
+    font-size: 18px;
+    line-height: 24px;
+  `}
+  ${g.screen.small`
+    font-size: 15px;
+    line-height: 21px;
+  `}
+`
+
+l.zon = styled.span`
+  font-family: znikomit24;
+`
+
+l.yow = styled.span`
+  font-family: slim joe;
 `

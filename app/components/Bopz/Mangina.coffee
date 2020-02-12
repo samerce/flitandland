@@ -14,13 +14,13 @@ import useScreenSize from '../../hooks/useScreenSize.coffee'
 
 FullHeightStyle = width: 'initial', height: '90%'
 Image = (p) =>
-  [s, increment] = useLoader()
-  {screenWidth} = useScreenSize()
+  {screenWidth, screenHeight} = useScreenSize()
+  height = useMemo (=> screenHeight * .9), [screenHeight]
   <l.Image
     {...p}
     src={c.SRC_URL + 'commons/' + p.name}
     className={p.className + (if screenWidth > 1400 then ' fullHeight' else '')}
-    onLoad={increment}
+    fullHeight={height}
   />
 
 VideoConfig =
@@ -54,6 +54,14 @@ export Mangina = (p) =>
     <Image name='mangina.jpg' className='fullHeight' />
   </l.Centered>
 
+export Yes = =>
+  <l.Centered className='pong'>
+    <l.Pot>
+      emancipated lands of<l.zon>&nbsp;yes, and&nbsp;</l.zon>await you—<br/>
+      whole celestial realms outside the absurd world of no.
+    </l.Pot>
+  </l.Centered>
+
 export Trump = (p) =>
   <l.Centered>
     <Image name='trumpf.jpg' />
@@ -61,6 +69,14 @@ export Trump = (p) =>
       Tibor Janosi Mozes
     </a>&nbsp;from&nbsp;
     <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273">Pixabay</a></l.Credit>
+  </l.Centered>
+
+export Waggle = =>
+  <l.Centered className='ping'>
+    <l.Pot>
+      flicker flop ripple dart waggle waving loot—<br/>
+      wonderful hangs everywhere so i sample the fruit.
+    </l.Pot>
   </l.Centered>
 
 export TJ = =>
@@ -78,7 +94,7 @@ Texts = [
 export Intro = (p) =>
   [ref, inView] = useInView(threshold: .5, triggerOnce: yes)
   delay = 0
-  <l.Centered ref={ref} className='intro'>
+  <l.Centered ref={ref} className='intro pong'>
     {Texts.map (text) =>
       delay += text.delay
       <l.IntroText delay={delay} className={cx show: inView}>
@@ -130,15 +146,15 @@ GridCell = (p) =>
 #     </l.Yearbook>
 #   </l.Centered>
 
-export Revolution = =>
-  <l.Centered>
-    <Image name='nonviolent revolution small.png' className='revo' />
-  </l.Centered>
-
 export Jesus = (p) =>
   [ref, inView] = useInView(threshold: .5)
   <l.Centered ref={ref}>
     <Video name='jubileeq' inView={inView} />
+  </l.Centered>
+
+export Revolution = =>
+  <l.Centered>
+    <Image name='nonviolent revolution small.png' className='revo' />
   </l.Centered>
 
 export Mitch = (p) =>
@@ -146,26 +162,63 @@ export Mitch = (p) =>
     <Image name='mitch.jpg' />
   </l.Centered>
 
+export Seed = =>
+  <l.Centered className='pong'>
+    <l.Pot>
+      start with a single<l.zon>&nbsp;flitter</l.zon>. one seed.<br/>
+      an idea. sent out on the thimble of<l.zon>&nbsp;love</l.zon>.<br/>
+      an act of pure<l.zon>&nbsp;creation</l.zon>.
+    </l.Pot>
+  </l.Centered>
+
 export Eymboard = (p) =>
   <l.Centered>
     <Image name='eymboard.jpg' />
-  </l.Centered>
-
-export Sneakers = (p) =>
-  <l.Centered className='sneakers'>
-    <Image name='sneakers.jpg' className='fullHeight' />
   </l.Centered>
 
 export LandingPage = (p) =>
   {screenHeight} = useScreenSize()
   imageHeight = useMemo (=> screenHeight * .8), [screenHeight]
   <l.LandingPage>
-    <l.Header>new book out soon!</l.Header>
+    <l.Header><l.yow>new book</l.yow> out soon!</l.Header>
     <Image name='dragwhitehouse.jpg' className='cover fullHeight'
       height={imageHeight}
     />
     <MailingList />
   </l.LandingPage>
+
+export Whimsy = =>
+  <l.Centered className='pong'>
+    <l.Pot>
+      cling to your<l.zon>&nbsp;whimsy,</l.zon><br/>
+      you are a delightful stimulant; <br/>
+      best deployed as stirring propaganda<br/>
+      that never loses sight of the sun.
+    </l.Pot>
+  </l.Centered>
+
+
+export Sneakers = (p) =>
+  <l.Centered className='sneakers'>
+    <Image name='sneakers.jpg' className='fullHeight' />
+  </l.Centered>
+
+export Reborn = =>
+  <l.Centered className='ping'>
+    <l.Pot>
+      whatever you call it:<br/>
+      <l.zon>get dislodged from the system</l.zon><br/><br/>
+
+      freedom cost me everything<br/>
+      which turns out to be nothing at all<br/><br/>
+
+      waking to yes will kill you—<br/>
+      and then you will be<l.zon>&nbsp;reborn</l.zon><br/><br/>
+
+      i would get rid of everything<br/>
+      <l.yow>and begin again—</l.yow>
+    </l.Pot>
+  </l.Centered>
 
 # Intro.duration = 3000
 # Mangina.duration = 1500

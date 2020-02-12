@@ -14,7 +14,7 @@ l.Root = styled(g.FlexColumn)`
 
 l.Text = styled(g.Flex)`
   font-family: big john;
-  color: white;
+  color: black;
   ${'' /* text-shadow: 1px 1px white, 2px 2px white, 3px 3px white; */}
   justify-content: center;
   flex: 1 0 auto;
@@ -55,6 +55,7 @@ l.Time = styled(l.Text)`
   background: ${g.theme.ann};
   font-family: slim joe;
   padding-top: 12px;
+  color: white;
 `
 
 l.For = styled(l.Text)`
@@ -63,6 +64,7 @@ l.For = styled(l.Text)`
   background: ${g.theme.ben};
   flex: 0 0 54px;
   padding: 0;
+  color: white;
 
   animation-delay: .1s;
   div {
@@ -95,6 +97,7 @@ l.To = styled(l.For)`
   font-family: slim joe;
   background: ${g.theme.eli};
   animation-delay: .4s;
+  color: black;
   div {
     animation-delay: .5s;
   }
@@ -104,6 +107,7 @@ l.To = styled(l.For)`
 `
 
 l.Shock = styled(l.Text)`
+  color: white;
   background: ${g.theme.ann};
   animation-delay: .5s;
   div {
@@ -112,6 +116,7 @@ l.Shock = styled(l.Text)`
 `
 
 l.The = styled(l.For)`
+  color: white;
   font-family: slim joe;
   background: ${g.theme.ben};
   animation-delay: .6s;
@@ -137,6 +142,7 @@ l.Conscience = styled(l.Text)`
 `
 
 l.Of = styled(l.The)`
+  color: black;
   background: ${g.theme.dan};
   animation-delay: .8s;
   div {
@@ -147,6 +153,7 @@ l.Of = styled(l.The)`
 l.Nation = styled(l.Time)`
   background: ${g.theme.eli};
   animation-delay: .9s;
+  color: black;
   div {
     animation-delay: 1s;
   }
