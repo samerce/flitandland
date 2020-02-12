@@ -167,7 +167,6 @@ l.IntroText = animated(styled.div`
   font-size: 27px;
   line-height: 30px;
   flex: 0 0 auto;
-  height: 0;
   width: fit-content;
   max-width: 794px;
   font-family: aladin;
@@ -177,19 +176,17 @@ l.IntroText = animated(styled.div`
   border-radius: 108px;
   opacity: 0;
   transform: scale(.9);
-  padding: 0 36px;
+  padding: 36px 54px;
+  margin: 27px 0;
+
+  ${g.screen.medsmall`
+    padding: 27px 18px;
+  `}
 
   @keyframes reveal {
     100% {
-      height: initial;
-      margin: 27px 0;
-      padding: 36px 54px;
       opacity: 1;
       transform: scale(1);
-
-      ${g.screen.medsmall`
-        padding: 27px 18px;
-      `}
     }
   }
   animation-duration: .5s;
