@@ -1,5 +1,4 @@
 import React, {useRef, useEffect, useState, useLayoutEffect, useMemo} from 'react'
-import DelayedReveal from '../DelayedReveal/it.coffee'
 import MailingList from '../MailingList/it.coffee'
 import Player from 'react-player'
 
@@ -12,6 +11,7 @@ import {cx} from '../../utils/style'
 import useLoader from './useLoader.coffee'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
 import useToggle from '../../hooks/useToggle.coffee'
+import useDelayedReveal from '../../hooks/useDelayedReveal.coffee'
 
 Image = (p) =>
   {screenWidth, screenHeight} = useScreenSize()
@@ -56,26 +56,41 @@ Video = (p) =>
     </l.VideoSoundPrompt>
   </l.VideoRoot>
 
+Tickle = (p) =>
+  [classes] = useDelayedReveal p.inView, p.delay || 4000
+  <l.more href={p.to} target='_blank' className={cx hide: not p.inView, [classes]: yes}>
+    {p.children}
+  </l.more>
+
 export Mangina = (p) =>
-  <l.Centered>
+  [ref, inView] = useInView(threshold: .54)
+  <l.Centered ref={ref}>
     <Image name='mangina.jpg' className='fullHeight' />
+    <Tickle inView={inView}
+      to='https://www.etsy.com/listing/674899618/men-from-mangina-modern-art-nude-print'>
+      get it
+    </Tickle>
   </l.Centered>
 
 export Yes = =>
-  <l.Centered className='pong'>
+  [ref, inView] = useInView(threshold: .54)
+  <l.Centered className='pong' ref={ref}>
     <l.Pot>
       emancipated lands of<l.zon>&nbsp;yes, and&nbsp;</l.zon>await you—<br/>
       whole celestial realms outside the absurd world of no.
     </l.Pot>
+    <Tickle inView={inView} to='https://medium.com/@purpleperson'>
+      more
+    </Tickle>
   </l.Centered>
 
 export Trump = (p) =>
-  <l.Centered>
+  [ref, inView] = useInView(threshold: .54)
+  <l.Centered ref={ref}>
     <Image name='trumpf.jpg' />
-    <l.Credit>Image by&nbsp;<a href="https://pixabay.com/users/tiburi-2851152/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273">
-      Tibor Janosi Mozes
-    </a>&nbsp;from&nbsp;
-    <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273">Pixabay</a></l.Credit>
+    <Tickle inView={inView} to='https://pixabay.com/users/tiburi-2851152/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273'>
+      artist: tibor janosi mozes
+    </Tickle>
   </l.Centered>
 
 export Waggle = =>
@@ -109,49 +124,6 @@ export Intro = (p) =>
       </l.IntroText>
     }
   </l.Centered>
-
-FullCycleDuration = 4500
-BaseDelay = 1000
-GridCell = (p) =>
-  [s, increment] = useLoader()
-  <l.Cell>
-    {p.images.map (image, i) =>
-      <DelayedReveal delay={BaseDelay + i * FullCycleDuration + p.delay}
-        start={p.mode} key={image}>
-        <l.GridImage
-          src={c.SRC_URL + 'commons/' + image + '.jpg'}
-          delay={p.delay}
-          onLoad={increment}
-          show={p.mode}
-          style={{zIndex: (i+1) * 1000}}
-        />
-      </DelayedReveal>
-    }
-  </l.Cell>
-
-# export PaintShow = (p) =>
-#   [ref, inView] = useInView(threshold: .5, triggerOnce: yes)
-#   <l.Centered ref={ref}>
-#     <Video name='paintshowq' inView={inView} className='backdrop' />
-#     <l.Yearbook>
-#       <GridCell images={['dr john', 'sneakers', 'needs work but']}
-#         delay={1000} mode={inView} />
-#       <GridCell images={['yummy boy', 'a meeting', 'gayclub']} delay={2000} mode={inView} />
-#       <GridCell images={['chaquita', 'gee, i jus love him', 'beadme']}
-#         delay={3000} mode={inView} />
-#       <GridCell images={['easter jesus', 'desire-vignette', 'im a man, maam']}
-#         delay={4000} mode={inView} />
-#       <GridCell images={['jojo 3', 'mama y yo', 'love']}
-#         delay={4500} mode={inView} />
-#       <GridCell images={['merman 7', 'grain train', 'jojo']} delay={3500} mode={inView} />
-#       <GridCell images={['rainbow eyes', 'mama y rick', 'flaggot']}
-#         delay={2500} mode={inView} />
-#       <GridCell images={['lost at sea', 'glitterfysh', 'boys being girly boys']}
-#         delay={1500} mode={inView} />
-#       <GridCell images={['sunset babe', 'mama y yo 2', 'delusion']}
-#         delay={500} mode={inView} />
-#     </l.Yearbook>
-#   </l.Centered>
 
 export Jesus = (p) =>
   [ref, inView] = useInView(threshold: .5)

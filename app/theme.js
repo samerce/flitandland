@@ -97,8 +97,8 @@ export default {
   veryDarkTransparent: alpha(0.4, purpleVeryDark),
   gradientSunset:
     'linear-gradient(to bottom, #4771a3 0%, #77779d 40%, #b998b3 65%, #e7a8b1 85%, #fdefb0 100%)',
-  sexyEdge: `0 0 0 1px ${alpha(.5, susan)},
-    0 0 0 2px ${alpha(.5, susanVeryDark)}`,
+  sexyEdge: `0 0 0 1px ${alpha(.2, 'white')},
+    0 0 0 2px ${alpha(.2, 'black')}`,
   pinkGradient: `linear-gradient(
     to bottom, rgba(255, 0, 237, 0.79) 0%, rgba(255, 0, 176, 0.8) 5%, rgba(201, 23, 173, 0.81) 50%, rgba(184, 0, 149, 0.8) 95%, rgba(193, 0, 133, 0.8) 100%
   )`,

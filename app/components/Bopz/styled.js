@@ -277,3 +277,38 @@ l.yow = styled.span`
 l.woo = styled.span`
   font-family: big john;
 `
+
+l.more = styled.a`
+  position: absolute;
+  display: flex;
+  bottom: 27px;
+  left: 50%;
+  padding: 12px 36px;
+  border-radius: 108px;
+  box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowHeavy};
+  background: ${g.theme.ann};
+  color: white;
+  font-size: 22px;
+  font-family: aladin;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+
+  transition: all .5s ${c.Sexy};
+  transform: translate(-50%, 0);
+  &.hide {
+    transform: translate(-50%, 0) scale(.95);
+    filter: blur(5px);
+    opacity: 0;
+    pointer-events: none;
+  }
+  &:hover, &:active {
+    filter: invert();
+  }
+  &:active {
+    transform: translate(-50%, 0) scale(.95);
+    box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowMedium};
+    transition-duration: .2s;
+  }
+`
