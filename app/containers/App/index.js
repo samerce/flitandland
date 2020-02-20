@@ -3,6 +3,7 @@ import React from 'react'
 // import SlackSteward from '../../components/SlackSteward/it.coffee'
 // import Curtain from '../../components/Curtain/it.coffee'
 import QuickHit from '../../components/QuickHit/it.coffee'
+import Checkout from '../../components/Checkout/it.coffee'
 import * as PagesMap from '../../components/Bopz/Mangina.coffee'
 const Pages = Object.values(PagesMap)
 
@@ -19,11 +20,11 @@ import 'intersection-observer'
 export default function App() {
   return (
       <l.Root>
-        {/* <SlackSteward /> */}
         <GlobalStyle />
+        {/* <SlackSteward /> */}
         {/* <Curtain /> */}
         {/*<Chat />*/}
-        <QuickHit />
+        <Checkout />
         {Pages.map((Page) => <Page />)}
       </l.Root>
   )

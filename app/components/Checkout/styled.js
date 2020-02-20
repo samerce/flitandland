@@ -19,12 +19,68 @@ l.Root = styled(g.FlexColumn)`
   .paypal-buttons {
     margin: 15px auto 0;
   }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  #form-container {
+    position: relative;
+    width: 380px;
+    margin: 12px auto;
+    background: white;
+  }
+
+  #sq-card {
+    color: white;
+  }
+
+  .sq-input {
+    color: white;
+  }
+
+  /* Customize the "Pay with Credit Card" button */
+  .button-credit-card {
+    width: 100%;
+    height: 56px;
+    margin-top: 10px;
+    background: #4A90E2;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-transition: background .2s ease-in-out;
+       -moz-transition: background .2s ease-in-out;
+        -ms-transition: background .2s ease-in-out;
+            transition: background .2s ease-in-out;
+  }
+
+  .button-credit-card:hover {
+    background-color: #4281CB;
+  }
 `
 
 l.ShippingRoot = styled(g.FlexColumn)`
 `
 
 l.ShippingInput = styled(g.TextInput)`
+  font-size: 16px;
+  background: white;
+  color: ${g.theme.susanDark};
+  width: 80%;
 `
 
 // l.SizeOptionsRoot = Flex.extend`
@@ -46,7 +102,8 @@ l.PickArtForm = styled(g.FlexColumn)`
 `
 
 l.TotalRoot = styled(g.FlexColumn)`
-  width: 250px;
+  max-width: 500px;
+  width: 100%;
 `
 
 l.Itemization = styled(g.FlexColumn)`
@@ -158,7 +215,7 @@ l.CheckoutWidget = styled(g.Button)`
   opacity: 0;
   z-index: 1;
   box-shadow: ${g.theme.shadowHeavy};
-  background: ${g.theme.tweet};
+  background: white;
   border-color: ${g.theme.tweetLight};
 
   .checkout-offering &, .checkout-closing &, .checkout-thanking & {
@@ -168,7 +225,7 @@ l.CheckoutWidget = styled(g.Button)`
   }
 
   .checkout-closing &, .checkout-closing &:hover {
-    background: ${g.theme.veryDark};
+    background: white;
     border-color: ${g.theme.veryLight};
     width: 150%;
     color: ${g.theme.veryLight};

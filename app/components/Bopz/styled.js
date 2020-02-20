@@ -34,11 +34,11 @@ l.Centered = animated(styled(g.FlexColumn)`
     `}
   }
   &.ping {
-    background: ${g.theme.ann};
+    background: ${g.theme.ben};
     color: white;
   }
   &.pong {
-    background: ${g.theme.ben};
+    background: ${g.theme.dan};
     color: white;
   }
   .youtubeVid {
@@ -225,7 +225,7 @@ l.LandingPage = styled(l.Centered)`
   flex-wrap: wrap;
   justify-content: space-evenly;
   height: initial;
-  margin: 54px 0;
+  padding: 0 0 54px;
 `
 
 l.Header = styled.div`
@@ -253,7 +253,7 @@ l.Pot = styled.div`
   font-size: 54px;
   line-height: 62px;
   font-family: aladin;
-  margin: 27px;
+  padding: 27px;
   text-align: center;
 
   ${g.screen.medsmall`
@@ -264,6 +264,14 @@ l.Pot = styled.div`
     font-size: 15px;
     line-height: 21px;
   `}
+
+  a {
+    color: ${g.theme.cal};
+    text-decoration: underline;
+    &:hover {
+      color: ${g.theme.ben};
+    }
+  }
 `
 
 l.zon = styled.span`

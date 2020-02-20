@@ -6,7 +6,7 @@ export const Root = styled.div`
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  background: ${g.theme.eli};
+  background: ${g.theme.ann};
   ${'' /* background: url("${c.SRC_URL + 'commons/yeshurricane.jpg'}");
   background-size: cover;
   background-attachment: fixed; */}

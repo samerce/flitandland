@@ -97,6 +97,7 @@
     "redux-saga": "1.0.2",
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
+    "square-connect": "^2.20200122.0",
     "styled-components": "4.2.0",
     "use-global-hook": "^0.1.11"
   },

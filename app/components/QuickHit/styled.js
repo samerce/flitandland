@@ -30,13 +30,16 @@ l.Text = styled(g.Flex)`
 
   &, & > div {
     transform: translate(100%);
-    animation-name: in;
     animation-duration: .5s;
     animation-fill-mode: both;
     animation-timing-function: ${c.Sexy};
   }
   & > div {
     animation-delay: .1s;
+  }
+
+  .show &, .show & > div {
+    animation-name: in;
   }
 
   ${g.screen.medium`
@@ -55,7 +58,7 @@ l.Time = styled(l.Text)`
   background: ${g.theme.ann};
   font-family: slim joe;
   padding-top: 12px;
-  color: white;
+  color: black;
 `
 
 l.For = styled(l.Text)`
@@ -64,7 +67,7 @@ l.For = styled(l.Text)`
   background: ${g.theme.ben};
   flex: 0 0 54px;
   padding: 0;
-  color: white;
+  color: black;
 
   animation-delay: .1s;
   div {
@@ -84,6 +87,7 @@ l.Ott = styled(l.Text)`
 `
 
 l.Real = styled(l.Text)`
+  color: white;
   padding: 0;
   font-family: znikomit24;
   background: ${g.theme.dan};
@@ -97,7 +101,7 @@ l.To = styled(l.For)`
   font-family: slim joe;
   background: ${g.theme.eli};
   animation-delay: .4s;
-  color: black;
+  color: white;
   div {
     animation-delay: .5s;
   }
@@ -107,7 +111,7 @@ l.To = styled(l.For)`
 `
 
 l.Shock = styled(l.Text)`
-  color: white;
+  color: black;
   background: ${g.theme.ann};
   animation-delay: .5s;
   div {
@@ -142,7 +146,7 @@ l.Conscience = styled(l.Text)`
 `
 
 l.Of = styled(l.The)`
-  color: black;
+  color: white;
   background: ${g.theme.dan};
   animation-delay: .8s;
   div {
@@ -153,7 +157,7 @@ l.Of = styled(l.The)`
 l.Nation = styled(l.Time)`
   background: ${g.theme.eli};
   animation-delay: .9s;
-  color: black;
+  color: white;
   div {
     animation-delay: 1s;
   }

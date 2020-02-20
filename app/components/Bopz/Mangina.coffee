@@ -1,6 +1,7 @@
 import React, {useRef, useEffect, useState, useLayoutEffect, useMemo} from 'react'
 import MailingList from '../MailingList/it.coffee'
 import Player from 'react-player'
+import QuickHit from '../QuickHit/it.coffee'
 
 import l from './styled'
 import * as c from '../../constants'
@@ -12,6 +13,8 @@ import useLoader from './useLoader.coffee'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
 import useToggle from '../../hooks/useToggle.coffee'
 import useDelayedReveal from '../../hooks/useDelayedReveal.coffee'
+
+BookUrl = 'https://books.google.com/books?id=RxPRDwAAQBAJ&printsec=frontcover#v=twopage&q&f=true'
 
 Image = (p) =>
   {screenWidth, screenHeight} = useScreenSize()
@@ -62,6 +65,27 @@ Tickle = (p) =>
     {p.children}
   </l.more>
 
+export LandingPage = (p) =>
+  {screenHeight} = useScreenSize()
+  imageHeight = useMemo (=> screenHeight * .8), [screenHeight]
+  <l.LandingPage className='ping'>
+    <l.Header><l.yow>new book</l.yow> out now</l.Header>
+    <a href={BookUrl} target='_blank'>
+      <Image name='dragwhitehouse.jpg' className='cover fullHeight'
+        height={imageHeight}
+      />
+    </a>
+    <MailingList />
+  </l.LandingPage>
+
+export Hero = (p) =>
+  <l.Centered className='pong'>
+    <l.Pot>
+      it’s time for over-the-top <l.zon>realness</l.zon><br/>
+      to shock the <l.zon>conscience</l.zon> of our nation.
+    </l.Pot>
+  </l.Centered>
+
 export Mangina = (p) =>
   [ref, inView] = useInView(threshold: .54)
   <l.Centered ref={ref}>
@@ -89,7 +113,7 @@ export Trump = (p) =>
   <l.Centered ref={ref}>
     <Image name='trumpf.jpg' />
     <Tickle inView={inView} to='https://pixabay.com/users/tiburi-2851152/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273'>
-      artist: tibor janosi mozes
+      tibor janosi mozes
     </Tickle>
   </l.Centered>
 
@@ -163,17 +187,6 @@ export Eymboard = (p) =>
     <Image name='eymboard.jpg' />
   </l.Centered>
 
-export LandingPage = (p) =>
-  {screenHeight} = useScreenSize()
-  imageHeight = useMemo (=> screenHeight * .8), [screenHeight]
-  <l.LandingPage>
-    <l.Header><l.yow>new book</l.yow> out soon!</l.Header>
-    <Image name='dragwhitehouse.jpg' className='cover fullHeight'
-      height={imageHeight}
-    />
-    <MailingList />
-  </l.LandingPage>
-
 export Whimsy = =>
   <l.Centered className='pong'>
     <l.Pot>
@@ -203,7 +216,7 @@ export Reborn = =>
       and then you will be<l.zon>&nbsp;reborn</l.zon><br/><br/>
 
       i would get rid of everything<br/>
-      <l.yow>and begin again—</l.yow>
+      <l.yow>and <a href={BookUrl} target='_blank'>begin again</a>—</l.yow>
     </l.Pot>
   </l.Centered>
 
