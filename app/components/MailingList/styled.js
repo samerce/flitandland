@@ -117,13 +117,17 @@ export const JoinButtonRoot = styled.div`
 `
 
 export const JoinButton = styled.input`
-  visibility: hidden;
+  opacity: 0;
   width: 100%;
   height: 100%;
   position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: all;
+  cursor: pointer;
 `
 
 export const JoinButtonImage = styled.img`
   width: 150px;
-
+  pointer-events: none;
 `
