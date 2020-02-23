@@ -25,6 +25,10 @@ l.Root = styled(g.Flex)`
   animation-duration: .1s;
   animation-fill-mode: both;
   animation-delay: 10s;
+
+  ${g.screen.medium`
+    transform: rotate(45deg) scale(2);
+  `}
 `
 
 l.Fold = styled.div`

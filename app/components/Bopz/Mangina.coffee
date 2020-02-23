@@ -24,7 +24,10 @@ Image = (p) =>
   <l.Image
     {...p}
     src={c.SRC_URL + 'commons/' + p.name}
-    className={p.className + (if screenWidth > 1400 then ' fullHeight' else '')}
+    className={cx
+      [p.className]: yes,
+      portrait: screenWidth < screenHeight,
+    }
     fullHeight={height}
   />
 

@@ -41,7 +41,8 @@ l.Centered = animated(styled(g.FlexColumn)`
     color: white;
   }
   &.bottom {
-    min-height: 50%;
+    min-height: initial;
+    padding-bottom: 50%;
 
     i {
       display: flex;
@@ -59,6 +60,11 @@ l.Centered = animated(styled(g.FlexColumn)`
     box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
       ${g.theme.prettyFrame};
     border-radius: 5px;
+  }
+
+  a {
+    justify-content: center;
+    align-items: center;
   }
 `)
 
@@ -90,7 +96,7 @@ l.Image = styled.img`
     margin: 27px 0;
     height: ${p => p.height}px;
   }
-  ${g.screen.medium`
+  ${g.screen.medsmall`
     &, &.fullHeight {
       width: 85%;
       height: initial;
