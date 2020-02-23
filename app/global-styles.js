@@ -107,6 +107,7 @@ export default createGlobalStyle`
   }
 
   a {
+    display: flex;
     color: ${Theme.ben};
     text-decoration: none;
 

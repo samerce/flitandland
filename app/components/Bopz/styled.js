@@ -17,7 +17,6 @@ l.Centered = animated(styled(g.FlexColumn)`
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 27px 0;
 
   &.scrollX {
     overflow-x: scroll;
@@ -40,6 +39,21 @@ l.Centered = animated(styled(g.FlexColumn)`
   &.pong {
     background: ${g.theme.dan};
     color: white;
+  }
+  &.bottom {
+    min-height: 50%;
+
+    i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 54px;
+      margin: 9px;
+      color: ${g.theme.eli};
+      &:hover {
+        filter: invert();
+      }
+    }
   }
   .youtubeVid {
     box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
@@ -225,16 +239,24 @@ l.LandingPage = styled(l.Centered)`
   flex-wrap: wrap;
   justify-content: space-evenly;
   height: initial;
-  padding: 0 0 54px;
 `
 
-l.Header = styled.div`
+const CenteredFlex = styled(g.Flex)`
+  align-items: center;
+  justify-content: center;
+`
+
+l.Header = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 54px;
   font-family: big john;
-  color: black;
-  height: 54px;
-  line-height: 54px;
-  margin: 27px 0;
+  color: white;
+  background: black;
+  width: 100%;
+  height: 72px;
+  line-height: 72px;
   text-align: center;
   ${'' /* text-shadow: 1px 1px white, 2px 2px white, 3px 3px white; */}
 
@@ -255,6 +277,10 @@ l.Pot = styled.div`
   font-family: aladin;
   padding: 27px;
   text-align: center;
+  background: ${g.theme.dan};
+  box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
+  border-radius: 5px;
+  color: white;
 
   ${g.screen.medsmall`
     font-size: 18px;
@@ -271,6 +297,13 @@ l.Pot = styled.div`
     &:hover {
       color: ${g.theme.ben};
     }
+  }
+
+  &.titleCard {
+    font-family: big john;
+    background: none;
+    box-shadow: none;
+    color: black;
   }
 `
 
@@ -319,4 +352,97 @@ l.more = styled.a`
     box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowMedium};
     transition-duration: .2s;
   }
+  &.buy {
+    font-size: 36px;
+    line-height: 54px;
+    text-align: center;
+    bottom: 30%;
+    left: 55%;
+    padding: 36px;
+    color: black;
+    background: #fffc00;
+  }
+`
+
+l.CardRoot = styled(g.AbsoluteFlexFillParent)`
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  & > * {
+    transform: rotate(${p => p.rotate * 6}deg)
+  }
+
+  &.backstage {
+    transform: translate(0, 18px) scale(.95);
+    opacity: 0;
+  }
+  &.front {
+    pointer-events: all;
+  }
+
+  .intro & {
+    transform: translate(100%, 0);
+
+    &.enter {
+      @keyframes flyIn {
+        100% {
+          transform: none;
+        }
+      }
+      animation-name: flyIn;
+      animation-duration: .5s;
+      animation-fill-mode: both;
+      animation-timing-function: ${c.Sexy};
+      animation-delay: .5s;
+    }
+  }
+`
+
+l.Title = styled(CenteredFlex)`
+  flex: 0 0 100px;
+  width: 100%;
+  font-size: 54px;
+  font-family: big john;
+  background: transparent;
+`
+
+l.Carousel = styled(CenteredFlex)`
+  flex: 0 0 ${p => p.height}px;
+  height: ${p => p.height}px;
+  width: 100%;
+  position: relative;
+
+  & ${l.Image} {
+    height: 90%;
+    width: initial;
+  }
+`
+
+l.ActionZone = styled(CenteredFlex)`
+  flex-direction: column;
+  flex: 0 0 120px;
+  width: 100%;
+  color: white;
+  cursor: pointer;
+`
+
+l.BigAction = styled(CenteredFlex)`
+  width: 100%;
+  flex: 0 0 70px;
+  font-size: 36px;
+  background: ${g.theme.dan};
+  font-family: aladin;
+`
+
+l.TinyActions = styled(CenteredFlex)`
+  width: 100%;
+  flex: 0 0 50px;
+  background: ${g.theme.eli};
+`
+
+l.TinyAction = styled(CenteredFlex)`
+  height: 50px;
+  flex: 1 0 50px;
+  margin: 0 9px;
 `

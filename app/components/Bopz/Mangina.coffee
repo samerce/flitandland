@@ -14,7 +14,9 @@ import useScreenSize from '../../hooks/useScreenSize.coffee'
 import useToggle from '../../hooks/useToggle.coffee'
 import useDelayedReveal from '../../hooks/useDelayedReveal.coffee'
 
-BookUrl = 'https://books.google.com/books?id=RxPRDwAAQBAJ&printsec=frontcover#v=twopage&q&f=true'
+import {openInNewTab} from '../../utils/nav'
+
+BookUrl = 'https://books.google.com/books?id=RxPRDwAAQBAJ&printsec=frontcover#v=twopage&q&f=false'
 
 Image = (p) =>
   {screenWidth, screenHeight} = useScreenSize()
@@ -61,164 +63,246 @@ Video = (p) =>
 
 Tickle = (p) =>
   [classes] = useDelayedReveal p.inView, p.delay || 4000
-  <l.more href={p.to} target='_blank' className={cx hide: not p.inView, [classes]: yes}>
+  <l.more href={p.to} target='_blank' className={cx
+    hide: not p.inView, [classes]: yes, [p.className]: yes
+  }>
     {p.children}
   </l.more>
 
+Carousel = (p) =>
+  [index, setIndex] = useState 0
+  [timer, setTimer] = useState()
+  numCards = p.cards.length
+  {screenHeight} = useScreenSize()
+  carouselHeight = useMemo (=> screenHeight - 220), [screenHeight]
+
+  useLayoutEffect (=>
+    setTimer every 1500, =>
+      setIndex (i) => i + 1
+      if index >= numCards - 1 then timer.clear()
+    => timer?.clear()
+  ), []
+
+  <l.Carousel height={carouselHeight} className='intro'>
+    {p.cards.map (card, thisIndex) =>
+      <l.CardRoot className={cx enter: (thisIndex <= index)}
+        rotate={Math.random() * (-1 * (thisIndex % 3))}>
+        {card}
+      </l.CardRoot>
+    }
+  </l.Carousel>
+
+# <l.Pot className='titleCard'>
+#   drag queen <l.yow>in the</l.yow> white house
+# </l.Pot>,
+BookLure = (p) =>
+  <l.Centered>
+    <l.Title>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</l.Title>
+    <Carousel cards={[
+      <Image name='back cover sd.jpg' />,
+      <l.Pot>
+        it’s time for over-the-top <l.zon>realness</l.zon><br/>
+        to shock the <l.zon>conscience</l.zon> of our nation
+      </l.Pot>,
+      <Image name='dragwhitehouse.jpg' className='cover fullHeight' />,
+    ]} />
+    <l.ActionZone>
+      <l.BigAction>skip intro »
+      </l.BigAction>
+      <l.TinyActions>
+        <l.TinyAction><i className='fab fa-medium-m' /></l.TinyAction>
+      </l.TinyActions>
+    </l.ActionZone>
+  </l.Centered>
+
 export LandingPage = (p) =>
+  [ref, inView] = useInView(threshold: .54)
   {screenHeight} = useScreenSize()
   imageHeight = useMemo (=> screenHeight * .8), [screenHeight]
-  <l.LandingPage className='ping'>
-    <l.Header><l.yow>new book</l.yow> out now</l.Header>
+  <l.LandingPage ref={ref}>
     <a href={BookUrl} target='_blank'>
-      <Image name='dragwhitehouse.jpg' className='cover fullHeight'
+      <Image name='dqitwh front cover mq.jpg' className='cover fullHeight'
         height={imageHeight}
       />
     </a>
-    <MailingList />
+    <l.Header href={BookUrl} target='_blank'>
+      <l.yow>new book</l.yow><span>get it now</span>
+    </l.Header>
   </l.LandingPage>
 
-export Hero = (p) =>
-  <l.Centered className='pong'>
-    <l.Pot>
-      it’s time for over-the-top <l.zon>realness</l.zon><br/>
-      to shock the <l.zon>conscience</l.zon> of our nation.
-    </l.Pot>
-  </l.Centered>
-
-export Mangina = (p) =>
+export BookMangina = (p) =>
   [ref, inView] = useInView(threshold: .54)
   <l.Centered ref={ref}>
-    <Image name='mangina.jpg' className='fullHeight' />
-    <Tickle inView={inView}
-      to='https://www.etsy.com/listing/674899618/men-from-mangina-modern-art-nude-print'>
-      get it
-    </Tickle>
+    <a href={BookUrl} target='_blank'>
+      <Image name='back cover sd.jpg' className='fullHeight'/>
+    </a>
   </l.Centered>
 
-export Yes = =>
-  [ref, inView] = useInView(threshold: .54)
-  <l.Centered className='pong' ref={ref}>
-    <l.Pot>
-      emancipated lands of<l.zon>&nbsp;yes, and&nbsp;</l.zon>await you—<br/>
-      whole celestial realms outside the absurd world of no.
-    </l.Pot>
-    <Tickle inView={inView} to='https://medium.com/@purpleperson'>
-      more
-    </Tickle>
-  </l.Centered>
-
-export Trump = (p) =>
-  [ref, inView] = useInView(threshold: .54)
-  <l.Centered ref={ref}>
-    <Image name='trumpf.jpg' />
-    <Tickle inView={inView} to='https://pixabay.com/users/tiburi-2851152/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273'>
-      tibor janosi mozes
-    </Tickle>
-  </l.Centered>
-
-export Waggle = =>
-  <l.Centered className='ping'>
-    <l.Pot>
-      flicker flop ripple dart waggle waving loot—<br/>
-      wonderful hangs everywhere so i sample the fruit.
-    </l.Pot>
-  </l.Centered>
-
-export TJ = =>
-  [ref, inView] = useInView(threshold: .5)
-  <l.Centered ref={ref}>
-    <Video url='https://www.youtube.com/watch?v=rmXjuF1GLK0' inView={inView} />
-  </l.Centered>
-
-Texts = [
-  {content: 'if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.', delay: 0},
-  {content: 'that’s $365 billion a year, one quarter at a time.', delay: 5000},
-  # {content: 'power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets.', duration: 1000},
-  # {content: 'it’s the lie of our lifetime.', duration: 1000},
-]
-export Intro = (p) =>
-  [ref, inView] = useInView(threshold: .5, triggerOnce: yes)
-  delay = 0
-  <l.Centered ref={ref} className='intro pong'>
-    {Texts.map (text) =>
-      delay += text.delay
-      <l.IntroText delay={delay} className={cx show: inView}>
-        {text.content}
-      </l.IntroText>
-    }
-  </l.Centered>
-
-export Jesus = (p) =>
-  [ref, inView] = useInView(threshold: .5)
-  <l.Centered ref={ref}>
-    <Video name='jubileeq' inView={inView} />
-  </l.Centered>
-
-export Heart = =>
-  <l.Centered className='pong'>
-    <l.Pot>
-      <l.zon>hollywood</l.zon> heads to the<l.zon>&nbsp;heartland</l.zon>
-    </l.Pot>
-  </l.Centered>
-
-export Revolution = =>
+export FirstPage = =>
   <l.Centered>
-    <Image name='nonviolent revolution small.png' className='revo' />
+    <a href={BookUrl} target='_blank'>
+      <Image name='firstpage.jpg' className='fullHeight' />
+    </a>
   </l.Centered>
 
-
-export Mitch = (p) =>
+export VoteThemOut = =>
   <l.Centered>
-    <Image name='mitch.jpg' />
+    <a href={BookUrl} target='_blank'>
+      <Image name='activist mq.jpg' />
+    </a>
   </l.Centered>
 
-export Seed = =>
-  <l.Centered className='pong'>
-    <l.Pot>
-      start with a single<l.zon>&nbsp;flitter</l.zon>. one seed.<br/>
-      an idea. sent out on the thimble of<l.zon>&nbsp;love</l.zon>.<br/>
-      an act of pure<l.zon>&nbsp;creation</l.zon>.
-    </l.Pot>
-  </l.Centered>
-
-export Eymboard = (p) =>
+export Queers = =>
   <l.Centered>
-    <Image name='eymboard.jpg' />
+    <a href={BookUrl} target='_blank'>
+      <Image name='fablovezest mq.jpg' />
+    </a>
   </l.Centered>
 
-export Whimsy = =>
-  <l.Centered className='pong'>
-    <l.Pot>
-      cling to your<l.zon>&nbsp;whimsy,</l.zon><br/>
-      you are a delightful stimulant; <br/>
-      best deployed as stirring propaganda<br/>
-      that never loses sight of the sun.
-    </l.Pot>
+export Bottom = =>
+  <l.Centered className='bottom'>
+    <a href='https://www.instagram.com/expressyourmess' target='_blank'>
+      <i className='fab fa-instagram' />
+    </a>
+    <MailingList />
+    <a href='https://www.twitter.com/expressyourmess' target='_blank'>
+      <i className='fab fa-twitter' />
+    </a>
   </l.Centered>
 
+# export Mangina = (p) =>
+#   [ref, inView] = useInView(threshold: .54)
+#   <l.Centered ref={ref}>
+#     <Image name='mangina.jpg' className='fullHeight' />
+#     <Tickle inView={inView}
+#       to='https://www.etsy.com/listing/674899618/men-from-mangina-modern-art-nude-print'>
+#       get it
+#     </Tickle>
+#   </l.Centered>
 
-export Sneakers = (p) =>
-  <l.Centered className='sneakers'>
-    <Image name='sneakers.jpg' className='fullHeight' />
-  </l.Centered>
-
-export Reborn = =>
-  <l.Centered className='ping'>
-    <l.Pot>
-      whatever you call it:<br/>
-      <l.zon>get dislodged from the system</l.zon><br/><br/>
-
-      freedom cost me everything<br/>
-      which turns out to be nothing at all<br/><br/>
-
-      waking to yes will kill you—<br/>
-      and then you will be<l.zon>&nbsp;reborn</l.zon><br/><br/>
-
-      i would get rid of everything<br/>
-      <l.yow>and <a href={BookUrl} target='_blank'>begin again</a>—</l.yow>
-    </l.Pot>
-  </l.Centered>
+# export Yes = =>
+#   [ref, inView] = useInView(threshold: .54)
+#   <l.Centered className='pong' ref={ref}>
+#     <l.Pot>
+#       emancipated lands of<l.zon>&nbsp;yes, and&nbsp;</l.zon>await you—<br/>
+#       whole celestial realms outside the absurd world of no.
+#     </l.Pot>
+#     <Tickle inView={inView} to='https://medium.com/@purpleperson'>
+#       more
+#     </Tickle>
+#   </l.Centered>
+#
+# export Trump = (p) =>
+#   [ref, inView] = useInView(threshold: .54)
+#   <l.Centered ref={ref}>
+#     <Image name='trumpf.jpg' />
+#     <Tickle inView={inView} to='https://pixabay.com/users/tiburi-2851152/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1915273'>
+#       tibor janosi mozes
+#     </Tickle>
+#   </l.Centered>
+#
+# export Waggle = =>
+#   <l.Centered className='ping'>
+#     <l.Pot>
+#       flicker flop ripple dart waggle waving loot—<br/>
+#       wonderful hangs everywhere so i sample the fruit.
+#     </l.Pot>
+#   </l.Centered>
+#
+# export TJ = =>
+#   [ref, inView] = useInView(threshold: .5)
+#   <l.Centered ref={ref}>
+#     <Video url='https://www.youtube.com/watch?v=rmXjuF1GLK0' inView={inView} />
+#   </l.Centered>
+#
+# Texts = [
+#   {content: 'if 100 million of us put four quarters in our pocket every single day and gave them out to the first four people that wanted them, then $100 million a day would circulate into the hands of those who need a break.', delay: 0},
+#   {content: 'that’s $365 billion a year, one quarter at a time.', delay: 5000},
+#   # {content: 'power will tell you it’s hopeless. that the problems are too great to contemplate. that this is as good as it gets.', duration: 1000},
+#   # {content: 'it’s the lie of our lifetime.', duration: 1000},
+# ]
+# export Intro = (p) =>
+#   [ref, inView] = useInView(threshold: .5, triggerOnce: yes)
+#   delay = 0
+#   <l.Centered ref={ref} className='intro pong'>
+#     {Texts.map (text) =>
+#       delay += text.delay
+#       <l.IntroText delay={delay} className={cx show: inView}>
+#         {text.content}
+#       </l.IntroText>
+#     }
+#   </l.Centered>
+#
+# export Jesus = (p) =>
+#   [ref, inView] = useInView(threshold: .5)
+#   <l.Centered ref={ref}>
+#     <Video name='jubileeq' inView={inView} />
+#   </l.Centered>
+#
+# export Heart = =>
+#   <l.Centered className='pong'>
+#     <l.Pot>
+#       <l.zon>hollywood</l.zon> heads to the<l.zon>&nbsp;heartland</l.zon>
+#     </l.Pot>
+#   </l.Centered>
+#
+# export Revolution = =>
+#   <l.Centered>
+#     <Image name='nonviolent revolution small.png' className='revo' />
+#   </l.Centered>
+#
+#
+# export Mitch = (p) =>
+#   <l.Centered>
+#     <Image name='mitch.jpg' />
+#   </l.Centered>
+#
+# export Seed = =>
+#   <l.Centered className='pong'>
+#     <l.Pot>
+#       start with a single<l.zon>&nbsp;flitter</l.zon>. one seed.<br/>
+#       an idea. sent out on the thimble of<l.zon>&nbsp;love</l.zon>.<br/>
+#       an act of pure<l.zon>&nbsp;creation</l.zon>.
+#     </l.Pot>
+#   </l.Centered>
+#
+# export Eymboard = (p) =>
+#   <l.Centered>
+#     <Image name='eymboard.jpg' />
+#   </l.Centered>
+#
+# export Whimsy = =>
+#   <l.Centered className='pong'>
+#     <l.Pot>
+#       cling to your<l.zon>&nbsp;whimsy,</l.zon><br/>
+#       you are a delightful stimulant; <br/>
+#       best deployed as stirring propaganda<br/>
+#       that never loses sight of the sun.
+#     </l.Pot>
+#   </l.Centered>
+#
+#
+# export Sneakers = (p) =>
+#   <l.Centered className='sneakers'>
+#     <Image name='sneakers.jpg' className='fullHeight' />
+#   </l.Centered>
+#
+# export Reborn = =>
+#   <l.Centered className='ping'>
+#     <l.Pot>
+#       whatever you call it:<br/>
+#       <l.zon>get dislodged from the system</l.zon><br/><br/>
+#
+#       freedom cost me everything<br/>
+#       which turns out to be nothing at all<br/><br/>
+#
+#       waking to yes will kill you—<br/>
+#       and then you will be<l.zon>&nbsp;reborn</l.zon><br/><br/>
+#
+#       i would get rid of everything<br/>
+#       <l.yow>and <a href={BookUrl} target='_blank'>begin again</a>—</l.yow>
+#     </l.Pot>
+#   </l.Centered>
 
 # Intro.duration = 3000
 # Mangina.duration = 1500

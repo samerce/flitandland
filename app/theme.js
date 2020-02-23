@@ -19,21 +19,21 @@ const susanDark = '#7a0b67'
 const susanVeryDark = darken(.2, susanDark)
 const susanLight = lighten(.1, susan)
 
-// const ann = '#148E99'
-// const ben = '#FF863E'
-// const cal = '#FF5037'
-// const dan = '#F0224F'
-// const eli = '#D10079'
+const ann = '#148E99'
+const ben = '#FF863E'
+const cal = '#FF5037'
+const dan = '#F0224F'
+const eli = '#D10079'
 // const ann = '#0084A9'
 // const ben = '#4588A7'
 // const cal = '#D2EDF7'
 // const dan = '#EEF1FF'
 // const eli = '#F1FFFF'
-const ann = '#9B06D6'
-const ben = 'white'
-const cal = '#9B06D6'
-const dan = '#05040D'
-const eli = '#9B06D6'
+// const ann = '#9B06D6'
+// const ben = 'white'
+// const cal = '#9B06D6'
+// const dan = '#05040D'
+// const eli = '#9B06D6'
 
 export const getRandomColor = () => {
   const rand = Math.random();

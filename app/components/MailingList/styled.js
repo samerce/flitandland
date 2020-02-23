@@ -40,7 +40,7 @@ export const Root = styled(g.FlexColumn)`
 
 export const JoinImage = styled.img`
   width: 100%;
-  filter: invert() brightness(500%);
+  filter: brightness(500%);
   transition: all .1s;
   pointer-events: none;
 

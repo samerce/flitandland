@@ -1,7 +1,7 @@
 import React from 'react'
 // import Chat from '../../components/Chat/it.coffee'
 // import SlackSteward from '../../components/SlackSteward/it.coffee'
-// import Curtain from '../../components/Curtain/it.coffee'
+import Curtain from '../../components/Curtain/it.coffee'
 import QuickHit from '../../components/QuickHit/it.coffee'
 import Checkout from '../../components/Checkout/it.coffee'
 import * as PagesMap from '../../components/Bopz/Mangina.coffee'
@@ -22,9 +22,9 @@ export default function App() {
       <l.Root>
         <GlobalStyle />
         {/* <SlackSteward /> */}
-        {/* <Curtain /> */}
-        {/*<Chat />*/}
-        <Checkout />
+        <Curtain />
+        {/* <Chat /> */}
+        {/* <Checkout /> */}
         {Pages.map((Page) => <Page />)}
       </l.Root>
   )
