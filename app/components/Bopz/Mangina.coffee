@@ -73,8 +73,8 @@ Tickle = (p) =>
     {p.children}
   </l.more>
 
-from = (i, y = -1000) => x: 0, y: y
-to = (i) => x: 0, y: i * -4
+from = (i, x = 0) => x: x, y: 0
+to = (i, delay = 0) => x: 0, y: 0, delay: delay
 
 Deck = (p) =>
   [topIndex, setTopIndex] = useState 0
@@ -107,8 +107,8 @@ Deck = (p) =>
         x: 0
 
   [props, set] = useSprings p.cards.length, (i) => {
-    from: from(i)
-    ...to(i),
+    from: from(i, screenWidth)
+    ...to(i, (numCards - i - 1) * 500 + 2000),
   }
   withDrag = useDrag ({
     args: [index], down, movement: [mx, my], direction: [xDir, yDir], velocity, touches
@@ -120,7 +120,7 @@ Deck = (p) =>
       trigger = yes
       after 200, =>
         advanceIndex()
-        set (i) => from(i, 0) if index is i
+        set (i) => from(i) if index is i
 
     set (i) =>
       return unless index is i
@@ -166,12 +166,12 @@ Deck = (p) =>
 
 BookLureCards = [
   [
-    <Image name='back cover sd.jpg' />,
-    'sample our new book',
-    BookUrl
+    <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' />,
+    'get the new book',
+    => # open pyp checkout
   ],
   [
-    <l.Pot>
+    <l.Pot className='shock'>
       it’s time for over-the-top <l.zon>realness</l.zon><br/>
       to shock the <l.zon>conscience</l.zon> of our nation
     </l.Pot>,
@@ -179,10 +179,22 @@ BookLureCards = [
     c.InstagramUrl
   ],
   [
-    <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' />,
-    'get the new book',
-    => # open pyp checkout
+    <Image name='firstpage.jpg' className='fullHeight' />,
+    'sample our new book',
+    BookUrl,
   ]
+  [
+    <Image name='back cover sd.jpg' />,
+    'sample our new book',
+    BookUrl
+  ],
+  [
+    <l.Pot>
+      <MailingList />
+    </l.Pot>,
+    'what is this?',
+    c.MEDIUM_URL
+  ],
 ]
 export BookLure = (p) =>
   <l.Centered>

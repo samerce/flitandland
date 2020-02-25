@@ -305,6 +305,11 @@ l.Pot = styled.div`
     }
   }
 
+  &.shock {
+    align-self: flex-end;
+    margin-bottom: 108px;
+  }
+
   &.titleCard {
     font-family: big john;
     background: none;

@@ -6,8 +6,8 @@ export const Root = styled(g.FlexColumn)`
   position: relative;
   ${'' /* position: fixed;
   bottom: 0; */}
-  margin: 20px 0;
-  width: 50%;
+  margin: 20px auto;
+  width: 100%;
   max-width: 540px;
   ${'' /* background: linear-gradient(
     30deg, ${g.theme.susan} 0%, ${g.theme.susanLight} 100%
