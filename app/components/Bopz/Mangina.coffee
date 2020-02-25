@@ -80,8 +80,31 @@ Deck = (p) =>
   [topIndex, setTopIndex] = useState 0
   [spins] = useState => p.cards.map => Math.random() * 6 * (if Math.random() > .5 then -1 else 1)
   {screenWidth, screenHeight} = useScreenSize()
-  deckHeight = useMemo (=> screenHeight - 220), [screenHeight]
+  buttonAction = p.cards[topIndex][2]
+  deckHeight = useMemo (=> screenHeight - 100), [screenHeight]
   numCards = p.cards.length
+  advanceIndex = => setTopIndex (i) => (i + 1) % numCards
+  reduceIndex = => setTopIndex (i) => ((i - 1) + numCards) % numCards
+  goToNext = =>
+    currentTopIndex = +topIndex
+    set (i) =>
+      return unless i is currentTopIndex
+      x: screenWidth * 1.3
+    after 200, =>
+      advanceIndex()
+      set (i) =>
+        return unless i is currentTopIndex
+        x: 0
+  goToPrev = =>
+    prevIndex = ((topIndex - 1) + numCards) % numCards
+    set (i) =>
+      return unless i is prevIndex
+      x: screenWidth * -1.3
+    after 200, =>
+      reduceIndex()
+      set (i) =>
+        return unless i is prevIndex
+        x: 0
 
   [props, set] = useSprings p.cards.length, (i) => {
     from: from(i)
@@ -95,8 +118,8 @@ Deck = (p) =>
     trigger = no
     if not down and velocity > 0.2
       trigger = yes
-      after 500, =>
-        setTopIndex (i) => (i + 1) % numCards
+      after 200, =>
+        advanceIndex()
         set (i) => from(i, 0) if index is i
 
     set (i) =>
@@ -105,41 +128,66 @@ Deck = (p) =>
       y: if trigger then screenHeight * 1.3 * yDir * velocity else if down then my else 0
       config:
         friction: 50
-        tension: if down then 200 else if trigger then 200 else 500
+        tension: 300 #if down then 200 else if trigger then 200 else 500
 
   <l.Deck height={deckHeight}>
-    {props.map ({x, y, rot, scale}, thisIndex) =>
-      isTop = topIndex is thisIndex
-      zIndex =
-        if isTop then numCards
-        else (numCards - (thisIndex - topIndex)) % numCards
-      <l.Card key={thisIndex} spin={spins[thisIndex]} {...withDrag(thisIndex)}
-        style={{x, y, zIndex, pointerEvents: if isTop then 'all' else 'none'}}>
-        {p.cards[thisIndex]}
-      </l.Card>
-    }
+    <l.CardBox>
+      {props.map ({x, y, rot, scale}, thisIndex) =>
+        isTop = topIndex is thisIndex
+        zIndex =
+          if isTop then numCards
+          else (numCards - (thisIndex - topIndex)) % numCards
+        <l.Card key={thisIndex} spin={spins[thisIndex]} {...withDrag(thisIndex)}
+          style={{x, y, zIndex, pointerEvents: if isTop then 'all' else 'none'}}>
+          {p.cards[thisIndex][0]}
+        </l.Card>
+      }
+    </l.CardBox>
+    <l.ActionZone>
+      <l.TinyAction onClick={goToPrev}>«</l.TinyAction>
+      {if typeof buttonAction is 'function'
+        <l.BigAction onClick={buttonAction}>
+          {p.cards[topIndex][1]}
+        </l.BigAction>
+      else
+        <l.BigAction>
+          <a href={buttonAction} target='_blank'>
+            {p.cards[topIndex][1]}
+          </a>
+        </l.BigAction>
+      }
+      <l.TinyAction onClick={goToNext}>»</l.TinyAction>
+    </l.ActionZone>
   </l.Deck>
 
 # <l.Pot className='titleCard'>
 #   drag queen <l.yow>in the</l.yow> white house
 # </l.Pot>,
+
+BookLureCards = [
+  [
+    <Image name='back cover sd.jpg' />,
+    'sample our new book',
+    BookUrl
+  ],
+  [
+    <l.Pot>
+      it’s time for over-the-top <l.zon>realness</l.zon><br/>
+      to shock the <l.zon>conscience</l.zon> of our nation
+    </l.Pot>,
+    'yes!',
+    c.InstagramUrl
+  ],
+  [
+    <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' />,
+    'get the new book',
+    => # open pyp checkout
+  ]
+]
 export BookLure = (p) =>
   <l.Centered>
     <l.Title>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</l.Title>
-    <Deck cards={[
-      <Image name='back cover sd.jpg' />,
-      <l.Pot>
-        it’s time for over-the-top <l.zon>realness</l.zon><br/>
-        to shock the <l.zon>conscience</l.zon> of our nation
-      </l.Pot>,
-      <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' />,
-    ]} />
-    <l.ActionZone>
-      <l.BigAction>get book »</l.BigAction>
-      <l.TinyActions>
-        <l.TinyAction><i className='fab fa-medium-m' /></l.TinyAction>
-      </l.TinyActions>
-    </l.ActionZone>
+    <Deck cards={BookLureCards} />
   </l.Centered>
 
 export LandingPage = (p) =>

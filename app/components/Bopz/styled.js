@@ -371,6 +371,7 @@ l.more = styled.a`
 `
 
 l.Deck = styled(CenteredFlex)`
+  flex-direction: column;
   flex: 0 0 ${p => p.height}px;
   height: ${p => p.height}px;
   width: 100%;
@@ -382,10 +383,18 @@ l.Deck = styled(CenteredFlex)`
   }
 `
 
+l.CardBox = styled(CenteredFlex)`
+  height: calc(100% - 120px);
+  flex: 1 0 auto;
+  width: 100%;
+  position: relative;
+`
+
 l.Card = animated(styled.div`
+  flex: 0 0 auto;
+  height: 100%;
   display: flex;
   position: absolute;
-  height: 100%;
   align-items: center;
   justify-content: center;
   user-select: none;
@@ -407,33 +416,41 @@ l.Title = styled(CenteredFlex)`
   width: 100%;
   font-size: 54px;
   font-family: big john;
-  background: transparent;
+  background: ${g.theme.eli};
+  color: white;
 `
 
 l.ActionZone = styled(CenteredFlex)`
-  flex-direction: column;
   flex: 0 0 120px;
   width: 100%;
   color: white;
-  cursor: pointer;
+  padding: 0 12px;
+  align-self: flex-end;
 `
 
 l.BigAction = styled(CenteredFlex)`
-  width: 100%;
-  flex: 0 0 70px;
+  height: 80px;
+  flex: 0 0 50%;
   font-size: 36px;
-  background: ${g.theme.dan};
-  font-family: aladin;
-`
-
-l.TinyActions = styled(CenteredFlex)`
-  width: 100%;
-  flex: 0 0 50px;
   background: ${g.theme.eli};
+  box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
+  font-family: aladin;
+  cursor: pointer;
+  margin: 0 12px;
+  border-radius: 54px;
+  color: white;
+  position: relative;
+  a {
+    width: 100%;
+    height: 100%;
+    color: white;
+  }
 `
 
-l.TinyAction = styled(CenteredFlex)`
-  height: 50px;
-  flex: 1 0 50px;
-  margin: 0 9px;
+l.TinyAction = styled(l.BigAction)`
+  flex: 0 0 80px;
+  padding: 0 0 9px;
+  margin: 0;
+  font-size: 54px;
+
 `
