@@ -370,50 +370,7 @@ l.more = styled.a`
   }
 `
 
-l.CardRoot = styled(g.AbsoluteFlexFillParent)`
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-
-  & > * {
-    transform: rotate(${p => p.rotate * 6}deg)
-  }
-
-  &.backstage {
-    transform: translate(0, 18px) scale(.95);
-    opacity: 0;
-  }
-  &.front {
-    pointer-events: all;
-  }
-
-  .intro & {
-    transform: translate(100%, 0);
-
-    &.enter {
-      @keyframes flyIn {
-        100% {
-          transform: none;
-        }
-      }
-      animation-name: flyIn;
-      animation-duration: .5s;
-      animation-fill-mode: both;
-      animation-timing-function: ${c.Sexy};
-      animation-delay: .5s;
-    }
-  }
-`
-
-l.Title = styled(CenteredFlex)`
-  flex: 0 0 100px;
-  width: 100%;
-  font-size: 54px;
-  font-family: big john;
-  background: transparent;
-`
-
-l.Carousel = styled(CenteredFlex)`
+l.Deck = styled(CenteredFlex)`
   flex: 0 0 ${p => p.height}px;
   height: ${p => p.height}px;
   width: 100%;
@@ -423,6 +380,34 @@ l.Carousel = styled(CenteredFlex)`
     height: 90%;
     width: initial;
   }
+`
+
+l.Card = animated(styled.div`
+  display: flex;
+  position: absolute;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  touch-action: pan-x pinch-zoom;
+
+  & > * {
+    transform: rotate(${p => p.spin}deg);
+  }
+
+  &.hidden {
+    ${'' /* transform: translate(0, 18px) scale(.95); */}
+    opacity: 0;
+  }
+`)
+
+l.Title = styled(CenteredFlex)`
+  flex: 0 0 100px;
+  width: 100%;
+  font-size: 54px;
+  font-family: big john;
+  background: transparent;
 `
 
 l.ActionZone = styled(CenteredFlex)`

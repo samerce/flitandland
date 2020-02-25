@@ -6,8 +6,9 @@ import QuickHit from '../QuickHit/it.coffee'
 import l from './styled'
 import * as c from '../../constants'
 
+import {useSprings} from 'react-spring'
+import {useDrag} from 'react-use-gesture'
 import {useInView} from 'react-intersection-observer'
-import {useSpring} from 'react-spring'
 import {cx} from '../../utils/style'
 import useLoader from './useLoader.coffee'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
@@ -72,46 +73,69 @@ Tickle = (p) =>
     {p.children}
   </l.more>
 
-Carousel = (p) =>
-  [index, setIndex] = useState 0
-  [timer, setTimer] = useState()
+from = (i, y = -1000) => x: 0, y: y
+to = (i) => x: 0, y: i * -4
+
+Deck = (p) =>
+  [topIndex, setTopIndex] = useState 0
+  [spins] = useState => p.cards.map => Math.random() * 6 * (if Math.random() > .5 then -1 else 1)
+  {screenWidth, screenHeight} = useScreenSize()
+  deckHeight = useMemo (=> screenHeight - 220), [screenHeight]
   numCards = p.cards.length
-  {screenHeight} = useScreenSize()
-  carouselHeight = useMemo (=> screenHeight - 220), [screenHeight]
 
-  useLayoutEffect (=>
-    setTimer every 1500, =>
-      setIndex (i) => i + 1
-      if index >= numCards - 1 then timer.clear()
-    => timer?.clear()
-  ), []
+  [props, set] = useSprings p.cards.length, (i) => {
+    from: from(i)
+    ...to(i),
+  }
+  withDrag = useDrag ({
+    args: [index], down, movement: [mx, my], direction: [xDir, yDir], velocity, touches
+  }) =>
+    return if touches > 1
 
-  <l.Carousel height={carouselHeight} className='intro'>
-    {p.cards.map (card, thisIndex) =>
-      <l.CardRoot className={cx enter: (thisIndex <= index)}
-        rotate={Math.random() * (-1 * (thisIndex % 3))}>
-        {card}
-      </l.CardRoot>
+    trigger = no
+    if not down and velocity > 0.2
+      trigger = yes
+      after 500, =>
+        setTopIndex (i) => (i + 1) % numCards
+        set (i) => from(i, 0) if index is i
+
+    set (i) =>
+      return unless index is i
+      x: if trigger then screenWidth * 1.3 * xDir * velocity else if down then mx else 0
+      y: if trigger then screenHeight * 1.3 * yDir * velocity else if down then my else 0
+      config:
+        friction: 50
+        tension: if down then 200 else if trigger then 200 else 500
+
+  <l.Deck height={deckHeight}>
+    {props.map ({x, y, rot, scale}, thisIndex) =>
+      isTop = topIndex is thisIndex
+      zIndex =
+        if isTop then numCards
+        else (numCards - (thisIndex - topIndex)) % numCards
+      <l.Card key={thisIndex} spin={spins[thisIndex]} {...withDrag(thisIndex)}
+        style={{x, y, zIndex, pointerEvents: if isTop then 'all' else 'none'}}>
+        {p.cards[thisIndex]}
+      </l.Card>
     }
-  </l.Carousel>
+  </l.Deck>
 
 # <l.Pot className='titleCard'>
 #   drag queen <l.yow>in the</l.yow> white house
 # </l.Pot>,
-BookLure = (p) =>
+export BookLure = (p) =>
   <l.Centered>
     <l.Title>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</l.Title>
-    <Carousel cards={[
+    <Deck cards={[
       <Image name='back cover sd.jpg' />,
       <l.Pot>
         it’s time for over-the-top <l.zon>realness</l.zon><br/>
         to shock the <l.zon>conscience</l.zon> of our nation
       </l.Pot>,
-      <Image name='dragwhitehouse.jpg' className='cover fullHeight' />,
+      <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' />,
     ]} />
     <l.ActionZone>
-      <l.BigAction>skip intro »
-      </l.BigAction>
+      <l.BigAction>get book »</l.BigAction>
       <l.TinyActions>
         <l.TinyAction><i className='fab fa-medium-m' /></l.TinyAction>
       </l.TinyActions>
