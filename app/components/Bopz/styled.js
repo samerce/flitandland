@@ -380,19 +380,30 @@ l.more = styled.a`
   }
 `
 
+const DeckTitleHeight = {
+  desktop: 100,
+  medsmall: 85,
+  small: 75,
+}
 l.Deck = styled(CenteredFlex)`
   flex-direction: column;
   flex: 0 0 100%;
   height: 100%;
   width: 100%;
   position: relative;
-  padding: 100px 0 90px;
+  padding: ${DeckTitleHeight.desktop}px 0;
   scroll-snap-align: start;
 
   & ${l.Image} {
     height: 90%;
     width: initial;
   }
+  ${g.screen.medsmall`
+    padding: ${DeckTitleHeight.medsmall}px 0;
+  `}
+  ${g.screen.small`
+    padding: ${DeckTitleHeight.small}px 0;
+  `}
 `
 
 l.CardRoot = styled(CenteredFlex)`
@@ -428,7 +439,7 @@ l.Title = styled(CenteredFlex)`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100px;
+  height: ${DeckTitleHeight.desktop}px;
   width: 100%;
   font-size: 54px;
   font-family: big john;
@@ -465,8 +476,19 @@ l.Title = styled(CenteredFlex)`
     box-shadow: ${g.theme.shadowVeryHeavy};
   }
 
-  ${g.screen.medium`
+  ${g.screen.large`
     font-size: 36px;
+  `}
+  ${g.screen.medium`
+    font-size: 27px;
+  `}
+  ${g.screen.medsmall`
+    font-size: 18px;
+    height: ${DeckTitleHeight.medsmall}px;
+  `}
+  ${g.screen.small`
+    font-size: 15px;
+    height: ${DeckTitleHeight.small}px;
   `}
 `
 
@@ -493,6 +515,10 @@ l.ActionZone = styled(CenteredFlex)`
     transform: scale(.95) translate(0, -108px);
     opacity: 0;
   }
+  ${g.screen.medmedsmall`
+    bottom: 12px;
+    height: 60px;
+  `}
 `
 
 l.BigAction = styled(CenteredFlex)`
@@ -516,6 +542,16 @@ l.BigAction = styled(CenteredFlex)`
     justify-content: center;
     align-items: center;
   }
+
+  ${g.screen.medsmall`
+    font-size: 27px;
+  `}
+  ${g.screen.medmedsmall`
+    font-size: 21px;
+  `}
+  ${g.screen.small`
+    font-size: 18px;
+  `}
 `
 
 l.TinyAction = styled(l.BigAction)`
@@ -524,4 +560,8 @@ l.TinyAction = styled(l.BigAction)`
   margin: 0;
   font-size: 54px;
 
+  ${g.screen.medmedsmall`
+    flex: 0 0 60px;
+    padding-bottom: 4px;
+  `}
 `

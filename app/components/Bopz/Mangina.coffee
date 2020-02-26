@@ -87,7 +87,7 @@ Deck = (p) =>
   [loaded, markLoaded] = useLoader p.cards.length
   [mode, setMode] = useState 'intro'
   [topIndex, setTopIndex] = useState 0
-  [spins] = useState => p.cards.map => Math.random() * 6 * (if Math.random() > .5 then -1 else 1)
+  [spins] = useState => p.cards.map => Math.random() * 4 * (if Math.random() > .5 then -1 else 1)
   {screenWidth, screenHeight} = useScreenSize()
   {buttonAction, buttonText} = p.cards[topIndex]
   deckHeight = useMemo (=> screenHeight - 100), [screenHeight]
@@ -187,7 +187,7 @@ Deck = (p) =>
 
 export BookLure = =>
   <Deck
-    title={=> <>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</>}
+    title={=> <div>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</div>}
     loading={=> <>...brushing my wig...</>}
     cards={[
       {
