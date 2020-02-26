@@ -5,5 +5,5 @@ import * as c from '../../constants'
 
 export default Curtain = =>
   <l.Root>
-    {<l.Fold i={i} /> for i in [0..10]}
+    {<l.Fold i={i} /> for i in [0..20]}
   </l.Root>

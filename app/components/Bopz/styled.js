@@ -377,10 +377,11 @@ l.more = styled.a`
 
 l.Deck = styled(CenteredFlex)`
   flex-direction: column;
-  flex: 0 0 ${p => p.height}px;
-  height: ${p => p.height}px;
+  flex: 0 0 100%;
+  height: 100%;
   width: 100%;
   position: relative;
+  padding: 100px 0 90px;
 
   & ${l.Image} {
     height: 90%;
@@ -389,8 +390,8 @@ l.Deck = styled(CenteredFlex)`
 `
 
 l.CardBox = styled(CenteredFlex)`
-  height: calc(100% - 120px);
-  flex: 1 0 auto;
+  height: 100%;
+  flex: 0 0 100%;
   width: 100%;
   position: relative;
 `
@@ -417,25 +418,67 @@ l.Card = animated(styled.div`
 `)
 
 l.Title = styled(CenteredFlex)`
-  flex: 0 0 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100px;
   width: 100%;
   font-size: 54px;
   font-family: big john;
   background: ${g.theme.eli};
   color: white;
+  transition: all 1s ${c.Sexy};
+  box-shadow: ${g.theme.shadowHeavy};
+
+  &.waiting {
+    height: 100%;
+    color: ${g.theme.cal};
+    @keyframes loading {
+      100% {
+        filter: hue-rotate(360deg) brightness(200%);
+      }
+    }
+    animation-name: loading;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 6px;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    background: ${g.theme.dan};
+    box-shadow: ${g.theme.shadowVeryHeavy};
+  }
 `
 
 l.ActionZone = styled(CenteredFlex)`
-  flex: 0 0 120px;
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  height: 72px;
   width: 100%;
   color: white;
   padding: 0 12px;
   align-self: flex-end;
+  transition: all 1s ${c.Sexy} 3s;
+
+  &.hide {
+    transform: scale(.95);
+    opacity: 0;
+  }
 `
 
 l.BigAction = styled(CenteredFlex)`
-  height: 80px;
+  height: 100%;
   flex: 0 0 50%;
+  max-width: 378px;
   font-size: 36px;
   background: ${g.theme.eli};
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
@@ -449,12 +492,14 @@ l.BigAction = styled(CenteredFlex)`
     width: 100%;
     height: 100%;
     color: white;
+    justify-content: center;
+    align-items: center;
   }
 `
 
 l.TinyAction = styled(l.BigAction)`
   flex: 0 0 80px;
-  padding: 0 0 9px;
+  padding-bottom: 9px;
   margin: 0;
   font-size: 54px;
 

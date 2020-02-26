@@ -10,7 +10,6 @@ import {useSprings} from 'react-spring'
 import {useDrag} from 'react-use-gesture'
 import {useInView} from 'react-intersection-observer'
 import {cx} from '../../utils/style'
-import useLoader from './useLoader.coffee'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
 import useToggle from '../../hooks/useToggle.coffee'
 import useDelayedReveal from '../../hooks/useDelayedReveal.coffee'
@@ -73,10 +72,19 @@ Tickle = (p) =>
     {p.children}
   </l.more>
 
+useLoader = (doneCount) =>
+  [count, setCount] = useState 0
+  [isLoaded, setIsLoaded] = useState no
+  increment = => setCount (c) => c + 1
+  useEffect (=> setIsLoaded(yes) if count >= doneCount), [count]
+  [isLoaded, increment]
+
 from = (i, x = 0) => x: x, y: 0
 to = (i, delay = 0) => x: 0, y: 0, delay: delay
 
 Deck = (p) =>
+  [isLoaded, increment] = useLoader p.cards.length
+  [idle, setIdle] = useState no
   [topIndex, setTopIndex] = useState 0
   [spins] = useState => p.cards.map => Math.random() * 6 * (if Math.random() > .5 then -1 else 1)
   {screenWidth, screenHeight} = useScreenSize()
@@ -108,7 +116,7 @@ Deck = (p) =>
 
   [props, set] = useSprings p.cards.length, (i) => {
     from: from(i, screenWidth)
-    ...to(i, (numCards - i - 1) * 500 + 2000),
+    # ...to(i, (numCards - i - 1) * 500 + 2000),
   }
   withDrag = useDrag ({
     args: [index], down, movement: [mx, my], direction: [xDir, yDir], velocity, touches
@@ -130,7 +138,21 @@ Deck = (p) =>
         friction: 50
         tension: 300 #if down then 200 else if trigger then 200 else 500
 
-  <l.Deck height={deckHeight}>
+  useLayoutEffect (=>
+    after 4000, =>
+      increment()
+      increment()
+      increment()
+      increment()
+      increment()
+      increment()
+      set (i) => to(i, (numCards - i - 1) * 500 + 500),
+    after 6000, => setIdle yes
+    undefined
+  ), []
+
+  <l.Deck>
+    <l.Title className={cx waiting: not isLoaded}>{p.title()}</l.Title>
     <l.CardBox>
       {props.map ({x, y, rot, scale}, thisIndex) =>
         isTop = topIndex is thisIndex
@@ -143,7 +165,7 @@ Deck = (p) =>
         </l.Card>
       }
     </l.CardBox>
-    <l.ActionZone>
+    <l.ActionZone className={cx hide: not isLoaded and not idle}>
       <l.TinyAction onClick={goToPrev}>«</l.TinyAction>
       {if typeof buttonAction is 'function'
         <l.BigAction onClick={buttonAction}>
@@ -197,10 +219,10 @@ BookLureCards = [
   ],
 ]
 export BookLure = (p) =>
-  <l.Centered>
-    <l.Title>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</l.Title>
-    <Deck cards={BookLureCards} />
-  </l.Centered>
+  <Deck
+    title={=> <>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</>}
+    cards={BookLureCards}
+  />
 
 export LandingPage = (p) =>
   [ref, inView] = useInView(threshold: .54)

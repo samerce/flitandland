@@ -38,7 +38,7 @@ l.Fold = styled.div`
   background: ${p => (p.i % 2)? g.theme.susan : g.theme.susanVeryDark};
   border-radius: 54px;
 
-  @keyframes slideIn {
+  ${'' /* @keyframes slideIn {
     0% {
       transform: translate(0, ${p => (p.i % 2)? '-100%' : '100%'});
     }
@@ -50,7 +50,7 @@ l.Fold = styled.div`
   animation-duration: .5s;
   animation-timing-function: ${c.Sexy};
   animation-delay: ${p => 1000 + p.i * 100}ms;
-  animation-fill-mode: both;
+  animation-fill-mode: both; */}
 
   @keyframes slideOut {
     0% {
