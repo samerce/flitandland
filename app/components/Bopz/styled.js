@@ -43,7 +43,9 @@ l.Centered = animated(styled(g.FlexColumn)`
   &.bottom {
     min-height: initial;
     flex-direction: row;
-    padding: 108px 0;
+    padding: 27px 0;
+    background: ${g.theme.eli};
+    box-shadow: ${g.theme.shadowHeavy}, ${g.theme.sexyEdge};
 
     i {
       display: flex;
@@ -51,7 +53,8 @@ l.Centered = animated(styled(g.FlexColumn)`
       justify-content: center;
       font-size: 108px;
       margin: 27px;
-      color: ${g.theme.eli};
+      color: white;
+      transition: all .3s ${c.Sexy};
       &:hover {
         filter: invert();
       }
@@ -429,7 +432,7 @@ l.Title = styled(CenteredFlex)`
   background: ${g.theme.eli};
   color: white;
   transition: all 1s ${c.Sexy};
-  box-shadow: ${g.theme.shadowHeavy};
+  box-shadow: ${g.theme.shadowHeavy}, ${g.theme.sexyEdge};
 
   &.loading {
     height: 100%;

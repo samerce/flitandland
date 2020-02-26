@@ -273,14 +273,14 @@ export FlitterLure = =>
     ]}
   />
 
-export VoteThemOut = =>
+VoteThemOut = =>
   <l.Centered>
     <a href={BookUrl} target='_blank'>
       <Image name='activist mq.jpg' />
     </a>
   </l.Centered>
 
-export Queers = =>
+Queers = =>
   <l.Centered>
     <a href={BookUrl} target='_blank'>
       <Image name='fablovezest mq.jpg' />
@@ -291,6 +291,9 @@ export Bottom = =>
   <l.Centered className='bottom'>
     <a href='https://www.instagram.com/expressyourmess' target='_blank'>
       <i className='fab fa-instagram' />
+    </a>
+    <a href='https://www.medium.com/the-purple-republic' target='_blank'>
+      <i className='fab fa-medium-m' />
     </a>
     <a href='https://www.twitter.com/expressyourmess' target='_blank'>
       <i className='fab fa-twitter' />

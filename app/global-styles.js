@@ -71,7 +71,7 @@ export default createGlobalStyle`
       font-size: 18px;
     `}
 
-    background: ${Theme.ann};
+    background: ${Theme.eli};
     /*@keyframes fadeInBg {
       100% {
         background: #C004D9;
