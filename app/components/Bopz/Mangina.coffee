@@ -238,18 +238,18 @@ export FlitterLure = =>
     cards={[
       {
         render: (p) =>
-          <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' onLoad={p.markLoaded} />
-        buttonText: 'get the new book'
-        buttonAction: => # open pyp checkout
+          <Image name='fablovezest mq.jpg' onLoad={p.markLoaded} />
+        buttonText: 'see us in action'
+        buttonAction: c.InstagramUrl
       }
       {
         render: (p) =>
           <l.Pot className='shock' onLoad={p.markLoaded}>
-            it’s time for over-the-top <l.zon>realness</l.zon><br/>
-            to shock the <l.zon>conscience</l.zon> of our nation
+            do what you <l.zon>love</l.zon>—<br/>
+            and get <l.zon>paid</l.zon> for it
           </l.Pot>
-        buttonText: 'sample the new book'
-        buttonAction: c.InstagramUrl
+        buttonText: 'join the movement'
+        buttonAction: 'mailto:whynot@expressyourmess?subject=become%20a%20flitter'
       }
       {
         render: (p) =>
@@ -262,32 +262,76 @@ export FlitterLure = =>
         buttonText: 'dive in now'
         buttonAction: BookUrl
       },
-      {
-        render: (p) =>
-          <l.Pot onLoad={p.markLoaded}>
-            <MailingList disabled={p.disabled} />
-          </l.Pot>
-        buttonText: 'why join?'
-        buttonAction: c.MEDIUM_URL
-      }
     ]}
   />
 
-VoteThemOut = =>
-  <l.Centered>
-    <a href={BookUrl} target='_blank'>
-      <Image name='activist mq.jpg' />
-    </a>
-  </l.Centered>
+export EymULure = =>
+  <Deck
+    title={=> <>eym<l.yow>u</l.yow></>}
+    cards={[
+      {
+        render: (p) =>
+          <Image name='activist mq.jpg' onLoad={p.markLoaded} />
+        buttonText: 'cultivate YES'
+        buttonAction: 'mailto:whynot@expressyourmess.com'
+      }
+      {
+        render: (p) =>
+          <l.Pot className='shock' onLoad={p.markLoaded}>
+            <l.zon>hollywood</l.zon><br/>
+            heads to the<br/>
+            <l.zon>heartland</l.zon>
+          </l.Pot>
+        buttonText: 'join the movement'
+        buttonAction: 'mailto:whynot@expressyourmess?subject=eymu'
+      }
+      {
+        render: (p) =>
+          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
+        buttonText: 'read more'
+        buttonAction: BookUrl
+      }
+      {
+        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
+        buttonText: 'dive in now'
+        buttonAction: BookUrl
+      },
+    ]}
+  />
 
-Queers = =>
-  <l.Centered>
-    <a href={BookUrl} target='_blank'>
-      <Image name='fablovezest mq.jpg' />
-    </a>
-  </l.Centered>
+export LampshadeLure = =>
+  <Deck
+    title={=> <>lampshade</>}
+    cards={[
+      {
+        render: (p) =>
+          <Image name='activist mq.jpg' onLoad={p.markLoaded} />
+        buttonText: 'cultivate YES'
+        buttonAction: 'mailto:whynot@expressyourmess.com'
+      }
+      {
+        render: (p) =>
+          <l.Pot className='shock' onLoad={p.markLoaded}>
+            <l.zon>community</l.zon>meet<l.zon>commodity</l.zon>
+          </l.Pot>
+        buttonText: 'get involved'
+        buttonAction: 'mailto:whynot@expressyourmess?subject=lampshade'
+      }
+      {
+        render: (p) =>
+          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
+        buttonText: 'read more'
+        buttonAction: BookUrl
+      }
+      {
+        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
+        buttonText: 'dive in now'
+        buttonAction: BookUrl
+      },
+    ]}
+  />
 
-export Bottom = =>
+export Footer = =>
   <l.Centered className='bottom'>
     <a href='https://www.instagram.com/expressyourmess' target='_blank'>
       <i className='fab fa-instagram' />
