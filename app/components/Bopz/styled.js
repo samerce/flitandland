@@ -42,14 +42,15 @@ l.Centered = animated(styled(g.FlexColumn)`
   }
   &.bottom {
     min-height: initial;
-    padding-bottom: 50%;
+    flex-direction: row;
+    padding: 108px 0;
 
     i {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 54px;
-      margin: 9px;
+      font-size: 108px;
+      margin: 27px;
       color: ${g.theme.eli};
       &:hover {
         filter: invert();
@@ -281,7 +282,7 @@ l.Pot = styled.div`
   font-size: 54px;
   line-height: 62px;
   font-family: aladin;
-  padding: 27px;
+  padding: 108px 27px;
   text-align: center;
   background: ${g.theme.dan};
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
@@ -305,10 +306,10 @@ l.Pot = styled.div`
     }
   }
 
-  &.shock {
+  ${'' /* &.shock {
     align-self: flex-end;
     margin-bottom: 108px;
-  }
+  } */}
 
   &.titleCard {
     font-family: big john;
@@ -389,11 +390,16 @@ l.Deck = styled(CenteredFlex)`
   }
 `
 
-l.CardBox = styled(CenteredFlex)`
+l.CardRoot = styled(CenteredFlex)`
   height: 100%;
   flex: 0 0 100%;
   width: 100%;
   position: relative;
+  z-index: 1;
+
+  &.hide {
+    visibility: hidden;
+  }
 `
 
 l.Card = animated(styled.div`
@@ -410,11 +416,6 @@ l.Card = animated(styled.div`
   & > * {
     transform: rotate(${p => p.spin}deg);
   }
-
-  &.hidden {
-    ${'' /* transform: translate(0, 18px) scale(.95); */}
-    opacity: 0;
-  }
 `)
 
 l.Title = styled(CenteredFlex)`
@@ -430,7 +431,7 @@ l.Title = styled(CenteredFlex)`
   transition: all 1s ${c.Sexy};
   box-shadow: ${g.theme.shadowHeavy};
 
-  &.waiting {
+  &.loading {
     height: 100%;
     color: ${g.theme.cal};
     @keyframes loading {
@@ -467,10 +468,10 @@ l.ActionZone = styled(CenteredFlex)`
   color: white;
   padding: 0 12px;
   align-self: flex-end;
-  transition: all 1s ${c.Sexy} 3s;
+  transition: all 1s ${c.Sexy} ${p => p.delay}ms;
 
   &.hide {
-    transform: scale(.95);
+    transform: scale(.95) translate(0, -108px);
     opacity: 0;
   }
 `
@@ -488,6 +489,7 @@ l.BigAction = styled(CenteredFlex)`
   border-radius: 54px;
   color: white;
   position: relative;
+  user-select: none;
   a {
     width: 100%;
     height: 100%;

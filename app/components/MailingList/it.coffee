@@ -1,15 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 
 import * as l from './styled'
 import * as c from '../../constants'
 
 PlaceholderDefault = ''
 
-export default MailingList = =>
+export default MailingList = (p) =>
   [email, setEmail] = useState null
   [placeholder, setPlaceholder] = useState PlaceholderDefault
   [canSubmit, setCanSubmit] = useState false
   [showPlaceholderImage, setShowPlaceholderImage] = useState true
+  emailRef = useRef()
   onFocus = =>
     setPlaceholder 'email address'
     setShowPlaceholderImage false
@@ -20,6 +21,9 @@ export default MailingList = =>
     email = target.value
     setEmail email
     setCanSubmit (email.length > 0) and (email.includes '@') and (email.includes '.')
+  useEffect (=>
+    emailRef.current.blur() if p.disabled
+  ), [p.disabled]
 
   <l.Root id="mc_embed_signup">
     <l.JoinImage src={c.SRC_URL + 'commons/joincircle.png'} />
@@ -29,7 +33,7 @@ export default MailingList = =>
       <div id="mc_embed_signup_scroll">
         <l.EmailInput type="email" name="EMAIL" className="email" id="mce-EMAIL"
         placeholder={placeholder} required onFocus={onFocus} onBlur={onBlur}
-        onChange={onChange}
+        onChange={onChange} ref={emailRef}
         />
         <div aria-hidden="true" className='hiddenInput'><input type="text" name="b_1845fafc4ec12fea1325f3444_13479fec2a" tabIndex="-1" defaultValue="" /></div>
         <l.JoinButtonRoot className={canSubmit and 'show'}>

@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState, useLayoutEffect, useMemo} from 'react'
+import React, {useRef, useEffect, useState, useLayoutEffect, useMemo, useCallback} from 'react'
 import MailingList from '../MailingList/it.coffee'
 import Player from 'react-player'
 import QuickHit from '../QuickHit/it.coffee'
@@ -75,7 +75,7 @@ Tickle = (p) =>
 useLoader = (doneCount) =>
   [count, setCount] = useState 0
   [isLoaded, setIsLoaded] = useState no
-  increment = => setCount (c) => c + 1
+  increment = useCallback (=> if not isLoaded then setCount (c) => c + 1), [isLoaded]
   useEffect (=> setIsLoaded(yes) if count >= doneCount), [count]
   [isLoaded, increment]
 
@@ -83,12 +83,13 @@ from = (i, x = 0) => x: x, y: 0
 to = (i, delay = 0) => x: 0, y: 0, delay: delay
 
 Deck = (p) =>
-  [isLoaded, increment] = useLoader p.cards.length
-  [idle, setIdle] = useState no
+  [ref, inView] = useInView triggerOnce: yes, threshold: .9
+  [loaded, markLoaded] = useLoader p.cards.length
+  [mode, setMode] = useState 'intro'
   [topIndex, setTopIndex] = useState 0
   [spins] = useState => p.cards.map => Math.random() * 6 * (if Math.random() > .5 then -1 else 1)
   {screenWidth, screenHeight} = useScreenSize()
-  buttonAction = p.cards[topIndex][2]
+  {buttonAction, buttonText} = p.cards[topIndex]
   deckHeight = useMemo (=> screenHeight - 100), [screenHeight]
   numCards = p.cards.length
   advanceIndex = => setTopIndex (i) => (i + 1) % numCards
@@ -138,22 +139,28 @@ Deck = (p) =>
         friction: 50
         tension: 300 #if down then 200 else if trigger then 200 else 500
 
+  cardDelay = (i) => (numCards - i - 1) * 500 + 500
+  curtainsUp = =>
+    setMode 'idle'
+    set (i) => to(i, cardDelay(i))
   useLayoutEffect (=>
-    after 4000, =>
-      increment()
-      increment()
-      increment()
-      increment()
-      increment()
-      increment()
-      set (i) => to(i, (numCards - i - 1) * 500 + 500),
-    after 6000, => setIdle yes
+    after 2000, =>
+      if loaded and mode is 'intro' then curtainsUp() and inView
+      else setMode 'loading'
     undefined
   ), []
+  useLayoutEffect (=>
+    curtainsUp() if loaded and mode is 'loading' and inView
+  ), [loaded, mode]
+  useLayoutEffect (=>
+    curtainsUp() if inView and mode isnt 'idle'
+  ), [inView]
 
-  <l.Deck>
-    <l.Title className={cx waiting: not isLoaded}>{p.title()}</l.Title>
-    <l.CardBox>
+  <l.Deck ref={ref}>
+    <l.Title className={cx loading: mode isnt 'idle'}>
+      {p.title()}
+    </l.Title>
+    <l.CardRoot className={cx hide: mode isnt 'idle'}>
       {props.map ({x, y, rot, scale}, thisIndex) =>
         isTop = topIndex is thisIndex
         zIndex =
@@ -161,98 +168,110 @@ Deck = (p) =>
           else (numCards - (thisIndex - topIndex)) % numCards
         <l.Card key={thisIndex} spin={spins[thisIndex]} {...withDrag(thisIndex)}
           style={{x, y, zIndex, pointerEvents: if isTop then 'all' else 'none'}}>
-          {p.cards[thisIndex][0]}
+          {p.cards[thisIndex].render({markLoaded, disabled: not isTop})}
         </l.Card>
       }
-    </l.CardBox>
-    <l.ActionZone className={cx hide: not isLoaded and not idle}>
-      <l.TinyAction onClick={goToPrev}>«</l.TinyAction>
+    </l.CardRoot>
+    <l.ActionZone delay={cardDelay(0) + 500}
+      className={cx hide: mode isnt 'idle'}>
+      <l.TinyAction onClick={goToPrev}>&lsaquo;</l.TinyAction>
       {if typeof buttonAction is 'function'
         <l.BigAction onClick={buttonAction}>
-          {p.cards[topIndex][1]}
+          {buttonText}
         </l.BigAction>
       else
         <l.BigAction>
           <a href={buttonAction} target='_blank'>
-            {p.cards[topIndex][1]}
+            {buttonText}
           </a>
         </l.BigAction>
       }
-      <l.TinyAction onClick={goToNext}>»</l.TinyAction>
+      <l.TinyAction onClick={goToNext}>&rsaquo;</l.TinyAction>
     </l.ActionZone>
   </l.Deck>
 
-# <l.Pot className='titleCard'>
-#   drag queen <l.yow>in the</l.yow> white house
-# </l.Pot>,
-
-BookLureCards = [
-  [
-    <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' />,
-    'get the new book',
-    => # open pyp checkout
-  ],
-  [
-    <l.Pot className='shock'>
-      it’s time for over-the-top <l.zon>realness</l.zon><br/>
-      to shock the <l.zon>conscience</l.zon> of our nation
-    </l.Pot>,
-    'yes!',
-    c.InstagramUrl
-  ],
-  [
-    <Image name='firstpage.jpg' className='fullHeight' />,
-    'sample our new book',
-    BookUrl,
-  ]
-  [
-    <Image name='back cover sd.jpg' />,
-    'sample our new book',
-    BookUrl
-  ],
-  [
-    <l.Pot>
-      <MailingList />
-    </l.Pot>,
-    'what is this?',
-    c.MEDIUM_URL
-  ],
-]
-export BookLure = (p) =>
+export BookLure = =>
   <Deck
     title={=> <>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</>}
-    cards={BookLureCards}
+    loadingText={=> <div><l.zon>...slipping on some heels...</l.zon></div>}
+    cards={[
+      {
+        render: (p) =>
+          <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' onLoad={p.markLoaded} />
+        buttonText: 'get the new book'
+        buttonAction: => # open pyp checkout
+      }
+      {
+        render: (p) =>
+          <l.Pot className='shock' onLoad={p.markLoaded}>
+            it’s time for over-the-top <l.zon>realness</l.zon><br/>
+            to shock the <l.zon>conscience</l.zon> of our nation
+          </l.Pot>
+        buttonText: 'sample the new book'
+        buttonAction: c.InstagramUrl
+      }
+      {
+        render: (p) =>
+          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
+        buttonText: 'read more'
+        buttonAction: BookUrl
+      }
+      {
+        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
+        buttonText: 'dive in now'
+        buttonAction: BookUrl
+      },
+      {
+        render: (p) =>
+          <l.Pot onLoad={p.markLoaded}>
+            <MailingList disabled={p.disabled} />
+          </l.Pot>
+        buttonText: 'why join?'
+        buttonAction: c.MEDIUM_URL
+      }
+    ]}
   />
 
-export LandingPage = (p) =>
-  [ref, inView] = useInView(threshold: .54)
-  {screenHeight} = useScreenSize()
-  imageHeight = useMemo (=> screenHeight * .8), [screenHeight]
-  <l.LandingPage ref={ref}>
-    <a href={BookUrl} target='_blank'>
-      <Image name='dqitwh front cover mq.jpg' className='cover fullHeight'
-        height={imageHeight}
-      />
-    </a>
-    <l.Header href={BookUrl} target='_blank'>
-      <l.yow>new book</l.yow><span>get it now</span>
-    </l.Header>
-  </l.LandingPage>
-
-export BookMangina = (p) =>
-  [ref, inView] = useInView(threshold: .54)
-  <l.Centered ref={ref}>
-    <a href={BookUrl} target='_blank'>
-      <Image name='back cover sd.jpg' className='fullHeight'/>
-    </a>
-  </l.Centered>
-
-export FirstPage = =>
-  <l.Centered>
-    <a href={BookUrl} target='_blank'>
-      <Image name='firstpage.jpg' className='fullHeight' />
-    </a>
-  </l.Centered>
+export FlitterLure = =>
+  <Deck
+    title={=> <>flitters</>}
+    cards={[
+      {
+        render: (p) =>
+          <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' onLoad={p.markLoaded} />
+        buttonText: 'get the new book'
+        buttonAction: => # open pyp checkout
+      }
+      {
+        render: (p) =>
+          <l.Pot className='shock' onLoad={p.markLoaded}>
+            it’s time for over-the-top <l.zon>realness</l.zon><br/>
+            to shock the <l.zon>conscience</l.zon> of our nation
+          </l.Pot>
+        buttonText: 'sample the new book'
+        buttonAction: c.InstagramUrl
+      }
+      {
+        render: (p) =>
+          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
+        buttonText: 'read more'
+        buttonAction: BookUrl
+      }
+      {
+        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
+        buttonText: 'dive in now'
+        buttonAction: BookUrl
+      },
+      {
+        render: (p) =>
+          <l.Pot onLoad={p.markLoaded}>
+            <MailingList disabled={p.disabled} />
+          </l.Pot>
+        buttonText: 'why join?'
+        buttonAction: c.MEDIUM_URL
+      }
+    ]}
+  />
 
 export VoteThemOut = =>
   <l.Centered>
@@ -273,7 +292,6 @@ export Bottom = =>
     <a href='https://www.instagram.com/expressyourmess' target='_blank'>
       <i className='fab fa-instagram' />
     </a>
-    <MailingList />
     <a href='https://www.twitter.com/expressyourmess' target='_blank'>
       <i className='fab fa-twitter' />
     </a>
