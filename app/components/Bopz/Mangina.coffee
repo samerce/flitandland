@@ -115,8 +115,8 @@ Deck = (p) =>
         return unless i is prevIndex
         x: 0
 
-  [props, set] = useSprings p.cards.length, (i) => from: from(screenWidth)
-  withDrag = useDrag ({
+  [props, set] = useSprings p.cards.length, (i) => from: from(screenWidth * 1.3)
+  handleDrag = ({
     args: [index], down, movement: [mx, my], direction: [xDir, yDir], velocity, touches
   }) =>
     return if touches > 1
@@ -135,6 +135,7 @@ Deck = (p) =>
       config:
         friction: 50
         tension: 300 #if down then 200 else if trigger then 200 else 500
+  withDrag = useDrag handleDrag, {axis: 'x'}
 
   cardDelay = (i) => (numCards - i - 1) * 500 + 500
   curtainsUp = =>

@@ -416,7 +416,8 @@ l.Card = animated(styled.div`
   justify-content: center;
   user-select: none;
   cursor: pointer;
-  touch-action: pan-x pinch-zoom;
+  touch-action: none;
+  ${'' /* touch-action: pan-x pinch-zoom; */}
 
   & > * {
     transform: rotate(${p => p.spin}deg);
