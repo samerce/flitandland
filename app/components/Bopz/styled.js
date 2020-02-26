@@ -435,6 +435,7 @@ l.Title = styled(CenteredFlex)`
   color: white;
   transition: all 1s ${c.Sexy};
   box-shadow: ${g.theme.shadowHeavy}, ${g.theme.sexyEdge};
+  line-height: 70px;
 
   &.loading {
     height: 100%;
@@ -466,6 +467,14 @@ l.Title = styled(CenteredFlex)`
   ${g.screen.medium`
     font-size: 36px;
   `}
+`
+
+l.LoadingText = styled(l.zon)`
+  position: absolute;
+  bottom: 108px;
+  left: 0;
+  width: 100%;
+  text-align: center;
 `
 
 l.ActionZone = styled(CenteredFlex)`

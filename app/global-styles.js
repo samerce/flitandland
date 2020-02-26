@@ -86,6 +86,7 @@ export default createGlobalStyle`
   body {
     height: 100%;
     width: 100%;
+    overflow: hidden;
   }
 
   body {
@@ -104,6 +105,7 @@ export default createGlobalStyle`
     min-height: 100%;
     min-width: 100%;
     height: 100%;
+    overflow: hidden;
   }
 
   a {

@@ -74,13 +74,13 @@ Tickle = (p) =>
 
 useLoader = (doneCount) =>
   [count, setCount] = useState 0
-  [isLoaded, setIsLoaded] = useState no
-  increment = useCallback (=> if not isLoaded then setCount (c) => c + 1), [isLoaded]
-  useEffect (=> setIsLoaded(yes) if count >= doneCount), [count]
-  [isLoaded, increment]
+  [loaded, setIsLoaded] = useState no
+  increment = useCallback (=> if not loaded then setCount (c) => c + 1), [loaded]
+  useLayoutEffect (=> setIsLoaded(yes) if count >= doneCount), [count]
+  [loaded, increment]
 
-from = (i, x = 0) => x: x, y: 0
-to = (i, delay = 0) => x: 0, y: 0, delay: delay
+from = (x = 0) => x: x, y: 0
+to = (delay = 0) => x: 0, y: 0, delay: delay
 
 Deck = (p) =>
   [ref, inView] = useInView triggerOnce: yes, threshold: .9
@@ -92,15 +92,15 @@ Deck = (p) =>
   {buttonAction, buttonText} = p.cards[topIndex]
   deckHeight = useMemo (=> screenHeight - 100), [screenHeight]
   numCards = p.cards.length
-  advanceIndex = => setTopIndex (i) => (i + 1) % numCards
-  reduceIndex = => setTopIndex (i) => ((i - 1) + numCards) % numCards
+  incrementIndex = => setTopIndex (i) => (i + 1) % numCards
+  decrementIndex = => setTopIndex (i) => ((i - 1) + numCards) % numCards
   goToNext = =>
     currentTopIndex = +topIndex
     set (i) =>
       return unless i is currentTopIndex
-      x: screenWidth * 1.3
+      x: screenWidth * -1.3
     after 200, =>
-      advanceIndex()
+      incrementIndex()
       set (i) =>
         return unless i is currentTopIndex
         x: 0
@@ -108,17 +108,14 @@ Deck = (p) =>
     prevIndex = ((topIndex - 1) + numCards) % numCards
     set (i) =>
       return unless i is prevIndex
-      x: screenWidth * -1.3
+      x: screenWidth * 1.3
     after 200, =>
-      reduceIndex()
+      decrementIndex()
       set (i) =>
         return unless i is prevIndex
         x: 0
 
-  [props, set] = useSprings p.cards.length, (i) => {
-    from: from(i, screenWidth)
-    # ...to(i, (numCards - i - 1) * 500 + 2000),
-  }
+  [props, set] = useSprings p.cards.length, (i) => from: from(screenWidth)
   withDrag = useDrag ({
     args: [index], down, movement: [mx, my], direction: [xDir, yDir], velocity, touches
   }) =>
@@ -128,8 +125,8 @@ Deck = (p) =>
     if not down and velocity > 0.2
       trigger = yes
       after 200, =>
-        advanceIndex()
-        set (i) => from(i) if index is i
+        incrementIndex()
+        set (i) => from() if index is i
 
     set (i) =>
       return unless index is i
@@ -141,26 +138,23 @@ Deck = (p) =>
 
   cardDelay = (i) => (numCards - i - 1) * 500 + 500
   curtainsUp = =>
-    setMode 'idle'
-    set (i) => to(i, cardDelay(i))
+    setMode 'show'
+    set (i) => to(cardDelay(i))
   useLayoutEffect (=>
-    after 2000, =>
-      if loaded and mode is 'intro' then curtainsUp() and inView
-      else setMode 'loading'
-    undefined
-  ), []
-  useLayoutEffect (=>
-    curtainsUp() if loaded and mode is 'loading' and inView
-  ), [loaded, mode]
-  useLayoutEffect (=>
-    curtainsUp() if inView and mode isnt 'idle'
-  ), [inView]
+    return if mode is 'show'
+    return curtainsUp() if loaded and inView and mode is 'loading'
+    timer = after 2160, =>
+      if loaded and inView and mode isnt 'show' then curtainsUp()
+      else if inView then setMode 'loading'
+    => timer.clear()
+  ), [loaded, inView, mode]
 
   <l.Deck ref={ref}>
-    <l.Title className={cx loading: mode isnt 'idle'}>
+    <l.Title className={cx loading: mode isnt 'show'}>
       {p.title()}
+      <l.LoadingText>{p.loading() if mode isnt 'show'}</l.LoadingText>
     </l.Title>
-    <l.CardRoot className={cx hide: mode isnt 'idle'}>
+    <l.CardRoot className={cx hide: mode isnt 'show'}>
       {props.map ({x, y, rot, scale}, thisIndex) =>
         isTop = topIndex is thisIndex
         zIndex =
@@ -173,7 +167,7 @@ Deck = (p) =>
       }
     </l.CardRoot>
     <l.ActionZone delay={cardDelay(0) + 500}
-      className={cx hide: mode isnt 'idle'}>
+      className={cx hide: mode isnt 'show'}>
       <l.TinyAction onClick={goToPrev}>&lsaquo;</l.TinyAction>
       {if typeof buttonAction is 'function'
         <l.BigAction onClick={buttonAction}>
@@ -193,7 +187,7 @@ Deck = (p) =>
 export BookLure = =>
   <Deck
     title={=> <>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</>}
-    loadingText={=> <div><l.zon>...slipping on some heels...</l.zon></div>}
+    loading={=> <>...brushing my wig...</>}
     cards={[
       {
         render: (p) =>
@@ -203,7 +197,8 @@ export BookLure = =>
       }
       {
         render: (p) =>
-          <l.Pot className='shock' onLoad={p.markLoaded}>
+          useEffect p.markLoaded, []
+          <l.Pot className='shock'>
             it’s time for over-the-top <l.zon>realness</l.zon><br/>
             to shock the <l.zon>conscience</l.zon> of our nation
           </l.Pot>
@@ -223,7 +218,8 @@ export BookLure = =>
       },
       {
         render: (p) =>
-          <l.Pot onLoad={p.markLoaded}>
+          useEffect p.markLoaded, []
+          <l.Pot>
             <MailingList disabled={p.disabled} />
           </l.Pot>
         buttonText: 'why join?'
@@ -235,6 +231,7 @@ export BookLure = =>
 export FlitterLure = =>
   <Deck
     title={=> <>flitters</>}
+    loading={=> <>...slipping on my heels...</>}
     cards={[
       {
         render: (p) =>
@@ -244,7 +241,8 @@ export FlitterLure = =>
       }
       {
         render: (p) =>
-          <l.Pot className='shock' onLoad={p.markLoaded}>
+          useEffect p.markLoaded, []
+          <l.Pot className='shock'>
             do what you <l.zon>love</l.zon>—<br/>
             and get <l.zon>paid</l.zon> for it
           </l.Pot>
@@ -268,6 +266,7 @@ export FlitterLure = =>
 export EymULure = =>
   <Deck
     title={=> <>eym<l.yow>u</l.yow></>}
+    loading={=> <>...mixing some paint...</>}
     cards={[
       {
         render: (p) =>
@@ -277,7 +276,8 @@ export EymULure = =>
       }
       {
         render: (p) =>
-          <l.Pot className='shock' onLoad={p.markLoaded}>
+          useEffect p.markLoaded, []
+          <l.Pot className='shock'>
             <l.zon>hollywood</l.zon><br/>
             heads to the<br/>
             <l.zon>heartland</l.zon>
@@ -302,6 +302,7 @@ export EymULure = =>
 export LampshadeLure = =>
   <Deck
     title={=> <>lampshade</>}
+    loading={=> <>...pulling some espresso...</>}
     cards={[
       {
         render: (p) =>
@@ -311,7 +312,8 @@ export LampshadeLure = =>
       }
       {
         render: (p) =>
-          <l.Pot className='shock' onLoad={p.markLoaded}>
+          useEffect p.markLoaded, []
+          <l.Pot className='shock'>
             <l.zon>community</l.zon>meet<l.zon>commodity</l.zon>
           </l.Pot>
         buttonText: 'get involved'
