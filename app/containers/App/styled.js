@@ -8,6 +8,7 @@ export const Root = styled.div`
   overflow-x: hidden;
   background: white;
   touch-action: pan-y pinch-zoom;
+  scroll-snap-type: y mandatory;
   ${'' /* background: url("${c.SRC_URL + 'commons/yeshurricane.jpg'}");
   background-size: cover;
   background-attachment: fixed; */}

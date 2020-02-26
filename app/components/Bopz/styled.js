@@ -46,6 +46,7 @@ l.Centered = animated(styled(g.FlexColumn)`
     padding: 27px 0;
     background: ${g.theme.eli};
     box-shadow: ${g.theme.shadowHeavy}, ${g.theme.sexyEdge};
+    scroll-snap-align: end;
 
     i {
       display: flex;
@@ -386,6 +387,7 @@ l.Deck = styled(CenteredFlex)`
   width: 100%;
   position: relative;
   padding: 100px 0 90px;
+  scroll-snap-align: start;
 
   & ${l.Image} {
     height: 90%;
@@ -460,6 +462,10 @@ l.Title = styled(CenteredFlex)`
     background: ${g.theme.dan};
     box-shadow: ${g.theme.shadowVeryHeavy};
   }
+
+  ${g.screen.medium`
+    font-size: 36px;
+  `}
 `
 
 l.ActionZone = styled(CenteredFlex)`
