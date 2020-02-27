@@ -7,6 +7,11 @@ import * as c from '../../constants'
 const l = {}
 export default l
 
+const CenteredFlex = styled(g.Flex)`
+  align-items: center;
+  justify-content: center;
+`
+
 l.Root = styled(g.Flex)`
   width: 100%;
 `
@@ -43,6 +48,7 @@ l.Centered = animated(styled(g.FlexColumn)`
   &.bottom {
     min-height: initial;
     flex-direction: row;
+    flex-wrap: wrap;
     padding: 27px 0;
     background: ${g.theme.eli};
     box-shadow: ${g.theme.shadowHeavy}, ${g.theme.sexyEdge};
@@ -55,10 +61,19 @@ l.Centered = animated(styled(g.FlexColumn)`
       font-size: 108px;
       margin: 27px;
       color: white;
-      transition: all .3s ${c.Sexy};
+      transition: all .2s ${c.Sexy};
       &:hover {
         filter: invert();
       }
+
+      ${g.screen.medmedsmall`
+        font-size: 54px;
+      `}
+    }
+
+    .book-link {
+      flex: 0 0 100%;
+      font-size: 36px;
     }
   }
   .youtubeVid {
@@ -94,19 +109,17 @@ l.Image = styled.img`
     width: initial;
     height: ${p => p.fullHeight}px;
   }
-  &.revo {
-    background: ${g.theme.gradient};
-  }
-  &.cover {
-    margin: 27px 0;
-    height: ${p => p.height}px;
-  }
   ${g.screen.medsmall`
     &, &.fullHeight {
       width: 85%;
       height: initial;
     }
   `}
+
+  &.revo {
+    background: white;
+    filter: invert();
+  }
 `
 
 l.Yearbook = styled(g.AbsoluteFlex)`
@@ -252,11 +265,6 @@ l.LandingPage = styled(l.Centered)`
   height: initial;
 `
 
-const CenteredFlex = styled(g.Flex)`
-  align-items: center;
-  justify-content: center;
-`
-
 l.Header = styled.a`
   display: flex;
   align-items: center;
@@ -282,7 +290,7 @@ l.Header = styled.a`
   `}
 `
 
-l.Pot = styled.div`
+l.Pot = styled(CenteredFlex)`
   font-size: 54px;
   line-height: 62px;
   font-family: aladin;
@@ -310,10 +318,9 @@ l.Pot = styled.div`
     }
   }
 
-  ${'' /* &.shock {
-    align-self: flex-end;
-    margin-bottom: 108px;
-  } */}
+  &.shock {
+    background: ${g.theme.eli};
+  }
 
   &.titleCard {
     font-family: big john;
@@ -448,20 +455,17 @@ l.Title = styled(CenteredFlex)`
   box-shadow: ${g.theme.shadowHeavy}, ${g.theme.sexyEdge};
   line-height: 70px;
 
+  animation-name: colorPlay;
+  animation-duration: 20s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
   &.loading {
     height: 100%;
     color: ${g.theme.cal};
-    @keyframes loading {
-      100% {
-        filter: hue-rotate(360deg) brightness(200%);
-      }
-    }
-    animation-name: loading;
     animation-duration: 3s;
-    animation-fill-mode: both;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
   }
 
   &::after {
@@ -499,11 +503,12 @@ l.LoadingText = styled(l.zon)`
   text-align: center;
 `
 
+const ActionsHeight = 72
 l.ActionZone = styled(CenteredFlex)`
   position: absolute;
   bottom: 18px;
   left: 0;
-  height: 72px;
+  height: ${ActionsHeight}px;
   width: 100%;
   color: white;
   padding: 0 12px;
@@ -526,6 +531,7 @@ l.BigAction = styled(CenteredFlex)`
   max-width: 378px;
   font-size: 36px;
   background: ${g.theme.eli};
+  background: ${g.theme.gradient};
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
   font-family: aladin;
   cursor: pointer;
@@ -534,6 +540,8 @@ l.BigAction = styled(CenteredFlex)`
   color: white;
   position: relative;
   user-select: none;
+  text-shadow: 1px 1px rgba(0,0,0,.54);
+
   a {
     width: 100%;
     height: 100%;
@@ -551,13 +559,21 @@ l.BigAction = styled(CenteredFlex)`
   ${g.screen.small`
     font-size: 18px;
   `}
+
+  animation-name: colorPlay;
+  animation-duration: 20s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 `
 
 l.TinyAction = styled(l.BigAction)`
-  flex: 0 0 80px;
-  padding-bottom: 9px;
+  flex: 0 0 ${ActionsHeight}px;
+  padding-bottom: 7px;
   margin: 0;
   font-size: 54px;
+  border-radius: 100%;
 
   ${g.screen.medmedsmall`
     flex: 0 0 60px;

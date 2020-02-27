@@ -16,7 +16,7 @@ import useDelayedReveal from '../../hooks/useDelayedReveal.coffee'
 
 import {openInNewTab} from '../../utils/nav'
 
-BookUrl = 'https://books.google.com/books?id=RxPRDwAAQBAJ&printsec=frontcover#v=twopage&q&f=false'
+BookUrl = 'https://www.amazon.com/gp/product/171000892X/'
 
 Image = (p) =>
   {screenWidth, screenHeight} = useScreenSize()
@@ -98,7 +98,7 @@ Deck = (p) =>
     currentTopIndex = +topIndex
     set (i) =>
       return unless i is currentTopIndex
-      x: screenWidth * -1.3
+      x: screenWidth * 1.3
     after 200, =>
       incrementIndex()
       set (i) =>
@@ -108,7 +108,7 @@ Deck = (p) =>
     prevIndex = ((topIndex - 1) + numCards) % numCards
     set (i) =>
       return unless i is prevIndex
-      x: screenWidth * 1.3
+      x: screenWidth * -1.3
     after 200, =>
       decrementIndex()
       set (i) =>
@@ -150,7 +150,7 @@ Deck = (p) =>
     => timer.clear()
   ), [loaded, inView, mode]
 
-  <l.Deck ref={ref}>
+  <l.Deck ref={ref} key={ref}>
     <l.Title className={cx loading: mode isnt 'show'}>
       {p.title()}
       <l.LoadingText>{p.loading() if mode isnt 'show'}</l.LoadingText>
@@ -200,23 +200,37 @@ export BookLure = =>
         render: (p) =>
           useEffect p.markLoaded, []
           <l.Pot className='shock'>
-            it’s time for over-the-top <l.zon>realness</l.zon><br/>
-            to shock the <l.zon>conscience</l.zon> of our nation
+            <div>
+              it’s time for over-the-top <l.zon>realness</l.zon><br/>
+              to shock the <l.zon>conscience</l.zon> of our nation
+            </div>
           </l.Pot>
         buttonText: 'sample the new book'
         buttonAction: c.InstagramUrl
       }
       {
+        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
+        buttonText: 'dive in now'
+        buttonAction: BookUrl
+      }
+      {
         render: (p) =>
-          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
+          <Image name='yes.jpg' className='fullHeight' onLoad={p.markLoaded} />
         buttonText: 'read more'
         buttonAction: BookUrl
       }
       {
-        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
-        buttonText: 'dive in now'
+        render: (p) =>
+          <Image name='girlish.jpg' onLoad={p.markLoaded} />
+        buttonText: 'instagram'
+        buttonAction: c.InstagramUrl
+      }
+      {
+        render: (p) =>
+          <Image name='nonviolent revolution small.png' className='revo' onLoad={p.markLoaded} />
+        buttonText: 'i’m into it'
         buttonAction: BookUrl
-      },
+      }
       {
         render: (p) =>
           useEffect p.markLoaded, []
@@ -226,6 +240,7 @@ export BookLure = =>
         buttonText: 'why join?'
         buttonAction: c.MEDIUM_URL
       }
+
     ]}
   />
 
@@ -244,47 +259,13 @@ export FlitterLure = =>
         render: (p) =>
           useEffect p.markLoaded, []
           <l.Pot className='shock'>
-            do what you <l.zon>love</l.zon>—<br/>
-            and get <l.zon>paid</l.zon> for it
+            <div>
+              do what you <l.zon>love</l.zon>—<br/>
+              and get <l.zon>paid</l.zon> for it
+            </div>
           </l.Pot>
         buttonText: 'join the movement'
         buttonAction: 'mailto:whynot@expressyourmess?subject=become%20a%20flitter'
-      }
-      {
-        render: (p) =>
-          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
-        buttonText: 'read more'
-        buttonAction: BookUrl
-      }
-      {
-        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
-        buttonText: 'dive in now'
-        buttonAction: BookUrl
-      },
-    ]}
-  />
-
-export EymULure = =>
-  <Deck
-    title={=> <>eym<l.yow>u</l.yow></>}
-    loading={=> <>...mixing some paint...</>}
-    cards={[
-      {
-        render: (p) =>
-          <Image name='activist mq.jpg' onLoad={p.markLoaded} />
-        buttonText: 'cultivate YES'
-        buttonAction: 'mailto:whynot@expressyourmess.com'
-      }
-      {
-        render: (p) =>
-          useEffect p.markLoaded, []
-          <l.Pot className='shock'>
-            <l.zon>hollywood</l.zon><br/>
-            heads to the<br/>
-            <l.zon>heartland</l.zon>
-          </l.Pot>
-        buttonText: 'join the movement'
-        buttonAction: 'mailto:whynot@expressyourmess?subject=eymu'
       }
       {
         render: (p) =>
@@ -334,6 +315,42 @@ export LampshadeLure = =>
     ]}
   />
 
+export EymULure = =>
+  <Deck
+    title={=> <>eym<l.yow>u</l.yow></>}
+    loading={=> <>...mixing some paint...</>}
+    cards={[
+      {
+        render: (p) =>
+          <Image name='activist mq.jpg' onLoad={p.markLoaded} />
+        buttonText: 'cultivate Yes'
+        buttonAction: 'mailto:whynot@expressyourmess.com'
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot className='shock'>
+            <l.zon>hollywood</l.zon><br/>
+            heads to the<br/>
+            <l.zon>heartland</l.zon>
+          </l.Pot>
+        buttonText: 'join the movement'
+        buttonAction: 'mailto:whynot@expressyourmess?subject=eymu'
+      }
+      {
+        render: (p) =>
+          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
+        buttonText: 'read more'
+        buttonAction: BookUrl
+      }
+      {
+        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
+        buttonText: 'dive in now'
+        buttonAction: BookUrl
+      },
+    ]}
+  />
+
 export Footer = =>
   <l.Centered className='bottom'>
     <a href='https://www.instagram.com/expressyourmess' target='_blank'>
@@ -344,6 +361,9 @@ export Footer = =>
     </a>
     <a href='https://www.twitter.com/expressyourmess' target='_blank'>
       <i className='fab fa-twitter' />
+    </a>
+    <a href={BookUrl} target='_blank' className='book-link'>
+      get the new book!
     </a>
   </l.Centered>
 

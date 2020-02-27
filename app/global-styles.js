@@ -110,11 +110,14 @@ export default createGlobalStyle`
 
   a {
     display: flex;
-    color: ${Theme.ben};
+    color: white;
     text-decoration: none;
+    font-family: aladin;
+    user-select: none;
+    transition: all .2s ${c.Sexy};
 
     &:hover {
-      color: white;
+      color: black;
     }
   }
 
@@ -156,6 +159,12 @@ export default createGlobalStyle`
   }
   .touchMe {
     ${TouchMeCss}
+  }
+
+  @keyframes colorPlay {
+    100% {
+      filter: hue-rotate(-216deg) brightness(200%);
+    }
   }
 `
 
