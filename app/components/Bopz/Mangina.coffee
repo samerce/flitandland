@@ -137,7 +137,7 @@ Deck = (p) =>
         tension: 300 #if down then 200 else if trigger then 200 else 500
   withDrag = useDrag handleDrag, {axis: 'x'}
 
-  cardDelay = (i) => (numCards - i - 1) * 500 + 500
+  cardDelay = (i) => (numCards - i - 1) * 324 + 500
   curtainsUp = =>
     setMode 'show'
     set (i) => to(cardDelay(i))
