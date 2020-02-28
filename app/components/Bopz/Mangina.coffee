@@ -187,10 +187,10 @@ Deck = (p) =>
     </l.ActionZone>
   </l.Deck>
 
-export BookLure = =>
+export Book = =>
   <Deck
     title={=> <div>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</div>}
-    loading={=> <>...brushing my wig...</>}
+    loading={=> <>...brushing wigs...</>}
     cards={[
       {
         render: (p) =>
@@ -246,10 +246,10 @@ export BookLure = =>
     ]}
   />
 
-export FlitterLure = =>
+export Flitter = =>
   <Deck
     title={=> <>flitters</>}
-    loading={=> <>...slipping on my heels...</>}
+    loading={=> <>...beading some heels...</>}
     cards={[
       {
         render: (p) =>
@@ -380,7 +380,7 @@ export FlitterLure = =>
     ]}
   />
 
-export LampshadeLure = =>
+export Lampshade = =>
   <Deck
     title={=> <div>lampshade<l.yow> country club</l.yow></div>}
     loading={=> <>...pulling some espresso...</>}
@@ -447,10 +447,10 @@ export LampshadeLure = =>
     ]}
   />
 
-export EymULure = =>
+export EymU = =>
   <Deck
     title={=> <div>eym<l.yow>u</l.yow></div>}
-    loading={=> <>...mixing some paint...</>}
+    loading={=> <>...solving some integrals...</>}
     cards={[
       {
         render: (p) =>
@@ -481,7 +481,53 @@ export EymULure = =>
         render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
         buttonText: 'dive in now'
         buttonAction: BookUrl
-      },
+      }
+    ]}
+  />
+
+export Creation = =>
+  <Deck
+    title={=> <div>creation</div>}
+    loading={=> <>...mixing some paint...</>}
+    cards={[
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot className='shock'>
+            <div>
+              <l.zon>hollywood</l.zon><br/>
+              heads to the<br/>
+              <l.zon>heartland</l.zon>
+            </div>
+          </l.Pot>
+        buttonText: 'join the movement'
+        buttonAction: 'mailto:whynot@expressyourmess?subject=eymu'
+      }
+      {
+        render: (p) =>
+          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
+        buttonText: 'read more'
+        buttonAction: BookUrl
+      }
+      {
+        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
+        buttonText: 'dive in now'
+        buttonAction: BookUrl
+      }
+    ]}
+  />
+
+export Venky = =>
+  <Deck
+    title={=> <div>venky</div>}
+    loading={=> <>...making linear exponential...</>}
+    cards={[
+      {
+        render: (p) =>
+          <Image name='venkyrickyclemmie.jpg' onLoad={p.markLoaded} />
+        buttonText: 'clemmie'
+        buttonAction: =>
+      }
     ]}
   />
 
