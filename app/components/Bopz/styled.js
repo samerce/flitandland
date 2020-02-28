@@ -101,7 +101,7 @@ l.Image = styled.img`
     ${g.theme.prettyFrame};
   pointer-events: none;
 
-  &, &&.portrait {
+  &, &&.portrait:not(.fullHeight) {
     width: 85%;
     height: initial;
   }

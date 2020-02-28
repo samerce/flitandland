@@ -212,7 +212,8 @@ export Book = =>
         buttonAction: c.InstagramUrl
       }
       {
-        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
+        render: (p) =>
+          <Image name='back cover sd.jpg' className='fullHeight' onLoad={p.markLoaded} />
         buttonText: 'dive in now'
         buttonAction: BookUrl
       }
@@ -267,7 +268,7 @@ export Flitter = =>
       {
         render: (p) =>
           <Image name='glitterfaeries.jpg' onLoad={p.markLoaded} />
-        buttonText: 'more visuals!'
+        buttonText: 'roving art'
         buttonAction: c.InstagramUrl
       }
       {
