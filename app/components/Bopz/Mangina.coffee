@@ -17,6 +17,7 @@ import useDelayedReveal from '../../hooks/useDelayedReveal.coffee'
 import {openInNewTab} from '../../utils/nav'
 
 BookUrl = 'https://www.amazon.com/gp/product/171000892X/'
+FlitterFormUrl = 'https://forms.gle/8mzToRg25jVfBLSP8'
 
 Image = (p) =>
   {screenWidth, screenHeight} = useScreenSize()
@@ -251,33 +252,119 @@ export FlitterLure = =>
     cards={[
       {
         render: (p) =>
-          <Image name='fablovezest mq.jpg' onLoad={p.markLoaded} />
-        buttonText: 'see us in action'
+          useEffect p.markLoaded, []
+          <l.Pot className='flitandland'>
+            what if you could work<br />
+            anywhere, anytime,<br/>
+            doing almost anything<br/>
+            <l.zon>& get paid for it?</l.zon>
+          </l.Pot>
+        buttonText: 'um, yes please'
+        buttonAction: FlitterFormUrl
+      }
+      {
+        render: (p) =>
+          <Image name='glitterfaeries.jpg' onLoad={p.markLoaded} />
+        buttonText: 'more'
         buttonAction: c.InstagramUrl
       }
       {
         render: (p) =>
-          useEffect p.markLoaded, []
-          <l.Pot className='shock'>
-            <div>
-              do what you <l.zon>love</l.zon>—<br/>
-              and get <l.zon>paid</l.zon> for it
-            </div>
-          </l.Pot>
-        buttonText: 'join the movement'
-        buttonAction: 'mailto:whynot@expressyourmess?subject=become%20a%20flitter'
-      }
-      {
-        render: (p) =>
-          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
+          <Image name='yes.jpg' className='fullHeight' onLoad={p.markLoaded} />
         buttonText: 'read more'
         buttonAction: BookUrl
       }
       {
-        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
-        buttonText: 'dive in now'
-        buttonAction: BookUrl
-      },
+        render: (p) =>
+          <l.Pot className='pair'>
+            <div className='txtbox'>
+              job description:<br/>
+              <l.zon>spread joy & knowledge</l.zon>
+            </div>
+            <div>
+              <Image
+                name='mikeyfizzwhimzeh.jpg'
+                className='fullHeight cozy'
+                onLoad={p.markLoaded}
+              />
+            </div>
+          </l.Pot>
+        buttonText: 'sign me up!'
+        buttonAction: FlitterFormUrl
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot className='flitpitch'>
+            <div>
+              imagine thousands of flitters roaming america, being society’s antidepressant. that’s their job. stirring happiness & deescalating high-pressure situations.
+            </div>
+          </l.Pot>
+        buttonText: 'read more'
+        buttonAction: 'https://medium.com/@purpleperson'
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot>
+            <div>
+              <l.zon>flitters</l.zon>
+              open classrooms in the trenches
+            </div>
+          </l.Pot>
+        buttonText: 'sign me up!'
+        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot>
+            <div>
+              <l.zon>flitters</l.zon>
+              facilitate tough dialogues<br/>
+              with levity & light
+            </div>
+          </l.Pot>
+        buttonText: 'sign me up!'
+        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot>
+            <div>
+              <l.zon>flitters</l.zon>
+              offer yoga & meditation
+            </div>
+          </l.Pot>
+        buttonText: 'sign me up!'
+        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot>
+            <div>
+              <l.zon>flitters</l.zon>
+              play dress up & help people make art
+            </div>
+          </l.Pot>
+        buttonText: 'sign me up!'
+        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot>
+            <div>
+              <l.zon>flitters</l.zon>
+              pick up trash, plant trees,
+              <l.zon>& create</l.zon>
+            </div>
+          </l.Pot>
+        buttonText: 'sign me up!'
+        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+      }
     ]}
   />
 

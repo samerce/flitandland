@@ -120,6 +120,15 @@ l.Image = styled.img`
     background: white;
     filter: invert();
   }
+  &.cozy {
+    width: 100%;
+    box-shadow: none;
+
+    &.fullHeight, &:not(.portrait) {
+      width: initial;
+      height: ${p => p.fullHeight * .8}px;
+    }
+  }
 `
 
 l.Yearbook = styled(g.AbsoluteFlex)`
@@ -290,9 +299,19 @@ l.Header = styled.a`
   `}
 `
 
+l.arImage = styled.div`
+  overflow: hidden;
+  flex: 0 0 0;
+  height: 0;
+  width: 100%;
+  padding-top: 56.26%;
+  background: url("${p => p.src}");
+  background-size: cover;
+`
+
 l.Pot = styled(CenteredFlex)`
-  font-size: 54px;
-  line-height: 62px;
+  font-size: 36px;
+  line-height: 130%;
   font-family: aladin;
   padding: 108px 27px;
   text-align: center;
@@ -300,6 +319,9 @@ l.Pot = styled(CenteredFlex)`
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
   border-radius: 5px;
   color: white;
+  max-width: 90%;
+  flex: 1 0 auto;
+  overflow: hidden;
 
   ${g.screen.medsmall`
     font-size: 18px;
@@ -319,19 +341,51 @@ l.Pot = styled(CenteredFlex)`
   }
 
   &.shock {
+    width: 380px;
     background: ${g.theme.eli};
   }
-
+  &.flitandland {
+    flex-direction: column;
+    background: #ff00a1;
+    width: 400px;
+  }
+  &.flitpitch {
+    font-family: crimson pro;
+    font-size: 27px;
+    background: white;
+    color: black;
+    max-width: 756px;
+  }
   &.titleCard {
     font-family: big john;
     background: none;
     box-shadow: none;
     color: black;
   }
+  &.pair {
+    padding: 0;
+  }
+
+  .txtbox {
+    flex: 1;
+    padding: 18px;
+  }
+  .img {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      height: 100%;
+      width: initial;
+      box-shadow: none;
+    }
+  }
 `
 
-l.zon = styled.span`
+l.zon = styled.div`
   font-family: znikomit24;
+  line-height: 130%;
 `
 
 l.yow = styled.span`
@@ -428,6 +482,7 @@ l.CardRoot = styled(CenteredFlex)`
 l.Card = animated(styled.div`
   flex: 0 0 auto;
   height: 100%;
+  max-width: 90vw;
   display: flex;
   position: absolute;
   align-items: center;

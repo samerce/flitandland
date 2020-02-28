@@ -115,6 +115,7 @@ export default createGlobalStyle`
     font-family: aladin;
     user-select: none;
     transition: all .2s ${c.Sexy};
+    text-shadow: 1px 1px rgba(0,0,0,.54);
 
     &:hover {
       color: black;
