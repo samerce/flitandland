@@ -480,6 +480,7 @@ l.Deck = styled(CenteredFlex)`
   position: relative;
   padding: ${DeckTitleHeight.desktop}px 0;
   scroll-snap-align: start;
+  touch-action: pan-y;
 
   & ${l.Image} {
     height: 90%;
@@ -509,14 +510,13 @@ l.CardRoot = styled(CenteredFlex)`
 l.Card = animated(styled.div`
   flex: 0 0 auto;
   height: 100%;
-  max-width: 90vw;
+  max-width: 90%;
   display: flex;
   position: absolute;
   align-items: center;
   justify-content: center;
   user-select: none;
   cursor: pointer;
-  touch-action: pan-y;
 
   & > * {
     transform: rotate(${p => p.spin}deg);
@@ -558,7 +558,7 @@ l.Title = styled(CenteredFlex)`
     bottom: -6px;
     left: 0;
     background: ${g.theme.dan};
-    box-shadow: ${g.theme.shadowVeryHeavy};
+    box-shadow: ${g.theme.shadowVeryHeavy}, ${g.theme.sexyEdge};
   }
 
   ${g.screen.large`
@@ -623,6 +623,11 @@ l.BigAction = styled(CenteredFlex)`
   position: relative;
   user-select: none;
   text-shadow: 1px 1px rgba(0,0,0,.54);
+  transition: all .3s ${c.Sexy};
+
+  &:active {
+    transform: scale(.85);
+  }
 
   a {
     width: 100%;

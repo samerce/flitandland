@@ -123,7 +123,6 @@ export const JoinButton = styled.input`
   position: absolute;
   left: 0;
   top: 0;
-  pointer-events: all;
   cursor: pointer;
 `
 

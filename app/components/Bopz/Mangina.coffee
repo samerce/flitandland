@@ -85,7 +85,7 @@ from = (x = 0) => x: x, y: 0
 to = (delay = 0) => x: 0, y: 0, delay: delay
 
 Deck = (p) =>
-  [ref, inView] = useInView triggerOnce: yes, threshold: .9
+  [ref, inView] = useInView(threshold: .54, triggerOnce: no)
   [loaded, markLoaded] = useLoader p.cards.length
   [mode, setMode] = useState 'intro'
   [topIndex, setTopIndex] = useState 0
@@ -165,7 +165,7 @@ Deck = (p) =>
           else (numCards - (thisIndex - topIndex)) % numCards
         <l.Card key={thisIndex} spin={spins[thisIndex]} {...withDrag(thisIndex)}
           style={{x, y, zIndex, pointerEvents: if isTop then 'all' else 'none'}}>
-          {p.cards[thisIndex].render({markLoaded, disabled: not isTop})}
+          {p.cards[thisIndex].render({markLoaded, disabled: not isTop or not inView})}
         </l.Card>
       }
     </l.CardRoot>
