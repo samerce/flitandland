@@ -389,6 +389,15 @@ export Lampshade = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
+          <l.Pot className='shock'>
+            <div><l.zon>community&nbsp;</l.zon>meet<l.zon>&nbsp;commodity</l.zon></div>
+          </l.Pot>
+        buttonText: 'get involved'
+        buttonAction: 'mailto:whynot@expressyourmess?subject=lampshade'
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
           <l.Pot className='exist'>
             expansive public space to simply <l.zon>exist</l.zon>
           </l.Pot>
@@ -398,18 +407,6 @@ export Lampshade = =>
       {
         render: (p) =>
           <Image name='lampshade warm.jpg' onLoad={p.markLoaded} />
-        buttonText: 'see more'
-        buttonAction: c.InstagramUrl
-      }
-      {
-        render: (p) =>
-          <Image name='chinois.jpg' onLoad={p.markLoaded} />
-        buttonText: 'see more'
-        buttonAction: c.InstagramUrl
-      }
-      {
-        render: (p) =>
-          <Image name='robot.jpg' onLoad={p.markLoaded} />
         buttonText: 'see more'
         buttonAction: c.InstagramUrl
       }
@@ -429,21 +426,6 @@ export Lampshade = =>
           <Image name='lampshade.jpg' onLoad={p.markLoaded} />
         buttonText: 'moooore'
         buttonAction: c.InstagramUrl
-      }
-      {
-        render: (p) =>
-          <Image name='orbs.jpg' onLoad={p.markLoaded} />
-        buttonText: 'see more'
-        buttonAction: c.InstagramUrl
-      }
-      {
-        render: (p) =>
-          useEffect p.markLoaded, []
-          <l.Pot className='shock'>
-            <div><l.zon>community&nbsp;</l.zon>meet<l.zon>&nbsp;commodity</l.zon></div>
-          </l.Pot>
-        buttonText: 'get involved'
-        buttonAction: 'mailto:whynot@expressyourmess?subject=lampshade'
       }
     ]}
   />

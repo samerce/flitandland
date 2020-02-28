@@ -337,7 +337,7 @@ l.Pot = styled(CenteredFlex)`
   border-radius: 5px;
   color: white;
   max-width: 100%;
-  max-height: 90%;
+  max-height: 85%;
   flex: 1 0 auto;
   overflow: scroll;
 
@@ -499,7 +499,7 @@ l.Deck = styled(CenteredFlex)`
   position: relative;
   padding: ${DeckTitleHeight.desktop}px 0;
   scroll-snap-align: start;
-  touch-action: pan-y pinch-zoom;
+  ${'' /* touch-action: pan-y pinch-zoom; */}
 
   & ${l.Image} {
     height: 90%;
