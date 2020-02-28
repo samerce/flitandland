@@ -337,9 +337,9 @@ l.Pot = styled(CenteredFlex)`
   border-radius: 5px;
   color: white;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 90%;
   flex: 1 0 auto;
-  overflow: hidden;
+  overflow: scroll;
 
   ${g.screen.medsmall`
     font-size: 18px;
@@ -386,6 +386,9 @@ l.Pot = styled(CenteredFlex)`
     color: black;
     max-width: 756px;
     text-align: justify;
+  }
+  &.vanklong {
+    align-items: flex-start;
   }
   &.titleCard {
     font-family: big john;
