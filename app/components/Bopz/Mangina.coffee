@@ -44,8 +44,9 @@ Video = (p) =>
   {screenWidth} = useScreenSize()
 
   size = useMemo (=>
-    width = screenWidth * .85
-    width: width, height: (9/16) * width
+    width = if p.height then (16/9) * p.height else screenWidth * .85
+    height = if p.height then p.height else (9/16) * width
+    {width, height}
   ), [screenWidth]
   url =
     if p.name then c.CDN_URL + 'videos/' + p.name + '.mp4'
@@ -145,7 +146,7 @@ Deck = (p) =>
   useLayoutEffect (=>
     return if mode is 'show'
     return curtainsUp() if loaded and inView and mode is 'loading'
-    timer = after 2160, =>
+    timer = after 1080, =>
       if loaded and inView and mode isnt 'show' then curtainsUp()
       else if inView then setMode 'loading'
     => timer.clear()
@@ -156,7 +157,7 @@ Deck = (p) =>
       {p.title()}
       <l.LoadingText>{p.loading() if mode isnt 'show'}</l.LoadingText>
     </l.Title>
-    <l.CardRoot className={cx hide: mode isnt 'show'}>
+    <l.CardRoot className={cx hide: mode isnt 'show' or not inView}>
       {props.map ({x, y, rot, scale}, thisIndex) =>
         isTop = topIndex is thisIndex
         zIndex =
@@ -265,14 +266,8 @@ export FlitterLure = =>
       {
         render: (p) =>
           <Image name='glitterfaeries.jpg' onLoad={p.markLoaded} />
-        buttonText: 'more'
+        buttonText: 'more pictures!'
         buttonAction: c.InstagramUrl
-      }
-      {
-        render: (p) =>
-          <Image name='yes.jpg' className='fullHeight' onLoad={p.markLoaded} />
-        buttonText: 'read more'
-        buttonAction: BookUrl
       }
       {
         render: (p) =>
@@ -283,7 +278,7 @@ export FlitterLure = =>
             </div>
             <div>
               <Image
-                name='mikeyfizzwhimzeh.jpg'
+                name='flitsis.jpg'
                 className='fullHeight cozy'
                 onLoad={p.markLoaded}
               />
@@ -297,7 +292,7 @@ export FlitterLure = =>
           useEffect p.markLoaded, []
           <l.Pot className='flitpitch'>
             <div>
-              imagine thousands of flitters roaming america, being society’s antidepressant. that’s their job. stirring happiness & deescalating high-pressure situations.
+              imagine millions of flitters roaming america, being society’s antidepressant. that’s their job. stirring happiness & deescalating high-pressure situations.
             </div>
           </l.Pot>
         buttonText: 'read more'
@@ -306,11 +301,18 @@ export FlitterLure = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot>
-            <div>
+          {screenHeight} = useScreenSize()
+          videoHeight = useMemo (=> screenHeight * .5), [screenHeight]
+          <l.Pot className='classrooms'>
+            <div className='txtbox'>
               <l.zon>flitters</l.zon>
               open classrooms in the trenches
             </div>
+            <Video
+              url='https://www.youtube.com/watch?v=kWC957au5c8'
+              inView={not p.disabled}
+              height={videoHeight}
+            />
           </l.Pot>
         buttonText: 'sign me up!'
         buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
@@ -331,35 +333,45 @@ export FlitterLure = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot>
+          <l.Pot className='yoga'>
             <div>
               <l.zon>flitters</l.zon>
               offer yoga & meditation
             </div>
           </l.Pot>
         buttonText: 'sign me up!'
-        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+        buttonAction: FlitterFormUrl
       }
       {
         render: (p) =>
-          useEffect p.markLoaded, []
-          <l.Pot>
-            <div>
+          <l.Pot className='drag'>
+            <div className='txtbox'>
               <l.zon>flitters</l.zon>
-              play dress up & help people make art
+              play dress up & do makeovers
+            </div>
+            <div>
+              <Image
+                name='mikeyfizzwhimzeh.jpg'
+                className='fullHeight cozy'
+                onLoad={p.markLoaded}
+              />
             </div>
           </l.Pot>
         buttonText: 'sign me up!'
-        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+        buttonAction: FlitterFormUrl
       }
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot>
+          <l.Pot className='rovingart'>
             <div>
               <l.zon>flitters</l.zon>
-              pick up trash, plant trees,
-              <l.zon>& create</l.zon>
+              pick up trash,<br/>
+              plant trees,<br/>
+              host events, <br/>
+              raise vibes—<br/>
+              they are roving
+              <l.zon>creation!</l.zon>
             </div>
           </l.Pot>
         buttonText: 'sign me up!'

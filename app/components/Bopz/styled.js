@@ -319,7 +319,8 @@ l.Pot = styled(CenteredFlex)`
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
   border-radius: 5px;
   color: white;
-  max-width: 90%;
+  max-width: 100%;
+  max-height: 100%;
   flex: 1 0 auto;
   overflow: hidden;
 
@@ -349,6 +350,18 @@ l.Pot = styled(CenteredFlex)`
     background: #ff00a1;
     width: 400px;
   }
+  &.classrooms {
+    background: #0075ff;
+    flex-direction: column;
+    padding: 0;
+
+    ${l.Video} {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: none;
+    }
+  }
   &.flitpitch {
     font-family: crimson pro;
     font-size: 27px;
@@ -364,6 +377,17 @@ l.Pot = styled(CenteredFlex)`
   }
   &.pair {
     padding: 0;
+    background: #8f00ff;
+  }
+  &.rovingart {
+    background: ${g.theme.ben};
+  }
+  &.drag {
+    background: ${g.theme.cal};
+    padding: 0;
+  }
+  &.yoga {
+    background: ${g.theme.dan};
   }
 
   .txtbox {
