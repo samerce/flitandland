@@ -309,11 +309,28 @@ l.arImage = styled.div`
   background-size: cover;
 `
 
+l.zon = styled.div`
+  font-family: znikomit24;
+  line-height: 130%;
+`
+
+l.yow = styled.span`
+  font-family: slim joe;
+`
+
+l.woo = styled.span`
+  font-family: big john;
+`
+
+l.al = styled.span`
+  font-family: aladin;
+`
+
 l.Pot = styled(CenteredFlex)`
   font-size: 36px;
   line-height: 130%;
   font-family: aladin;
-  padding: 108px 27px;
+  padding: 54px 27px;
   text-align: center;
   background: ${g.theme.dan};
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
@@ -368,6 +385,7 @@ l.Pot = styled(CenteredFlex)`
     background: white;
     color: black;
     max-width: 756px;
+    text-align: justify;
   }
   &.titleCard {
     font-family: big john;
@@ -394,6 +412,14 @@ l.Pot = styled(CenteredFlex)`
     width: 440px;
     background: #ff0041;
   }
+  &.volunteer {
+    flex-direction: column;
+    padding: 54px 27px;
+    ${l.al}, ${l.zon} {
+      font-size: 36px;
+      margin-bottom: 18px;
+    }
+  }
 
   .txtbox {
     flex: 1;
@@ -410,19 +436,6 @@ l.Pot = styled(CenteredFlex)`
       box-shadow: none;
     }
   }
-`
-
-l.zon = styled.div`
-  font-family: znikomit24;
-  line-height: 130%;
-`
-
-l.yow = styled.span`
-  font-family: slim joe;
-`
-
-l.woo = styled.span`
-  font-family: big john;
 `
 
 l.more = styled.a`
@@ -483,7 +496,7 @@ l.Deck = styled(CenteredFlex)`
   position: relative;
   padding: ${DeckTitleHeight.desktop}px 0;
   scroll-snap-align: start;
-  touch-action: pan-y;
+  touch-action: pan-y pinch-zoom;
 
   & ${l.Image} {
     height: 90%;

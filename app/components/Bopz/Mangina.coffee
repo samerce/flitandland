@@ -22,9 +22,10 @@ FlitterFormUrl = 'https://forms.gle/8mzToRg25jVfBLSP8'
 Image = (p) =>
   {screenWidth, screenHeight} = useScreenSize()
   height = useMemo (=> screenHeight * .9), [screenHeight]
+  root = p.root or 'commons/'
   <l.Image
     {...p}
-    src={c.SRC_URL + 'commons/' + p.name}
+    src={c.SRC_URL + root + p.name}
     className={cx
       [p.className]: yes,
       portrait: screenWidth < screenHeight,
@@ -152,7 +153,7 @@ Deck = (p) =>
     => timer.clear()
   ), [loaded, inView, mode]
 
-  <l.Deck ref={ref} key={ref}>
+  <l.Deck ref={ref} key={ref} id={p.id}>
     <l.Title className={cx loading: mode isnt 'show'}>
       {p.title()}
       <l.LoadingText>{p.loading() if mode isnt 'show'}</l.LoadingText>
@@ -448,38 +449,56 @@ export Lampshade = =>
   />
 
 export EymU = =>
-  <Deck
+  <Deck id='eymu'
     title={=> <div>eym<l.yow>u</l.yow></div>}
     loading={=> <>...solving some integrals...</>}
     cards={[
       {
         render: (p) =>
-          <Image name='activist mq.jpg' onLoad={p.markLoaded} />
-        buttonText: 'cultivate Yes'
-        buttonAction: 'mailto:whynot@expressyourmess.com'
+          useEffect p.markLoaded, []
+          <l.Pot className='shock'>
+            <div>
+              mindful capitalism
+            </div>
+          </l.Pot>
+        buttonText: 'read more'
+        buttonAction: c.MEDIUM_URL
+      }
+      {
+        render: (p) =>
+          <Image name='eym.jpg' onLoad={p.markLoaded} />
+        buttonText: 'see more'
+        buttonAction: c.InstagramUrl
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot className='flitpitch volunteer'>
+            <l.al>communally owned<br/>means of production</l.al>
+            <div>
+              maybe you donate two hours of sweeping the space every week and that’s how you get access. maybe you offer the temple space a guided meditation twice a week and that’s how you get access. maybe you’re a caretaker for the 7th floor glass-dome garden managing 200 weekly volunteers and that’s how you get access. maybe you’re rich as hell and give a million dollars.—
+            </div>
+          </l.Pot>
+        buttonText: 'read more'
+        buttonAction: 'https://medium.com/@purpleperson'
+      }
+      {
+        render: (p) =>
+          <Image name='ice.jpg' onLoad={p.markLoaded} />
+        buttonText: 'see more'
+        buttonAction: c.InstagramUrl
       }
       {
         render: (p) =>
           useEffect p.markLoaded, []
           <l.Pot className='shock'>
             <div>
-              <l.zon>hollywood</l.zon><br/>
+              <l.zon>hollywood</l.zon>
               heads to the<br/>
               <l.zon>heartland</l.zon>
             </div>
           </l.Pot>
-        buttonText: 'join the movement'
-        buttonAction: 'mailto:whynot@expressyourmess?subject=eymu'
-      }
-      {
-        render: (p) =>
-          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
-        buttonText: 'read more'
-        buttonAction: BookUrl
-      }
-      {
-        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
-        buttonText: 'dive in now'
+        buttonText: 'get the book'
         buttonAction: BookUrl
       }
     ]}
@@ -495,24 +514,58 @@ export Creation = =>
           useEffect p.markLoaded, []
           <l.Pot className='shock'>
             <div>
-              <l.zon>hollywood</l.zon><br/>
-              heads to the<br/>
-              <l.zon>heartland</l.zon>
+              <l.zon>cling to your whimsy</l.zon>
+              you are a delightful stimulant<br/>
+              when in doubt, make art
             </div>
           </l.Pot>
-        buttonText: 'join the movement'
-        buttonAction: 'mailto:whynot@expressyourmess?subject=eymu'
+        buttonText: 'visit our etsy'
+        buttonAction: c.EtsyUrl
       }
       {
-        render: (p) =>
-          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
-        buttonText: 'read more'
-        buttonAction: BookUrl
+        render: (p) => <Image name='dreams+of+lucy.jpg' root='poetcards/' onLoad={p.markLoaded} />
+        buttonText: 'bloom baby'
+        buttonAction: c.EtsyUrl
       }
       {
-        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
-        buttonText: 'dive in now'
-        buttonAction: BookUrl
+        render: (p) => <Image name='the+flight+home.jpg' root='poetcards/' onLoad={p.markLoaded} />
+        buttonText: 'stick out'
+        buttonAction: c.EtsyUrl
+      }
+      {
+        render: (p) => <Image name='camus cabaret.jpg' root='poetcards/' onLoad={p.markLoaded} />
+        buttonText: 'it can only be right'
+        buttonAction: c.EtsyUrl
+      }
+      {
+        render: (p) => <Image name="moby's+dick.jpg" root='poetcards/' onLoad={p.markLoaded} />
+        buttonText: 'collapse the dark'
+        buttonAction: c.EtsyUrl
+      }
+      {
+        render: (p) => <Image name='train+hoppin+charlie.jpg' root='poetcards/' onLoad={p.markLoaded} />
+        buttonText: 'peace, forget the rest'
+        buttonAction: c.EtsyUrl
+      }
+      {
+        render: (p) => <Image name='prance.jpg' root='poetcards/' onLoad={p.markLoaded} />
+        buttonText: 'when in doubt, prance'
+        buttonAction: c.EtsyUrl
+      }
+      {
+        render: (p) => <Image name='be+your+own+therapy.jpg' root='poetcards/' onLoad={p.markLoaded} />
+        buttonText: 'be your own therapy'
+        buttonAction: c.EtsyUrl
+      }
+      {
+        render: (p) => <Image name='submerged+explorations.jpg' root='poetcards/' onLoad={p.markLoaded} />
+        buttonText: 'you are the guru'
+        buttonAction: c.EtsyUrl
+      }
+      {
+        render: (p) => <Image name='unicorn-merman.jpg' root='poetcards/' onLoad={p.markLoaded} />
+        buttonText: 'be you'
+        buttonAction: c.EtsyUrl
       }
     ]}
   />
@@ -524,8 +577,53 @@ export Venky = =>
     cards={[
       {
         render: (p) =>
+          <Image name='venkyricky.jpg' onLoad={p.markLoaded} />
+        buttonText: 'love'
+        buttonAction: =>
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          {screenHeight} = useScreenSize()
+          videoHeight = useMemo (=> screenHeight * .7), [screenHeight]
+          <l.Pot className='classrooms'>
+            <Video
+              url='https://www.youtube.com/watch?v=A-7PIleUuI4'
+              inView={not p.disabled}
+              height={videoHeight}
+            />
+          </l.Pot>
+        buttonText: 'venkybear'
+        buttonAction: =>
+      }
+      {
+        render: (p) =>
+          <Image name='venkypimp.jpg' onLoad={p.markLoaded} />
+        buttonText: 'the pimp'
+        buttonAction: =>
+      }
+      {
+        render: (p) =>
+          <Image name='venkykiss.jpg' onLoad={p.markLoaded} />
+        buttonText: 'the socialite'
+        buttonAction: =>
+      }
+      {
+        render: (p) =>
           <Image name='venkyrickyclemmie.jpg' onLoad={p.markLoaded} />
-        buttonText: 'clemmie'
+        buttonText: 'the lover'
+        buttonAction: =>
+      }
+      {
+        render: (p) =>
+          <Image name='venkygaga.jpg' onLoad={p.markLoaded} />
+        buttonText: 'the gaga'
+        buttonAction: =>
+      }
+      {
+        render: (p) =>
+          <Image name='venkyhands.jpg' onLoad={p.markLoaded} />
+        buttonText: 'the prof'
         buttonAction: =>
       }
     ]}

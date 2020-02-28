@@ -16,6 +16,7 @@ export const EMAIL_URL = 'mailto:flitandland@expressyourmess.com';
 export const SOUNDCLOUD_URL = 'https://soundcloud.com/expressyourmess';
 export const LAMPSHADE_TUMBLR_URL = 'http://ypsilampshade.tumblr.com/';
 export const TwitterUrl = 'https://twitter.com/expressyourmess';
+export const EtsyUrl = 'https://etsy.com/shop/expressyourmess';
 
 export const EASE_OUT_SINE = 'cubic-bezier(0.25, 0.1, 0.25, 1)';
 export const EASE_IN_SINE = 'cubic-bezier(0.42, 0, 1, 1)';
