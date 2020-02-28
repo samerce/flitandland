@@ -95,14 +95,17 @@ l.Credit = styled(g.Flex)`
 `
 
 l.Image = styled.img`
-  width: 85%;
   border-radius: 5px;
   margin: 0 auto;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy},
     ${g.theme.prettyFrame};
   pointer-events: none;
 
-  &.fullHeight, &:not(.portrait) {
+  &, &&.portrait {
+    width: 85%;
+    height: initial;
+  }
+  &.fullHeight {
     width: initial;
     height: ${p => p.fullHeight}px;
   }
