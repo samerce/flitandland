@@ -62,9 +62,6 @@ l.Centered = animated(styled(g.FlexColumn)`
       margin: 27px;
       color: white;
       transition: all .2s ${c.Sexy};
-      &:hover {
-        filter: invert();
-      }
 
       ${g.screen.medmedsmall`
         font-size: 54px;
@@ -342,7 +339,7 @@ l.Pot = styled(CenteredFlex)`
   }
 
   &.shock {
-    width: 380px;
+    flex: 1;
     background: ${g.theme.eli};
   }
   &.flitandland {
@@ -388,6 +385,11 @@ l.Pot = styled(CenteredFlex)`
   }
   &.yoga {
     background: ${g.theme.dan};
+  }
+  &.exist {
+    flex-direction: column;
+    width: 440px;
+    background: #ff0041;
   }
 
   .txtbox {
@@ -500,6 +502,7 @@ l.CardRoot = styled(CenteredFlex)`
 
   &.hide {
     visibility: hidden;
+    transition: all .1s linear .3s;
   }
 `
 
@@ -624,7 +627,6 @@ l.BigAction = styled(CenteredFlex)`
   a {
     width: 100%;
     height: 100%;
-    color: white;
     justify-content: center;
     align-items: center;
   }

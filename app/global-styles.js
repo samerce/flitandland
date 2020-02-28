@@ -118,7 +118,7 @@ export default createGlobalStyle`
     text-shadow: 1px 1px rgba(0,0,0,.54);
 
     &:hover {
-      color: black;
+      filter: invert();
     }
   }
 

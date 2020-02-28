@@ -157,7 +157,7 @@ Deck = (p) =>
       {p.title()}
       <l.LoadingText>{p.loading() if mode isnt 'show'}</l.LoadingText>
     </l.Title>
-    <l.CardRoot className={cx hide: mode isnt 'show' or not inView}>
+    <l.CardRoot className={cx hide: mode isnt 'show'}>
       {props.map ({x, y, rot, scale}, thisIndex) =>
         isTop = topIndex is thisIndex
         zIndex =
@@ -171,10 +171,10 @@ Deck = (p) =>
     </l.CardRoot>
     <l.ActionZone delay={cardDelay(0) + 500}
       className={cx hide: mode isnt 'show'}>
-      <l.TinyAction onClick={goToPrev}>&lsaquo;</l.TinyAction>
+      <l.TinyAction onClick={goToPrev}><a>&lsaquo;</a></l.TinyAction>
       {if typeof buttonAction is 'function'
         <l.BigAction onClick={buttonAction}>
-          {buttonText}
+          <a>{buttonText}</a>
         </l.BigAction>
       else
         <l.BigAction>
@@ -183,7 +183,7 @@ Deck = (p) =>
           </a>
         </l.BigAction>
       }
-      <l.TinyAction onClick={goToNext}>&rsaquo;</l.TinyAction>
+      <l.TinyAction onClick={goToNext}><a>&rsaquo;</a></l.TinyAction>
     </l.ActionZone>
   </l.Deck>
 
@@ -266,7 +266,7 @@ export FlitterLure = =>
       {
         render: (p) =>
           <Image name='glitterfaeries.jpg' onLoad={p.markLoaded} />
-        buttonText: 'more pictures!'
+        buttonText: 'more visuals!'
         buttonAction: c.InstagramUrl
       }
       {
@@ -382,41 +382,74 @@ export FlitterLure = =>
 
 export LampshadeLure = =>
   <Deck
-    title={=> <>lampshade</>}
+    title={=> <div>lampshade<l.yow> country club</l.yow></div>}
     loading={=> <>...pulling some espresso...</>}
     cards={[
       {
         render: (p) =>
-          <Image name='activist mq.jpg' onLoad={p.markLoaded} />
-        buttonText: 'cultivate YES'
-        buttonAction: 'mailto:whynot@expressyourmess.com'
+          useEffect p.markLoaded, []
+          <l.Pot className='exist'>
+            expansive public space to simply <l.zon>exist</l.zon>
+          </l.Pot>
+        buttonText: 'liberate the static'
+        buttonAction: c.MEDIUM_URL
+      }
+      {
+        render: (p) =>
+          <Image name='lampshade warm.jpg' onLoad={p.markLoaded} />
+        buttonText: 'see more'
+        buttonAction: c.InstagramUrl
+      }
+      {
+        render: (p) =>
+          <Image name='chinois.jpg' onLoad={p.markLoaded} />
+        buttonText: 'see more'
+        buttonAction: c.InstagramUrl
+      }
+      {
+        render: (p) =>
+          <Image name='robot.jpg' onLoad={p.markLoaded} />
+        buttonText: 'see more'
+        buttonAction: c.InstagramUrl
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot className='flitpitch'>
+            <div>
+              public space where anyone from anywhere can go at any time for any reason whatever. we have a chance to make all people feel iconic. directly a part of it. in the heat.
+            </div>
+          </l.Pot>
+        buttonText: 'read more'
+        buttonAction: 'https://medium.com/@purpleperson'
+      }
+      {
+        render: (p) =>
+          <Image name='lampshade.jpg' onLoad={p.markLoaded} />
+        buttonText: 'moooore'
+        buttonAction: c.InstagramUrl
+      }
+      {
+        render: (p) =>
+          <Image name='orbs.jpg' onLoad={p.markLoaded} />
+        buttonText: 'see more'
+        buttonAction: c.InstagramUrl
       }
       {
         render: (p) =>
           useEffect p.markLoaded, []
           <l.Pot className='shock'>
-            <l.zon>community</l.zon>meet<l.zon>commodity</l.zon>
+            <div><l.zon>community&nbsp;</l.zon>meet<l.zon>&nbsp;commodity</l.zon></div>
           </l.Pot>
         buttonText: 'get involved'
         buttonAction: 'mailto:whynot@expressyourmess?subject=lampshade'
       }
-      {
-        render: (p) =>
-          <Image name='firstpage.jpg' className='fullHeight' onLoad={p.markLoaded} />
-        buttonText: 'read more'
-        buttonAction: BookUrl
-      }
-      {
-        render: (p) => <Image name='back cover sd.jpg' onLoad={p.markLoaded} />
-        buttonText: 'dive in now'
-        buttonAction: BookUrl
-      },
     ]}
   />
 
 export EymULure = =>
   <Deck
-    title={=> <>eym<l.yow>u</l.yow></>}
+    title={=> <div>eym<l.yow>u</l.yow></div>}
     loading={=> <>...mixing some paint...</>}
     cards={[
       {
@@ -429,9 +462,11 @@ export EymULure = =>
         render: (p) =>
           useEffect p.markLoaded, []
           <l.Pot className='shock'>
-            <l.zon>hollywood</l.zon><br/>
-            heads to the<br/>
-            <l.zon>heartland</l.zon>
+            <div>
+              <l.zon>hollywood</l.zon><br/>
+              heads to the<br/>
+              <l.zon>heartland</l.zon>
+            </div>
           </l.Pot>
         buttonText: 'join the movement'
         buttonAction: 'mailto:whynot@expressyourmess?subject=eymu'
