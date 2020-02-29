@@ -148,13 +148,20 @@ Deck = (p) =>
   useLayoutEffect (=>
     return if mode is 'show'
     return curtainsUp() if loaded and inView and mode is 'loading'
-    timer = after 1080, =>
+    timer = after (if p.id is 'book' then 2160 else 1080), =>
       if loaded and inView and mode isnt 'show' then curtainsUp()
       else if inView then setMode 'loading'
     => timer.clear()
   ), [loaded, inView, mode]
 
   <l.Deck ref={ref} key={ref} id={p.id}>
+    {if p.id is 'book'
+      <l.OutNow onClick={=> openInNewTab BookUrl}
+        className={cx show: mode is 'show'} delay={cardDelay(0)}>
+        <l.woo>new book</l.woo>
+        <l.yow>out now!</l.yow>
+      </l.OutNow>
+    }
     <l.Title className={cx loading: mode isnt 'show'}>
       {p.title()}
       <l.LoadingText>{p.loading() if mode isnt 'show'}</l.LoadingText>

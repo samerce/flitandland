@@ -643,6 +643,48 @@ l.Title = styled(CenteredFlex)`
   `}
 `
 
+l.OutNow = styled(CenteredFlex)`
+  position: absolute;
+  top: ${DeckTitleHeight.desktop - 27}px;
+  width: 158px;
+  height: 158px;
+  right: 12%;
+  background: #1cf71f;
+  color: black;
+  font-size: 18px;
+  margin: 6px 0;
+  z-index: 100;
+  border-radius: 100%;
+  flex-direction: column;
+  box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
+  cursor: pointer;
+
+  transform: rotate(0) scale(0);
+  opacity: 0;
+  transition: all .5s ease-in ${p => p.delay + 1000}ms;
+  &.show {
+    opacity: 1;
+    transform: rotate(744deg) scale(1);
+  }
+
+  ${g.screen.medium`
+    right: 18px;
+  `}
+  ${g.screen.medsmall`
+    top: 59px;
+    right: 9px;
+    width: 94px;
+    height: 94px;
+    font-size: 12px;
+  `}
+  ${g.screen.small`
+    top: 49px;
+    width: 74px;
+    height: 74px;
+    font-size: 9px;
+  `}
+`
+
 l.LoadingText = styled.div`
   position: absolute;
   bottom: 108px;
