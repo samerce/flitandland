@@ -17,6 +17,7 @@ import {openInNewTab} from '../../utils/nav'
 
 BookUrl = 'https://www.amazon.com/gp/product/171000892X/'
 FlitterFormUrl = 'https://forms.gle/8mzToRg25jVfBLSP8'
+GoogleBookPreview = 'https://books.google.com/books?id=RxPRDwAAQBAJ&newbks=0&printsec=frontcover#v=onepage&q&f=false'
 
 Image = (p) =>
   {screenWidth, screenHeight} = useScreenSize()
@@ -205,7 +206,7 @@ export Book = =>
         render: (p) =>
           <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' onLoad={p.markLoaded} />
         buttonText: 'get the new book'
-        buttonAction: => # open pyp checkout
+        buttonAction: BookUrl # todo: open pyp checkout
       }
       {
         render: (p) =>
@@ -218,7 +219,7 @@ export Book = =>
             </div>
           </l.Pot>
         buttonText: 'read more'
-        buttonAction: BookUrl
+        buttonAction: 'https://medium.com/@skitzysandcastle/in-the-beginning-was-the-end-88c928e7d3aa'
       }
       {
         render: (p) =>
@@ -230,7 +231,7 @@ export Book = =>
             </div>
           </l.Pot>
         buttonText: 'sample the new book'
-        buttonAction: c.InstagramUrl
+        buttonAction: GoogleBookPreview
       }
       {
         render: (p) =>
@@ -257,7 +258,7 @@ export Book = =>
             <MailingList disabled={p.disabled} />
           </l.Pot>
         buttonText: 'why join?'
-        buttonAction: c.MEDIUM_URL
+        buttonAction: 'https://medium.com/@skitzysandcastle/in-the-beginning-was-the-end-88c928e7d3aa'
       }
       {
         render: (p) =>
@@ -330,7 +331,7 @@ export Flitter = =>
             </div>
           </l.Pot>
         buttonText: 'read more'
-        buttonAction: 'https://medium.com/@purpleperson'
+        buttonAction: GoogleBookPreview
       }
       {
         render: (p) =>
@@ -349,7 +350,7 @@ export Flitter = =>
             />
           </l.Pot>
         buttonText: 'sign me up!'
-        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+        buttonAction: FlitterFormUrl
       }
       {
         render: (p) =>
@@ -362,7 +363,7 @@ export Flitter = =>
             </div>
           </l.Pot>
         buttonText: 'sign me up!'
-        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+        buttonAction: FlitterFormUrl
       }
       {
         render: (p) =>
@@ -413,7 +414,7 @@ export Flitter = =>
             </div>
           </l.Pot>
         buttonText: 'sign me up!'
-        buttonAction: 'https://forms.gle/8mzToRg25jVfBLSP8'
+        buttonAction: FlitterFormUrl
       }
     ]}
   />
@@ -439,7 +440,7 @@ export Lampshade = =>
             expansive public space to simply <l.zon>exist</l.zon>
           </l.Pot>
         buttonText: 'liberate the static'
-        buttonAction: c.MEDIUM_URL
+        buttonAction: BookUrl
       }
       {
         render: (p) =>
@@ -456,7 +457,7 @@ export Lampshade = =>
             </div>
           </l.Pot>
         buttonText: 'read more'
-        buttonAction: 'https://medium.com/@purpleperson'
+        buttonAction: GoogleBookPreview
       }
       {
         render: (p) =>
@@ -481,7 +482,7 @@ export EymU = =>
             </div>
           </l.Pot>
         buttonText: 'read more'
-        buttonAction: c.MEDIUM_URL
+        buttonAction: c.TwitterUrl
       }
       {
         render: (p) =>
@@ -499,7 +500,7 @@ export EymU = =>
             </div>
           </l.Pot>
         buttonText: 'read more'
-        buttonAction: 'https://medium.com/@purpleperson'
+        buttonAction: GoogleBookPreview
       }
       {
         render: (p) =>
@@ -745,7 +746,7 @@ export Footer = =>
 #       emancipated lands of<l.zon>&nbsp;yes, and&nbsp;</l.zon>await you—<br/>
 #       whole celestial realms outside the absurd world of no.
 #     </l.Pot>
-#     <Tickle inView={inView} to='https://medium.com/@purpleperson'>
+#     <Tickle inView={inView} to='https://medium.com/@skitzysandcastle'>
 #       more
 #     </Tickle>
 #   </l.Centered>
