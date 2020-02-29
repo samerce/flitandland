@@ -190,7 +190,7 @@ Deck = (p) =>
   </l.Deck>
 
 export Book = =>
-  <Deck
+  <Deck id='book'
     title={=> <div>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</div>}
     loading={=> <>brushing some wigs...</>}
     cards={[
@@ -216,7 +216,7 @@ export Book = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot className='shock'>
+          <l.Pot className='realness'>
             <div>
               it’s time for over-the-top <l.zon>realness</l.zon>
               to shock the <l.zon>conscience</l.zon> of our nation
@@ -270,7 +270,7 @@ export Book = =>
   />
 
 export Flitter = =>
-  <Deck
+  <Deck id='flitter'
     title={=> <>flitters</>}
     loading={=> <>beading some heels...</>}
     cards={[
@@ -295,7 +295,7 @@ export Flitter = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot className='flitandland'>
+          <l.Pot className='job'>
             <div>
               job description:<br/>
               <l.zon>spread joy & knowledge</l.zon>
@@ -347,7 +347,7 @@ export Flitter = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot>
+          <l.Pot className='tough'>
             <div>
               <l.zon>flitters</l.zon>
               facilitate tough dialogues<br/>
@@ -412,7 +412,7 @@ export Flitter = =>
   />
 
 export Lampshade = =>
-  <Deck
+  <Deck id='lampshade'
     title={=> <div>lampshade<l.yow> country club</l.yow></div>}
     loading={=> <>pulling some espresso...</>}
     cards={[
@@ -517,7 +517,7 @@ export EymU = =>
   />
 
 export Creation = =>
-  <Deck
+  <Deck id='creation'
     title={=> <div>creation</div>}
     loading={=> <>mixing some paint...</>}
     cards={[
@@ -584,7 +584,7 @@ export Creation = =>
   />
 
 export Venky = =>
-  <Deck
+  <Deck id='venky'
     title={=> <div>venky</div>}
     loading={=> <>making linear exponential...</>}
     cards={[

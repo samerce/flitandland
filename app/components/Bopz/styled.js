@@ -311,6 +311,7 @@ l.arImage = styled.div`
 
 l.zon = styled.div`
   font-family: znikomit24;
+  font-weight: 900;
   line-height: 130%;
 `
 
@@ -367,6 +368,10 @@ l.Pot = styled(CenteredFlex)`
     flex: 1;
     background: ${g.theme.eli};
   }
+  &.realness {
+    background: #ff0070;
+    width: 540px;
+  }
   &.hollywood {
     background: #ff3b00;
     width: 432px;
@@ -388,12 +393,19 @@ l.Pot = styled(CenteredFlex)`
   }
   &.flitandland {
     flex-direction: column;
-    background: #ff00a1;
+    background: #00b2ff;
     width: 400px;
+  }
+  &.job {
+    background: #7d00ff;
+    width: 648px;
+  }
+  &.tough {
+    width: 540px;
   }
   &.getpaid {
     flex-direction: column;
-    background: #ff00f7;
+    background: #002fff;
     width: 460px;
   }
   &.classrooms {
@@ -439,6 +451,7 @@ l.Pot = styled(CenteredFlex)`
     padding: 0;
   }
   &.yoga {
+    width: 540px;
     background: ${g.theme.dan};
   }
   &.exist {
@@ -531,7 +544,7 @@ l.Deck = styled(CenteredFlex)`
   padding: ${DeckTitleHeight.desktop}px 0;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  ${'' /* touch-action: pan-y pinch-zoom; */}
+  user-select: none;
 
   & ${l.Image} {
     height: 90%;
@@ -587,6 +600,7 @@ l.Title = styled(CenteredFlex)`
   transition: all 1s ${c.Sexy};
   box-shadow: ${g.theme.shadowHeavy}, ${g.theme.sexyEdge};
   line-height: 70px;
+  user-select: none;
 
   animation-name: colorPlay;
   animation-duration: 20s;
@@ -640,6 +654,7 @@ l.LoadingText = styled.div`
   font-size: 18px;
   color: ${g.theme.ann};
   text-shadow: 1px 1px rgba(0,0,0,.5);
+  user-select: none;
 `
 
 const ActionsHeight = 72

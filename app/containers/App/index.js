@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 // import Chat from '../../components/Chat/it.coffee'
 // import SlackSteward from '../../components/SlackSteward/it.coffee'
 import Curtain from '../../components/Curtain/it.coffee'
@@ -17,6 +17,14 @@ import 'intersection-observer'
 // whyDidYouRender(React)
 
 export default function App() {
+  useEffect(() => {
+    const {pathname} = window.location
+    if (pathname && pathname.length > 1) {
+      const id = pathname.substr(1)
+      document.querySelector('#' + id).scrollIntoView({behavior: 'smooth'})
+    }
+  }, [])
+
   return (
       <l.Root id='scroll-root'>
         <GlobalStyle />
