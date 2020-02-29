@@ -316,38 +316,40 @@ l.zon = styled.div`
 
 l.yow = styled.span`
   font-family: slim joe;
+  line-height: 130%;
 `
 
 l.woo = styled.span`
   font-family: big john;
+  line-height: 130%;
 `
 
 l.al = styled.span`
   font-family: aladin;
+  line-height: 130%;
 `
 
 l.Pot = styled(CenteredFlex)`
   font-size: 36px;
   line-height: 130%;
   font-family: aladin;
-  padding: 54px 27px;
+  padding: 54px;
   text-align: center;
   background: ${g.theme.dan};
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
   border-radius: 5px;
   color: white;
-  max-width: 100%;
+  max-width: 90%;
   max-height: 85%;
   flex: 1 0 auto;
-  overflow: scroll;
+  overflow: hidden;
 
   ${g.screen.medsmall`
     font-size: 18px;
-    line-height: 24px;
+    padding: 27px;
   `}
   ${g.screen.small`
     font-size: 15px;
-    line-height: 21px;
   `}
 
   a {
@@ -384,11 +386,12 @@ l.Pot = styled(CenteredFlex)`
     font-size: 27px;
     background: white;
     color: black;
-    max-width: 756px;
-    text-align: justify;
-  }
-  &.vanklong {
-    align-items: flex-start;
+    width: 756px;
+    text-align: left;
+
+    ${g.screen.medsmall`
+      font-size: 20px;
+    `}
   }
   &.titleCard {
     font-family: big john;
@@ -499,6 +502,7 @@ l.Deck = styled(CenteredFlex)`
   position: relative;
   padding: ${DeckTitleHeight.desktop}px 0;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   ${'' /* touch-action: pan-y pinch-zoom; */}
 
   & ${l.Image} {
@@ -565,8 +569,9 @@ l.Title = styled(CenteredFlex)`
 
   &.loading {
     height: 100%;
-    color: ${g.theme.cal};
+    color: ${g.theme.ann};
     animation-duration: 3s;
+    text-shadow: 1px 1px rgba(0,0,0,.5);
   }
 
   &::after {
@@ -596,12 +601,17 @@ l.Title = styled(CenteredFlex)`
   `}
 `
 
-l.LoadingText = styled(l.zon)`
+l.LoadingText = styled.div`
   position: absolute;
   bottom: 108px;
   left: 0;
   width: 100%;
   text-align: center;
+  font-family: big john;
+  font-weight: 900;
+  font-size: 18px;
+  color: ${g.theme.ann};
+  text-shadow: 1px 1px rgba(0,0,0,.5);
 `
 
 const ActionsHeight = 72

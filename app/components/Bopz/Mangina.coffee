@@ -86,7 +86,7 @@ from = (x = 0) => x: x, y: 0
 to = (delay = 0) => x: 0, y: 0, delay: delay
 
 Deck = (p) =>
-  [ref, inView] = useInView(threshold: .54, triggerOnce: no)
+  [ref, inView] = useInView(threshold: .54)
   [loaded, markLoaded] = useLoader p.cards.length
   [mode, setMode] = useState 'intro'
   [topIndex, setTopIndex] = useState 0
@@ -191,7 +191,7 @@ Deck = (p) =>
 export Book = =>
   <Deck
     title={=> <div>drag queen&nbsp;<l.yow>in the</l.yow>&nbsp;white house</div>}
-    loading={=> <>...brushing wigs...</>}
+    loading={=> <>brushing some wigs...</>}
     cards={[
       {
         render: (p) =>
@@ -251,7 +251,7 @@ export Book = =>
 export Flitter = =>
   <Deck
     title={=> <>flitters</>}
-    loading={=> <>...beading some heels...</>}
+    loading={=> <>beading some heels...</>}
     cards={[
       {
         render: (p) =>
@@ -273,19 +273,23 @@ export Flitter = =>
       }
       {
         render: (p) =>
-          <l.Pot className='pair'>
-            <div className='txtbox'>
+          useEffect p.markLoaded, []
+          <l.Pot className='flitandland'>
+            <div>
               job description:<br/>
               <l.zon>spread joy & knowledge</l.zon>
             </div>
-            <div>
-              <Image
-                name='flitsis.jpg'
-                className='fullHeight cozy'
-                onLoad={p.markLoaded}
-              />
-            </div>
           </l.Pot>
+        buttonText: 'i’m in'
+        buttonAction: FlitterFormUrl
+      }
+      {
+        render: (p) =>
+          <Image
+            name='flitsis.jpg'
+            className='fullHeight'
+            onLoad={p.markLoaded}
+            />
         buttonText: 'sign me up!'
         buttonAction: FlitterFormUrl
       }
@@ -346,19 +350,23 @@ export Flitter = =>
       }
       {
         render: (p) =>
-          <l.Pot className='drag'>
-            <div className='txtbox'>
+          useEffect p.markLoaded, []
+          <l.Pot className='yoga'>
+            <div>
               <l.zon>flitters</l.zon>
               play dress up & do makeovers
             </div>
-            <div>
-              <Image
-                name='mikeyfizzwhimzeh.jpg'
-                className='fullHeight cozy'
-                onLoad={p.markLoaded}
-              />
-            </div>
           </l.Pot>
+        buttonText: 'sign me up!'
+        buttonAction: FlitterFormUrl
+      }
+      {
+        render: (p) =>
+          <Image
+            name='mikeyfizzwhimzeh.jpg'
+            className='fullHeight'
+            onLoad={p.markLoaded}
+          />
         buttonText: 'sign me up!'
         buttonAction: FlitterFormUrl
       }
@@ -385,12 +393,12 @@ export Flitter = =>
 export Lampshade = =>
   <Deck
     title={=> <div>lampshade<l.yow> country club</l.yow></div>}
-    loading={=> <>...pulling some espresso...</>}
+    loading={=> <>pulling some espresso...</>}
     cards={[
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot className='shock'>
+          <l.Pot className='flitandland'>
             <div><l.zon>community&nbsp;</l.zon>meet<l.zon>&nbsp;commodity</l.zon></div>
           </l.Pot>
         buttonText: 'get involved'
@@ -434,7 +442,7 @@ export Lampshade = =>
 export EymU = =>
   <Deck id='eymu'
     title={=> <div>eym<l.yow>u</l.yow></div>}
-    loading={=> <>...solving some integrals...</>}
+    loading={=> <>solving some integrals...</>}
     cards={[
       {
         render: (p) =>
@@ -490,7 +498,7 @@ export EymU = =>
 export Creation = =>
   <Deck
     title={=> <div>creation</div>}
-    loading={=> <>...mixing some paint...</>}
+    loading={=> <>mixing some paint...</>}
     cards={[
       {
         render: (p) =>
@@ -557,7 +565,7 @@ export Creation = =>
 export Venky = =>
   <Deck
     title={=> <div>venky</div>}
-    loading={=> <>...making linear exponential...</>}
+    loading={=> <>making linear exponential...</>}
     cards={[
       {
         render: (p) =>
@@ -632,46 +640,30 @@ export Venky = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot className='flitpitch vanklong'>
+          <l.Pot className='flitpitch'>
             <div>
               We can only experience based on our senses and cognition.
               <br/><br/>
-              But everything that’s truly worthy is beyond words emotion math colors theater.
+              But everything that’s truly worthy is beyond words—emotion math colors theater.
               <br/><br/>
               That’s where I want to go.
-              <br/><br/>
-              art is beyond reason and rationality, and is therefore superior to science.
-              It’s not that artists are not rational, their rationality actually works perfectly, but it is completely overpowered
-              by a much stronger impulse, the will, that shows them everyone is
-              one, and rationality doesn’t work when everyone is one, and so the artists enter this truer and more beautiful world that lies beyond the scope of rationality, and looks
-              insane, fearless, crazy, random, etc., to people who live in smaller
-              world of rationality, and not in the world as it truly is, which is
-              the boundless timeless will wreaking havoc through temporary finite
-              individuals as it relentlessly drags them to death.
-              <br/><br/>
-              “The spider builds his web, and the beaver his dam, for reasons
-              he himself doesn’t know.  All he knows is that he is compelled to do
-              so.” Somewhat like Ricky’s lampshade!
-              And, like Ricky, the beaver and spider are unwavering, confident, and
-              cannot fool themselves into doing something lesser than their purpose.
-              <br/><br/>
-              But humans, because we can only experience using space time causality,
-              want to know “why.” That is, what is the cause of anything we
-              experience?  Of course, the notion of cause is not out there but only
-              in our heads. And if we pause and are not hungry, we are
-              taken hostage by boredom. Schopenhauer points that the way out is to
-              begin with science and math, the epitomes of rationality, and then
-              step over into Art, poetry, music, and freeing one’s sense of
-              individual identity and seeing oneself in all and here schopenhauer
-              could have definitely benefited from experiencing love.
-              schopenhauer is a genius. but his books would have been incomparably better had he
-              loved! Bow to Ricky.<br/><br/>
-              So in the end, despite missing the great story of schopenhauer in
-              love, what a ride! Thanks, guys, for being there to listen to my
-              commentary. Writing to you clears my own head.
             </div>
           </l.Pot>
         buttonText: 'math colors theatre'
+        buttonAction: =>
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot className='flitpitch'>
+            <div>
+              art is beyond reason and rationality, and is therefore superior to science.
+              It’s not that artists are not rational, their rationality actually works perfectly...artists enter this truer and more beautiful world...which is
+              the boundless timeless will wreaking havoc through temporary finite
+              individuals as it relentlessly drags them to death.
+            </div>
+          </l.Pot>
+        buttonText: 'beyond rationality'
         buttonAction: =>
       }
       {
