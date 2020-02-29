@@ -430,8 +430,8 @@ export Lampshade = =>
           <l.Pot className='flitandland'>
             <div><l.zon>community&nbsp;</l.zon>meet<l.zon>&nbsp;commodity</l.zon></div>
           </l.Pot>
-        buttonText: 'get involved'
-        buttonAction: 'mailto:whynot@expressyourmess?subject=lampshade'
+        buttonText: 'get a taste'
+        buttonAction: 'https://medium.com/@skitzysandcastle/the-era-of-lampshade-89594f16386c'
       }
       {
         render: (p) =>
