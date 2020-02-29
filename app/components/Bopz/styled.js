@@ -119,7 +119,6 @@ l.Image = styled.img`
 
   &.revo {
     background: white;
-    filter: invert();
   }
   &.cozy {
     width: 100%;
@@ -369,7 +368,7 @@ l.Pot = styled(CenteredFlex)`
     background: ${g.theme.eli};
   }
   &.hollywood {
-    background: #00e09c;
+    background: #ff3b00;
     width: 432px;
   }
   &.evolution {
@@ -395,7 +394,7 @@ l.Pot = styled(CenteredFlex)`
   &.getpaid {
     flex-direction: column;
     background: #ff00f7;
-    width: 440px;
+    width: 460px;
   }
   &.classrooms {
     background: #0075ff;

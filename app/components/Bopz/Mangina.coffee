@@ -1,7 +1,6 @@
 import React, {useRef, useEffect, useState, useLayoutEffect, useMemo, useCallback} from 'react'
 import MailingList from '../MailingList/it.coffee'
 import Player from 'react-player'
-import QuickHit from '../QuickHit/it.coffee'
 
 import l from './styled'
 import * as c from '../../constants'
@@ -40,6 +39,7 @@ VideoConfig =
     preload: yes
     playerVars: {modestbranding: yes, rel: no, controls: yes}
 Video = (p) =>
+  player = useRef()
   [playing, togglePlaying] = useToggle yes
   [didClickOnce, setDidClickOnce] = useState no
   {screenWidth} = useScreenSize()
@@ -60,7 +60,8 @@ Video = (p) =>
     <Player url={url} wrapper={l.Video} width={size.width} height={size.height}
       playing={p.inView and playing} playsinline muted={not didClickOnce}
       loop={yes} onClick={onClick} controls={didClickOnce}
-      config={VideoConfig}
+      config={VideoConfig} ref={player}
+      onPlay={=> player.current.getInternalPlayer().pauseVideo() if not p.inView}
     />
     <l.VideoSoundPrompt className={cx hide: didClickOnce} onClick={onClick}>
       click for audio
