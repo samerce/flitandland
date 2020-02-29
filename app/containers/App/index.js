@@ -18,7 +18,7 @@ import 'intersection-observer'
 
 export default function App() {
   return (
-      <l.Root>
+      <l.Root id='scroll-root'>
         <GlobalStyle />
         {/* <SlackSteward /> */}
         <Curtain />

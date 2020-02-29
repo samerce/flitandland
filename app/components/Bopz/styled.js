@@ -71,6 +71,7 @@ l.Centered = animated(styled(g.FlexColumn)`
     .book-link {
       flex: 0 0 100%;
       font-size: 36px;
+      padding: 12px 0;
     }
   }
   .youtubeVid {
@@ -360,9 +361,27 @@ l.Pot = styled(CenteredFlex)`
     }
   }
 
+  &.whimsy {
+    width: 600px;
+  }
   &.shock {
     flex: 1;
     background: ${g.theme.eli};
+  }
+  &.evolution {
+    width: 700px;
+    background: #9e00ff;
+  }
+  &.scroll {
+    flex-direction: column;
+    width: 500px;
+
+    img {
+      position: absolute;
+      top: 5%;
+      left: 27px;
+      height: 90%;
+    }
   }
   &.flitandland {
     flex-direction: column;

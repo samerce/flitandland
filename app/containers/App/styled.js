@@ -9,4 +9,5 @@ export const Root = styled.div`
   background: white;
   touch-action: pan-y pinch-zoom;
   scroll-snap-type: y mandatory;
+  scroll-snap-stop: always;
 `

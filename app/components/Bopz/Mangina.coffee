@@ -202,9 +202,22 @@ export Book = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
+          <l.Pot className='evolution'>
+            <div>
+              evolution cannot be stoppped<br/>
+              long-shot drag queen runs for president<br/>
+              and congress turns purple
+            </div>
+          </l.Pot>
+        buttonText: 'read more'
+        buttonAction: BookUrl
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
           <l.Pot className='shock'>
             <div>
-              it’s time for over-the-top <l.zon>realness</l.zon><br/>
+              it’s time for over-the-top <l.zon>realness</l.zon>
               to shock the <l.zon>conscience</l.zon> of our nation
             </div>
           </l.Pot>
@@ -215,12 +228,6 @@ export Book = =>
         render: (p) =>
           <Image name='back cover sd.jpg' className='fullHeight' onLoad={p.markLoaded} />
         buttonText: 'dive in now'
-        buttonAction: BookUrl
-      }
-      {
-        render: (p) =>
-          <Image name='yes.jpg' className='fullHeight' onLoad={p.markLoaded} />
-        buttonText: 'read more'
         buttonAction: BookUrl
       }
       {
@@ -244,7 +251,20 @@ export Book = =>
         buttonText: 'why join?'
         buttonAction: c.MEDIUM_URL
       }
-
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          <l.Pot className='scroll'>
+            <img src={c.SRC_URL + 'commons/solwhite.png'} />
+            <div>
+              scroll down for more
+            </div>
+            <div>▼</div>
+          </l.Pot>
+        buttonText: 'let’s go'
+        buttonAction: =>
+          document.getElementById('scroll-root').scroll top: innerHeight, behavior: 'smooth'
+      }
     ]}
   />
 
@@ -503,7 +523,7 @@ export Creation = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot className='shock'>
+          <l.Pot className='whimsy'>
             <div>
               <l.zon>cling to your whimsy</l.zon>
               you are a delightful stimulant<br/>
