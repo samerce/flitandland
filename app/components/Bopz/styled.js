@@ -368,6 +368,10 @@ l.Pot = styled(CenteredFlex)`
     flex: 1;
     background: ${g.theme.eli};
   }
+  &.hollywood {
+    background: #00e09c;
+    width: 432px;
+  }
   &.evolution {
     width: 700px;
     background: #9e00ff;
@@ -387,6 +391,11 @@ l.Pot = styled(CenteredFlex)`
     flex-direction: column;
     background: #ff00a1;
     width: 400px;
+  }
+  &.getpaid {
+    flex-direction: column;
+    background: #ff00f7;
+    width: 440px;
   }
   &.classrooms {
     background: #0075ff;
@@ -424,6 +433,7 @@ l.Pot = styled(CenteredFlex)`
   }
   &.rovingart {
     background: ${g.theme.ben};
+    width: 324px;
   }
   &.drag {
     background: ${g.theme.cal};

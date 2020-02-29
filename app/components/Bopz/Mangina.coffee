@@ -276,7 +276,7 @@ export Flitter = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot className='flitandland'>
+          <l.Pot className='getpaid'>
             what if you could work<br />
             anywhere, anytime,<br/>
             doing almost anything<br/>
@@ -502,7 +502,7 @@ export EymU = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot className='shock'>
+          <l.Pot className='hollywood'>
             <div>
               <l.zon>hollywood</l.zon>
               heads to the<br/>
