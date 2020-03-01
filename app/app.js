@@ -12,6 +12,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'sanitize.css/sanitize.css';
 import './utils/lang'
+import {isInsider} from './utils/nav'
 
 // third party global imports
 import '../node_modules/react-image-gallery/styles/css/image-gallery-no-icon.css'
@@ -50,4 +51,14 @@ render();
 // we do not want it installed
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+}
+
+if (process.env.NODE_ENV === 'production' && !isInsider()) {
+  ga('create', 'UA-104536966-1', 'auto')
+  ga('send', 'pageview')
+} else {
+  // disable analytics for development
+  window.ga = () => {}
+  // disable hotjar for development
+  window.hj = () => {}
 }

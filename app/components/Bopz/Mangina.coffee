@@ -146,6 +146,10 @@ Deck = (p) =>
   curtainsUp = =>
     setMode 'show'
     set (i) => to(cardDelay(i))
+    ga 'send', 'event',
+      eventCategory: 'deck'
+      eventAction: 'view'
+      eventLabel: p.id
   useLayoutEffect (=>
     return if mode is 'show'
     return curtainsUp() if loaded and inView and mode is 'loading'

@@ -667,7 +667,7 @@ l.OutNow = styled(CenteredFlex)`
     transform: rotate(744deg) scale(1);
   }
 
-  ${g.screen.medium`
+  ${g.screen.large`
     right: 18px;
   `}
   ${g.screen.medsmall`

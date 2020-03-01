@@ -17,3 +17,7 @@ export function scrollIntoView(idOrElement) {
   }
   element.scrollIntoView(ScrollOptions)
 }
+
+export function isInsider() {
+  return window.origin.includes('insider.')
+}
