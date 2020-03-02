@@ -54,8 +54,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 if (process.env.NODE_ENV === 'production' && !isInsider()) {
-  ga('create', 'UA-104536966-1', 'auto')
-  ga('send', 'pageview')
+  upon('analyticsReady', () => {
+    ga('create', 'UA-104536966-1', 'auto')
+    ga('send', 'pageview')
+  })
 } else {
   // disable analytics for development
   window.ga = () => {}
