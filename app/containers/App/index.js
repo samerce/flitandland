@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 // import Chat from '../../components/Chat/it.coffee'
 // import SlackSteward from '../../components/SlackSteward/it.coffee'
 import Curtain from '../../components/Curtain/it.coffee'
-import Checkout from '../../components/Checkout/it.coffee'
+// import Checkout from '../../components/Checkout/it.coffee'
 import * as PagesMap from '../../components/Bopz/Mangina.coffee'
 const Pages = Object.values(PagesMap)
 
@@ -18,10 +18,12 @@ import 'intersection-observer'
 
 export default function App() {
   useEffect(() => {
-    const {pathname} = window.location
+    const {pathname} = location
     if (pathname && pathname.length > 1) {
       const id = pathname.substr(1)
-      document.querySelector('#' + id).scrollIntoView({behavior: 'smooth'})
+      const section = document.querySelector('#' + id)
+      if (section) section.scrollIntoView({behavior: 'smooth'})
+      else history.replaceState({}, document.title, '/')
     }
   }, [])
 
