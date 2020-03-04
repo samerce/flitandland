@@ -661,7 +661,7 @@ l.OutNow = styled(CenteredFlex)`
 
   transform: rotate(0) scale(0);
   opacity: 0;
-  transition: all .5s ease-in ${p => p.delay + 1000}ms;
+  transition: all .5s ease-in-out ${p => p.delay + 1000}ms;
   &.show {
     opacity: 1;
     transform: rotate(744deg) scale(1);

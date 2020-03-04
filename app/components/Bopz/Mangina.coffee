@@ -87,6 +87,13 @@ useLoader = (doneCount) =>
 from = (x = 0) => x: x, y: 0
 to = (delay = 0) => x: 0, y: 0, delay: delay
 
+OutNow = (p) =>
+  <l.OutNow onClick={=> openInNewTab BookUrl}
+    className={cx show: p.show} delay={p.delay}>
+    <l.woo>new book</l.woo>
+    <l.yow>out now!</l.yow>
+  </l.OutNow>
+
 Deck = (p) =>
   [ref, inView] = useInView(threshold: .54)
   [loaded, markLoaded] = useLoader p.cards.length
@@ -95,7 +102,6 @@ Deck = (p) =>
   [spins] = useState => p.cards.map => Math.random() * 4 * (if Math.random() > .5 then -1 else 1)
   {screenWidth, screenHeight} = useScreenSize()
   {buttonAction, buttonText} = p.cards[topIndex]
-  deckHeight = useMemo (=> screenHeight - 100), [screenHeight]
   numCards = p.cards.length
   incrementIndex = => setTopIndex (i) => (i + 1) % numCards
   decrementIndex = => setTopIndex (i) => ((i - 1) + numCards) % numCards
@@ -162,11 +168,7 @@ Deck = (p) =>
 
   <l.Deck ref={ref} key={ref} id={p.id}>
     {if p.id is 'book'
-      <l.OutNow onClick={=> openInNewTab BookUrl}
-        className={cx show: mode is 'show'} delay={cardDelay(0)}>
-        <l.woo>new book</l.woo>
-        <l.yow>out now!</l.yow>
-      </l.OutNow>
+      <OutNow show={mode is 'show'} delay={cardDelay(0)} />
     }
     <l.Title className={cx loading: mode isnt 'show'}>
       {p.title()}
@@ -296,8 +298,8 @@ export Flitter = =>
             doing almost anything<br/>
             <l.zon>& get paid for it?</l.zon>
           </l.Pot>
-        buttonText: 'um, yes please'
-        buttonAction: FlitterFormUrl
+        buttonText: 'tell me more'
+        buttonAction: 'https://medium.com/@skitzysandcastle/flitters-497f7c33aa96'
       }
       {
         render: (p) =>
@@ -308,14 +310,13 @@ export Flitter = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot className='job'>
+          <l.Pot className='flitpitch'>
             <div>
-              job description:<br/>
-              <l.zon>spread joy & knowledge</l.zon>
+              imagine millions of flitters roaming america, being society’s antidepressant. that’s their job. stirring happiness & deescalating high-pressure situations.
             </div>
           </l.Pot>
-        buttonText: 'i’m in'
-        buttonAction: FlitterFormUrl
+        buttonText: 'sample the book'
+        buttonAction: GoogleBookPreview
       }
       {
         render: (p) =>
@@ -330,13 +331,14 @@ export Flitter = =>
       {
         render: (p) =>
           useEffect p.markLoaded, []
-          <l.Pot className='flitpitch'>
+          <l.Pot className='job'>
             <div>
-              imagine millions of flitters roaming america, being society’s antidepressant. that’s their job. stirring happiness & deescalating high-pressure situations.
+              job description:<br/>
+              <l.zon>spread joy & knowledge</l.zon>
             </div>
           </l.Pot>
-        buttonText: 'read more'
-        buttonAction: GoogleBookPreview
+        buttonText: 'i’m in'
+        buttonAction: FlitterFormUrl
       }
       {
         render: (p) =>
