@@ -107,24 +107,16 @@ Deck = (p) =>
   decrementIndex = => setTopIndex (i) => ((i - 1) + numCards) % numCards
   goToNext = =>
     currentTopIndex = +topIndex
-    set (i) =>
-      return unless i is currentTopIndex
-      x: screenWidth * 1.3
+    set (i) => {x: screenWidth * 1.3} if i is currentTopIndex
     after 200, =>
       incrementIndex()
-      set (i) =>
-        return unless i is currentTopIndex
-        x: 0
+      set (i) => {x: 0} if i is currentTopIndex
   goToPrev = =>
     prevIndex = ((topIndex - 1) + numCards) % numCards
-    set (i) =>
-      return unless i is prevIndex
-      x: screenWidth * -1.3
+    set (i) => {x: screenWidth * -1.3} if i is prevIndex
     after 200, =>
       decrementIndex()
-      set (i) =>
-        return unless i is prevIndex
-        x: 0
+      set (i) => {x: 0} if i is prevIndex
 
   [props, set] = useSprings p.cards.length, (i) => from: from(screenWidth * 1.3)
   # handleDrag = ({
@@ -600,18 +592,24 @@ export Creation = =>
 
 export Footer = =>
   <l.Centered className='bottom'>
-    <a href='https://www.instagram.com/expressyourmess' target='_blank'>
-      <i className='fab fa-instagram' />
-    </a>
-    <a href='https://www.medium.com/the-purple-republic' target='_blank'>
+    <div className='book-link'>
+      <a href={BookUrl} target='_blank'>
+        get the new book!
+      </a>
+    </div>
+    <a href={c.MediumUrl} target='_blank'>
       <i className='fab fa-medium-m' />
     </a>
-    <a href='https://www.twitter.com/expressyourmess' target='_blank'>
+    <a href={c.InstagramUrl} target='_blank'>
+      <i className='fab fa-instagram' />
+    </a>
+    <a href={c.YouTubeUrl} target='_blank'>
+      <i className='fab fa-youtube' />
+    </a>
+    <a href={c.TwitterUrl} target='_blank'>
       <i className='fab fa-twitter' />
     </a>
-    <a href={BookUrl} target='_blank' className='book-link'>
-      get the new book!
-    </a>
+    <l.woo className='footer-brand'>express your mess</l.woo>
   </l.Centered>
 
 # export Mangina = (p) =>

@@ -49,7 +49,6 @@ l.Centered = animated(styled(g.FlexColumn)`
     min-height: initial;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 27px 0;
     background: ${g.theme.eli};
     box-shadow: ${g.theme.shadowHeavy}, ${g.theme.sexyEdge};
     scroll-snap-align: end;
@@ -66,12 +65,51 @@ l.Centered = animated(styled(g.FlexColumn)`
       ${g.screen.medmedsmall`
         font-size: 54px;
       `}
+      @media (max-width: 648px) {
+        font-size: 78px;
+      }
+      @media (max-width: 534px) {
+        font-size: 54px;
+      }
+      @media (max-width: 436px) {
+        font-size: 36px;
+      }
+      @media (max-width: 354px) {
+        font-size: 27px;
+        margin: 18px;
+      }
     }
 
     .book-link {
+      display: flex;
+      justify-content: center;
       flex: 0 0 100%;
       font-size: 36px;
-      padding: 12px 0;
+      padding: 27px 12px;
+
+      a {
+        flex: 1 0 auto;
+        max-width: 436px;
+        padding: 18px 0;
+        background: black;
+        box-shadow: ${g.theme.sexyEdge};
+        border-radius: 54px;
+      }
+    }
+    .footer-brand {
+      font-size: 108px;
+      flex: 0 0 100%;
+      color: ${g.theme.ann};
+      font-size: 54px;
+      text-align: center;
+      padding: 27px 0 36px;
+
+      ${g.screen.medium`
+        font-size: 36px;
+      `}
+      ${g.screen.medsmall`
+        font-size: 27px;
+      `}
     }
   }
   .youtubeVid {
