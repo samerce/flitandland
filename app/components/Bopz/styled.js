@@ -580,7 +580,7 @@ l.Card = animated(styled.div`
   align-items: center;
   justify-content: center;
   user-select: none;
-  cursor: pointer;
+  ${'' /* cursor: pointer; */}
 
   & > * {
     transform: rotate(${p => p.spin}deg);

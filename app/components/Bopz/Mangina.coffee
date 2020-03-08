@@ -127,26 +127,26 @@ Deck = (p) =>
         x: 0
 
   [props, set] = useSprings p.cards.length, (i) => from: from(screenWidth * 1.3)
-  handleDrag = ({
-    args: [index], down, movement: [mx, my], direction: [xDir, yDir], velocity, touches
-  }) =>
-    return if touches > 1
-
-    trigger = no
-    if not down and velocity > 0.2
-      trigger = yes
-      after 200, =>
-        incrementIndex()
-        set (i) => from() if index is i
-
-    set (i) =>
-      return unless index is i
-      x: if trigger then screenWidth * 1.3 * xDir * velocity else if down then mx else 0
-      y: if trigger then screenHeight * 1.3 * yDir * velocity else if down then my else 0
-      config:
-        friction: 50
-        tension: 300 #if down then 200 else if trigger then 200 else 500
-  withDrag = useDrag handleDrag, {axis: 'x'}
+  # handleDrag = ({
+  #   args: [index], down, movement: [mx, my], direction: [xDir, yDir], velocity, touches
+  # }) =>
+  #   return if touches > 1
+  #
+  #   trigger = no
+  #   if not down and velocity > 0.2
+  #     trigger = yes
+  #     after 200, =>
+  #       incrementIndex()
+  #       set (i) => from() if index is i
+  #
+  #   set (i) =>
+  #     return unless index is i
+  #     x: if trigger then screenWidth * 1.3 * xDir * velocity else if down then mx else 0
+  #     y: if trigger then screenHeight * 1.3 * yDir * velocity else if down then my else 0
+  #     config:
+  #       friction: 50
+  #       tension: 300 #if down then 200 else if trigger then 200 else 500
+  # withDrag = useDrag handleDrag, {axis: 'x'}
 
   cardDelay = (i) => (numCards - i - 1) * 324 + 500
   curtainsUp = =>
@@ -180,8 +180,8 @@ Deck = (p) =>
         zIndex =
           if isTop then numCards
           else (numCards - (thisIndex - topIndex)) % numCards
-        <l.Card key={thisIndex} spin={spins[thisIndex]} {...withDrag(thisIndex)}
-          style={{x, y, zIndex, pointerEvents: if isTop then 'all' else 'none'}}>
+        <l.Card key={thisIndex} spin={spins[thisIndex]}
+          style={{x, y, zIndex, pointerEvents: 'none'}}>
           {p.cards[thisIndex].render({markLoaded, disabled: not isTop or not inView})}
         </l.Card>
       }
@@ -594,128 +594,6 @@ export Creation = =>
         render: (p) => <Image name='unicorn-merman.jpg' root='poetcards/' onLoad={p.markLoaded} />
         buttonText: 'be you'
         buttonAction: c.EtsyUrl
-      }
-    ]}
-  />
-
-export Venky = =>
-  <Deck id='venky'
-    title={=> <div>venky</div>}
-    loading={=> <>making linear exponential...</>}
-    cards={[
-      {
-        render: (p) =>
-          <Image name='venkyricky.jpg' onLoad={p.markLoaded} />
-        buttonText: 'love'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          useEffect p.markLoaded, []
-          <l.Pot className='flitpitch'>
-            <div>
-              I suddenly woke up and realized I have to let go of Schopenhauer. I love him and revere him and he is my god. But I have to let go.<br/>
-              Oh my god. Oh my god. Oh my god.
-              <br/><br/>
-              O what relief!
-              <br/><br/>
-              Love you Schopenhauer byeeee<br/>
-              Love you Clemmie byeee
-            </div>
-          </l.Pot>
-        buttonText: 'schopenhauer'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          <Image name='venkygaga.jpg' onLoad={p.markLoaded} />
-        buttonText: 'the gaga'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          useEffect p.markLoaded, []
-          <l.Pot className='flitpitch'>
-            <div>
-              I told you. I told you. I told you. Traipsing around the world for a year after clemmie died was gonna be a truly bad idea. Now see what a loser you’ve become.
-            </div>
-          </l.Pot>
-        buttonText: 'loser'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          <Image name='venkypimp.jpg' onLoad={p.markLoaded} />
-        buttonText: 'the vulture pimp'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          <Image name='venkykiss.jpg' onLoad={p.markLoaded} />
-        buttonText: 'the socialite'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          useEffect p.markLoaded, []
-          <l.Pot className='flitpitch'>
-            <div>
-              We are both fkin the luckiest men in the world. Okay we didn’t show each other our dicks, but our minds. And bang! We got a full view of the universe.<br/>
-              O Clemmie!
-            </div>
-          </l.Pot>
-        buttonText: 'lucky minds'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          <Image name='venkyrickyclemmie.jpg' onLoad={p.markLoaded} />
-        buttonText: 'clemmie'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          useEffect p.markLoaded, []
-          <l.Pot className='flitpitch'>
-            <div>
-              We can only experience based on our senses and cognition.
-              <br/><br/>
-              But everything that’s truly worthy is beyond words—emotion math colors theater.
-              <br/><br/>
-              That’s where I want to go.
-            </div>
-          </l.Pot>
-        buttonText: 'math colors theatre'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          useEffect p.markLoaded, []
-          <l.Pot className='flitpitch'>
-            <div>
-              art is beyond reason and rationality, and is therefore superior to science.
-              It’s not that artists are not rational, their rationality actually works perfectly...artists enter this truer and more beautiful world...which is
-              the boundless timeless will wreaking havoc through temporary finite
-              individuals as it relentlessly drags them to death.
-            </div>
-          </l.Pot>
-        buttonText: 'beyond rationality'
-        buttonAction: =>
-      }
-      {
-        render: (p) =>
-          useEffect p.markLoaded, []
-          {screenHeight} = useScreenSize()
-          videoHeight = useMemo (=> screenHeight * .7), [screenHeight]
-          <l.Pot className='classrooms'>
-            <Video
-              url='https://www.youtube.com/watch?v=A-7PIleUuI4'
-              inView={not p.disabled}
-              height={videoHeight}
-            />
-          </l.Pot>
-        buttonText: 'venkybear'
-        buttonAction: =>
       }
     ]}
   />
