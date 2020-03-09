@@ -229,13 +229,13 @@ export Book = =>
               to shock the <l.zon>conscience</l.zon> of our nation
             </div>
           </l.Pot>
-        buttonText: 'sample the new book'
+        buttonText: 'sample the book'
         buttonAction: GoogleBookPreview
       }
       {
         render: (p) =>
           <Image name='back cover sd.jpg' className='fullHeight' onLoad={p.markLoaded} />
-        buttonText: 'dive in now'
+        buttonText: 'get the book'
         buttonAction: BookUrl
       }
       {
