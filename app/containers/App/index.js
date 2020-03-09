@@ -2,7 +2,9 @@ import React, {useEffect} from 'react'
 // import Chat from '../../components/Chat/it.coffee'
 // import SlackSteward from '../../components/SlackSteward/it.coffee'
 import Curtain from '../../components/Curtain/it.coffee'
-// import Checkout from '../../components/Checkout/it.coffee'
+import Pay from '../../components/Checkout/it.coffee'
+import BookCheckout from '../../components/BookCheckout/it.coffee'
+import ContactUs from '../../components/ContactUs/it.coffee'
 import * as PagesMap from '../../components/Bopz/Mangina.coffee'
 const Pages = Object.values(PagesMap)
 
@@ -33,8 +35,10 @@ export default function App() {
         {/* <SlackSteward /> */}
         <Curtain />
         {/* <Chat /> */}
-        {/* <Checkout /> */}
         {Pages.map((Page) => <Page />)}
+        <BookCheckout />
+        <Pay />
+        <ContactUs />
       </l.Root>
   )
 }

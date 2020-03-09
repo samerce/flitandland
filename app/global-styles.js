@@ -385,7 +385,7 @@ export const TextInput = styled.input`
   background: ${Theme.veryDark};
 
   ::placeholder, ::-webkit-input-placeholder {
-    color: ${Theme.susanDark};
+    color: black;
     opacity: .8;
   }
 
