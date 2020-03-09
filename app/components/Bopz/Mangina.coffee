@@ -240,6 +240,12 @@ export Book = =>
       }
       {
         render: (p) =>
+          <Image name='child with sign.jpg' onLoad={p.markLoaded} />
+        buttonText: 'youtube'
+        buttonAction: c.YouTubeUrl
+      }
+      {
+        render: (p) =>
           <Image name='girlish.jpg' onLoad={p.markLoaded} />
         buttonText: 'instagram'
         buttonAction: c.InstagramUrl
@@ -525,7 +531,7 @@ export EymU = =>
 
 export Creation = =>
   <Deck id='creation'
-    title={=> <div>creation</div>}
+    title={=> <div>creation&nbsp;<l.yow>poetcards</l.yow></div>}
     loading={=> <>mixing some paint...</>}
     cards={[
       {
@@ -538,7 +544,7 @@ export Creation = =>
               when in doubt, make art
             </div>
           </l.Pot>
-        buttonText: 'visit our etsy'
+        buttonText: 'etsy get some'
         buttonAction: c.EtsyUrl
       }
       {
