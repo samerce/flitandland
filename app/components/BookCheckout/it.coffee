@@ -14,7 +14,7 @@ Tabs = (p) =>
     setActiveTab index
     p.onChange index
 
-  <l.TabsRoot>
+  <l.TabsRoot {...p}>
     {p.tabs.map (text, index) =>
       <l.Tab
         numTabs={p.tabs.length}
@@ -25,15 +25,15 @@ Tabs = (p) =>
     }
   </l.TabsRoot>
 
-ThinkingDuration = 1500
-AcceptDuration = ThinkingDuration + 1500
+ThinkingDuration = 500
+AcceptDuration = ThinkingDuration + 500
 PickYourPrice = =>
   [mode, setMode] = useState 'idle'
   [price, setPrice] = useState null
   makeOffer = =>
     setMode 'thinking'
     priceAsNum = +(price.replace '$', '')
-    if price >= 10.81
+    if priceAsNum >= 10.81
       after ThinkingDuration, => setMode 'acceptOffer'
       after AcceptDuration, =>
         setMode 'awaitPayment'
@@ -46,18 +46,22 @@ PickYourPrice = =>
 
   onChangePrice = ({target}) =>
     # ga.sendEvent 'checkout', 'price changed'
-    console.log 'raw price', target.value
     newPrice = target.value.replace /[^0-9]*/g, ''
-    console.log 'grep', newPrice.length
     isJustDollarSign = newPrice.length is 1 and newPrice[0] is '$'
     newPrice =
       if newPrice.length > 0 and not isJustDollarSign
         '$' + +newPrice.toLocaleString([], {currency: 'USD'})
       else null
     setPrice newPrice
-    console.log newPrice
     if newPrice then setMode 'priceEntered'
     else setMode 'idle'
+
+  useBus
+    'checkout.didClose': =>
+      setMode 'thanking'
+      after 1500, =>
+        setPrice ''
+        setMode 'idle'
 
   <l.PickYourPrice className={cx [mode]: yes}>
     <l.PriceInput value={price} onChange={onChangePrice} placeholder='pick your price' />
@@ -69,6 +73,7 @@ PickYourPrice = =>
         when 'acceptOffer' then 'you got a deal!'
         when 'rejectOffer' then 'let’s talk!'
         when 'awaitPayment' then 'sealing the deal'
+        when 'thanking' then 'thank you!'
         else ''
       }
     </l.Buy>
@@ -82,7 +87,7 @@ BookFormats = ['paperback', 'ebook']
 GetIt = =>
   [formatIndex, setFormatIndex] = useState 0
   <l.GetIt>
-    <Tabs tabs={BookFormats} onChange={setFormatIndex} />
+    <Tabs tabs={BookFormats} onChange={setFormatIndex} className='tabs' />
     {[
       <l.AboutFormat>
         this cost $10.81 to print and ship
@@ -103,33 +108,35 @@ GetIt = =>
 BookPics = =>
   [imageIndex, setImageIndex] = useState 0
   <l.PicRoot>
-    <Tabs tabs={BookTabs} onChange={setImageIndex} />
     <l.Image>
       <img src={c.SRC_URL + 'commons/' + BookImages[imageIndex]} />
     </l.Image>
+    <Tabs tabs={BookTabs} onChange={setImageIndex} />
   </l.PicRoot>
 
 export default BookCheckout = (p) =>
-  [open, setOpen] = useState no
   useLayoutEffect (=>
-    after 500, => setOpen yes
+    after 500, => cast 'book.openCheckout'
   ), []
-  useBus
-    'book.checkout': => setOpen yes
-  <Sheet open={open}>
+  <Sheet openCast='book.openCheckout' closeCast='book.closeCheckout'
+    className='bookCheckoutSheet'>
+    <l.GlobalStyle />
     <BookPics />
-    <l.About>
-      imagine waking mañana and a drag queen is president.<br/>
-      what would america look like with wild injections of colorful yes?<br/>
-      emancipated lands of yes, and await you<br/>
-      —whole celestial realms outside the absurd world of no.<br/>
-      <br/><br/>
-      drag queen in the white house is a reimagining. a game.<br/>
-      a queer piece of living theatre about what happens when we set fear down.<br/>
-      <br/><br/>
-      there are 500,000 offices up for election, pick one.<br/>
-      i’ll go first.<br/>
-      i’m 35 today, i think i’ll run for president.<br/>
-    </l.About>
-    <GetIt />
+    <l.Details>
+      <l.About>
+        <l.title>drag queen in the white house</l.title>
+        imagine waking mañana and a drag queen is president.<br/>
+        what would america look like with wild injections of colorful yes?<br/>
+        emancipated lands of yes, and await you<br/>
+        —whole celestial realms outside the absurd world of no.<br/>
+        <br/><br/>
+        drag queen in the white house is a reimagining. a game.<br/>
+        a queer piece of living theatre about what happens when we set fear down.<br/>
+        <br/><br/>
+        there are 500,000 offices up for election, pick one.<br/>
+        i’ll go first.<br/>
+        i’m 35 today, i think i’ll run for president.<br/>
+      </l.About>
+      <GetIt />
+    </l.Details>
   </Sheet>

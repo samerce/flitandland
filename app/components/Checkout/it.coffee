@@ -1,11 +1,16 @@
 import React, {useEffect, useState} from 'react'
+import Sheet from '../Sheet/it.coffee'
 
 import l from './styled'
 import * as u from './util.coffee'
+import * as c from '../../constants'
+import {cx} from '../../utils/style'
 import {throttle} from 'lodash'
 
+import useBus from '../../hooks/useBus.coffee'
+
 ShippingFields = [
-  'name', 'email', 'address1', 'address2', 'city', 'state', 'postcode',
+  'name', 'email', 'address', 'city', 'state', 'postcode',
 ]
 Mode = makeEnum [
   'teasing',
@@ -16,35 +21,33 @@ Mode = makeEnum [
 
 gtotal = u.ShippingTotal
 gshipping = {}
-createOrder = (data, actions) => u.createOrder {total: gtotal, shipping: gshipping}, actions
 
-makeOrder = () =>
-  amount: gtotal
+makeOrder = (total, shipping) =>
+  amount: total
   items: [
     {
       name: 'drag queen in the white house'
       quantity: '1'
-      total_money: gtotal
+      total_money: total
       catalog_object_id: 'TXEFRKQOVIOTZ3L2G4DKQ7FC'
     }
   ]
   recipient:
-    display_name: gshipping.name
-    email_address: gshipping.email
+    display_name: shipping.name
+    email_address: shipping.email
     address:
-      address_line_1: gshipping.address1
-      address_line_2: gshipping.address2
-      locality: gshipping.city
-      administrative_district_level_1: gshipping.state
-      postal_code: gshipping.postcode
-      first_name: gshipping.name
+      address_line_1: shipping.address
+      locality: shipping.city
+      administrative_district_level_1: shipping.state
+      postal_code: shipping.postcode
+      first_name: shipping.name
       country: 'US'
 
+OpenCast = 'pay.open'
+CloseCast = 'pay.close'
 export default (p) =>
   [shipping, setShipping] = useState {}
   [total, setTotal] = useState u.ShippingTotal
-  [pickYourPrice, setPickYourPrice] = useState ''
-  [pickedArt, setPickedArt] = useState {}
   [mode, setMode] = useState Mode.teasing
   [paymentForm, setPaymentForm] = useState null
 
@@ -56,7 +59,6 @@ export default (p) =>
            'sq0idp-9ggRDaOxIOjCFSAnUmiOew'
         else 'sandbox-sq0idb-nhDCt22ZX39bg3y7zcC7ug'
       autoBuild: false
-      inputClass: 'sq-input'
       card:
         elementId: 'sq-card'
       callbacks:
@@ -79,7 +81,7 @@ export default (p) =>
                 'Content-Type': 'application/json'
               body: JSON.stringify({
                 nonce,
-                ...makeOrder(gtotal, shipping)
+                ...makeOrder(gtotal, gshipping)
               })
             })
             .catch((err) =>
@@ -94,6 +96,9 @@ export default (p) =>
             .then((data) =>
               console.log JSON.stringify(data)
               console.log 'payment done!'
+              cast CloseCast
+              # show a payment confirmation
+              # after 1500, => cast 'pay.close'
             )
             .catch((err) =>
               console.error 'square payment failed\n' + err.toString()
@@ -105,42 +110,12 @@ export default (p) =>
     paymentForm.build()
     paymentForm
 
-  # useEffect (=>
-  #   return unless window.paypal
-  #   window.paypal.Buttons({
-  #     style: {
-  #       shape: 'pill'
-  #     }
-  #     createOrder,
-  #     onApprove: (data, actions) =>
-  #       u.onApprove data, actions
-  #       setMode Mode.thanking
-  #     onError: (error) =>
-  #       u.onError error
-  #       alert "\
-  #         oH nO! :(\n\
-  #         there was a problem processing your paypal payment.\n\
-  #         you were not charged.\n\n\
-  #         please try again!\
-  #       "
-  #   }).render '#paypalButtons'
-  # ), [window.paypal]
-
-  onChangePrice = ({target}) =>
-    # ga.sendEvent 'checkout', 'price changed'
-    price = target.value.replace /[^0-9]*/g, ''
-    newPrice =
-      if price.length? then '$' + +price.toLocaleString([], {currency: 'USD'})
-      else ''
-    setPickYourPrice newPrice
-
-    gtotal =
-      if price then +price + u.ShippingTotal
-      else u.ShippingTotal
-    setTotal gtotal.toLocaleString([], {currency: 'USD'})
-
-    if mode isnt Mode.closing
-      setMode if price.length? then Mode.offering else Mode.teasing
+  useBus
+    [OpenCast]: (amount) =>
+      setTotal amount
+      gtotal = amount
+      setPaymentForm makePaymentForm 'card'
+    [CloseCast]: =>
 
   onChangeShipping = (key, value) =>
     # ga.sendEvent 'checkout', 'shipping entered'
@@ -150,80 +125,36 @@ export default (p) =>
     }
     setShipping {...gshipping}
 
-  onClickGetIt = =>
-    return if mode is Mode.closing or mode is Mode.thanking
-    setMode Mode.closing
-    setPaymentForm makePaymentForm 'card'
-    # ga.sendEvent 'checkout', 'buy clicked'
-
   onClickPay = (event) =>
     event.preventDefault()
     paymentForm.requestCardNonce()
 
-  <l.PickArtForm>
-    {# <SizeOptionsRoot>
-      #{SizeOptions.map(this.renderSizeOption)}
-    #</SizeOptionsRoot> */
-    }
+  <Sheet openCast={OpenCast} closeCast={CloseCast}
+    className={cx [mode]: yes}
+    style={{flexWrap: 'wrap', alignItems: 'center'}}>
+    <l.CheckoutWidget>
+      <l.Title>get your book</l.Title>
 
-    <l.TotalRoot className={'checkout-' + mode}>
-      <l.Itemization>
-        <l.ItemName>
-          {pickedArt.title}
-        </l.ItemName>
-        <l.PriceRoot>
-          <l.PriceInput
-            onChange={onChangePrice}
-            placeholder={'pick your price!'}
-            value={pickYourPrice}
-          />
-        </l.PriceRoot>
-        <l.ShippingRoot>
-          <l.ShippingPrice>${u.ShippingTotal}</l.ShippingPrice>
-          <l.ShippingByline>shipping</l.ShippingByline>
-          <l.PlusSign className='fa fa-plus' />
-        </l.ShippingRoot>
-      </l.Itemization>
-
-      <l.CheckoutWidget onClick={onClickGetIt}>
-        <l.TotalText>${total}</l.TotalText>
-        <l.GetItText>
-          {switch mode
-            when Mode.offering then 'buy it now!'
-            when Mode.closing then 'where do we ship it?'
-            when Mode.thanking
-              <div>
-                ❤️ | thank you!<br/>
-                💋 | {pickedArt.cheeky}<br/>
-                💌 | check your email for details.<br/>
-                🙏 | namaste, fellow creature.
-              </div>
-          }
-        </l.GetItText>
-
-        <l.CheckoutRoot>
-          <l.Root id='paypalRoot'>
-            <l.ShippingRoot className='inputs'>
-              {ShippingFields.map (key) =>
-                <l.ShippingInput
-                  type='text'
-                  onChange={({target}) => onChangeShipping key, target.value}
-                  value={shipping[key]}
-                  placeholder={key}
-                  key={key}
-                />
-              }
-            </l.ShippingRoot>
-            <div id="form-container">
-              <div id="sq-card"></div>
-              <button id="sq-creditcard" className="button-credit-card" onClick={onClickPay}>pay ${total}</button>
-           </div>
-          </l.Root>
-        </l.CheckoutRoot>
-      </l.CheckoutWidget>
-
-    </l.TotalRoot>
-  </l.PickArtForm>
+      <l.CheckoutRoot>
+          <l.ShippingRoot className='inputs'>
+            {ShippingFields.map (key, index) =>
+              <l.ShippingInput
+                type='text'
+                className={ShippingFields[index]}
+                onChange={({target}) => onChangeShipping key, target.value}
+                value={shipping[key]}
+                placeholder={key}
+                key={key}
+              />
+            }
+          </l.ShippingRoot>
+          <div id="form-container">
+            <div id="sq-card"></div>
+            <button id="sq-creditcard" className="button-credit-card" onClick={onClickPay}>pay ${total}</button>
+         </div>
+      </l.CheckoutRoot>
+    </l.CheckoutWidget>
+  </Sheet>
 
 # order: {
 #   total: int,

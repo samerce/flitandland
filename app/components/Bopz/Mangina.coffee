@@ -205,7 +205,7 @@ export Book = =>
         render: (p) =>
           <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' onLoad={p.markLoaded} />
         buttonText: 'get the new book'
-        buttonAction: BookUrl # todo: open pyp checkout
+        buttonAction: => cast 'book.openCheckout'
       }
       {
         render: (p) =>

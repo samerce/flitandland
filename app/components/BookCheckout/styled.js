@@ -1,10 +1,23 @@
-import styled, {css} from 'styled-components'
+import styled, {css, createGlobalStyle} from 'styled-components'
 import {transparentize as alpha, darken, lighten} from 'polished'
 import * as g from '../../global-styles'
 import * as c from '../../constants'
 
 const l = {}
 export default l
+
+l.GlobalStyle = createGlobalStyle`
+  .bookCheckoutSheet .sheet {
+    align-items: flex-start;
+  }
+`
+
+l.title = styled.div`
+  font-family: big john;
+  font-size: 27px;
+  color: white;
+  margin: 0 0 9px;
+`
 
 l.Root = styled(g.AbsoluteFlexFillParent)`
   position: fixed;
@@ -15,23 +28,35 @@ l.Root = styled(g.AbsoluteFlexFillParent)`
   justify-content: center;
 `
 
-l.About = styled(g.Flex)`
-  background: ${g.theme.ann};
-  box-shadow: ${g.theme.shadowVeryHeavy}, ${g.theme.prettyFrame}, ${g.theme.sexyEdge};
-  flex: 1;
-  margin: 0 0 0 54px;
-  padding: 27px;
+l.About = styled(g.FlexColumn)`
+  ${'' /* background: ${g.theme.cal};
+  box-shadow: ${g.theme.shadowVeryHeavy}, ${g.theme.sexyEdge}; */}
+  flex: 0 1 auto;
+  padding: 36px;
   color: white;
-  border-radius: 54px;
+  border-radius: 4px;
   font-size: 18px;
   line-height: 130%;
+  max-width: 756px;
+
+  ${g.screen.medium`
+    padding: 27px;
+    margin: 0;
+    flex: 0 0 100%;
+  `}
+`
+
+l.Details = styled(g.FlexColumn)`
+  flex: 0 1 auto;
 `
 
 const ImageWidth = 400
 l.PicRoot = styled(g.FlexColumn)`
-  flex: 0 0 ${ImageWidth}px;
+  flex: 0 0 auto;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 `
 
 l.Image = styled.div`
@@ -39,7 +64,7 @@ l.Image = styled.div`
   margin: 27px 0;
   img {
     box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
-    width: ${ImageWidth}px;
+    height: 432px;
     border-radius: 4px;
   }
 `
@@ -51,26 +76,47 @@ l.GetIt = styled(g.FlexColumn)`
   margin: 36px;
   max-width: 756px;
   padding: 0 0 54px;
+
+  .tabs {
+    width: 316px;
+    z-index: 1;
+    ${g.screen.medsmall`
+      width: 100%;
+    `}
+  }
 `
 
 l.AboutFormat = styled(g.Flex)`
-  background: ${g.theme.ben};
+  background: ${g.theme.cal};
   color: white;
-  padding: 27px;
-  margin: 18px 0;
-  border-radius: 54px;
+  border-radius: 27px;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
+  margin: -18px 0 27px;
+  padding: 35px 36px 27px
+  font-size: 18px;
+
+  ${g.screen.medsmall`
+    padding: 35px 27px 27px;
+  `}
 `
 
 l.GetItButtons = styled(g.Flex)`
   justify-content: center;
   align-items: center;
+
+  ${g.screen.medsmall`
+    flex-direction: column-reverse;
+  `}
 `
 
 l.Or = styled.div`
   color: white;
   font-family: big john;
   margin: 0 9px;
+
+  ${g.screen.medsmall`
+    margin: 9px 0;
+  `}
 
 `
 const ButtonStyle = css`
@@ -88,6 +134,7 @@ l.BarterBaby = styled(g.Flex)`
   padding: 12px 27px;
   cursor: pointer;
   height: 54px;
+  line-height: 110%;
 
   &:hover {
     filter: invert();
@@ -149,7 +196,7 @@ l.Buy = styled(g.Flex)`
     animation-duration: .3s;
     animation-fill-mode: both;
   }
-  .priceEntered &, .thinking &, .acceptOffer &, .rejectOffer &, .awaitPayment & {
+  .priceEntered &, .thinking &, .acceptOffer &, .rejectOffer &, .awaitPayment &, .thanking & {
     @keyframes show {
       100% {
         transform: none;
@@ -162,7 +209,7 @@ l.Buy = styled(g.Flex)`
     animation-fill-mode: both;
     animation-delay: .1s;
   }
-  .thinking &, .acceptOffer &, .rejectOffer &, .awaitPayment & {
+  .thinking &, .acceptOffer &, .rejectOffer &, .awaitPayment &, .thanking & {
     pointer-events: none;
     filter: invert();
   }
@@ -175,7 +222,7 @@ l.TabsRoot = styled(g.Flex)`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 54px;
+  border-radius: 12px;
   width: 90%;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowMedium};
 `

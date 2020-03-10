@@ -6,11 +6,9 @@ import {cx} from '../../utils/style'
 
 import useBus from '../../hooks/useBus.coffee'
 
+OpenCast = 'contactus.open'
+CloseCast = 'contactus.close'
 export default ContactUs = (p) =>
-  [open, setOpen] = useState no
-  useBus
-    'contactus.open': => setOpen yes
-
-  <Sheet open={open} style={{zIndex: 9000}}>
+  <Sheet openCast={OpenCast} closeCast={CloseCast} style={{zIndex: 9000}}>
     <div>send us a message!</div>
   </Sheet>

@@ -6,18 +6,45 @@ import * as c from '../../constants'
 const l = {}
 export default l
 
-l.Root = styled(g.FlexColumn)`
+l.CheckoutWidget = styled(g.Flex)`
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 0 0;
   width: 100%;
+  align-self: center;
+  font-size: 24px;
+  z-index: 1;
+  max-width: 540px;
 
-  .paypal-button-container {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-  .paypal-button-number-1 {
-    margin-bottom: 5px;
-  }
-  .paypal-buttons {
-    margin: 15px auto 0;
+  opacity: 1;
+  transform: translate(0, -12px);
+  flex: 0 0 180px;
+
+  width: 150%;
+  color: ${g.theme.veryLight};
+  padding: 22px 0 0;
+  cursor: default;
+  flex: 0 0 auto;
+
+  ${g.screen.medium`
+    width: 100%;
+  `}
+
+  .checkout-thanking & {
+    background: ${g.theme.veryLight};
+    color: ${g.theme.veryDark};
+    pointer-events: none;
+    flex: 0 0 159px;
+    padding: 20px 20px 15px;
+    width: 395px;
+    text-align: left;
+
+    ${g.screen.medium`
+      width: ${window.innerWidth - 100}px;
+      font-size: 18px;
+      flex: 0 0 125px;
+    `}
   }
 
   * {
@@ -35,11 +62,24 @@ l.Root = styled(g.FlexColumn)`
     position: relative;
     width: 380px;
     margin: 12px auto;
-    background: white;
+
+    ${g.screen.medium`
+      width: 100%;
+    `}
   }
 
   #sq-card {
     color: white;
+    background: white;
+    border-radius: 6px;
+  }
+  .sq-card-details {
+    color: rgba(0,0,0,.6) !important;
+    margin-top: 6px;
+    &:after {
+      content: ' above'
+    }
+    display: none;
   }
 
   .sq-input {
@@ -51,17 +91,20 @@ l.Root = styled(g.FlexColumn)`
     width: 100%;
     height: 56px;
     margin-top: 10px;
-    background: #4A90E2;
+    background: black;
     border-radius: 6px;
     cursor: pointer;
     display: block;
-    color: #FFFFFF;
+    color: white;
     font-size: 20px;
     line-height: 24px;
     font-weight: 700;
     letter-spacing: 0;
     text-align: center;
     text-transform: uppercase;
+    font-family: aladin;
+    border: none;
+    box-shadow: ${g.theme.sexyEdge};
     -webkit-transition: background .2s ease-in-out;
        -moz-transition: background .2s ease-in-out;
         -ms-transition: background .2s ease-in-out;
@@ -69,36 +112,32 @@ l.Root = styled(g.FlexColumn)`
   }
 
   .button-credit-card:hover {
-    background-color: #4281CB;
+    filter: invert();
   }
 `
 
-l.ShippingRoot = styled(g.FlexColumn)`
+l.Image = styled.div`
+  flex: 0 0 auto;
+  margin: 27px 0;
+  img {
+    box-shadow: ${g.theme.sexyEdge}, ${g.theme.prettyFrame}, ${g.theme.shadowVeryHeavy};
+    height: 216px;
+    border-radius: 4px;
+  }
 `
 
-l.ShippingInput = styled(g.TextInput)`
-  font-size: 16px;
-  background: white;
-  color: ${g.theme.susanDark};
-  width: 80%;
-`
+l.Title = styled.div`
+  font-family: slim joe;
+  font-size: 54px;
+  color: white;
+  margin: 18px 0;
 
-// l.SizeOptionsRoot = Flex.extend`
-//   width: 100%;
-//   margin: 20px 0;
-//   flex-wrap: wrap;
-// `
-
-// l.SizeOption = Boto.extend`
-//   flex: 1 0 auto;
-//   max-width: 300px;
-//   margin: 0 10px;
-// `
-
-l.PickArtForm = styled(g.FlexColumn)`
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 20px 0 0;
+  ${g.screen.medsmall`
+    font-size: 27px;
+  `}
+  ${g.screen.small`
+    font-size: 22px;
+  `}
 `
 
 l.TotalRoot = styled(g.FlexColumn)`
@@ -106,40 +145,7 @@ l.TotalRoot = styled(g.FlexColumn)`
   width: 100%;
 `
 
-l.Itemization = styled(g.FlexColumn)`
-  margin: 10px 0 0;
-  z-index: 2;
-  border-radius: 10px;
-  background: ${g.theme.main};
-  box-shadow: ${g.theme.shadowVeryHeavy}, ${g.theme.sexyEdge};
-
-  span {
-    font-size: 22px;
-    color: ${g.theme.semiWhite};
-    flex: 0 0 auto;
-    padding-left: 16px;
-    font-family: alice;
-  }
-
-  .checkout-thanking & {
-    flex: 0 0 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all .3s ${c.Sexy};
-  }
-`
-
-l.ItemName = styled(g.Body)`
-  margin: 0;
-  align-items: center;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  padding: 5px 0;
-  border: 0;
-  box-shadow: none;
-`
-
-l.ShippingRoot = styled(g.FlexColumn)`
+l.ShippingRoot = styled(g.Flex)`
   flex: 1;
   color: ${g.theme.veryDark};
   font-size: 28px;
@@ -151,11 +157,37 @@ l.ShippingRoot = styled(g.FlexColumn)`
   align-items: center;
   position: relative;
   padding: 20px 0 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 
   &.inputs {
     background: none;
     border-radius: none;
     padding: 0;
+  }
+`
+
+l.ShippingInput = styled(g.TextInput)`
+  font-size: 16px;
+  background: white;
+  color: ${g.theme.susanDark};
+  border-radius: 54px;
+  margin: 9px 0;
+  border: none;
+  box-shadow: ${g.theme.sexyEdge};
+
+  &.name, &.email, &.address {
+    flex: 0 0 100%;
+  }
+  &.city {
+    flex: 0 0 30%;
+    margin-right: 9px;
+  }
+  &.state, &.postcode {
+    flex: 0 0 30%;
+  }
+  &.state {
+    margin-right: 9px;
   }
 `
 
@@ -185,75 +217,6 @@ l.PlusSign = styled.i`
   text-align: center;
 `
 
-l.PriceRoot = styled(g.FlexColumn)`
-  flex: 1;
-  position: relative;
-`
-
-l.PriceInput = styled(g.TextInput)`
-  flex: 1;
-  margin: 0;
-  width: 100%;
-  padding: 20px 0;
-  font-size: 28px;
-
-  .checkout-thanking & {
-    pointer-events: none;
-  }
-`
-
-l.CheckoutWidget = styled(g.Button)`
-  position: relative;
-  flex: 0 0 0;
-  flex-direction: column;
-  align-items: center;
-  padding: 22px 0 0;
-  width: 100%;
-  align-self: center;
-  transform: translate(0, -100%);
-  font-size: 24px;
-  opacity: 0;
-  z-index: 1;
-  box-shadow: ${g.theme.shadowHeavy};
-  background: white;
-  border-color: ${g.theme.tweetLight};
-
-  .checkout-offering &, .checkout-closing &, .checkout-thanking & {
-    opacity: 1;
-    transform: translate(0, -12px);
-    flex: 0 0 180px;
-  }
-
-  .checkout-closing &, .checkout-closing &:hover {
-    background: white;
-    border-color: ${g.theme.veryLight};
-    width: 150%;
-    color: ${g.theme.veryLight};
-    padding: 22px 0 0;
-    cursor: default;
-    flex: 0 0 auto;
-
-    ${g.screen.medium`
-      width: ${window.innerWidth - 100}px;
-    `}
-  }
-  .checkout-thanking & {
-    background: ${g.theme.veryLight};
-    color: ${g.theme.veryDark};
-    pointer-events: none;
-    flex: 0 0 159px;
-    padding: 20px 20px 15px;
-    width: 395px;
-    text-align: left;
-
-    ${g.screen.medium`
-      width: ${window.innerWidth - 100}px;
-      font-size: 18px;
-      flex: 0 0 125px;
-    `}
-  }
-`
-
 l.TotalText = styled(g.Flex)`
   color: white;
   border: 2px solid ${g.theme.flikLight};
@@ -264,14 +227,11 @@ l.TotalText = styled(g.Flex)`
   margin: 5px 0;
   align-items: center;
   justify-content: center;
-  background: ${g.theme.flik};
+  background: black; /*${g.theme.flik};*/
   font-size: 28px;
 
-  ${l.CheckoutWidget}:hover &, .checkout-closing & {
-    background: ${g.theme.flikLight};
-    border-color: ${g.theme.flik};
-    color: white;
-  }
+  box-shadow: ${g.theme.sexyEdge};
+  color: white;
   .checkout-thanking & {
     flex: 0 0 0;
     overflow: hidden;
@@ -280,31 +240,11 @@ l.TotalText = styled(g.Flex)`
   }
 `
 
-l.GetItText = styled(g.Flex)`
-  transition: right .3s ${c.Sexy};
-  flex: 1;
-
-  .checkout-closing & {
-    color: ${g.theme.veryLight};
-    font-size: 28px;
-  }
-`
-
 l.CheckoutRoot = styled(g.FlexColumn)`
-  flex: 0 0 0;
   overflow: hidden;
   transition: all .3s ${c.Sexy};
   width: 100%;
   align-self: center;
-  opacity: 0;
   margin: 15px 0 0;
-
-  .checkout-closing & {
-    flex: 1;
-    opacity: 1;
-
-    #paypalButtons iframe {
-      padding: 0 20px;
-    }
-  }
+  flex: 1;
 `
