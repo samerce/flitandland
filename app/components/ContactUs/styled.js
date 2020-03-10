@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {createGlobalStyle} from 'styled-components'
 import {transparentize as alpha, darken, lighten} from 'polished'
 import * as g from '../../global-styles'
 import * as c from '../../constants'
@@ -6,27 +6,55 @@ import * as c from '../../constants'
 const l = {}
 export default l
 
-l.Countdown = styled(g.Flex)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background: linear-gradient(
-    to bottom, rgba(255, 0, 237, 0.79) 0%, rgba(255, 0, 176, 0.8) 5%, rgba(201, 23, 173, 0.81) 50%, rgba(184, 0, 149, 0.8) 95%, rgba(193, 0, 133, 0.8) 100%
-  );
-  transform-origin: left center;
-  z-index: 100;
-  box-shadow: 0 0 10px ${g.theme.susanVeryDark};
-  border-radius: 5px;
-  transform: scaleX(0);
+l.GlobalStyle = createGlobalStyle`
+  .contactUsSheet .sheet {
+    z-index: 9000;
+    max-width: 756px;
+    max-height: 432px;
+  }
+`
 
-  &.show {
-    transform: none;
-    transition: all ${p => p.duration}ms linear;
+l.Title = styled.div`
+  flex: 0 0 100%;
+  font-size: 27px;
+  font-family: big john;
+  text-align: center;
+  color: white;
+  margin: 0 0 18px;
+`
 
-    &.paused {
-      transform: scaleX(0);
-    }
+l.Subtitle = styled(l.Title)`
+  font-size: 20px;
+  font-family: crimson pro;
+`
+
+l.Email = styled(g.TextInput)`
+  flex: 0 0 100%;
+`
+
+l.Message = styled.textarea`
+  flex: 0 0 100%;
+  height: 108px;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 18px;
+  box-shadow: ${g.theme.sexyEdge};
+  border: none;
+  margin: 12px 0;
+  resize: none;
+`
+
+l.Send = styled.div`
+  ${g.ButtonStyle}
+  flex: 0 0 100%;
+  text-align: center;
+  padding: 9px;
+  pointer-events: none;
+
+  &.idle {
+    pointer-events: all;
+  }
+  &.sending, &.sent, &.failed {
+    filter: invert();
   }
 `

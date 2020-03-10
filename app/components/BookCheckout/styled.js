@@ -9,6 +9,8 @@ export default l
 l.GlobalStyle = createGlobalStyle`
   .bookCheckoutSheet .sheet {
     align-items: flex-start;
+    max-width: 1024px;
+    max-height: 756px;
   }
 `
 
@@ -92,7 +94,7 @@ l.AboutFormat = styled(g.Flex)`
   border-radius: 27px;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
   margin: -18px 0 27px;
-  padding: 35px 36px 27px
+  padding: 35px 36px 27px;
   font-size: 18px;
 
   ${g.screen.medsmall`
@@ -119,18 +121,9 @@ l.Or = styled.div`
   `}
 
 `
-const ButtonStyle = css`
-  background: white;
-  border-radius: 54px;
-  border: none;
-  color: black;
-  font-family: aladin;
-  font-size: 27px;
-  user-select: none;
-`
 
 l.BarterBaby = styled(g.Flex)`
-  ${ButtonStyle}
+  ${g.ButtonStyle}
   padding: 12px 27px;
   cursor: pointer;
   height: 54px;
@@ -161,7 +154,7 @@ l.Line = styled.div`
 `
 
 l.PriceInput = styled(g.TextInput)`
-  ${ButtonStyle}
+  ${g.ButtonStyle}
   color: ${g.theme.eli};
   width: 216px;
   padding: 12px 27px;
@@ -175,7 +168,7 @@ l.PriceInput = styled(g.TextInput)`
 `
 
 l.Buy = styled(g.Flex)`
-  ${ButtonStyle}
+  ${g.ButtonStyle}
   flex: 0 0 auto;
   transition: all .3s ${c.Sexy};
   overflow: hidden;

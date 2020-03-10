@@ -373,16 +373,15 @@ export const Faerie = styled.a`
 
 export const TextInput = styled.input`
   text-align: center;
-  font-size: 22px;
-  font-family: alice;
-  color: white;
   transition: all .3s ${c.EASE_OUT};
-  flex: 1 0 auto;
-  height: 100%;
-  border: 2px solid transparent;
-  border-bottom-color: ${Theme.veryLight};
-  padding: 10px;
-  background: ${Theme.veryDark};
+  height: 60px;
+  padding: 12px;
+  font-size: 18px;
+  background: white;
+  color: ${Theme.susanDark};
+  border-radius: 54px;
+  box-shadow: ${Theme.sexyEdge};
+  border: none;
 
   ::placeholder, ::-webkit-input-placeholder {
     color: black;
@@ -397,5 +396,22 @@ export const TextInput = styled.input`
     opacity: 1;
     outline: none;
     border-color: ${Theme.semiWhite};
+  }
+`
+
+export const ButtonStyle = css`
+  background: white;
+  border-radius: 54px;
+  border: none;
+  color: black;
+  font-family: aladin;
+  font-size: 27px;
+  user-select: none;
+  box-shadow: ${Theme.sexyEdge};
+  cursor: pointer;
+  transition: all .3s ${c.Sexy};
+
+  &:hover {
+    filter: invert();
   }
 `

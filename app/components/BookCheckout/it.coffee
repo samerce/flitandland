@@ -57,7 +57,7 @@ PickYourPrice = =>
     else setMode 'idle'
 
   useBus
-    'checkout.didClose': =>
+    'pay.close': =>
       setMode 'thanking'
       after 1500, =>
         setPrice ''

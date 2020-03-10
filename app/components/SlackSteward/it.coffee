@@ -1,30 +1,22 @@
-import React, {useEffect} from 'react'
+import React from 'react'
+
+import useBus from '../../hooks/useBus.coffee'
 
 SlackWebhookUrl = process.env.SLACK_WEBHOOK_URL
 
 export default =>
-  postToSlack = ({detail}) =>
-    {msg, channel} = detail
-    window.dispatchEvent new Event('PostToSlackPending')
-    fetch(SlackWebhookUrl, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        text: msg,
-        channel: '#' + channel,
-      })
-    }).then (response) =>
-      if response.ok
-        window.dispatchEvent new Event('PostToSlackDone')
-      else
-        window.dispatchEvent new CustomEvent('PostToSlackFailed', {
-          detail: response.status
+  useBus
+    PostToSlack: ({msg, channel}) =>
+      cast 'PostToSlackPending'
+      fetch(SlackWebhookUrl, {
+        method: 'POST'
+        headers:
+          Accept: 'application/json'
+        body: JSON.stringify({
+          text: msg
+          channel: '#' + channel
         })
-
-  useEffect (=>
-    window.addEventListener 'PostToSlack', postToSlack
-    => window.removeEventListener 'PostToSlack', postToSlack
-  ), []
+      }).then (response) =>
+        if response.ok then cast 'PostToSlackDone'
+        else cast 'PostToSlackFailed', response.status
   <div />

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 // import Chat from '../../components/Chat/it.coffee'
-// import SlackSteward from '../../components/SlackSteward/it.coffee'
+import SlackSteward from '../../components/SlackSteward/it.coffee'
 import Curtain from '../../components/Curtain/it.coffee'
 import Pay from '../../components/Checkout/it.coffee'
 import BookCheckout from '../../components/BookCheckout/it.coffee'
@@ -23,6 +23,9 @@ export default function App() {
     const {pathname} = location
     if (pathname && pathname.length > 1) {
       const id = pathname.substr(1)
+      if (pathname === 'getbook') {
+        return after(1000, () => cast('book.openCheckout'))
+      }
       const section = document.querySelector('#' + id)
       if (section) section.scrollIntoView({behavior: 'smooth'})
       else history.replaceState({}, document.title, '/')
@@ -30,15 +33,14 @@ export default function App() {
   }, [])
 
   return (
-      <l.Root id='scroll-root'>
-        <GlobalStyle />
-        {/* <SlackSteward /> */}
-        <Curtain />
-        {/* <Chat /> */}
-        {Pages.map((Page) => <Page />)}
-        <BookCheckout />
-        <Pay />
-        <ContactUs />
-      </l.Root>
+    <l.Root id='scroll-root'>
+      <GlobalStyle />
+      <SlackSteward />
+      <Curtain />
+      {Pages.map((Page) => <Page />)}
+      <BookCheckout />
+      <Pay />
+      <ContactUs />
+    </l.Root>
   )
 }

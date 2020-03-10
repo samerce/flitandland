@@ -6,8 +6,9 @@ import * as c from '../../constants'
 const l = {}
 export default l
 
-l.SheetRoot = styled(g.Flex)`
+l.SheetRoot = styled(g.FlexColumn)`
   justify-content: center;
+  align-items: center;
   pointer-events: none;
   position: fixed;
   top: 0;
@@ -25,10 +26,9 @@ l.SheetRoot = styled(g.Flex)`
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,.54);
+    background: rgba(0,0,0,.81);
   }
   .sheet {
-    align-self: flex-start;
     position: relative;
     z-index: 1;
     padding: 27px 36px;
@@ -42,16 +42,16 @@ l.SheetRoot = styled(g.Flex)`
     overflow-y: scroll;
     max-width: 95%;
     max-height: calc(100% - 108px);
-    flex: 0 0 95%;
+    flex: 1 1 auto;
     box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
 
     ${g.screen.medmedsmall`
-      padding: 9px 18px;
+      padding: 27px 18px;
     `}
   }
 `
 
-l.Close = styled(g.AbsoluteFlex)`
+l.Close = styled(g.Flex)`
   justify-content: center;
   align-items: center;
   font-size: 54px;
@@ -66,6 +66,7 @@ l.Close = styled(g.AbsoluteFlex)`
   pointer-events: none;
   text-shadow: 1px 1px rgba(0,0,0,.54);
   z-index: 1;
+  flex: 1 1 auto;
 
   &:hover {
     transform: scale(1.1);

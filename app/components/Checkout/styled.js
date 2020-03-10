@@ -177,7 +177,7 @@ l.ShippingInput = styled(g.TextInput)`
   box-shadow: ${g.theme.sexyEdge};
 
   &.name, &.email, &.address {
-    flex: 0 0 100%;
+    flex: 0 0 99%;
   }
   &.city {
     flex: 0 0 30%;

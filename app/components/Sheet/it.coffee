@@ -27,30 +27,30 @@ export default Sheet = (p) =>
     setit y: offscreenY, config: {...phys, velocity}
     setOpened no
 
-  handleDrag =
-    ({first, last, vxvy: [, vy], movement: [, my], cancel, canceled}) =>
-      setDragging(first and not last)
-
-      # if the user drags up passed a threshold, then cancel
-      if my > 70 then cancel()
-
-      # check if it passed the threshold on release
-      if last
-        if my < thresholdY or vy > 0.5
-          # close(vy)
-        else open(canceled)
-      # else just move the sheet with the user's input
-      else setit y: my, immediate: no, config: phys
-  withDrag = useDrag(handleDrag,
-    {initial: (=> [0, y.get()]), bounds: {top: 0}, rubberband: true}
-  )
+  # handleDrag =
+  #   ({first, last, vxvy: [, vy], movement: [, my], cancel, canceled}) =>
+  #     setDragging(first and not last)
+  #
+  #     # if the user drags up passed a threshold, then cancel
+  #     if my > 70 then cancel()
+  #
+  #     # check if it passed the threshold on release
+  #     if last
+  #       if my < thresholdY or vy > 0.5
+  #         # close(vy)
+  #       else open(canceled)
+  #     # else just move the sheet with the user's input
+  #     else setit y: my, immediate: no, config: phys
+  # withDrag = useDrag(handleDrag,
+  #   {initial: (=> [0, y.get()]), bounds: {top: 0}, rubberband: true}
+  # )
 
   useBus
-    [p.openCast]: open
-    [p.closeCast]: close
+    [p.openCast]: => open()
+    [p.closeCast]: => close()
 
   <l.SheetRoot {...p} className={cx [p.className]: yes, open: opened}>
-    <a.div className='bg' onClick={=> close()} style={{
+    <a.div className='bg' onClick={=> cast p.closeCast} style={{
       opacity: y.to [offscreenY, 0], [0, 1], 'clamp'
       touchAction: if opened then 'auto' else 'none'
       pointerEvents: if opened then 'all' else 'none'
