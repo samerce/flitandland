@@ -374,12 +374,12 @@ export const Faerie = styled.a`
 export const TextInput = styled.input`
   text-align: center;
   transition: all .3s ${c.EASE_OUT};
-  height: 60px;
+  height: 50px;
   padding: 12px;
   font-size: 18px;
   background: white;
   color: ${Theme.susanDark};
-  border-radius: 54px;
+  border-radius: 12px;
   box-shadow: ${Theme.sexyEdge};
   border: none;
 

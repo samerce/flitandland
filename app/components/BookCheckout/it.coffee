@@ -25,15 +25,21 @@ Tabs = (p) =>
     }
   </l.TabsRoot>
 
+BookCost = 8.50
 ThinkingDuration = 500
 AcceptDuration = ThinkingDuration + 500
 PickYourPrice = =>
   [mode, setMode] = useState 'idle'
   [price, setPrice] = useState null
+
   makeOffer = =>
+    PriceFormat = /^\$(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/g
+    if not PriceFormat.test price
+      return alert 'please enter a real price'
+
     setMode 'thinking'
     priceAsNum = +(price.replace '$', '')
-    if priceAsNum >= 10.81
+    if priceAsNum >= BookCost
       after ThinkingDuration, => setMode 'acceptOffer'
       after AcceptDuration, =>
         setMode 'awaitPayment'
@@ -42,18 +48,24 @@ PickYourPrice = =>
       after ThinkingDuration, => setMode 'rejectOffer'
       after AcceptDuration, =>
         setMode 'priceEntered'
-        cast 'contactus.open', => <div>i want my book in your hands</div>
+        cast 'contactus.open'
 
   onChangePrice = ({target}) =>
     # ga.sendEvent 'checkout', 'price changed'
-    newPrice = target.value.replace /[^0-9]*/g, ''
+    newPrice = target.value?.replace '$', ''
+    console.log 'raw', newPrice
     isJustDollarSign = newPrice.length is 1 and newPrice[0] is '$'
     newPrice =
-      if newPrice.length > 0 and not isJustDollarSign
-        '$' + +newPrice.toLocaleString([], {currency: 'USD'})
-      else null
+      if newPrice?.length > 0 and not isJustDollarSign
+        '$' + newPrice.toLocaleString('en-US', {
+          style: 'currency'
+          currency: 'USD'
+          maximumSignificantDigits: 2
+        })
+      else ''
+    console.log newPrice
     setPrice newPrice
-    if newPrice then setMode 'priceEntered'
+    if newPrice?.length > 1 then setMode 'priceEntered'
     else setMode 'idle'
 
   useBus

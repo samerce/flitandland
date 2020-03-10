@@ -71,7 +71,8 @@ l.CheckoutWidget = styled(g.Flex)`
   #sq-card {
     color: white;
     background: white;
-    border-radius: 6px;
+    border-radius: 12px;
+    box-shadow: ${g.theme.sexyEdge};
   }
   .sq-card-details {
     color: rgba(0,0,0,.6) !important;
@@ -92,7 +93,7 @@ l.CheckoutWidget = styled(g.Flex)`
     height: 56px;
     margin-top: 10px;
     background: black;
-    border-radius: 6px;
+    border-radius: 54px;
     cursor: pointer;
     display: block;
     color: white;
@@ -168,13 +169,7 @@ l.ShippingRoot = styled(g.Flex)`
 `
 
 l.ShippingInput = styled(g.TextInput)`
-  font-size: 16px;
-  background: white;
-  color: ${g.theme.susanDark};
-  border-radius: 54px;
   margin: 9px 0;
-  border: none;
-  box-shadow: ${g.theme.sexyEdge};
 
   &.name, &.email, &.address {
     flex: 0 0 99%;

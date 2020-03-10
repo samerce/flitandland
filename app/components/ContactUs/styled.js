@@ -50,6 +50,8 @@ l.Send = styled.div`
   text-align: center;
   padding: 9px;
   pointer-events: none;
+  background: black;
+  color: white;
 
   &.idle {
     pointer-events: all;

@@ -165,6 +165,9 @@ l.PriceInput = styled(g.TextInput)`
   &:hover, &:focus {
     filter: invert();
   }
+  &:focus {
+    cursor: text;
+  }
 `
 
 l.Buy = styled(g.Flex)`
