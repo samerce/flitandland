@@ -125,8 +125,15 @@ export default (p) =>
     }
     setShipping {...gshipping}
 
+  shippingIsValid = =>
+    valid = no
+    valid = valid and value?.trim().length > 0 for key, value of gshipping
+    valid
+
   onClickPay = (event) =>
     event.preventDefault()
+    if not shippingIsValid()
+      return alert 'please enter all shipping details'
     paymentForm.requestCardNonce()
 
   <Sheet openCast={OpenCast} closeCast={CloseCast}
