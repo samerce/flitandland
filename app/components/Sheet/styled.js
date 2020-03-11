@@ -84,14 +84,13 @@ l.Close = styled(g.Flex)`
   opacity: 0;
   transform: scale(0);
   .open & {
-    @keyframes show {
+    @keyframes showSheetClose {
       to {
         opacity: 1;
         transform: none;
-        pointer-events: all;
       }
     }
-    animation-name: show;
+    animation-name: showSheetClose;
     animation-duration: .3s;
     animation-delay: .3s;
     animation-timing-function: ${c.Sexy};

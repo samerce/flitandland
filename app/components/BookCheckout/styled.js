@@ -216,23 +216,23 @@ l.Buy = styled(g.Flex)`
   padding-top: 15px;
 
   .idle & {
-    @keyframes hide {
+    @keyframes hideBuy {
       transform: scale(0);
       opacity: 0;
     }
-    animation-name: hide;
+    animation-name: hideBuy;
     animation-duration: .3s;
     animation-fill-mode: both;
   }
   .priceEntered &, .thinking &, .acceptOffer &, .rejectOffer &, .awaitPayment &, .thanking & {
-    @keyframes show {
+    @keyframes showBuy {
       100% {
         transform: none;
         opacity: 1;
       }
     }
 
-    animation-name: show;
+    animation-name: showBuy;
     animation-duration: .3s;
     animation-fill-mode: both;
     animation-delay: .1s;
