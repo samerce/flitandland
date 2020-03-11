@@ -59,7 +59,6 @@ export default (p) =>
     after 4000, => setMode 'fillingForm'
 
   makePaymentForm = (type) =>
-    console.log 'square app id', SquareAppId
     paymentForm = new SqPaymentForm({
       locationId: 'CWMV8TTJ1ZACA'
       applicationId: SquareAppId
@@ -90,16 +89,19 @@ export default (p) =>
             if response.ok
               return response.text()
             else return response.text().then (errorInfo) =>
-                Promise.reject errorInfo
+              Promise.reject errorInfo
           )
           .then((response) =>
             order = JSON.parse response
-            setMode 'paymentSucceeded'
             cast 'checkout.paymentSucceeded', {
               id: order.result.payment.order_id,
               recipient: order.recipient
             }
+            setMode 'paymentSucceeded'
             after 1500, => cast CloseCast
+            after 1800, =>
+              setShipping {}
+              setMode 'fillingForm'
           )
           .catch(onPaymentFailed)
     })
@@ -116,7 +118,6 @@ export default (p) =>
     [CloseCast]: => paymentForm.destroy()
 
   onChangeShipping = (key, value) =>
-    # ga.sendEvent 'checkout', 'shipping entered'
     gshipping = {
       ...gshipping
       [key]: value
@@ -180,7 +181,7 @@ export default (p) =>
             when 'paymentSucceeded' then 'yay, all set! thank you!'
             when 'paymentFailed'
               <>payment didn’t work.<br/>
-                please verify your card details and try again.<br/>
+                please check your card details and try again.<br/>
                 <l.details>
                   if you need help, email us at
                   <a href='mailto:whynot@expressyourmess.com'>
@@ -188,7 +189,6 @@ export default (p) =>
                   </a>
                 </l.details>
               </>
-            else ''
           }
         </l.StatusText>
       </l.CheckoutStatus>
