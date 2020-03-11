@@ -17,9 +17,14 @@ l.SheetRoot = styled(g.FlexColumn)`
   width: 100%;
   height: 100%;
   margin: 0 auto;
+  visibility: hidden;
+  transition: visibility;
+  transition-delay: 1s;
 
   &.open {
     pointer-events: all;
+    visibility: visible;
+    transition-delay: 0s;
   }
 
   .bg {
