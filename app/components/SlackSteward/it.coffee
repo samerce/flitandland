@@ -3,6 +3,11 @@ import React from 'react'
 import useBus from '../../hooks/useBus.coffee'
 
 SlackWebhookUrl = process.env.SLACK_WEBHOOK_URL
+console.log 'slack:\n', process.env.SLACK_WEBHOOK_URL
+console.log 'insta:\n', process.env.INSTAGRAM_TOKEN
+console.log 'env:\n', process.env.NODE_ENV
+console.log 'square:\n', process.env.SQUARE_ACCESS_TOKEN
+
 
 export default =>
   useBus
