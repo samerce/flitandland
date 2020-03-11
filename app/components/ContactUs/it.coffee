@@ -43,7 +43,7 @@ export default ContactUs = (p) =>
 
   <Sheet openCast={OpenCast} closeCast={CloseCast} className='contactUsSheet'>
     <l.GlobalStyle />
-    <l.Title>let’s talk!</l.Title>
+    <l.Title>let’s talk</l.Title>
     <l.Subtitle>
       i want this book in your hands, let’s barter and make it happen!
     </l.Subtitle>

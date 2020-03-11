@@ -290,6 +290,7 @@ export const TextInput = styled.input`
   border-radius: 12px;
   box-shadow: ${Theme.sexyEdge};
   border: none;
+  user-select: auto !important;
 
   ::placeholder, ::-webkit-input-placeholder {
     color: black;
@@ -303,7 +304,6 @@ export const TextInput = styled.input`
   &:focus {
     opacity: 1;
     outline: none;
-    border-color: ${Theme.semiWhite};
   }
 `
 

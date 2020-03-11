@@ -171,6 +171,7 @@ l.PriceInput = styled(g.TextInput)`
   z-index: 1;
   position: relative;
   line-height: 110%;
+  user-select: unset;
 
   &:hover, &:focus {
     filter: invert();
@@ -234,9 +235,6 @@ l.Buy = styled(g.Flex)`
     width: 100%;
     right: 0;
     padding: 0;
-  }
-  &:hover {
-    filter: invert();
   }
 `
 
