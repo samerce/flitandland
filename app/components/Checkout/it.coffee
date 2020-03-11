@@ -27,7 +27,7 @@ makeOrder = (total, shipping) =>
       name: 'drag queen in the white house'
       quantity: '1'
       total_money: total
-      catalog_object_id: 'TXEFRKQOVIOTZ3L2G4DKQ7FC'
+      catalog_object_id: 'LWO4K5YZYOA2QQPZCMXT6J7G'
     }
   ]
   recipient:
@@ -56,7 +56,7 @@ export default (p) =>
     }
     setMode 'paymentFailed'
     cast 'checkout.paymentFailed'
-    after 3000, => setMode 'fillingForm'
+    after 4000, => setMode 'fillingForm'
 
   makePaymentForm = (type) =>
     console.log 'square app id', SquareAppId

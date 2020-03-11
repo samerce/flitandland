@@ -9,17 +9,14 @@ module.exports = (app) => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(express.static(__dirname));
-  console.log('isProd', process.env.NODE_ENV)
 
   const defaultClient = squareConnect.ApiClient.instance;
 
   const oauth2 = defaultClient.authentications['oauth2'];
   oauth2.accessToken = process.env.SQUARE_ACCESS_TOKEN
-  console.log('access token', process.env.SQUARE_ACCESS_TOKEN)
 
   defaultClient.basePath = isProd?
     'https://connect.squareup.com' : 'https://connect.squareupsandbox.com';
-  console.log('basePath', defaultClient.basePath)
 
   app.post('/process-payment', processPayment)
 }
