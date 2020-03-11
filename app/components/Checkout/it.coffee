@@ -12,6 +12,10 @@ import useBus from '../../hooks/useBus.coffee'
 ShippingFields = [
   'name', 'email', 'address', 'city', 'state', 'postcode',
 ]
+SquareAppId =
+  if process.env.NODE_ENV is 'production'
+    'sq0idp-9ggRDaOxIOjCFSAnUmiOew'
+  else 'sandbox-sq0idb-nhDCt22ZX39bg3y7zcC7ug'
 
 gtotal = u.ShippingTotal
 gshipping = {}
@@ -55,12 +59,10 @@ export default (p) =>
     after 2000, => setMode 'fillingForm'
 
   makePaymentForm = (type) =>
+    console.log 'square app id', SquareAppId
     paymentForm = new SqPaymentForm({
       locationId: 'TPWBYE84W506V' # test value - the white house!
-      applicationId:
-        if process.env.NODE_ENV is 'production'
-           'sq0idp-9ggRDaOxIOjCFSAnUmiOew'
-        else 'sandbox-sq0idb-nhDCt22ZX39bg3y7zcC7ug'
+      applicationId: SquareAppId
       autoBuild: false
       card:
         elementId: 'sq-card'
