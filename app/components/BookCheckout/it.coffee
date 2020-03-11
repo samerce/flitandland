@@ -34,6 +34,10 @@ PickYourPrice = =>
   [price, setPrice] = useState ''
 
   makeOffer = =>
+    ga 'send', 'event', {
+      eventCategory: 'book checkout'
+      eventAction: 'make offer button clicked'
+    }
     PriceFormat = /^\$(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/g
     if not PriceFormat.test price
       return alert 'please enter a real price'
@@ -88,14 +92,26 @@ PickYourPrice = =>
   </l.PickYourPrice>
 
 GetItButtons = =>
+  onClickBarter = =>
+    cast 'contactus.open'
+    ga 'send', 'event', {
+      eventCategory: 'book checkout'
+      eventAction: 'barter button clicked'
+    }
+  onClickAmazon = =>
+    openInNewTab c.BookUrl
+    ga 'send', 'event', {
+      eventCategory: 'book checkout'
+      eventAction: 'amazon button clicked'
+    }
   <l.GetItButtons>
     <PickYourPrice />
     <l.Or>or</l.Or>
-    <l.BarterBaby onClick={=> cast 'contactus.open'}>
+    <l.BarterBaby onClick={onClickBarter}>
       barter, baby
     </l.BarterBaby>
     <l.Or>or</l.Or>
-    <l.BarterBaby onClick={=> openInNewTab c.BookUrl}>
+    <l.BarterBaby onClick={onClickAmazon}>
       amazon
     </l.BarterBaby>
   </l.GetItButtons>
@@ -125,10 +141,10 @@ GetIt = =>
     <Tabs tabs={BookFormats} onChange={setFormatIndex} className='tabs' />
     {[
       <l.AboutFormat>
-        this cost $10.81 to print and ship
+        the paperback costs $8.50 to print and ship
       </l.AboutFormat>,
       <l.AboutFormat>
-        this cost only electrons to deliver
+        the ebook costs only electrons to deliver
       </l.AboutFormat>
     ][formatIndex]}
     <GetItButtons />
@@ -158,10 +174,10 @@ export default BookCheckout = (p) =>
         imagine waking mañana and a drag queen is president.<br/>
         what would america look like with wild injections of colorful yes?<br/>
         emancipated lands of yes, and await you<br/>
-        —whole celestial realms outside the absurd world of no.<br/>
+        —whole celestial realms outside the absurd world of no.
         <br/><br/>
         drag queen in the white house is a reimagining. a game.<br/>
-        a queer piece of living theatre about what happens when we set fear down.<br/>
+        a queer piece of living theatre about what happens when we set fear down.
         <br/><br/>
         there are 500,000 offices up for election, pick one.<br/>
         i’ll go first.<br/>

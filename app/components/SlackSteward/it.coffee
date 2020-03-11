@@ -2,13 +2,11 @@ import React from 'react'
 
 import useBus from '../../hooks/useBus.coffee'
 
-SlackWebhookUrl = process.env.SLACK_WEBHOOK_URL
-
 export default =>
   useBus
     PostToSlack: ({msg, channel}) =>
       cast 'PostToSlackPending'
-      fetch(SlackWebhookUrl, {
+      fetch(process.env.SLACK_WEBHOOK_URL, {
         method: 'POST'
         headers:
           Accept: 'application/json'

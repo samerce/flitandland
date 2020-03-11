@@ -25,18 +25,21 @@ export default ContactUs = (p) =>
       msg: "🤩 new message! 🍄\nfrom: #{email}\n#{msg}"
       channel: 'barter'
     }
+  reset = =>
+    setEmail ''
+    setMsg ''
+    setMode 'idle'
 
   useBus
     PostToSlackDone: =>
       setMode 'sent'
       after 1500, => cast CloseCast
-      after 1800, =>
-        setEmail null
-        setMsg null
-        setMode 'idle'
+      after 1800, => reset()
     PostToSlackFailed: =>
       setMode 'failed'
-      alert 'try again or email us at whynot@expressyourmess.com'
+      alert 'send failed.\ntry again or email us at whynot@expressyourmess.com'
+      after 1000, => setMode 'idle'
+    [CloseCast]: => after 1000, => reset()
 
   <Sheet openCast={OpenCast} closeCast={CloseCast} className='contactUsSheet'>
     <l.GlobalStyle />
@@ -50,8 +53,8 @@ export default ContactUs = (p) =>
       {switch mode
         when 'idle' then 'send'
         when 'sending' then 'sending...'
-        when 'sent' then 'message sent!'
-        when 'failed' then 'send failed :('
+        when 'sent' then 'message sent! 🌈'
+        when 'failed' then 'send failed ☹️'
       }
     </l.Send>
   </Sheet>

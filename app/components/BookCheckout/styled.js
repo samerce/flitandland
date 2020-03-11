@@ -10,7 +10,7 @@ l.GlobalStyle = createGlobalStyle`
   .bookCheckoutSheet .sheet {
     align-items: flex-start;
     max-width: 1024px;
-    max-height: 786px;
+    max-height: calc(100% - 108px);
   }
 `
 
@@ -165,7 +165,7 @@ l.PriceInput = styled(g.TextInput)`
   &:hover, &:focus {
     filter: invert();
   }
-  &:focus {
+  &:focus, .priceEntered & {
     cursor: text;
   }
 `

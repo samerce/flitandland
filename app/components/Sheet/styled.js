@@ -37,7 +37,7 @@ l.SheetRoot = styled(g.FlexColumn)`
   .sheet {
     position: relative;
     z-index: 1;
-    padding: 27px 36px;
+    padding: 18px 36px;
     display: flex;
     align-items: center;
     justify-content: center;
