@@ -38,8 +38,8 @@ l.SheetRoot = styled(g.FlexColumn)`
     justify-content: center;
     flex-wrap: wrap;
     background: ${g.theme.eli};
-    border-bottom-right-radius: 54px;
-    border-bottom-left-radius: 54px;
+    border-bottom-right-radius: 27px;
+    border-bottom-left-radius: 27px;
     overflow-y: scroll;
     max-width: 95%;
     max-height: calc(100% - 108px);

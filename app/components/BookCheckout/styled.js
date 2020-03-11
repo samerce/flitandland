@@ -77,7 +77,6 @@ l.GetIt = styled(g.FlexColumn)`
   flex: 0 0 100%;
   margin: 27px 36px;
   max-width: 756px;
-  padding: 0 0 54px;
 
   .tabs {
     width: 316px;
@@ -102,7 +101,7 @@ l.AboutFormat = styled(g.Flex)`
   `}
 `
 
-l.GetItButtons = styled(g.Flex)`
+l.GetItButtons = styled(g.FlexColumn)`
   justify-content: center;
   align-items: center;
 
@@ -114,7 +113,7 @@ l.GetItButtons = styled(g.Flex)`
 l.Or = styled.div`
   color: white;
   font-family: big john;
-  margin: 0 9px;
+  margin: 9px 0;
 
   ${g.screen.medsmall`
     margin: 9px 0;
@@ -147,6 +146,7 @@ l.Line = styled.div`
   position: absolute;
   top: 100%;
   transform: translate(0, -100%);
+  display: none;
 
   &.show {
     transform: none;
@@ -183,6 +183,16 @@ l.Buy = styled(g.Flex)`
   transform: scale(0);
   opacity: 0;
 
+  /* rocket button */
+  top: 0;
+  margin: 0;
+  right: -18px;
+  z-index: 1;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+
   .idle & {
     @keyframes hide {
       transform: scale(0);
@@ -208,6 +218,9 @@ l.Buy = styled(g.Flex)`
   .thinking &, .acceptOffer &, .rejectOffer &, .awaitPayment &, .thanking & {
     pointer-events: none;
     filter: invert();
+    width: 100%;
+    right: 0;
+    padding: 0;
   }
   &:hover {
     filter: invert();

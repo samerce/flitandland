@@ -37,8 +37,8 @@ makeOrder = (total, shipping) =>
       first_name: shipping.name
       country: 'US'
 
-OpenCast = 'pay.open'
-CloseCast = 'pay.close'
+OpenCast = 'checkout.open'
+CloseCast = 'checkout.close'
 export default (p) =>
   [shipping, setShipping] = useState {}
   [mode, setMode] = useState 'fillingForm'

@@ -7,6 +7,7 @@ import * as c from '../../constants'
 
 import useScreenSize from '../../hooks/useScreenSize.coffee'
 import useBus from '../../hooks/useBus.coffee'
+import {openInNewTab} from '../../utils/nav'
 
 Tabs = (p) =>
   [activeTab, setActiveTab] = useState 0
@@ -26,8 +27,8 @@ Tabs = (p) =>
   </l.TabsRoot>
 
 BookCost = 8.50
-ThinkingDuration = 500
-AcceptDuration = ThinkingDuration + 500
+ThinkingDuration = 1000
+AcceptDuration = ThinkingDuration + 1000
 PickYourPrice = =>
   [mode, setMode] = useState 'idle'
   [price, setPrice] = useState ''
@@ -43,7 +44,7 @@ PickYourPrice = =>
       after ThinkingDuration, => setMode 'acceptOffer'
       after AcceptDuration, =>
         setMode 'awaitPayment'
-        cast 'pay.open', +(price.replace '$', '')
+        cast 'checkout.open', +(price.replace '$', '')
     else
       after ThinkingDuration, => setMode 'rejectOffer'
       after AcceptDuration, =>
@@ -68,13 +69,14 @@ PickYourPrice = =>
 
   useBus
     'checkout.paymentFailed': => setMode 'priceEntered'
+    'checkout.close': => setMode 'priceEntered'
 
   <l.PickYourPrice className={cx [mode]: yes}>
     <l.PriceInput value={price} onChange={onChangePrice} placeholder='pick your price' />
     <l.Line className={cx show: mode isnt 'idle'} />
     <l.Buy onClick={makeOffer}>
       {switch mode
-        when 'priceEntered' then 'make offer'
+        when 'priceEntered' then '🚀'
         when 'thinking' then 'considering it...'
         when 'acceptOffer' then 'you got a deal!'
         when 'rejectOffer' then 'let’s talk!'
@@ -91,6 +93,10 @@ GetItButtons = =>
     <l.Or>or</l.Or>
     <l.BarterBaby onClick={=> cast 'contactus.open'}>
       barter, baby
+    </l.BarterBaby>
+    <l.Or>or</l.Or>
+    <l.BarterBaby onClick={=> openInNewTab c.BookUrl}>
+      amazon
     </l.BarterBaby>
   </l.GetItButtons>
 
