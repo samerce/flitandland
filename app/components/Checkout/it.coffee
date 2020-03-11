@@ -134,8 +134,8 @@ export default (p) =>
       after 1500, => setMode 'fillingForm'
 
   <Sheet openCast={OpenCast} closeCast={CloseCast}
-    className={cx [mode]: yes}
-    style={{flexWrap: 'wrap', alignItems: 'center'}}>
+    className={cx [mode]: yes, checkoutSheet: yes}>
+    <l.GlobalStyle />
     <l.CheckoutWidget>
       <l.Title>get your book</l.Title>
 

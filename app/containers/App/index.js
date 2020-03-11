@@ -23,8 +23,8 @@ export default function App() {
     const {pathname} = location
     if (pathname && pathname.length > 1) {
       const id = pathname.substr(1)
-      if (pathname === 'getbook') {
-        return after(1000, () => cast('book.openCheckout'))
+      if (id === 'getbook') {
+        return after(2000, () => cast('book.openCheckout'))
       }
       const section = document.querySelector('#' + id)
       if (section) section.scrollIntoView({behavior: 'smooth'})

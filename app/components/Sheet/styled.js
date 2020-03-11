@@ -98,6 +98,9 @@ l.Close = styled(g.Flex)`
     animation-fill-mode: both;
   }
 
+  ${g.screen.large`
+    font-size: 36px;
+  `}
   ${g.screen.medsmall`
     font-size: 27px;
   `}

@@ -666,7 +666,7 @@ l.Title = styled(CenteredFlex)`
     box-shadow: ${g.theme.shadowVeryHeavy}, ${g.theme.sexyEdge};
   }
 
-  ${g.screen.large`
+  ${g.screen.xlarge`
     font-size: 36px;
   `}
   ${g.screen.medium`

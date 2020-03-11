@@ -10,10 +10,18 @@ l.GlobalStyle = createGlobalStyle`
   .bookCheckoutSheet .sheet {
     align-items: flex-start;
     max-width: 1024px;
-    max-height: calc(100% - 108px);
+    max-height: 816px;
+    flex-wrap: unset;
 
-    ${g.screen.medsmall`
+    ${g.screen.large`
       max-width: 99%;
+      max-height: 886px;
+    `}
+    ${g.screen.mediumlarge`
+      flex-wrap: wrap;
+      max-height: calc(100% - 108px);
+    `}
+    ${g.screen.medsmall`
       max-height: calc(100% - 54px);
     `}
   }

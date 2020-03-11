@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {createGlobalStyle} from 'styled-components'
 import {transparentize as alpha, darken, lighten} from 'polished'
 import * as g from '../../global-styles'
 import * as c from '../../constants'
@@ -6,12 +6,17 @@ import * as c from '../../constants'
 const l = {}
 export default l
 
-l.CheckoutWidget = styled(g.Flex)`
+l.GlobalStyle = createGlobalStyle`
+  .checkoutSheet .sheet {
+    max-height: 648px;
+  }
+`
+
+l.CheckoutWidget = styled(g.FlexColumn)`
   position: relative;
-  flex-direction: column;
   align-items: center;
   width: 100%;
-  align-self: center;
+  align-self: flex-start;
   font-size: 24px;
   z-index: 1;
   max-width: 540px;
@@ -19,6 +24,7 @@ l.CheckoutWidget = styled(g.Flex)`
   color: ${g.theme.veryLight};
   cursor: default;
   flex: 0 0 auto;
+  margin: 36px 0 0;
 
   ${g.screen.medium`
     width: 100%;
