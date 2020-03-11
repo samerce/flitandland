@@ -166,7 +166,7 @@ Deck = (p) =>
       {p.title()}
       <l.LoadingText>{p.loading() if mode isnt 'show'}</l.LoadingText>
     </l.Title>
-    <l.CardRoot className={cx hide: mode isnt 'show'}>
+    <l.CardRoot className={cx hide: mode isnt 'show' or not inView}>
       {props.map ({x, y, rot, scale}, thisIndex) =>
         isTop = topIndex is thisIndex
         zIndex =

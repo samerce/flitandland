@@ -604,9 +604,40 @@ l.CardRoot = styled(CenteredFlex)`
   position: relative;
   z-index: 1;
 
+  @keyframes show {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+    }
+    1% {
+      opacity: 0;
+      visibility: visible;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  animation-name: show;
+  animation-duration: .3s;
+  animation-timing-function: ${c.Sexy};
+  animation-fill-mode: both;
+
+  @keyframes hide {
+    0% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 0;
+      visibility: visible;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
   &.hide {
-    visibility: hidden;
-    transition: all .1s linear .3s;
+    animation-name: hide;
+    animation-delay: .3s;
   }
 `
 
@@ -697,6 +728,7 @@ l.OutNow = styled(CenteredFlex)`
   flex-direction: column;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
   cursor: pointer;
+  text-shadow: 1px 1px rgba(255,255,255,.5);
 
   transform: rotate(0) scale(0);
   opacity: 0;

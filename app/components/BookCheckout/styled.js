@@ -10,7 +10,7 @@ l.GlobalStyle = createGlobalStyle`
   .bookCheckoutSheet .sheet {
     align-items: flex-start;
     max-width: 1024px;
-    max-height: 816px;
+    max-height: 864px;
     flex-wrap: unset;
 
     ${g.screen.large`
