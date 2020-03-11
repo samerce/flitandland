@@ -74,6 +74,9 @@ PickYourPrice = =>
   useBus
     'checkout.paymentFailed': => setMode 'priceEntered'
     'checkout.close': => setMode 'priceEntered'
+    'book.checkoutClose': =>
+      setPrice ''
+      setMode 'idle'
 
   <l.PickYourPrice className={cx [mode]: yes}>
     <l.PriceInput value={price} onChange={onChangePrice} placeholder='pick your price' />
@@ -130,9 +133,9 @@ OrderConfirmation = ({order}) =>
     </l.Address>
   </l.OrderConfirmation>
 
-BookTabs = ['front', 'back', 'irl']
+BookTabs = ['front', 'back', 'author']
 BookImages = [
-  'dqitwh cover mq.jpg', 'drag pixel book launch.jpg'
+  'dqitwh cover mq.jpg', 'dqitwh back mq.jpg', 'drag pixel book launch.jpg'
 ]
 BookFormats = ['paperback', 'ebook']
 GetIt = =>
@@ -163,6 +166,7 @@ export default BookCheckout = (p) =>
   [order, setOrder] = useState()
   useBus
     'checkout.paymentSucceeded': (order) => setOrder order
+    'book.closeCheckout': => setOrder null
 
   <Sheet openCast='book.openCheckout' closeCast='book.closeCheckout'
     className='bookCheckoutSheet'>

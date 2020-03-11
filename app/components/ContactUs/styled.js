@@ -11,6 +11,10 @@ l.GlobalStyle = createGlobalStyle`
     z-index: 9000;
     max-width: 756px;
     max-height: 432px;
+
+    ${g.screen.medsmall`
+      max-width: 99%;
+    `}
   }
 `
 
@@ -42,6 +46,11 @@ l.Message = styled.textarea`
   border: none;
   margin: 12px 0;
   resize: none;
+
+  ::placeholder, ::-webkit-input-placeholder {
+    color: black;
+    opacity: .67;
+  }
 `
 
 l.Send = styled.div`

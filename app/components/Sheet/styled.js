@@ -46,13 +46,16 @@ l.SheetRoot = styled(g.FlexColumn)`
     border-bottom-right-radius: 27px;
     border-bottom-left-radius: 27px;
     overflow-y: scroll;
-    max-width: 95%;
+    max-width: 99%;
     max-height: calc(100% - 108px);
     flex: 1 1 auto;
     box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
 
     ${g.screen.medmedsmall`
       padding: 27px 18px;
+    `}
+    ${g.screen.medsmall`
+      max-height: calc(100% - 54px);
     `}
   }
 `
@@ -72,7 +75,7 @@ l.Close = styled(g.Flex)`
   pointer-events: none;
   text-shadow: 1px 1px rgba(0,0,0,.54);
   z-index: 1;
-  flex: 1 1 auto;
+  flex: 1;
 
   &:hover {
     transform: scale(1.1);
@@ -94,4 +97,8 @@ l.Close = styled(g.Flex)`
     animation-timing-function: ${c.Sexy};
     animation-fill-mode: both;
   }
+
+  ${g.screen.medsmall`
+    font-size: 27px;
+  `}
 `

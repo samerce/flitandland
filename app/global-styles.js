@@ -235,98 +235,6 @@ export const Subheader = styled(H2)`
   margin-top: 0;
 `
 
-export const Matrix = styled(Flex)`
-  width: 100%;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  margin: 0 auto;
-`
-
-export const MatrixItem = styled(Flex)`
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 100%;
-  max-width: 1920px;
-  transition: all .3s;
-  padding: 40px;
-  margin: 20px 0;
-
-  &.right {
-    flex-direction: row-reverse;
-  }
-
-  ${screen.xlarge`
-    flex: 0 0 100%;
-  `}
-  ${screen.large`
-    &, &.right {
-      margin: 40px 0;
-      padding: 10px 5px;
-      flex-direction: column;
-    }
-  `}
-`
-
-export const MatrixItemContent = styled(FlexColumn)`
-  flex: 1;
-  text-align: left;
-  padding-left: 40px;
-
-  .right & {
-    text-align: right;
-    padding-right: 40px;
-    padding-left: 0;
-    align-items: flex-end;
-  }
-  ${screen.large`
-    &, .right && {
-      padding: 0;
-      margin: 60px 0 0;
-      text-align: center;
-      align-items: center;
-    }
-  `}
-`
-
-export const MatrixItemIcon = styled.i`
-  font-size: 72px;
-  flex: 0 0 100px;
-  text-align: center;
-`
-
-export const MatrixItemTitle = styled(H1)`
-  margin: 0 0 20px;
-  font-size: 81px;
-
-  ${screen.xlarge`
-    font-size: 280%;
-  `}
-`
-
-export const MatrixItemText = styled(Body)`
-  margin: 0;
-  max-width: 800px;
-  text-align: inherit;
-
-  ${screen.xlarge`
-    font-size: 110%;
-    line-height: 125%;
-  `}
-  ${screen.medium`
-    padding: 0;
-  `}
-`
-
-export const MatrixImage = styled.img`
-  max-width: 50%;
-  border: 30px solid white;
-  border-bottom-width: 60px;
-  border-radius: 3px;
-  box-shadow: ${theme.shadowVeryHeavy};
-`
-
 export const ButtonStyles = css`
   cursor: pointer;
   border: 1px dashed ${theme.main};
@@ -385,7 +293,7 @@ export const TextInput = styled.input`
 
   ::placeholder, ::-webkit-input-placeholder {
     color: black;
-    opacity: .8;
+    opacity: .67;
   }
 
   &:hover {

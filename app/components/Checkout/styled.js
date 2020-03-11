@@ -10,7 +10,6 @@ l.CheckoutWidget = styled(g.Flex)`
   position: relative;
   flex-direction: column;
   align-items: center;
-  padding: 22px 0 0;
   width: 100%;
   align-self: center;
   font-size: 24px;
@@ -18,7 +17,6 @@ l.CheckoutWidget = styled(g.Flex)`
   max-width: 540px;
   width: 150%;
   color: ${g.theme.veryLight};
-  padding: 22px 0 0;
   cursor: default;
   flex: 0 0 auto;
 
@@ -53,6 +51,8 @@ l.CheckoutWidget = styled(g.Flex)`
     border-radius: 12px;
     box-shadow: ${g.theme.sexyEdge};
     height: 56px;
+    width: 99%;
+    margin: 0 auto;
   }
   .sq-card-details {
     color: rgba(0,0,0,.6) !important;
@@ -69,9 +69,10 @@ l.CheckoutWidget = styled(g.Flex)`
 
   /* Customize the "Pay with Credit Card" button */
   .button-credit-card {
-    width: 100%;
+    width: 99%;
+    margin: 18px auto 0;
     height: 56px;
-    margin-top: 10px;
+    margin-top: 18px;
     background: black;
     border-radius: 54px;
     cursor: pointer;
@@ -111,7 +112,7 @@ l.Title = styled.div`
   font-family: big john;
   font-size: 54px;
   color: white;
-  margin: 18px 0;
+  margin: 0 0 18px;
 
   ${g.screen.medsmall`
     font-size: 27px;

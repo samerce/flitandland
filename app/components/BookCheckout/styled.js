@@ -11,6 +11,11 @@ l.GlobalStyle = createGlobalStyle`
     align-items: flex-start;
     max-width: 1024px;
     max-height: calc(100% - 108px);
+
+    ${g.screen.medsmall`
+      max-width: 99%;
+      max-height: calc(100% - 54px);
+    `}
   }
 `
 
@@ -19,6 +24,7 @@ l.title = styled.div`
   font-size: 27px;
   color: white;
   margin: 0 0 9px;
+  line-height: 130%;
 `
 
 l.Root = styled(g.AbsoluteFlexFillParent)`
@@ -42,9 +48,12 @@ l.About = styled(g.FlexColumn)`
   max-width: 756px;
 
   ${g.screen.medium`
-    padding: 27px;
+    padding: 27px 6px;
     margin: 0;
     flex: 0 0 100%;
+  `}
+  ${g.screen.medsmall`
+    margin-top: 18px;
   `}
 `
 
@@ -75,7 +84,7 @@ l.GetIt = styled(g.FlexColumn)`
   justify-content: center;
   align-items: center;
   flex: 0 0 100%;
-  margin: 27px 36px;
+  margin: 12px 36px;
   max-width: 756px;
 
   .tabs {
@@ -85,12 +94,16 @@ l.GetIt = styled(g.FlexColumn)`
       width: 100%;
     `}
   }
+
+  ${g.screen.medsmall`
+    margin: 18px 0;
+  `}
 `
 
 l.AboutFormat = styled(g.Flex)`
   background: ${g.theme.cal};
   color: white;
-  border-radius: 27px;
+  border-radius: 12px;
   box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
   margin: -18px 0 27px;
   padding: 35px 36px 27px;
@@ -104,10 +117,6 @@ l.AboutFormat = styled(g.Flex)`
 l.GetItButtons = styled(g.FlexColumn)`
   justify-content: center;
   align-items: center;
-
-  ${g.screen.medsmall`
-    flex-direction: column-reverse;
-  `}
 `
 
 l.Or = styled.div`
@@ -157,16 +166,20 @@ l.PriceInput = styled(g.TextInput)`
   ${g.ButtonStyle}
   color: ${g.theme.eli};
   width: 216px;
-  padding: 12px 27px;
+  padding: 12px 27px 14px;
   height: 54px;
   z-index: 1;
   position: relative;
+  line-height: 110%;
 
   &:hover, &:focus {
     filter: invert();
   }
   &:focus, .priceEntered & {
     cursor: text;
+  }
+  ::placeholder, ::-webkit-input-placeholder {
+    opacity: 1;
   }
 `
 
@@ -281,6 +294,8 @@ l.DoneText = styled.div`
   font-size: 27px;
   margin: 12px 0;
   color: white;
+  line-height: 130%;
+  text-align: center;
 `
 
 l.Order = styled.div`
@@ -289,10 +304,15 @@ l.Order = styled.div`
   margin: 6px 0;
   color: white;
   cursor: text;
+  text-align: center;
 
   span {
     font-family: slim joe;
   }
+
+  ${g.screen.medsmall`
+    margin: 12px 0 18px;
+  `}
 `
 
 l.Address = styled.div`

@@ -240,7 +240,7 @@ export Book = =>
       }
       {
         render: (p) =>
-          <Image name='child with sign.jpg' onLoad={p.markLoaded} />
+          <Image name='child with sign.jpg' className='fullHeight' onLoad={p.markLoaded} />
         buttonText: 'youtube'
         buttonAction: c.YouTubeUrl
       }
