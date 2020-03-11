@@ -57,6 +57,9 @@ if (process.env.NODE_ENV === 'production' && !isInsider()) {
   upon('analyticsReady', () => {
     ga('create', 'UA-104536966-1', 'auto')
     ga('send', 'pageview')
+    ga.sendEvent = (eventCategory, eventAction, eventLabel) => {
+      ga('send', 'event', {eventCategory, eventAction, eventLabel})
+    }
   })
 } else {
   // disable analytics for development

@@ -10,7 +10,7 @@ l.GlobalStyle = createGlobalStyle`
   .bookCheckoutSheet .sheet {
     align-items: flex-start;
     max-width: 1024px;
-    max-height: 756px;
+    max-height: 786px;
   }
 `
 
@@ -75,7 +75,7 @@ l.GetIt = styled(g.FlexColumn)`
   justify-content: center;
   align-items: center;
   flex: 0 0 100%;
-  margin: 36px;
+  margin: 27px 36px;
   max-width: 756px;
   padding: 0 0 54px;
 
@@ -245,4 +245,46 @@ l.Tab = styled(g.Flex)`
   &:not(:last-child) {
     border-right: 1px solid black;
   }
+`
+
+l.OrderConfirmation = styled(g.FlexColumn)`
+  padding: 27px;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  margin: 0 27px;
+  border-radius: 12px;
+  box-shadow: ${g.theme.sexyEdge};
+`
+
+l.ThanksText = styled.div`
+  font-family: big john;
+  font-size: 27px;
+  color: white;
+`
+
+l.DoneText = styled.div`
+  font-family: slim joe;
+  font-size: 27px;
+  margin: 12px 0;
+  color: white;
+`
+
+l.Order = styled.div`
+  font-family: big john;
+  font-size: 18px;
+  margin: 6px 0;
+  color: white;
+  cursor: text;
+
+  span {
+    font-family: slim joe;
+  }
+`
+
+l.Address = styled.div`
+  font-family: crimson pro;
+  font-size: 18px;
+  color: white;
+  text-transform: uppercase;
 `

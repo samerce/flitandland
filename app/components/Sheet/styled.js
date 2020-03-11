@@ -27,6 +27,7 @@ l.SheetRoot = styled(g.FlexColumn)`
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,.81);
+    cursor: pointer;
   }
   .sheet {
     position: relative;

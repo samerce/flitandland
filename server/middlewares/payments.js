@@ -36,16 +36,17 @@ async function processPayment(req, res) {
     const order = await createOrder(params, req.host)
     paymentReq.order_id = order.id
     const response = await squarePayments.createPayment(paymentReq);
-    console.info('payment done!\n' + response)
+    console.info('payment done!')
     res.status(200).json({
-      'title': 'Payment Successful',
-      'result': response
+      title: 'Payment Successful',
+      result: response,
+      recipient: params.recipient,
     });
   } catch(error) {
     console.log('payment failed:\n' + error.response.text)
     res.status(500).json({
-      'title': 'Payment Failure',
-      'result': error.response.text
+      title: 'Payment Failed',
+      result: error.response.text,
     });
   }
 }

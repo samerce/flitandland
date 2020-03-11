@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useLayoutEffect, useState} from 'react'
 import Sheet from '../Sheet/it.coffee'
 
 import l from './styled'
@@ -48,8 +48,20 @@ CloseCast = 'pay.close'
 export default (p) =>
   [shipping, setShipping] = useState {}
   [total, setTotal] = useState u.ShippingTotal
-  [mode, setMode] = useState Mode.teasing
+  [mode, setMode] = useState 'fillingForm'
   [paymentForm, setPaymentForm] = useState null
+
+  # useLayoutEffect (=> after 1000, => cast OpenCast), []
+
+  onPaymentFailed = (error) =>
+    ga 'send', 'event', {
+      eventCategory: 'payment'
+      eventAction: 'processing failed'
+      eventLabel: error?.toString?()
+    }
+    setMode 'paymentFailed'
+    cast 'checkout.paymentFailed'
+    after 2000, => setMode 'fillingForm'
 
   makePaymentForm = (type) =>
     paymentForm = new SqPaymentForm({
@@ -69,40 +81,34 @@ export default (p) =>
         #   googlePayBtn = document.getElementById 'sq-google-pay'
         #   googlePayBtn.style.display = 'inline-block' if methods.googlePay?
         cardNonceResponseReceived: (errors, nonce, cardData) =>
-          if errors
-            console.error 'error initiating payment:'
-            console.error '\n' + error.message for error in errors
-          else
-            console.log "The generated nonce is:\n#{nonce}"
-            fetch('process-payment', {
-              method: 'POST'
-              headers:
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              body: JSON.stringify({
-                nonce,
-                ...makeOrder(gtotal, gshipping)
-              })
+          if errors then return onPaymentFailed(errors?[0]?.message)
+          fetch('process-payment', {
+            method: 'POST'
+            headers:
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            body: JSON.stringify({
+              nonce,
+              ...makeOrder(gtotal, gshipping)
             })
-            .catch((err) =>
-              console.log 'square: network error: ' + err
-            )
-            .then((response) =>
-              if response.ok
-                return response.text()
-              else return response.text().then (errorInfo) =>
-                  Promise.reject errorInfo
-            )
-            .then((data) =>
-              console.log JSON.stringify(data)
-              console.log 'payment done!'
-              cast CloseCast
-              # show a payment confirmation
-              # after 1500, => cast 'pay.close'
-            )
-            .catch((err) =>
-              console.error 'square payment failed\n' + err.toString()
-            )
+          })
+          .catch(onPaymentFailed)
+          .then((response) =>
+            if response.ok
+              return response.text()
+            else return response.text().then (errorInfo) =>
+                Promise.reject errorInfo
+          )
+          .then((response) =>
+            order = JSON.parse response
+            setMode 'paymentSucceeded'
+            cast 'checkout.paymentSucceeded', {
+              id: order.result.payment.order_id,
+              recipient: order.recipient
+            }
+            after 1500, => cast CloseCast
+          )
+          .catch(onPaymentFailed)
     })
     switch type
       when 'apple' then paymentForm.applePay = elementId: 'sq-apple-pay'
@@ -126,15 +132,16 @@ export default (p) =>
     setShipping {...gshipping}
 
   shippingIsValid = =>
-    valid = no
-    valid = valid and value?.trim().length > 0 for key, value of gshipping
-    valid
+    ShippingFields.every (field) => gshipping[field]?.trim().length > 0
 
   onClickPay = (event) =>
     event.preventDefault()
-    if not shippingIsValid()
-      return alert 'please enter all shipping details'
-    paymentForm.requestCardNonce()
+    if shippingIsValid()
+      setMode 'processing'
+      paymentForm.requestCardNonce()
+    else
+      setMode 'formError'
+      after 1500, => setMode 'fillingForm'
 
   <Sheet openCast={OpenCast} closeCast={CloseCast}
     className={cx [mode]: yes}
@@ -160,6 +167,35 @@ export default (p) =>
             <button id="sq-creditcard" className="button-credit-card" onClick={onClickPay}>pay ${total}</button>
          </div>
       </l.CheckoutRoot>
+
+      <l.CheckoutStatus className={cx [mode]: yes}>
+        <l.Icon>
+          {switch mode
+            when 'formError' then '💃🏽'
+            when 'processing' then '❤️'
+            when 'paymentSucceeded' then '🙏'
+            when 'paymentFailed' then '☹️'
+          }
+        </l.Icon>
+        <l.StatusText>
+          {switch mode
+            when 'formError' then 'please fill out all fields'
+            when 'processing' then 'sending payment'
+            when 'paymentSucceeded' then 'yay, all set! thank you!'
+            when 'paymentFailed'
+              <>payment didn’t work.<br/>
+                please verify your card details and try again.<br/>
+                <l.details>
+                  if you need help, email us at
+                  <a href='mailto:whynot@expressyourmess.com'>
+                    whynot@expressyourmess.com
+                  </a>
+                </l.details>
+              </>
+            else ''
+          }
+        </l.StatusText>
+      </l.CheckoutStatus>
     </l.CheckoutWidget>
   </Sheet>
 

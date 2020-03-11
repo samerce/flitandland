@@ -16,11 +16,6 @@ l.CheckoutWidget = styled(g.Flex)`
   font-size: 24px;
   z-index: 1;
   max-width: 540px;
-
-  opacity: 1;
-  transform: translate(0, -12px);
-  flex: 0 0 180px;
-
   width: 150%;
   color: ${g.theme.veryLight};
   padding: 22px 0 0;
@@ -30,22 +25,6 @@ l.CheckoutWidget = styled(g.Flex)`
   ${g.screen.medium`
     width: 100%;
   `}
-
-  .checkout-thanking & {
-    background: ${g.theme.veryLight};
-    color: ${g.theme.veryDark};
-    pointer-events: none;
-    flex: 0 0 159px;
-    padding: 20px 20px 15px;
-    width: 395px;
-    text-align: left;
-
-    ${g.screen.medium`
-      width: ${window.innerWidth - 100}px;
-      font-size: 18px;
-      flex: 0 0 125px;
-    `}
-  }
 
   * {
     -webkit-font-smoothing: antialiased;
@@ -73,6 +52,7 @@ l.CheckoutWidget = styled(g.Flex)`
     background: white;
     border-radius: 12px;
     box-shadow: ${g.theme.sexyEdge};
+    height: 56px;
   }
   .sq-card-details {
     color: rgba(0,0,0,.6) !important;
@@ -128,7 +108,7 @@ l.Image = styled.div`
 `
 
 l.Title = styled.div`
-  font-family: slim joe;
+  font-family: big john;
   font-size: 54px;
   color: white;
   margin: 18px 0;
@@ -242,4 +222,63 @@ l.CheckoutRoot = styled(g.FlexColumn)`
   align-self: center;
   margin: 15px 0 0;
   flex: 1;
+`
+
+l.CheckoutStatus = styled(g.FlexColumn)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: ${g.theme.eli};
+  opacity: 0;
+  transform: scale(.98);
+  transition: all .5s ${c.Sexy};
+  pointer-events: none;
+  align-items: center;
+  justify-content: center;
+
+  &:not(.fillingForm) {
+    opacity: 1;
+    transform: none;
+    pointer-events: all;
+  }
+`
+
+l.Icon = styled.div`
+  flex: 0 0 108px;
+  width: 108px;
+  font-size: 108px;
+  color: black;
+
+  @keyframes grow {
+    100% {
+      transform: scale(1.2);
+    }
+  }
+  .processing & {
+    animation-name: grow;
+    animation-duration: .54s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+`
+
+l.StatusText = styled.div`
+  font-size: 22px;
+  font-family: big john;
+  color: white;
+  text-align: center;
+  width: 100%;
+
+  .paymentFailed & {
+
+  }
+`
+l.details = styled.span`
+  font-family: crimson pro;
+
+  a {
+    display: block;
+    font-family: crimson pro;
+  }
 `

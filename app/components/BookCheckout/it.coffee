@@ -53,7 +53,6 @@ PickYourPrice = =>
   onChangePrice = ({target}) =>
     # ga.sendEvent 'checkout', 'price changed'
     newPrice = target.value?.replace '$', ''
-    console.log 'raw', newPrice
     isJustDollarSign = newPrice.length is 1 and newPrice[0] is '$'
     newPrice =
       if newPrice?.length > 0 and not isJustDollarSign
@@ -63,17 +62,12 @@ PickYourPrice = =>
           maximumSignificantDigits: 2
         })
       else ''
-    console.log newPrice
     setPrice newPrice
     if newPrice?.length > 1 then setMode 'priceEntered'
     else setMode 'idle'
 
   useBus
-    'pay.close': =>
-      setMode 'thanking'
-      after 1500, =>
-        setPrice ''
-        setMode 'idle'
+    'checkout.paymentFailed': => setMode 'priceEntered'
 
   <l.PickYourPrice className={cx [mode]: yes}>
     <l.PriceInput value={price} onChange={onChangePrice} placeholder='pick your price' />
@@ -90,6 +84,29 @@ PickYourPrice = =>
       }
     </l.Buy>
   </l.PickYourPrice>
+
+GetItButtons = =>
+  <l.GetItButtons>
+    <PickYourPrice />
+    <l.Or>or</l.Or>
+    <l.BarterBaby onClick={=> cast 'contactus.open'}>
+      barter, baby
+    </l.BarterBaby>
+  </l.GetItButtons>
+
+OrderConfirmation = ({order}) =>
+  {display_name = '', email_address = '', address = {}} = order.recipient
+  <l.OrderConfirmation>
+    <l.ThanksText>thank you!</l.ThanksText>
+    <l.DoneText>your book is ordered</l.DoneText>
+    <l.Order><span>{'order '}</span>{order.id}</l.Order>
+    <l.Address key='email'>{email_address}</l.Address>
+    <l.Address key='name'>{display_name}</l.Address>
+    <l.Address key='address1'>{address.address_line_1}</l.Address>
+    <l.Address key='address2'>
+      {address.locality}, {address.administrative_district_level_1}  {address.postal_code}
+    </l.Address>
+  </l.OrderConfirmation>
 
 BookTabs = ['front', 'back', 'irl']
 BookImages = [
@@ -108,13 +125,7 @@ GetIt = =>
         this cost only electrons to deliver
       </l.AboutFormat>
     ][formatIndex]}
-    <l.GetItButtons>
-      <PickYourPrice />
-      <l.Or>or</l.Or>
-      <l.BarterBaby onClick={=> cast 'contactus.open'}>
-        barter, baby
-      </l.BarterBaby>
-    </l.GetItButtons>
+    <GetItButtons />
   </l.GetIt>
 
 BookPics = =>
@@ -127,9 +138,13 @@ BookPics = =>
   </l.PicRoot>
 
 export default BookCheckout = (p) =>
+  [order, setOrder] = useState()
   useLayoutEffect (=>
     after 500, => cast 'book.openCheckout'
   ), []
+  useBus
+    'checkout.paymentSucceeded': (order) => setOrder order
+
   <Sheet openCast='book.openCheckout' closeCast='book.closeCheckout'
     className='bookCheckoutSheet'>
     <l.GlobalStyle />
@@ -149,6 +164,9 @@ export default BookCheckout = (p) =>
         i’ll go first.<br/>
         i’m 35 today, i think i’ll run for president.<br/>
       </l.About>
-      <GetIt />
+      {
+        if order then <OrderConfirmation order={order} />
+        else <GetIt />
+      }
     </l.Details>
   </Sheet>
