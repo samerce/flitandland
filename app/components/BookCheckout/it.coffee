@@ -30,7 +30,7 @@ ThinkingDuration = 500
 AcceptDuration = ThinkingDuration + 500
 PickYourPrice = =>
   [mode, setMode] = useState 'idle'
-  [price, setPrice] = useState null
+  [price, setPrice] = useState ''
 
   makeOffer = =>
     PriceFormat = /^\$(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/g
@@ -139,9 +139,6 @@ BookPics = =>
 
 export default BookCheckout = (p) =>
   [order, setOrder] = useState()
-  useLayoutEffect (=>
-    after 500, => cast 'book.openCheckout'
-  ), []
   useBus
     'checkout.paymentSucceeded': (order) => setOrder order
 

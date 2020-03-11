@@ -254,7 +254,7 @@ l.Icon = styled.div`
       transform: scale(1.2);
     }
   }
-  .processing & {
+  .processing &, .init & {
     animation-name: grow;
     animation-duration: .54s;
     animation-timing-function: ease-in-out;

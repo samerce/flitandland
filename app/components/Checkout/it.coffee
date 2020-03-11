@@ -12,12 +12,6 @@ import useBus from '../../hooks/useBus.coffee'
 ShippingFields = [
   'name', 'email', 'address', 'city', 'state', 'postcode',
 ]
-Mode = makeEnum [
-  'teasing',
-  'offering',
-  'closing',
-  'thanking',
-]
 
 gtotal = u.ShippingTotal
 gshipping = {}
@@ -47,11 +41,8 @@ OpenCast = 'pay.open'
 CloseCast = 'pay.close'
 export default (p) =>
   [shipping, setShipping] = useState {}
-  [total, setTotal] = useState u.ShippingTotal
   [mode, setMode] = useState 'fillingForm'
   [paymentForm, setPaymentForm] = useState null
-
-  # useLayoutEffect (=> after 1000, => cast OpenCast), []
 
   onPaymentFailed = (error) =>
     ga 'send', 'event', {
@@ -118,7 +109,6 @@ export default (p) =>
 
   useBus
     [OpenCast]: (amount) =>
-      setTotal amount
       gtotal = amount
       setPaymentForm makePaymentForm 'card'
     [CloseCast]: =>
@@ -164,21 +154,25 @@ export default (p) =>
           </l.ShippingRoot>
           <div id="form-container">
             <div id="sq-card"></div>
-            <button id="sq-creditcard" className="button-credit-card" onClick={onClickPay}>pay ${total}</button>
+            <button id="sq-creditcard" className="button-credit-card" onClick={onClickPay}>pay ${gtotal}</button>
          </div>
       </l.CheckoutRoot>
 
       <l.CheckoutStatus className={cx [mode]: yes}>
         <l.Icon>
           {switch mode
+            when 'init' then '🧞‍♀️'
             when 'formError' then '💃🏽'
             when 'processing' then '❤️'
             when 'paymentSucceeded' then '🙏'
             when 'paymentFailed' then '☹️'
+            when 'squareNotLoaded' then '☹️'
           }
         </l.Icon>
         <l.StatusText>
           {switch mode
+            when 'init' then 'loading'
+            when 'squareNotLoaded' then 'checkout failed. please reload.'
             when 'formError' then 'please fill out all fields'
             when 'processing' then 'sending payment'
             when 'paymentSucceeded' then 'yay, all set! thank you!'

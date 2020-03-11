@@ -33,7 +33,7 @@ async function processPayment(req, res) {
   paymentReq.amount_money.currency = 'USD'
   console.log('paymentreq: ', paymentReq)
   try {
-    const order = await createOrder(params, req.host)
+    const order = await createOrder(params, req.hostname)
     paymentReq.order_id = order.id
     const response = await squarePayments.createPayment(paymentReq);
     console.info('payment done!')
