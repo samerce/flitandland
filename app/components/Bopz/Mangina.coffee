@@ -88,7 +88,7 @@ from = (x = 0) => x: x, y: 0
 to = (delay = 0) => x: 0, y: 0, delay: delay
 
 OutNow = (p) =>
-  <l.OutNow onClick={=> openInNewTab BookUrl}
+  <l.OutNow onClick={=> cast 'book.openCheckout'}
     className={cx show: p.show} delay={p.delay}>
     <l.woo>new book</l.woo>
     <l.yow>out now!</l.yow>
@@ -236,7 +236,7 @@ export Book = =>
         render: (p) =>
           <Image name='back cover sd.jpg' className='fullHeight' onLoad={p.markLoaded} />
         buttonText: 'get the book'
-        buttonAction: BookUrl
+        buttonAction: => cast 'book.openCheckout'
       }
       {
         render: (p) =>
@@ -254,7 +254,7 @@ export Book = =>
         render: (p) =>
           <Image name='nonviolent revolution small.png' className='revo' onLoad={p.markLoaded} />
         buttonText: 'i’m into it'
-        buttonAction: BookUrl
+        buttonAction: => cast 'book.openCheckout'
       }
       {
         render: (p) =>
@@ -445,7 +445,7 @@ export Lampshade = =>
             expansive public space to simply <l.zon>exist</l.zon>
           </l.Pot>
         buttonText: 'liberate the static'
-        buttonAction: BookUrl
+        buttonAction: => cast 'book.openCheckout'
       }
       {
         render: (p) =>
@@ -524,7 +524,7 @@ export EymU = =>
             </div>
           </l.Pot>
         buttonText: 'get the book'
-        buttonAction: BookUrl
+        buttonAction: => cast 'book.openCheckout'
       }
     ]}
   />
@@ -599,7 +599,7 @@ export Creation = =>
 export Footer = =>
   <l.Centered className='bottom'>
     <div className='book-link'>
-      <a href={BookUrl} target='_blank'>
+      <a onClick={=> cast 'book.openCheckout'}>
         get the new book!
       </a>
     </div>

@@ -94,12 +94,13 @@ l.Centered = animated(styled(g.FlexColumn)`
         background: black;
         box-shadow: ${g.theme.sexyEdge};
         border-radius: 54px;
+        cursor: pointer;
       }
     }
     .footer-brand {
       font-size: 108px;
       flex: 0 0 100%;
-      color: ${g.theme.ann};
+      color: white;
       font-size: 54px;
       text-align: center;
       padding: 27px 0 36px;
