@@ -144,7 +144,7 @@ GetIt = =>
     <Tabs tabs={BookFormats} onChange={setFormatIndex} className='tabs' />
     {[
       <l.AboutFormat>
-        the paperback costs $8.50 to print and ship
+        the paperback costs $10 to print and ship
       </l.AboutFormat>,
       <l.AboutFormat>
         the ebook costs only electrons to deliver

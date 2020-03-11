@@ -57,7 +57,7 @@ async function processPayment(req, res) {
 
 async function createOrder(params, source) {
   const squareOrders = new squareConnect.OrdersApi()
-  const locationId = "TPWBYE84W506V"; // test id - the white house!
+  const locationId = "CWMV8TTJ1ZACA"; // test id - the white house!
   const body = new squareConnect.CreateOrderRequest()
   body.idempotency_key = createKey()
   body.order = new squareConnect.Order()

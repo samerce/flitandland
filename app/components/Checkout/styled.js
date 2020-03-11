@@ -24,7 +24,6 @@ l.CheckoutWidget = styled(g.FlexColumn)`
   color: ${g.theme.veryLight};
   cursor: default;
   flex: 0 0 auto;
-  margin: 36px 0 0;
 
   ${g.screen.medium`
     width: 100%;
@@ -118,7 +117,7 @@ l.Title = styled.div`
   font-family: big john;
   font-size: 54px;
   color: white;
-  margin: 0 0 18px;
+  margin: 36px 0 18px;
 
   ${g.screen.medsmall`
     font-size: 27px;

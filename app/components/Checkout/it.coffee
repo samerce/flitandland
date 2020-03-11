@@ -56,12 +56,12 @@ export default (p) =>
     }
     setMode 'paymentFailed'
     cast 'checkout.paymentFailed'
-    after 2000, => setMode 'fillingForm'
+    after 3000, => setMode 'fillingForm'
 
   makePaymentForm = (type) =>
     console.log 'square app id', SquareAppId
     paymentForm = new SqPaymentForm({
-      locationId: 'TPWBYE84W506V' # test value - the white house!
+      locationId: 'CWMV8TTJ1ZACA'
       applicationId: SquareAppId
       autoBuild: false
       card:
@@ -113,7 +113,7 @@ export default (p) =>
     [OpenCast]: (amount) =>
       gtotal = if amount is 10831415 then 1 else amount # $1 for testing in prod
       setPaymentForm makePaymentForm 'card'
-    [CloseCast]: =>
+    [CloseCast]: => paymentForm.destroy()
 
   onChangeShipping = (key, value) =>
     # ga.sendEvent 'checkout', 'shipping entered'
