@@ -5,8 +5,10 @@ const logger = require('./logger');
 
 const argv = require('./argv');
 const port = require('./port');
-const setup = require('./middlewares/frontendMiddleware');
-const setupPayments = require('./middlewares/payments')
+const setup = require('./middlewares/frontendMiddleware')
+const {initSquare} = require('./square')
+const setupSquarePayments = require('./middlewares/payments')
+const setupSquareEvents = require('./middlewares/squareEvents')
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok =
   (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
@@ -15,7 +17,9 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-setupPayments(app)
+initSquare()
+setupSquarePayments(app)
+setupSquareEvents(app)
 
 // add your custom backend-specific middleware here
 // app.use('/api', myApi);

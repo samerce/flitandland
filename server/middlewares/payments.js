@@ -2,22 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const squareConnect = require('square-connect');
-
-const isProd = process.env.NODE_ENV === 'production'
+const {SquareLocationId} = require('../square')
 
 module.exports = (app) => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(express.static(__dirname));
-
-  const defaultClient = squareConnect.ApiClient.instance;
-
-  const oauth2 = defaultClient.authentications['oauth2'];
-  oauth2.accessToken = process.env.SQUARE_ACCESS_TOKEN
-
-  defaultClient.basePath = isProd?
-    'https://connect.squareup.com' : 'https://connect.squareupsandbox.com';
-
   app.post('/process-payment', processPayment)
 }
 
@@ -44,21 +34,20 @@ async function processPayment(req, res) {
       recipient: params.recipient,
     });
   } catch(error) {
-    console.log('payment failed:\n' + error.response.text)
+    console.log('payment failed:\n' + error)
     res.status(500).json({
       title: 'Payment Failed',
-      result: error.response.text,
+      result: error,
     });
   }
 }
 
 async function createOrder(params, source) {
   const squareOrders = new squareConnect.OrdersApi()
-  const locationId = "CWMV8TTJ1ZACA"; // test id - the white house!
   const body = new squareConnect.CreateOrderRequest()
   body.idempotency_key = createKey()
   body.order = new squareConnect.Order()
-  body.order.location_id = locationId
+  body.order.location_id = SquareLocationId
   body.order.line_items = params.items.map(item => {
     lineItem = new squareConnect.OrderLineItem()
     lineItem.quantity = item.quantity
@@ -85,7 +74,7 @@ async function createOrder(params, source) {
   body.order.fulfillments = [fulfillment]
 
   try {
-    const response = await squareOrders.createOrder(locationId, body)
+    const response = await squareOrders.createOrder(SquareLocationId, body)
     console.info('order created\n')
     return response.order
   } catch (error) {

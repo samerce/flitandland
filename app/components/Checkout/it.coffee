@@ -16,6 +16,14 @@ SquareAppId =
   if process.env.NODE_ENV is 'production'
     'sq0idp-9ggRDaOxIOjCFSAnUmiOew'
   else 'sandbox-sq0idb-nhDCt22ZX39bg3y7zcC7ug'
+LocationId =
+  if process.env.NODE_ENV is 'production'
+    'CWMV8TTJ1ZACA'
+  else 'TPWBYE84W506V'
+CatalogObjectId =
+  if process.env.NODE_ENV is 'production'
+    'LWO4K5YZYOA2QQPZCMXT6J7G'
+  else 'TXEFRKQOVIOTZ3L2G4DKQ7FC'
 
 gtotal = u.ShippingTotal
 gshipping = {}
@@ -27,7 +35,7 @@ makeOrder = (total, shipping) =>
       name: 'drag queen in the white house'
       quantity: '1'
       total_money: total
-      catalog_object_id: 'LWO4K5YZYOA2QQPZCMXT6J7G'
+      catalog_object_id: CatalogObjectId
     }
   ]
   recipient:
@@ -56,11 +64,11 @@ export default (p) =>
     }
     setMode 'paymentFailed'
     cast 'checkout.paymentFailed'
-    after 4000, => setMode 'fillingForm'
+    after 5000, => setMode 'fillingForm'
 
   makePaymentForm = (type) =>
     paymentForm = new SqPaymentForm({
-      locationId: 'CWMV8TTJ1ZACA'
+      locationId: LocationId
       applicationId: SquareAppId
       autoBuild: false
       card:
