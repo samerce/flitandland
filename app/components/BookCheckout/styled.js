@@ -10,19 +10,17 @@ l.GlobalStyle = createGlobalStyle`
   .bookCheckoutSheet .sheet {
     align-items: flex-start;
     max-width: 1024px;
-    max-height: 864px;
+    height: 864px;
+    flex: 0 0 864px;
     flex-wrap: unset;
 
     ${g.screen.large`
       max-width: 99%;
-      max-height: 886px;
     `}
     ${g.screen.mediumlarge`
       flex-wrap: wrap;
-      max-height: calc(100% - 108px);
-    `}
-    ${g.screen.medsmall`
-      max-height: calc(100% - 54px);
+      height: 100%;
+      flex: 0 0 100%;
     `}
   }
 `
@@ -94,6 +92,7 @@ l.GetIt = styled(g.FlexColumn)`
   flex: 0 0 100%;
   margin: 12px 36px;
   max-width: 756px;
+  position: relative;
 
   .tabs {
     width: 316px;
@@ -125,6 +124,7 @@ l.AboutFormat = styled(g.Flex)`
 l.GetItButtons = styled(g.FlexColumn)`
   justify-content: center;
   align-items: center;
+  ${'' /* margin: 18px 0 0; */}
 `
 
 l.Or = styled.div`
@@ -246,6 +246,27 @@ l.Buy = styled(g.Flex)`
   }
 `
 
+l.CuteInfo = styled(g.Flex)`
+  flex-direction: column;
+  transform: rotate(3deg);
+  width: 222px;
+  margin: 12px 0;
+  color: white;
+  font-size: 22px;
+  font-family: just another hand;
+  letter-spacing: 1px;
+  line-height: 130%;
+
+  span {
+    font-size: 28px;
+    line-height: 0px;
+    margin: 6px 0 0 -18px;
+    transform: rotate(148deg);
+    display: inline-block;
+    width: 16px;
+  }
+`
+
 l.TabsRoot = styled(g.Flex)`
   justify-content: center;
   align-items: center;
@@ -271,6 +292,7 @@ l.Tab = styled(g.Flex)`
     filter: invert();
   }
   &.active {
+    background: ${g.theme.eli};
     filter: invert();
     cursor: default;
   }

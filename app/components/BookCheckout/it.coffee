@@ -142,14 +142,10 @@ GetIt = =>
   [formatIndex, setFormatIndex] = useState 0
   <l.GetIt>
     <Tabs tabs={BookFormats} onChange={setFormatIndex} className='tabs' />
-    {[
-      <l.AboutFormat>
-        the paperback costs $10 to print and ship
-      </l.AboutFormat>,
-      <l.AboutFormat>
-        the ebook costs only electrons to deliver
-      </l.AboutFormat>
-    ][formatIndex]}
+    <l.CuteInfo>
+      <span><br/>↯</span>
+      printing+shipping costs $10 on our end
+    </l.CuteInfo>
     <GetItButtons />
   </l.GetIt>
 
@@ -176,7 +172,7 @@ export default BookCheckout = (p) =>
       <l.About>
         <l.title>drag queen in the white house</l.title>
         imagine waking mañana and a drag queen is president.<br/>
-        what would america look like with wild injections of colorful yes?<br/>
+        what would america look like with wild injections of colorful yes?<br/><br/>
         emancipated lands of yes, and await you<br/>
         —whole celestial realms outside the absurd world of no.
         <br/><br/>

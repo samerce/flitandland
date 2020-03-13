@@ -8,7 +8,13 @@ export default l
 
 l.GlobalStyle = createGlobalStyle`
   .checkoutSheet .sheet {
-    max-height: 648px;
+    height: 648px;
+    flex: 0 0 648px;
+
+    @media(max-width: 555px) {
+      height: 708px;
+      flex: 0 0 708px;
+    }
   }
 `
 
@@ -43,7 +49,7 @@ l.CheckoutWidget = styled(g.FlexColumn)`
   #form-container {
     position: relative;
     width: 380px;
-    margin: 12px auto;
+    margin: 9px auto;
 
     ${g.screen.medium`
       width: 100%;
@@ -120,10 +126,7 @@ l.Title = styled.div`
   margin: 36px 0 18px;
 
   ${g.screen.medsmall`
-    font-size: 27px;
-  `}
-  ${g.screen.small`
-    font-size: 22px;
+    font-size: 36px;
   `}
 `
 
@@ -161,14 +164,21 @@ l.ShippingInput = styled(g.TextInput)`
     flex: 0 0 99%;
   }
   &.city {
-    flex: 0 0 30%;
+    flex: 0 1 30%;
     margin-right: 9px;
   }
   &.state, &.postcode {
-    flex: 0 0 30%;
+    flex: 0 1 30%;
   }
   &.state {
     margin-right: 9px;
+  }
+
+  @media(max-width: 555px) {
+    && {
+      flex: 0 0 99%;
+      margin: 9px 0;
+    }
   }
 `
 
