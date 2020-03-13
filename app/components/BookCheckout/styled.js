@@ -29,7 +29,6 @@ l.title = styled.div`
   font-family: big john;
   font-size: 27px;
   color: white;
-  margin: 0 0 9px;
   line-height: 130%;
 `
 
@@ -65,6 +64,22 @@ l.About = styled(g.FlexColumn)`
 
 l.Details = styled(g.FlexColumn)`
   flex: 0 1 auto;
+`
+
+l.Rating = styled(g.Flex)`
+  font-size: 16px;
+  color: white
+  margin: 6px 0 9px;
+  transition: all .2s ${c.Sexy};
+
+  &:hover {
+    filter: brightness(2);
+
+    a, a:hover {
+      filter: none;
+      color: inherit;
+    }
+  }
 `
 
 const ImageWidth = 400
@@ -292,7 +307,7 @@ l.Tab = styled(g.Flex)`
     filter: invert();
   }
   &.active {
-    background: ${g.theme.eli};
+    background: ${g.theme.dan};
     filter: invert();
     cursor: default;
   }

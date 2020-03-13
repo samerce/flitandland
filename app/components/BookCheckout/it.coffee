@@ -158,19 +158,27 @@ BookPics = =>
     <Tabs tabs={BookTabs} onChange={setImageIndex} />
   </l.PicRoot>
 
+Rating = =>
+  <l.Rating>
+    <a href='https://www.amazon.com/gp/product/171000892X/#customerReviews' target='_blank'>
+      🌟🌟🌟🌟🌟 2 reviews
+    </a>
+  </l.Rating>
+
 export default BookCheckout = (p) =>
   [order, setOrder] = useState()
   useBus
     'checkout.paymentSucceeded': (order) => setOrder order
     'book.closeCheckout': => setOrder null
 
-  <Sheet openCast='book.openCheckout' closeCast='book.closeCheckout'
+  <Sheet openCast='book.openCheckout' closeCast='book.closeCheckout' url='getbook'
     className='bookCheckoutSheet'>
     <l.GlobalStyle />
     <BookPics />
     <l.Details>
       <l.About>
         <l.title>drag queen in the white house</l.title>
+        <Rating />
         imagine waking mañana and a drag queen is president.<br/>
         what would america look like with wild injections of colorful yes?<br/><br/>
         emancipated lands of yes, and await you<br/>
