@@ -173,7 +173,7 @@ Deck = (p) =>
           if isTop then numCards
           else (numCards - (thisIndex - topIndex)) % numCards
         <l.Card key={thisIndex} spin={spins[thisIndex]}
-          style={{x, y, zIndex, pointerEvents: 'none'}}>
+          style={{x, y, zIndex}}>
           {p.cards[thisIndex].render({markLoaded, disabled: not isTop or not inView})}
         </l.Card>
       }
@@ -219,6 +219,22 @@ export Book = =>
           </l.Pot>
         buttonText: 'read more'
         buttonAction: 'https://medium.com/@skitzysandcastle/in-the-beginning-was-the-end-88c928e7d3aa'
+      }
+      {
+        render: (p) =>
+          useEffect p.markLoaded, []
+          {screenWidth, screenHeight, shape} = useScreenSize()
+          videoHeight = useMemo (=>
+            if shape is 'landscape' then screenHeight * .5
+            else screenWidth * .9 * (9/16)
+          ), [screenWidth, screenHeight]
+          <Video
+            url='https://www.youtube.com/watch?v=-VkMsRHsAmM'
+            inView={not p.disabled}
+            height={videoHeight}
+          />
+        buttonText: 'i’m so in!'
+        buttonAction: => cast 'book.openCheckout'
       }
       {
         render: (p) =>
