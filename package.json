@@ -80,6 +80,7 @@
     "lodash": "^4.17.15",
     "memoize-one": "^5.1.1",
     "minimist": "1.2.0",
+    "node-fetch": "^2.6.0",
     "polished": "^3.4.1",
     "prop-types": "15.7.2",
     "react": "16.8.6",

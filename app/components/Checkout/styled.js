@@ -45,7 +45,7 @@ l.CheckoutWidget = styled(g.FlexColumn)`
   #form-container {
     position: relative;
     width: 380px;
-    margin: 9px auto 0;
+    margin: 9px auto 4px;
 
     ${g.screen.medium`
       width: 100%;

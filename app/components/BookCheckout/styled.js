@@ -6,14 +6,16 @@ import * as c from '../../constants'
 const l = {}
 export default l
 
+const MaxWidth = 1340;
+
 l.GlobalStyle = createGlobalStyle`
   .bookCheckoutSheet .sheet {
     align-items: flex-start;
-    max-width: 1280px;
+    max-width: ${MaxWidth}px;
     flex-wrap: unset;
     padding-bottom: 36px;
 
-    @media (max-width: ${1280 / 16}em) {
+    @media (max-width: ${MaxWidth / 16}em) {
       padding-bottom: 18px;
     }
     ${g.screen.large`
@@ -47,15 +49,14 @@ l.Root = styled(g.AbsoluteFlexFillParent)`
 `
 
 l.About = styled(g.FlexColumn)`
-  flex: 0 1 756px;
+  flex: 0 1 886px;
   padding: 36px;
   color: white;
   border-radius: 4px;
   font-size: 18px;
   line-height: 130%;
-  max-width: 756px;
 
-  @media (max-width: ${1280 / 16}em) {
+  @media (max-width: ${MaxWidth / 16}em) {
     flex: 0 1 auto;
   }
   ${g.screen.medium`
@@ -71,7 +72,7 @@ l.About = styled(g.FlexColumn)`
 l.Details = styled(g.Flex)`
   flex: 1 1 auto;
 
-  @media (max-width: ${1280 / 16}em) {
+  @media (max-width: ${MaxWidth / 16}em) {
     flex-direction: column;
   }
 `
@@ -127,7 +128,7 @@ l.GetIt = styled(g.FlexColumn)`
     `}
   }
 
-  @media (max-width: ${1280 / 16}em) {
+  @media (max-width: ${MaxWidth / 16}em) {
     flex: 0 0 100%;
   }
   ${g.screen.medsmall`

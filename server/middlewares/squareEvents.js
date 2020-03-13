@@ -1,4 +1,5 @@
 const crypto = require('crypto')
+const fetch = require('node-fetch')
 const SquareConnect = require('square-connect')
 const {SquareLocationId} = require('../square')
 
@@ -48,7 +49,7 @@ function getPayment(paymentId) {
   const Payments = new SquareConnect.PaymentsApi()
   return Payments.getPayment(paymentId)
   .then((data) => {
-    console.info('fetched square payment:\n' + data)
+    console.info('fetched square payment:\n' + JSON.stringify(data))
     return data.payment
   }, (error) => {
     console.error('failed to fetch square payment\n' + error)
