@@ -212,7 +212,7 @@ export Book = =>
     cards={[
       {
         render: (p) =>
-          <Image name='dqitwh front cover mq.jpg' className='cover fullHeight' onLoad={p.markLoaded} />
+          <Image name='dqitwh cover mq.jpg' className='cover fullHeight' onLoad={p.markLoaded} />
         buttonText: 'get the new book'
         buttonAction: => cast 'book.openCheckout'
       }

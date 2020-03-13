@@ -11,7 +11,6 @@ module.exports = {
 
     defaultClient.basePath = isProd?
       'https://connect.squareup.com' : 'https://connect.squareupsandbox.com'
-    console.log(process.env.SQUARE_ACCESS_TOKEN, defaultClient.basePath, isProd)
   },
   SquareLocationId: isProd? 'CWMV8TTJ1ZACA' : 'TPWBYE84W506V'
 }

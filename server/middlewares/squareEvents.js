@@ -2,6 +2,7 @@ const crypto = require('crypto')
 const fetch = require('node-fetch')
 const SquareConnect = require('square-connect')
 const {SquareLocationId} = require('../square')
+const {sendMail} = require('../mailer')
 
 const getOrderUrl = (orderId) => `https://squareup.com/dashboard/orders/overview/${orderId}`
 
@@ -20,20 +21,8 @@ async function handleSquareEvent(req, res) {
   const paymentId = req.body['entity_id']
   const payment = await getPayment(paymentId)
 
-  fetch(process.env.SLACK_WEBHOOK_URL, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json'
-    },
-    body: JSON.stringify({
-      text: '🙌 new order! 🙌\n' + getOrderUrl(payment.order_id),
-      channel: '#orders',
-    }),
-  }).then((response) => {
-    if (response.ok) console.info('slack notification succeeded!')
-    else console.error('slack notification failed\n', response.status)
-  })
-
+  slackUs(payment)
+  emailCustomer(payment)
   res.status(200).send('square update handled successfully')
 }
 
@@ -56,17 +45,32 @@ function getPayment(paymentId) {
   })
 }
 
-function getOrder(orderId) {
-  var Orders = new SquareConnect.OrdersApi()
-  var body = new SquareConnect.BatchRetrieveOrdersRequest()
-  body.order_ids = [orderId]
+function slackUs(payment) {
+  fetch(process.env.SLACK_WEBHOOK_URL, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json'
+    },
+    body: JSON.stringify({
+      text: '🙌 new order! 🙌\n' + getOrderUrl(payment.order_id),
+      channel: '#orders',
+    }),
+  }).then((response) => {
+    if (response.ok) console.info('slack notification succeeded!')
+    else console.error('slack notification failed\n', response.status)
+  })
+}
 
-  return Orders.batchRetrieveOrders(SquareLocationId, body)
-  .then((data) => {
-    console.info('fetched square order:\n' + data)
-    const {orders} = data
-    return orders.length? orders[0] : null
-  }, (error) => {
-    console.error('failed to fetch square order\n', error)
+function emailCustomer(payment) {
+  sendMail({
+    to: payment.buyer_email_address,
+    subject: 'thanks for your order!',
+    html: orderEmail({
+      orderId: payment.order_id,
+      total: payment.total_money / 100,
+      receiptUrl: payment.receipt_url,
+      shipping: payment.shipping_address,
+      email: payment.buyer_email_address,
+    })
   })
 }

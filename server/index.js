@@ -19,7 +19,7 @@ const app = express();
 
 initSquare()
 setupSquarePayments(app)
-setupSquareEvents(app)
+// setupSquareEvents(app)
 
 // add your custom backend-specific middleware here
 // app.use('/api', myApi);

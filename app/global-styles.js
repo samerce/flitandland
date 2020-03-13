@@ -148,7 +148,7 @@ export default createGlobalStyle`
     font-family: 'slim joe';
     src: url("${c.CDN_URL}fonts/slim joe/slim_joe-webfont.woff2") format('woff2'),
          url("${c.CDN_URL}fonts/slim joe/slim_joe-webfont.woff") format('woff');
-    font-weight: normal;
+    font-weight: 900;
     font-style: normal;
   }
 

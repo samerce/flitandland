@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const squareConnect = require('square-connect');
 const {SquareLocationId} = require('../square')
+const {sendMail} = require('../mailer')
+const orderEmail = require('../orderEmail')
 
 module.exports = (app) => {
   app.use(bodyParser.json());
@@ -33,6 +35,8 @@ async function processPayment(req, res) {
       result: response,
       recipient: params.recipient,
     });
+    slackUs(response.payment)
+    emailCustomer(params.recipient, response.payment)
   } catch(error) {
     console.log('payment failed:\n' + error)
     res.status(500).json({
@@ -86,4 +90,37 @@ async function createOrder(params, source) {
 function createKey() {
   // length of idempotency_key should be less than 45
   return crypto.randomBytes(22).toString('hex')
+}
+
+function slackUs(payment) {
+  fetch(process.env.SLACK_WEBHOOK_URL, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json'
+    },
+    body: JSON.stringify({
+      text: '🙌 new order! 🙌\n' + getOrderUrl(payment.order_id),
+      channel: '#orders',
+    }),
+  }).then((response) => {
+    if (response.ok) console.info('slack notification succeeded!')
+    else console.error('slack notification failed\n', response.status)
+  })
+}
+
+function emailCustomer(recipient, payment) {
+  sendMail({
+    to: payment.buyer_email_address,
+    subject: 'thanks for your order!',
+    html: orderEmail({
+      orderId: payment.order_id,
+      total: payment.total_money.amount / 100,
+      receiptUrl: payment.receipt_url,
+      recipient: recipient,
+    })
+  })
+}
+
+function getOrderUrl(orderId) {
+  return `https://squareup.com/dashboard/orders/overview/${orderId}`
 }
