@@ -12,6 +12,7 @@ import {cx} from '../../utils/style'
 import useScreenSize from '../../hooks/useScreenSize.coffee'
 import useToggle from '../../hooks/useToggle.coffee'
 import useDelayedReveal from '../../hooks/useDelayedReveal.coffee'
+import useBus from '../../hooks/useBus.coffee'
 
 import {openInNewTab} from '../../utils/nav'
 
@@ -158,6 +159,11 @@ Deck = (p) =>
     => timer.clear()
   ), [loaded, inView, mode]
 
+  [covered, setCovered] = useState no
+  useBus
+    'book.openCheckout': => setCovered yes
+    'book.closeCheckout': => setCovered no
+
   <l.Deck ref={ref} key={ref} id={p.id}>
     {if p.id is 'book'
       <OutNow show={mode is 'show'} delay={cardDelay(0)} />
@@ -174,7 +180,10 @@ Deck = (p) =>
           else (numCards - (thisIndex - topIndex)) % numCards
         <l.Card key={thisIndex} spin={spins[thisIndex]}
           style={{x, y, zIndex}}>
-          {p.cards[thisIndex].render({markLoaded, disabled: not isTop or not inView})}
+          {p.cards[thisIndex].render({
+            markLoaded,
+            disabled: not isTop or not inView or covered
+          })}
         </l.Card>
       }
     </l.CardRoot>
