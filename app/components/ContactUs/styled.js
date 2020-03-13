@@ -10,8 +10,6 @@ l.GlobalStyle = createGlobalStyle`
   .contactUsSheet .sheet {
     z-index: 9000;
     max-width: 756px;
-    height: 432px;
-    flex: 0 0 432px;
 
     ${g.screen.medsmall`
       max-width: 99%;
@@ -25,7 +23,7 @@ l.Title = styled.div`
   font-family: big john;
   text-align: center;
   color: white;
-  margin: 18px 0 0;
+  margin: 18px 0 9px;
 
   ${g.screen.medsmall`
     font-size: 36px;
@@ -35,7 +33,14 @@ l.Title = styled.div`
 l.Subtitle = styled(l.Title)`
   font-size: 20px;
   font-family: crimson pro;
-  margin: 0 0 9px;
+  margin: 0 0 18px;
+
+  ${g.screen.medsmall`
+    font-size: 18px;
+  `}
+  span {
+    display: inline-block;
+  }
 `
 
 l.Email = styled(g.TextInput)`

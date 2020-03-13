@@ -45,7 +45,7 @@ export default ContactUs = (p) =>
     <l.GlobalStyle />
     <l.Title>let’s talk</l.Title>
     <l.Subtitle>
-      i want this book in your hands, let’s barter and make it happen!
+      i want this book in your hands, <span>let’s barter and make it happen!</span>
     </l.Subtitle>
     <l.Email value={email} onChange={onChangeEmail} placeholder='email' />
     <l.Message value={msg} onChange={onChangeMsg} placeholder='what you got? :)' />

@@ -47,8 +47,8 @@ l.SheetRoot = styled(g.FlexColumn)`
     border-bottom-left-radius: 27px;
     overflow-y: scroll;
     max-width: 99%;
-    max-height: calc(100% - 108px);
-    flex: 1 1 auto;
+    max-height: calc(100% - 94px);
+    flex: 0 0 auto;
     box-shadow: ${g.theme.sexyEdge}, ${g.theme.shadowVeryHeavy};
 
     ${g.screen.medmedsmall`

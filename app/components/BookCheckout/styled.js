@@ -9,17 +9,18 @@ export default l
 l.GlobalStyle = createGlobalStyle`
   .bookCheckoutSheet .sheet {
     align-items: flex-start;
-    max-width: 1024px;
-    height: 864px;
-    flex: 0 0 864px;
+    max-width: 1280px;
     flex-wrap: unset;
+    padding-bottom: 36px;
 
+    @media (max-width: ${1280 / 16}em) {
+      padding-bottom: 18px;
+    }
     ${g.screen.large`
       max-width: 99%;
     `}
     ${g.screen.mediumlarge`
       flex-wrap: wrap;
-      height: 100%;
       flex: 0 0 100%;
     `}
   }
@@ -30,6 +31,10 @@ l.title = styled.div`
   font-size: 27px;
   color: white;
   line-height: 130%;
+
+  ${g.screen.small`
+    font-size: 26px;
+  `}
 `
 
 l.Root = styled(g.AbsoluteFlexFillParent)`
@@ -42,9 +47,7 @@ l.Root = styled(g.AbsoluteFlexFillParent)`
 `
 
 l.About = styled(g.FlexColumn)`
-  ${'' /* background: ${g.theme.cal};
-  box-shadow: ${g.theme.shadowVeryHeavy}, ${g.theme.sexyEdge}; */}
-  flex: 0 1 auto;
+  flex: 0 1 756px;
   padding: 36px;
   color: white;
   border-radius: 4px;
@@ -52,6 +55,9 @@ l.About = styled(g.FlexColumn)`
   line-height: 130%;
   max-width: 756px;
 
+  @media (max-width: ${1280 / 16}em) {
+    flex: 0 1 auto;
+  }
   ${g.screen.medium`
     padding: 27px 6px;
     margin: 0;
@@ -62,8 +68,12 @@ l.About = styled(g.FlexColumn)`
   `}
 `
 
-l.Details = styled(g.FlexColumn)`
-  flex: 0 1 auto;
+l.Details = styled(g.Flex)`
+  flex: 1 1 auto;
+
+  @media (max-width: ${1280 / 16}em) {
+    flex-direction: column;
+  }
 `
 
 l.Rating = styled(g.Flex)`
@@ -104,7 +114,7 @@ l.Image = styled.div`
 l.GetIt = styled(g.FlexColumn)`
   justify-content: center;
   align-items: center;
-  flex: 0 0 100%;
+  flex: 0 0 auto;
   margin: 12px 36px;
   max-width: 756px;
   position: relative;
@@ -117,6 +127,9 @@ l.GetIt = styled(g.FlexColumn)`
     `}
   }
 
+  @media (max-width: ${1280 / 16}em) {
+    flex: 0 0 100%;
+  }
   ${g.screen.medsmall`
     margin: 18px 0;
   `}

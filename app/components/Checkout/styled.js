@@ -8,12 +8,8 @@ export default l
 
 l.GlobalStyle = createGlobalStyle`
   .checkoutSheet .sheet {
-    height: 648px;
-    flex: 0 0 648px;
 
     @media(max-width: 555px) {
-      height: 708px;
-      flex: 0 0 708px;
     }
   }
 `
@@ -49,7 +45,7 @@ l.CheckoutWidget = styled(g.FlexColumn)`
   #form-container {
     position: relative;
     width: 380px;
-    margin: 9px auto;
+    margin: 9px auto 0;
 
     ${g.screen.medium`
       width: 100%;
@@ -123,10 +119,13 @@ l.Title = styled.div`
   font-family: big john;
   font-size: 54px;
   color: white;
-  margin: 36px 0 18px;
+  margin: 18px 0 12px;
 
-  ${g.screen.medsmall`
+  ${g.screen.medium`
     font-size: 36px;
+  `}
+  ${g.screen.medsmall`
+    font-size: 27px;
   `}
 `
 
