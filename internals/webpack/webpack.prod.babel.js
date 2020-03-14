@@ -68,7 +68,8 @@ module.exports = require('./webpack.base.babel')({
 
   plugins: [
     new webpack.EnvironmentPlugin([
-      'NODE_ENV', 'SLACK_WEBHOOK_URL', 'SQUARE_ACCESS_TOKEN'
+      'NODE_ENV', 'SLACK_WEBHOOK_URL', 'SQUARE_ACCESS_TOKEN',
+      'GMAIL_OAUTH_KEY'
     ]),
 
     // Minify and optimize the index.html
