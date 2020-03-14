@@ -29,7 +29,7 @@ Tabs = (p) =>
 BookCost = 8.50
 ThinkingDuration = 1000
 AcceptDuration = ThinkingDuration + 1000
-PickYourPrice = =>
+PickYourPrice = (p) =>
   [mode, setMode] = useState 'idle'
   [price, setPrice] = useState ''
 
@@ -48,7 +48,7 @@ PickYourPrice = =>
       after ThinkingDuration, => setMode 'acceptOffer'
       after AcceptDuration, =>
         setMode 'awaitPayment'
-        cast 'checkout.open', +(price.replace '$', '')
+        cast 'checkout.open', [+(price.replace '$', ''), p.format]
     else
       after ThinkingDuration, => setMode 'rejectOffer'
       after AcceptDuration, =>
@@ -74,7 +74,7 @@ PickYourPrice = =>
   useBus
     'checkout.paymentFailed': => setMode 'priceEntered'
     'checkout.close': => setMode 'priceEntered'
-    'book.checkoutClose': =>
+    'book.checkoutClose': => after 1000, =>
       setPrice ''
       setMode 'idle'
 
@@ -94,7 +94,7 @@ PickYourPrice = =>
     </l.Buy>
   </l.PickYourPrice>
 
-GetItButtons = =>
+GetItButtons = (p) =>
   onClickBarter = =>
     cast 'contactus.open'
     ga 'send', 'event', {
@@ -107,8 +107,9 @@ GetItButtons = =>
       eventCategory: 'book checkout'
       eventAction: 'amazon button clicked'
     }
+
   <l.GetItButtons>
-    <PickYourPrice />
+    <PickYourPrice format={p.format} />
     <l.Or>or</l.Or>
     <l.BarterBaby onClick={onClickBarter}>
       barter, baby
@@ -139,14 +140,15 @@ BookImages = [
 ]
 BookFormats = ['paperback', 'ebook']
 GetIt = =>
-  [formatIndex, setFormatIndex] = useState 0
+  [format, setFormat] = useState 'paperback'
+  onChangeFormat = (index) => setFormat BookFormats[index]
   <l.GetIt>
-    <Tabs tabs={BookFormats} onChange={setFormatIndex} className='tabs' />
+    <Tabs tabs={BookFormats} onChange={onChangeFormat} className='tabs' />
     <l.CuteInfo>
       <span><br/>↯</span>
       printing+shipping costs $10 on our end
     </l.CuteInfo>
-    <GetItButtons />
+    <GetItButtons format={format} />
   </l.GetIt>
 
 BookPics = =>

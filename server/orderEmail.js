@@ -1,9 +1,12 @@
 module.exports = (p) => `
 <!doctype html>
-<html lang='en' style="background: #d10079;font-family: crimson pro;font-size: 18px;text-align: center;color: white;">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
 <head>
-  <meta charset='utf-8'>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>thank you for ordering drag queen in the white house</title>
   <link href='https://fonts.googleapis.com/css?family=Crimson+Pro&display=swap' rel='stylesheet'>
   <line href='https://d3sclm0qnx89jv.cloudfront.net/fonts/eymFonts.css' rel="stylesheet" type="text/css">
 </head>
@@ -14,6 +17,7 @@ module.exports = (p) => `
   <p style="font-family: big john;">
     <span style="font-family: slim joe; font-weight: 900;">order</span> ${p.orderId}
   </p>
+  <p style="font-family: slim joe;font-weight: 900; color: white;">${p.variation}</p>
   <img style="height: 324px;" src='https://res.cloudinary.com/eym/image/fetch/q_auto/https://d3sclm0qnx89jv.cloudfront.net/commons/dqitwh cover mq.jpg' />
 
   <p>

@@ -37,7 +37,7 @@ async function processPayment(req, res) {
       recipient: params.recipient,
     });
     slackUs(response.payment)
-    emailCustomer(params.recipient, response.payment)
+    emailCustomer(params.recipient, response.payment, params.items[0].variation_name)
   } catch(error) {
     console.log('payment failed:\n' + error)
     res.status(500).json({
@@ -109,7 +109,7 @@ function slackUs(payment) {
   })
 }
 
-function emailCustomer(recipient, payment) {
+function emailCustomer(recipient, payment, variation) {
   sendMail({
     to: recipient.email_address,
     subject: 'thanks for your order!',
@@ -117,7 +117,8 @@ function emailCustomer(recipient, payment) {
       orderId: payment.order_id,
       total: payment.total_money.amount / 100,
       receiptUrl: payment.receipt_url,
-      recipient: recipient,
+      recipient,
+      variation,
     })
   })
 }

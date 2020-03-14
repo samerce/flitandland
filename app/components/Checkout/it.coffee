@@ -12,6 +12,7 @@ import useBus from '../../hooks/useBus.coffee'
 ShippingFields = [
   'name', 'email', 'address', 'city', 'state', 'postcode',
 ]
+
 SquareAppId =
   if process.env.NODE_ENV is 'production'
     'sq0idp-9ggRDaOxIOjCFSAnUmiOew'
@@ -20,22 +21,28 @@ LocationId =
   if process.env.NODE_ENV is 'production'
     'CWMV8TTJ1ZACA'
   else 'TPWBYE84W506V'
-CatalogObjectId =
-  if process.env.NODE_ENV is 'production'
-    'LWO4K5YZYOA2QQPZCMXT6J7G'
-  else 'TXEFRKQOVIOTZ3L2G4DKQ7FC'
+
+CatalogIds =
+  ebook:
+    production: 'MLFOTH2XXYHIVFIPSZWNF33D'
+    development: 'D7EFIEPOBZVOURRTHEU4KZJC'
+  paperback:
+    production: 'YLMK2UITGL6UGFWXKUGIJA7I'
+    development: 'JCVUYQ3HA7LQP4BMTFV5YEGL'
+getCatalogId = (format) => CatalogIds[format][process.env.NODE_ENV]
 
 gtotal = u.ShippingTotal
 gshipping = {}
 
-makeOrder = (total, shipping) =>
+makeOrder = (total, shipping, format) =>
   amount: total
   items: [
     {
       name: 'drag queen in the white house'
       quantity: '1'
       total_money: total
-      catalog_object_id: CatalogObjectId
+      catalog_object_id: getCatalogId format
+      variation_name: format
     }
   ]
   recipient:
@@ -66,7 +73,7 @@ export default (p) =>
     cast 'checkout.paymentFailed'
     after 5000, => setMode 'fillingForm'
 
-  makePaymentForm = (type) =>
+  makePaymentForm = (type, format) =>
     paymentForm = new SqPaymentForm({
       locationId: LocationId
       applicationId: SquareAppId
@@ -89,7 +96,7 @@ export default (p) =>
               'Content-Type': 'application/json'
             body: JSON.stringify({
               nonce,
-              ...makeOrder(gtotal, gshipping)
+              ...makeOrder(gtotal, gshipping, format)
             })
           })
           .catch(onPaymentFailed)
@@ -120,9 +127,9 @@ export default (p) =>
     paymentForm
 
   useBus
-    [OpenCast]: (amount) =>
+    [OpenCast]: ([amount, format]) =>
       gtotal = if amount is 10831415 then 1 else amount # $1 for testing in prod
-      setPaymentForm makePaymentForm 'card'
+      setPaymentForm makePaymentForm 'card', format
     [CloseCast]: => paymentForm.destroy()
 
   onChangeShipping = (key, value) =>
