@@ -5,6 +5,7 @@ const squareConnect = require('square-connect');
 const {SquareLocationId} = require('../square')
 const {sendMail} = require('../mailer')
 const orderEmail = require('../orderEmail')
+const fetch = require('node-fetch')
 
 module.exports = (app) => {
   app.use(bodyParser.json());
@@ -110,7 +111,7 @@ function slackUs(payment) {
 
 function emailCustomer(recipient, payment) {
   sendMail({
-    to: payment.buyer_email_address,
+    to: recipient.email_address,
     subject: 'thanks for your order!',
     html: orderEmail({
       orderId: payment.order_id,
