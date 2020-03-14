@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 module.exports = {
   sendMail: (params) => {
     transporter.sendMail({
-      from: '"grain from express your mess" <whynot@expressyourmess.com>',
+      from: '"skitzy from express your mess" <whynot@expressyourmess.com>',
       subject: 'a message from express your mess',
       ...params
     })
