@@ -41,7 +41,8 @@ export default ContactUs = (p) =>
       after 1000, => setMode 'idle'
     [CloseCast]: => after 1000, => reset()
 
-  <Sheet openCast={OpenCast} closeCast={CloseCast} className='contactUsSheet'>
+  <Sheet openCast={OpenCast} closeCast={CloseCast} url='contact' keepPreviousUrl={yes}
+    className='contactUsSheet'>
     <l.GlobalStyle />
     <l.Title>let’s talk</l.Title>
     <l.Subtitle>

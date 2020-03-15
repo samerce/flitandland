@@ -92,7 +92,7 @@ OutNow = (p) =>
   <l.OutNow onClick={=> cast 'book.openCheckout'}
     className={cx show: p.show} delay={p.delay}>
     <l.woo>new book</l.woo>
-    <l.yow>out now!</l.yow>
+    <l.yow>out now</l.yow>
   </l.OutNow>
 
 Deck = (p) =>

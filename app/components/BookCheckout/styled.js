@@ -116,7 +116,7 @@ l.GetIt = styled(g.FlexColumn)`
   justify-content: center;
   align-items: center;
   flex: 0 0 auto;
-  margin: 12px 36px;
+  margin: 36px;
   max-width: 756px;
   position: relative;
 
@@ -129,6 +129,7 @@ l.GetIt = styled(g.FlexColumn)`
   }
 
   @media (max-width: ${MaxWidth / 16}em) {
+    margin: 12px 36px;
     flex: 0 0 100%;
   }
   ${g.screen.medsmall`

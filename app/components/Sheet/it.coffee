@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useLayoutEffect} from 'react'
+import React, {useState, useMemo, useEffect, useLayoutEffect} from 'react'
 
 import l from './styled'
 import {cx} from '../../utils/style'
@@ -20,34 +20,31 @@ export default Sheet = (p) =>
   offscreenY = useMemo (=> -screenHeight * 1.2), [screenHeight]
   [{y}, setit] = useSpring => y: offscreenY
 
-  open = (canceled) =>
+  open = =>
     setit y: 0, config: phys
     setOpened yes
-  close = (velocity = 0) =>
-    setit y: offscreenY, config: {...phys, velocity}
+  close = =>
+    setit y: offscreenY, config: {...phys}
     setOpened no
 
-  # handleDrag =
-  #   ({first, last, vxvy: [, vy], movement: [, my], cancel, canceled}) =>
-  #     setDragging(first and not last)
-  #
-  #     # if the user drags up passed a threshold, then cancel
-  #     if my > 70 then cancel()
-  #
-  #     # check if it passed the threshold on release
-  #     if last
-  #       if my < thresholdY or vy > 0.5
-  #         # close(vy)
-  #       else open(canceled)
-  #     # else just move the sheet with the user's input
-  #     else setit y: my, immediate: no, config: phys
-  # withDrag = useDrag(handleDrag,
-  #   {initial: (=> [0, y.get()]), bounds: {top: 0}, rubberband: true}
-  # )
-
   useBus
-    [p.openCast]: => open()
-    [p.closeCast]: => close()
+    [p.openCast]: =>
+      if p.keepPreviousUrl
+        window.location = window.location.hash + '/' + p.url
+      else window.location.hash = p.url
+    [p.closeCast]: =>
+      replace = p.url
+      if p.keepPreviousUrl then replace = '/' + p.url
+      window.location = window.location.hash.replace replace, ''
+
+  useEffect (=>
+    cast 'hashHandler.add', {
+      trigger: p.url
+      onEnter: => open()
+      onChange: =>
+      onExit: => close()
+    }
+  ), []
 
   <l.SheetRoot {...p} className={cx [p.className]: yes, open: opened}>
     <a.div className='bg' onClick={=> cast p.closeCast} style={{

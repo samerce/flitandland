@@ -151,7 +151,7 @@ export default (p) =>
       setMode 'formError'
       after 1500, => setMode 'fillingForm'
 
-  <Sheet openCast={OpenCast} closeCast={CloseCast}
+  <Sheet openCast={OpenCast} closeCast={CloseCast} url='checkout' keepPreviousUrl={yes}
     className={cx [mode]: yes, checkoutSheet: yes}>
     <l.GlobalStyle />
     <l.CheckoutWidget>
