@@ -116,7 +116,7 @@ l.Image = styled.div`
 l.SampleButton = styled.a`
   ${g.ButtonStyle}
   padding: 12px 27px;
-  margin: 18px 0;
+  margin: 18px 0 0;
   text-shadow: none;
 `
 
@@ -137,7 +137,7 @@ l.GetIt = styled(g.FlexColumn)`
   }
 
   @media (max-width: ${MaxWidth / 16}em) {
-    margin: 12px 36px;
+    margin: 0 36px;
     flex: 0 0 100%;
   }
   ${g.screen.medsmall`
@@ -230,6 +230,32 @@ l.PriceInput = styled(g.TextInput)`
   }
 `
 
+l.Checkboxes = styled(g.Flex)`
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-family: aladin;
+  letter-spacing: 1px;
+  color: white;
+  user-select: none;
+  overflow: hidden;
+  transition: all .3s ${c.Sexy};
+  flex: 0 0 auto;
+
+  input {
+    cursor: pointer;
+  }
+  label {
+    cursor: pointer;
+    padding: 0 6px;
+  }
+  ${p => p.disabled && `
+    opacity: 0;
+    flex: 0 0 0;
+    pointer-events: none;
+  `}
+`
+
 l.Buy = styled(g.Flex)`
   ${g.ButtonStyle}
   flex: 0 0 auto;
@@ -248,7 +274,7 @@ l.Buy = styled(g.Flex)`
   margin: 0;
   right: -18px;
   z-index: 1;
-  height: 100%;
+  height: 54px;
   justify-content: center;
   align-items: center;
   padding-top: 15px;

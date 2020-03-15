@@ -34,7 +34,8 @@ getCatalogId = (format) => CatalogIds[format][process.env.NODE_ENV]
 gtotal = u.ShippingTotal
 gshipping = {}
 
-makeOrder = (total, shipping, format) =>
+boolToString = (bool) => if bool then 'yes' else 'no'
+makeOrder = (total, shipping, {format, autograph, poetcard}) =>
   amount: total
   items: [
     {
@@ -43,6 +44,7 @@ makeOrder = (total, shipping, format) =>
       total_money: total
       catalog_object_id: getCatalogId format
       variation_name: format
+      note: "autograph? #{boolToString autograph}, poetcard? #{boolToString poetcard}"
     }
   ]
   recipient:
@@ -73,7 +75,7 @@ export default (p) =>
     cast 'checkout.paymentFailed'
     after 5000, => setMode 'fillingForm'
 
-  makePaymentForm = (type, format) =>
+  makePaymentForm = (type, params) =>
     paymentForm = new SqPaymentForm({
       locationId: LocationId
       applicationId: SquareAppId
@@ -96,7 +98,7 @@ export default (p) =>
               'Content-Type': 'application/json'
             body: JSON.stringify({
               nonce,
-              ...makeOrder(gtotal, gshipping, format)
+              ...makeOrder(gtotal, gshipping, params)
             })
           })
           .catch(onPaymentFailed)
@@ -127,9 +129,9 @@ export default (p) =>
     paymentForm
 
   useBus
-    [OpenCast]: ([amount, format]) =>
-      gtotal = if amount is 10831415 then 1 else amount # $1 for testing in prod
-      setPaymentForm makePaymentForm 'card', format
+    [OpenCast]: (params) =>
+      gtotal = if params.amount is 10831415 then 1 else params.amount # $1 for testing in prod
+      setPaymentForm makePaymentForm 'card', params
     [CloseCast]: => paymentForm.destroy()
 
   onChangeShipping = (key, value) =>

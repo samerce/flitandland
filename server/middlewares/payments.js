@@ -60,6 +60,7 @@ async function createOrder(params, source) {
     lineItem.base_price_money = new squareConnect.Money()
     lineItem.base_price_money.amount = params.amount
     lineItem.base_price_money.currency = 'USD'
+    lineItem.note = item.note
     return lineItem
   })
 

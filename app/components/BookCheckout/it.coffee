@@ -6,6 +6,7 @@ import {cx} from '../../utils/style'
 import * as c from '../../constants'
 
 import useScreenSize from '../../hooks/useScreenSize.coffee'
+import useToggle from '../../hooks/useToggle.coffee'
 import useBus from '../../hooks/useBus.coffee'
 import {openInNewTab} from '../../utils/nav'
 
@@ -32,6 +33,8 @@ AcceptDuration = ThinkingDuration + 1000
 PickYourPrice = (p) =>
   [mode, setMode] = useState 'idle'
   [price, setPrice] = useState ''
+  [autograph, toggleAutograph] = useToggle no
+  [poetcard, togglePoetcard] = useToggle no
 
   makeOffer = =>
     ga 'send', 'event', {
@@ -48,7 +51,11 @@ PickYourPrice = (p) =>
       after ThinkingDuration, => setMode 'acceptOffer'
       after AcceptDuration, =>
         setMode 'awaitPayment'
-        cast 'checkout.open', [+(price.replace '$', ''), p.format]
+        cast 'checkout.open', {
+          amount: +(price.replace '$', '')
+          format: p.format
+          autograph, poetcard
+        }
     else
       after ThinkingDuration, => setMode 'rejectOffer'
       after AcceptDuration, =>
@@ -80,6 +87,12 @@ PickYourPrice = (p) =>
 
   <l.PickYourPrice className={cx [mode]: yes}>
     <l.PriceInput value={price} onChange={onChangePrice} placeholder='pick your price' />
+    <l.Checkboxes disabled={p.format is 'ebook'}>
+      <input type='checkbox' id='autograph' onChange={toggleAutograph} />
+      <label for='autograph'>autograph</label>
+      <input type='checkbox' id='poetcard' onChange={togglePoetcard} />
+      <label for='poetcard'>poetcard</label>
+    </l.Checkboxes>
     <l.Line className={cx show: mode isnt 'idle'} />
     <l.Buy onClick={makeOffer}>
       {switch mode

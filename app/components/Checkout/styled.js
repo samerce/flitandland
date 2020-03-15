@@ -250,6 +250,7 @@ l.CheckoutStatus = styled(g.FlexColumn)`
   pointer-events: none;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 
   &:not(.fillingForm) {
     opacity: 1;
