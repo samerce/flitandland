@@ -50,7 +50,7 @@ l.Root = styled(g.AbsoluteFlexFillParent)`
 
 l.About = styled(g.FlexColumn)`
   flex: 0 1 886px;
-  padding: 36px;
+  padding: 27px;
   color: white;
   border-radius: 4px;
   font-size: 18px;
@@ -100,6 +100,7 @@ l.PicRoot = styled(g.FlexColumn)`
   align-items: center;
   position: relative;
   z-index: 1;
+  margin: 0 12px;
 `
 
 l.Image = styled.div`
@@ -112,11 +113,18 @@ l.Image = styled.div`
   }
 `
 
+l.SampleButton = styled.a`
+  ${g.ButtonStyle}
+  padding: 12px 27px;
+  margin: 18px 0;
+  text-shadow: none;
+`
+
 l.GetIt = styled(g.FlexColumn)`
   justify-content: center;
   align-items: center;
   flex: 0 0 auto;
-  margin: 36px;
+  margin: 36px 0 36px 36px;
   max-width: 756px;
   position: relative;
 

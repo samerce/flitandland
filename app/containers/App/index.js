@@ -43,7 +43,7 @@ export default function App() {
         window.location.hash = '#' + pathname.substr(1)
         window.onload = null
       }
-    }
+    } else if (window.location.hash) runHashHandlers()
   }, [])
 
   return (

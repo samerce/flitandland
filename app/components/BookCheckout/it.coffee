@@ -158,6 +158,9 @@ BookPics = =>
       <img src={c.SRC_URL + 'commons/' + BookImages[imageIndex]} />
     </l.Image>
     <Tabs tabs={BookTabs} onChange={setImageIndex} />
+    <l.SampleButton href={c.GoogleBookPreview} target='_blank'>
+      read a sample
+    </l.SampleButton>
   </l.PicRoot>
 
 Rating = =>

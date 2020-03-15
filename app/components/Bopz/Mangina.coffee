@@ -18,7 +18,6 @@ import {openInNewTab} from '../../utils/nav'
 
 BookUrl = 'https://www.amazon.com/gp/product/171000892X/'
 FlitterFormUrl = 'https://forms.gle/8mzToRg25jVfBLSP8'
-GoogleBookPreview = 'https://books.google.com/books?id=RxPRDwAAQBAJ&newbks=0&printsec=frontcover#v=onepage&q&f=false'
 
 Image = (p) =>
   {screenWidth, screenHeight} = useScreenSize()
@@ -255,7 +254,7 @@ export Book = =>
             </div>
           </l.Pot>
         buttonText: 'sample the book'
-        buttonAction: GoogleBookPreview
+        buttonAction: c.GoogleBookPreview
       }
       {
         render: (p) =>
@@ -339,7 +338,7 @@ export Flitter = =>
             </div>
           </l.Pot>
         buttonText: 'sample the book'
-        buttonAction: GoogleBookPreview
+        buttonAction: c.GoogleBookPreview
       }
       {
         render: (p) =>
@@ -487,7 +486,7 @@ export Lampshade = =>
             </div>
           </l.Pot>
         buttonText: 'read more'
-        buttonAction: GoogleBookPreview
+        buttonAction: c.GoogleBookPreview
       }
       {
         render: (p) =>
@@ -530,7 +529,7 @@ export EymU = =>
             </div>
           </l.Pot>
         buttonText: 'read more'
-        buttonAction: GoogleBookPreview
+        buttonAction: c.GoogleBookPreview
       }
       {
         render: (p) =>

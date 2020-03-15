@@ -20,6 +20,7 @@ export const TwitterUrl = 'https://twitter.com/expressyourmess';
 export const EtsyUrl = 'https://etsy.com/shop/expressyourmess';
 export const YouTubeUrl = 'https://www.youtube.com/channel/UCne9Pv9CARxNz8rNMaDm7Dw';
 export const BookUrl = 'https://www.amazon.com/gp/product/171000892X/'
+export const GoogleBookPreview = 'https://books.google.com/books?id=RxPRDwAAQBAJ&newbks=0&printsec=frontcover#v=onepage&q&f=false'
 
 export const EASE_OUT_SINE = 'cubic-bezier(0.25, 0.1, 0.25, 1)';
 export const EASE_IN_SINE = 'cubic-bezier(0.42, 0, 1, 1)';
