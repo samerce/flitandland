@@ -78,8 +78,10 @@ PickYourPrice = (p) =>
     if newPrice?.length > 1 then setMode 'priceEntered'
     else setMode 'idle'
 
-  onKeyPressPriceInput = ({which, keyCode}) =>
-    makeOffer() if which is 13 or keyCode is 13
+  onKeyPressPriceInput = ({target, which, keyCode}) =>
+    if which is 13 or keyCode is 13
+      target.blur()
+      makeOffer()
 
   useBus
     'checkout.paymentFailed': => setMode 'priceEntered'
