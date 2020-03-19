@@ -78,6 +78,9 @@ PickYourPrice = (p) =>
     if newPrice?.length > 1 then setMode 'priceEntered'
     else setMode 'idle'
 
+  onKeyPressPriceInput = ({which, keyCode}) =>
+    makeOffer() if which is 13 or keyCode is 13
+
   useBus
     'checkout.paymentFailed': => setMode 'priceEntered'
     'checkout.close': => setMode 'priceEntered'
@@ -86,7 +89,8 @@ PickYourPrice = (p) =>
       setMode 'idle'
 
   <l.PickYourPrice className={cx [mode]: yes}>
-    <l.PriceInput value={price} onChange={onChangePrice} placeholder='pick your price' />
+    <l.PriceInput value={price} placeholder='pick your price'
+      onChange={onChangePrice} onKeyPress={onKeyPressPriceInput} />
     <l.Checkboxes disabled={p.format is 'ebook'}>
       <input type='checkbox' id='autograph' onChange={toggleAutograph} />
       <label for='autograph'>autograph</label>
