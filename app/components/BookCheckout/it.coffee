@@ -95,9 +95,9 @@ PickYourPrice = (p) =>
       onChange={onChangePrice} onKeyPress={onKeyPressPriceInput} />
     <l.Checkboxes disabled={p.format is 'ebook'}>
       <input type='checkbox' id='autograph' onChange={toggleAutograph} />
-      <label for='autograph'>autograph</label>
+      <label htmlFor='autograph'>autograph</label>
       <input type='checkbox' id='poetcard' onChange={togglePoetcard} />
-      <label for='poetcard'>poetcard</label>
+      <label htmlFor='poetcard'>poetcard</label>
     </l.Checkboxes>
     <l.Line className={cx show: mode isnt 'idle'} />
     <l.Buy onClick={makeOffer}>
