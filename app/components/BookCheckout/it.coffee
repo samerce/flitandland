@@ -185,7 +185,7 @@ BookPics = =>
 Rating = =>
   <l.Rating>
     <a href='https://www.amazon.com/gp/product/171000892X/#customerReviews' target='_blank'>
-      🌟🌟🌟🌟🌟 3 reviews
+      🌟🌟🌟🌟🌟 4 reviews
     </a>
   </l.Rating>
 
