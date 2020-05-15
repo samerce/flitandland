@@ -90,7 +90,7 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: 'crimson pro', Georgia, serif;
+    font-family: lora, 'crimson pro', Georgia, serif;
     font-weight: 300;
     color: black;
     background: white;
@@ -237,7 +237,6 @@ export const Subheader = styled(H2)`
 
 export const ButtonStyles = css`
   cursor: pointer;
-  border: 1px dashed ${theme.main};
   padding: 10px 30px;
   font-size: 150%;
   line-height: 160%;
