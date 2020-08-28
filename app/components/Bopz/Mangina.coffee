@@ -264,6 +264,12 @@ export Book = =>
       }
       {
         render: (p) =>
+          <Image name='girlish.jpg' onLoad={p.markLoaded} />
+        buttonText: 'instagram'
+        buttonAction: c.InstagramUrl
+      }
+      {
+        render: (p) =>
           <Image name='child with sign.jpg' className='fullHeight' onLoad={p.markLoaded} />
         buttonText: 'youtube'
         buttonAction: c.YouTubeUrl
@@ -271,12 +277,6 @@ export Book = =>
       {
         render: (p) =>
           <Image name='merman 1.jpg' onLoad={p.markLoaded} />
-        buttonText: 'instagram'
-        buttonAction: c.InstagramUrl
-      }
-      {
-        render: (p) =>
-          <Image name='girlish.jpg' onLoad={p.markLoaded} />
         buttonText: 'instagram'
         buttonAction: c.InstagramUrl
       }
