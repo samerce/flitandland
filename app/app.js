@@ -14,7 +14,6 @@ import 'sanitize.css/sanitize.css';
 
 // third party global imports
 import '../node_modules/react-image-gallery/styles/css/image-gallery-no-icon.css'
-
 import App from 'containers/App';
 
 // Load the favicon and the .htaccess file
